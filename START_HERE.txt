@@ -1,0 +1,12 @@
+JP-CES v0.1
+============
+
+Open: index.html
+
+This is the first civilian-facing prototype of the building cost estimation system.
+
+IMPORTANT:
+- The UI is designed for non-engineers.
+- Engineer view reveals formulas and technical meanings.
+- The built-in rates are DEMO values for testing only.
+- Replace rates before using the cost result for a real project.

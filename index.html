@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>JP Construction Estimation System v0.1</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-mark">JP</div>
+      <div>
+        <h1>Building Cost Estimator</h1>
+        <p>Simple questions → engineering BOQ → preliminary cost</p>
+      </div>
+    </div>
+    <div class="top-actions">
+      <span class="badge warn">DEMO RATE PROFILE</span>
+      <label class="toggle">
+        <input id="engineerMode" type="checkbox">
+        <span>Engineer view</span>
+      </label>
+    </div>
+  </header>
+
+  <main class="shell">
+    <section id="landing" class="panel hero">
+      <div>
+        <p class="eyebrow">JP-CES v0.1</p>
+        <h2>You describe the house. The system translates it into engineering quantities and a BOQ.</h2>
+        <p class="lead">No concrete grades, rebar diameters, mortar ratios, or formwork calculations are required from the homeowner.</p>
+        <div class="hero-actions">
+          <button id="startBlank" class="btn primary">Start a new estimate</button>
+          <button id="loadKumari" class="btn">Load Kumari Gurung example</button>
+        </div>
+      </div>
+      <div class="flow">
+        <div class="flow-step"><b>1</b><span>Tell us about the house</span></div>
+        <div class="arrow">→</div>
+        <div class="flow-step"><b>2</b><span>System converts answers</span></div>
+        <div class="arrow">→</div>
+        <div class="flow-step"><b>3</b><span>BOQ + cost estimate</span></div>
+      </div>
+    </section>
+
+    <section id="estimator" class="hidden">
+      <div class="progress-wrap">
+        <div class="progress-head">
+          <span id="stepTitle">About your project</span>
+          <span id="progressText">Step 1 of 8</span>
+        </div>
+        <div class="progress"><div id="progressBar"></div></div>
+      </div>
+
+      <form id="estimatorForm" novalidate>
+        <section class="step panel" data-step="0">
+          <h2>1. About your project</h2>
+          <p class="step-help">Only information a homeowner normally knows.</p>
+          <div class="grid two">
+            <label>Project name
+              <input id="projectName" type="text" value="My House">
+            </label>
+            <label>Location
+              <input id="location" type="text" value="Pokhara">
+            </label>
+            <label>How many floors will be built?
+              <select id="floors">
+                <option value="1">1 floor</option>
+                <option value="2" selected>2 floors</option>
+                <option value="3">3 floors</option>
+                <option value="4">4 floors</option>
+              </select>
+            </label>
+            <label>Ground-floor size
+              <div class="with-unit"><input id="gfArea" type="number" min="100" value="700"><span>sq.ft</span></div>
+            </label>
+            <label id="upperAreaLabel">Typical upper-floor size
+              <div class="with-unit"><input id="upperArea" type="number" min="0" value="650"><span>sq.ft</span></div>
+            </label>
+            <label>Do you have an architectural floor plan?
+              <select id="hasPlan"><option value="yes">Yes</option><option value="no">No</option></select>
+            </label>
+          </div>
+          <div class="engineer-only tech-note">
+            Translation: total built-up area = GF area + upper-floor area × (floors − 1). The current MVP assumes all upper floors use the same entered area.
+          </div>
+        </section>
+
+        <section class="step panel hidden" data-step="1">
+          <h2>2. Your land and construction access</h2>
+          <p class="step-help">These answers change excavation, transport, drainage, and retaining-wall allowances.</p>
+          <div class="grid two">
+            <label>How is the land?
+              <select id="slope">
+                <option value="flat">Mostly flat</option>
+                <option value="gentle">Slightly sloped</option>
+                <option value="steep">Steep / difficult</option>
+              </select>
+            </label>
+            <label>How easy is truck access?
+              <select id="access">
+                <option value="easy">Easy — truck can reach site</option>
+                <option value="medium">Moderate — some carrying needed</option>
+                <option value="difficult">Difficult — major manual carrying</option>
+              </select>
+            </label>
+            <label>Do you expect a retaining wall?
+              <select id="retaining">
+                <option value="no">No</option>
+                <option value="yes">Yes</option>
+                <option value="unsure">Not sure</option>
+              </select>
+            </label>
+            <label>Soil condition, if you know it
+              <select id="soil">
+                <option value="unknown">I don't know</option>
+                <option value="normal">Normal / firm</option>
+                <option value="soft">Soft soil</option>
+                <option value="rock">Rocky</option>
+              </select>
+            </label>
+          </div>
+          <div class="engineer-only tech-note">
+            These choices apply site multipliers to earthwork and transport. They do not replace a geotechnical investigation or structural design.
+          </div>
+        </section>
+
+        <section class="step panel hidden" data-step="2">
+          <h2>3. Rooms</h2>
+          <p class="step-help">Room counts help the system estimate doors, plumbing fixtures, electrical points, finishes, and wet areas.</p>
+          <div class="grid three">
+            <label>Bedrooms<input id="bedrooms" type="number" min="0" value="3"></label>
+            <label>Bathrooms / toilets<input id="bathrooms" type="number" min="0" value="2"></label>
+            <label>Kitchens<input id="kitchens" type="number" min="0" value="1"></label>
+            <label>Living / family rooms<input id="livingRooms" type="number" min="0" value="1"></label>
+            <label>Balconies / verandahs<input id="balconies" type="number" min="0" value="1"></label>
+            <label>Approx. balcony/verandah area
+              <div class="with-unit"><input id="balconyArea" type="number" min="0" value="80"><span>sq.ft</span></div>
+            </label>
+          </div>
+          <div class="engineer-only tech-note">
+            Auto-count rules: doors ≈ main entrance + bedrooms + bathrooms + kitchens + circulation allowance. Windows ≈ room-based daylight opening count. Users can later override these in Engineer view.
+          </div>
+        </section>
+
+        <section class="step panel hidden" data-step="3">
+          <h2>4. Structure, walls and roof</h2>
+          <p class="step-help">Use familiar choices. The technical interpretation stays in the backend.</p>
+          <div class="grid two">
+            <label>Main structure
+              <select id="structure">
+                <option value="rcc" selected>Concrete frame (most common urban house)</option>
+                <option value="loadbearing">Load-bearing masonry</option>
+              </select>
+            </label>
+            <label>Wall type
+              <select id="wall">
+                <option value="brick" selected>Brick walls</option>
+                <option value="block">Concrete block walls</option>
+                <option value="aac">AAC lightweight blocks</option>
+                <option value="unknown">Not sure</option>
+              </select>
+            </label>
+            <label>Roof type
+              <select id="roof">
+                <option value="flat" selected>Flat concrete roof / terrace</option>
+                <option value="sloped">Sloped sheet/tile roof</option>
+                <option value="mixed">Part flat + part sloped</option>
+              </select>
+            </label>
+            <label>Do you want roof waterproofing included?
+              <select id="roofWaterproof"><option value="yes">Yes</option><option value="no">No</option></select>
+            </label>
+          </div>
+          <div class="engineer-only tech-note">
+            RCC mode uses benchmark quantity coefficients for concrete, reinforcement, and formwork. Load-bearing mode is intentionally conservative in v0.1 and should be engineer-reviewed.
+          </div>
+        </section>
+
+        <section class="step panel hidden" data-step="4">
+          <h2>5. Finish quality, doors and windows</h2>
+          <p class="step-help">Choose what the house should feel like, not technical specifications.</p>
+          <div class="grid two">
+            <label>Overall finish level
+              <select id="finish">
+                <option value="economy">Economy</option>
+                <option value="standard" selected>Standard</option>
+                <option value="premium">Premium</option>
+              </select>
+            </label>
+            <label>Windows
+              <select id="windowType">
+                <option value="aluminium" selected>Aluminium</option>
+                <option value="upvc">uPVC</option>
+                <option value="timber">Timber</option>
+              </select>
+            </label>
+            <label>Internal doors
+              <select id="doorType">
+                <option value="basic">Basic flush doors</option>
+                <option value="standard" selected>Standard finished doors</option>
+                <option value="premium">Premium doors</option>
+              </select>
+            </label>
+            <label>Ceiling
+              <select id="ceiling">
+                <option value="plaster" selected>Normal plaster + paint</option>
+                <option value="partialFalse">False ceiling in selected rooms</option>
+                <option value="fullFalse">False ceiling in most rooms</option>
+              </select>
+            </label>
+          </div>
+        </section>
+
+        <section class="step panel hidden" data-step="5">
+          <h2>6. Water, bathrooms and kitchen</h2>
+          <p class="step-help">The system turns these into sanitary, plumbing, tank, drainage, and kitchen BOQ items.</p>
+          <div class="grid two">
+            <label>Wastewater system
+              <select id="sewer">
+                <option value="municipal">Municipal sewer</option>
+                <option value="septic" selected>Septic tank + soak pit</option>
+                <option value="unknown">Not sure</option>
+              </select>
+            </label>
+            <label>Underground water tank
+              <select id="ugt"><option value="yes">Yes</option><option value="no" selected>No</option></select>
+            </label>
+            <label>Overhead water tank
+              <select id="oht"><option value="yes" selected>Yes</option><option value="no">No</option></select>
+            </label>
+            <label>Kitchen package
+              <select id="kitchenPackage">
+                <option value="basic">Basic counter + sink</option>
+                <option value="standard" selected>Standard cabinets + counter</option>
+                <option value="premium">Premium modular kitchen</option>
+              </select>
+            </label>
+          </div>
+        </section>
+
+        <section class="step panel hidden" data-step="6">
+          <h2>7. Electricity and optional systems</h2>
+          <p class="step-help">Simple package choices activate the underlying electrical and low-voltage items.</p>
+          <div class="grid two">
+            <label>Electrical package
+              <select id="electrical">
+                <option value="basic">Basic</option>
+                <option value="standard" selected>Standard</option>
+                <option value="smart">Smart-ready</option>
+              </select>
+            </label>
+            <label>Solar provision
+              <select id="solar"><option value="no" selected>No</option><option value="yes">Yes</option></select>
+            </label>
+            <label>Air-conditioner provisions
+              <select id="ac"><option value="no" selected>No</option><option value="yes">Yes</option></select>
+            </label>
+            <label>CCTV / video security
+              <select id="cctv"><option value="no" selected>No</option><option value="yes">Yes</option></select>
+            </label>
+          </div>
+        </section>
+
+        <section class="step panel hidden" data-step="7">
+          <h2>8. Outside the house</h2>
+          <p class="step-help">Only include what you actually want in the project scope.</p>
+          <div class="grid two">
+            <label>Compound / boundary wall
+              <select id="compound"><option value="no" selected>No</option><option value="yes">Yes</option></select>
+            </label>
+            <label>Approx. boundary-wall length
+              <div class="with-unit"><input id="compoundLength" type="number" min="0" value="0"><span>m</span></div>
+            </label>
+            <label>Driveway / paving area
+              <div class="with-unit"><input id="pavingArea" type="number" min="0" value="0"><span>sq.ft</span></div>
+            </label>
+            <label>Landscaping
+              <select id="landscaping"><option value="no" selected>No</option><option value="yes">Yes</option></select>
+            </label>
+          </div>
+          <div class="notice">
+            This MVP produces a planning estimate from benchmark engineering coefficients. A contract/tender estimate still requires structural drawings, MEP drawings, specifications, and current approved rates.
+          </div>
+        </section>
+
+        <div class="nav-actions">
+          <button id="backBtn" type="button" class="btn">Back</button>
+          <button id="nextBtn" type="button" class="btn primary">Next</button>
+        </div>
+      </form>
+    </section>
+
+    <section id="results" class="hidden">
+      <div class="results-head">
+        <div>
+          <p class="eyebrow">PRELIMINARY ESTIMATE</p>
+          <h2 id="resultProject">Project</h2>
+          <p id="resultLocation" class="muted"></p>
+        </div>
+        <div class="result-actions">
+          <button id="editEstimate" class="btn">Edit answers</button>
+          <button id="exportJson" class="btn">Export project JSON</button>
+          <button id="printReport" class="btn primary">Print / Save PDF</button>
+        </div>
+      </div>
+
+      <div class="metrics" id="metrics"></div>
+
+      <div class="grid results-grid">
+        <section class="panel">
+          <div class="section-head">
+            <h3>Where the money goes</h3>
+            <span class="badge">Major categories</span>
+          </div>
+          <div id="costBars"></div>
+        </section>
+        <section class="panel">
+          <div class="section-head">
+            <h3>Estimate readiness</h3>
+            <span id="readinessBadge" class="badge"></span>
+          </div>
+          <div id="readiness"></div>
+        </section>
+      </div>
+
+      <section class="panel">
+        <div class="section-head">
+          <h3>Activated BOQ</h3>
+          <div>
+            <button id="civilianTab" class="tab active">Simple view</button>
+            <button id="engineerTab" class="tab">Engineer view</button>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead id="boqHead"></thead>
+            <tbody id="boqBody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="section-head"><h3>What the system assumed</h3><span class="badge warn">Review before use</span></div>
+        <div id="assumptions" class="assumptions"></div>
+      </section>
+
+      <section id="ratePanel" class="panel engineer-only">
+        <div class="section-head">
+          <div>
+            <h3>Engineer/Admin rate setup</h3>
+            <p class="muted">These are DEMO rates only. Replace them with dated, approved local rates before real use.</p>
+          </div>
+          <button id="resetRates" class="btn">Reset demo rates</button>
+        </div>
+        <div id="rateEditor" class="rate-grid"></div>
+        <div class="nav-actions">
+          <button id="recalcRates" class="btn primary">Recalculate with edited rates</button>
+        </div>
+      </section>
+
+      <section class="panel danger">
+        <h3>Accuracy boundary</h3>
+        <p>This version is a civilian planning estimator. Structural member sizes, reinforcement detailing, exact wall lengths, opening sizes, MEP routes, and tender rates must not be inferred from this output.</p>
+      </section>
+    </section>
+  </main>
+
+  <footer>
+    JP Construction Estimation System v0.1 · Nepal-focused prototype · Demo rates must be replaced before real pricing
+  </footer>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
