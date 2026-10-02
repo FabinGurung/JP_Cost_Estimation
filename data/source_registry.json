@@ -1,0 +1,46 @@
+{
+  "schema_version": "0.1",
+  "purpose": "Upstream and authority registry for JP-CES open estimation research branch",
+  "sources": [
+    {
+      "source_id": "SRC-OCE",
+      "name": "OpenConstructionERP",
+      "type": "OPEN_SOURCE_SOFTWARE",
+      "url": "https://github.com/datadrivenconstruction/OpenConstructionERP",
+      "role": "BOQ and cost-control workflow architecture",
+      "license": "AGPL-3.0"
+    },
+    {
+      "source_id": "SRC-IFC5D",
+      "name": "IfcOpenShell / IFC5D",
+      "type": "OPEN_SOURCE_SOFTWARE_AND_STANDARD_IMPLEMENTATION",
+      "url": "https://github.com/IfcOpenShell/IfcOpenShell",
+      "role": "IFC quantity and cost interoperability",
+      "license": "LGPL ecosystem"
+    },
+    {
+      "source_id": "SRC-QTO",
+      "name": "aec-platform/qto",
+      "type": "OPEN_SOURCE_SOFTWARE",
+      "url": "https://github.com/aec-platform/qto",
+      "role": "Quantity takeoff and classification mapping patterns",
+      "license": "MIT"
+    },
+    {
+      "source_id": "SRC-DUDBC",
+      "name": "Nepal DUDBC building works norms",
+      "type": "OFFICIAL_TECHNICAL_SOURCE",
+      "url": "https://dudbc.gov.np/content/2365/2365-bhawan-nirmancivilkaryaharu/",
+      "role": "Nepal rate-analysis and norm authority",
+      "ingestion_status": "PENDING"
+    },
+    {
+      "source_id": "SRC-KASKI",
+      "name": "Kaski District Rate",
+      "type": "OFFICIAL_LOCAL_RATE_SOURCE",
+      "url": "https://dcckaski.gov.np/detail/53",
+      "role": "Local dated labour, material and equipment rates",
+      "ingestion_status": "PENDING"
+    }
+  ]
+}
