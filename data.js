@@ -29,39 +29,39 @@ window.JP_ESTIMATION_DATA = {
   ],
   sourceRegistry: [
     {
-      source_id:"SRC-OCE",
+      source_id:"SRC-OCE-001",
       name:"OpenConstructionERP",
       role:"Workflow / BOQ / cost-control architecture",
       url:"https://github.com/datadrivenconstruction/OpenConstructionERP",
       license:"AGPL-3.0",
-      status:"STUDY / ADAPT WITH LICENSE REVIEW"
+      status:"REGISTERED IN NEON · STUDY / ADAPT WITH LICENSE REVIEW"
     },
     {
-      source_id:"SRC-IFC5D",
+      source_id:"SRC-IFC5D-001",
       name:"IfcOpenShell / IFC5D",
       role:"IFC quantity and cost interoperability",
       url:"https://github.com/IfcOpenShell/IfcOpenShell",
       license:"LGPL ecosystem",
-      status:"ADOPT AS INTEROPERABILITY LAYER"
+      status:"REGISTERED IN NEON · ADOPT AS INTEROPERABILITY LAYER"
     },
     {
-      source_id:"SRC-QTO",
+      source_id:"SRC-QTO-001",
       name:"aec-platform/qto",
       role:"Transparent IFC quantity takeoff and national mapping pattern",
       url:"https://github.com/aec-platform/qto",
       license:"MIT",
-      status:"ADAPT"
+      status:"REGISTERED IN NEON · ADAPT"
     },
     {
-      source_id:"SRC-DUDBC",
+      source_id:"SRC-DUDBC-001",
       name:"Nepal DUDBC building works norms",
       role:"Nepal technical / rate-analysis authority",
-      url:"https://dudbc.gov.np/content/2365/2365-bhawan-nirmancivilkaryaharu/",
+      url:"https://dudbc.gov.np/pages/building-rate/",
       license:"Official publication; reuse terms to be verified",
       status:"PENDING STRUCTURED INGESTION"
     },
     {
-      source_id:"SRC-KASKI",
+      source_id:"SRC-KASKI-2083-84",
       name:"Kaski District Rate",
       role:"Dated local labour / material / equipment rates",
       url:"https://dcckaski.gov.np/detail/53",
@@ -75,6 +75,9 @@ window.JP_ESTIMATION_DATA = {
     norm_source_id: null,
     quantity_status: "DEMO / BENCHMARK",
     rate_status: "DEMO / NOT OFFICIAL",
-    norm_status: "PENDING DUDBC INGESTION"
+    norm_status: "DUDBC SOURCE REGISTERED · STRUCTURED INGESTION PENDING",
+    persistence_status: "NEON PRODUCTION SCHEMA LIVE",
+    rate_book_status: "KASKI 2083/84 REGISTERED AS DRAFT",
+    vercel_preview_url: "https://jp-building-cost-estimator-4d3nxcpsb-fabingurung-2646.vercel.app"
   }
 };
