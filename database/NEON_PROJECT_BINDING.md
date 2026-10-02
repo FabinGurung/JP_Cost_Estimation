@@ -13,13 +13,13 @@ Verified from connected Neon integration.
 - Database owner: jp_estimation_owner
 
 ## Status
-The initial estimation schema was successfully prepared and tested on a temporary Neon branch.
+The initial estimation schema was:
+1. prepared and tested on temporary branch `br-hidden-tooth-b39d1dvz`;
+2. explicitly approved by the user;
+3. manually applied in Neon SQL Editor to production because connected production writes were safety-blocked;
+4. provider-read back successfully from production.
 
-Temporary test branch:
-- br-hidden-tooth-b39d1dvz
-
-Production schema application was approved by the user but blocked by the connected-action safety layer.
-Production remained empty at last readback; no partial migration occurred.
+Production currently contains the canonical tables/views but no seed/business rows yet.
 
 ## Canonical migration SQL
 See:
