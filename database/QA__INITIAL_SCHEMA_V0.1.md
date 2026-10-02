@@ -5,9 +5,14 @@ Database: `jp_estimation`
 Temporary migration branch: `br-hidden-tooth-b39d1dvz`
 
 ## Migration state
-Prepared only. Production has NOT been mutated.
+Production schema is now APPLIED and provider-read back successfully.
 
-## Tables created on temporary branch
+The user applied the canonical SQL manually in Neon SQL Editor after explicit approval because the connected production-write path was safety-blocked.
+
+## Production readback
+Verified objects on `production` / `jp_estimation`:
+
+Base tables:
 - projects
 - source_documents
 - estimate_versions
@@ -29,8 +34,20 @@ Views:
 - v_quantity_summary
 - v_rate_analysis_component_totals
 
-## Functional test
-A disposable test estimate with five seeded work items was inserted on the temporary branch:
+Production table counts at readback:
+- projects: 0
+- estimate_versions: 0
+- work_items: 0
+- boq_items: 0
+- quantity_records: 0
+- resources: 0
+- rate_books: 0
+- rate_items: 0
+
+This confirms the schema exists and production is still clean/unseeded.
+
+## Temporary-branch functional test
+Before production application, a disposable five-item test estimate was inserted on the temporary migration branch:
 
 1. Foundation excavation
 2. PCC below foundations
@@ -38,13 +55,18 @@ A disposable test estimate with five seeded work items was inserted on the tempo
 4. Reinforcement steel
 5. Brick/block masonry
 
-Generated BOQ direct total from database:
+Generated BOQ direct total:
 `NPR 1,570,809.30`
 
 The generated `amount = quantity * unit_rate` column and quantity-to-BOQ linkage were read back successfully.
 
-## Guardrail
-These test quantities/rates are legacy research seed values only. They are not DUDBC/Kaski official values and will not be presented as such.
+## UI note
+A later Neon SQL Editor error saying:
+`ERROR: syntax error at or near "text"`
+was caused by clicking **Analyze**, which wrapped a `CREATE TABLE` statement in `EXPLAIN (ANALYZE...)`. It was not a schema migration failure.
 
-## Production gate
-Apply the migration to production only after explicit approval.
+## Guardrail
+The test quantities/rates are legacy research seed values only. They are not DUDBC/Kaski official values and will not be presented as such.
+
+## Next gate
+Structured source/rate ingestion and production seed data must be added only with provenance and source-status controls.
