@@ -65,7 +65,7 @@
           '<div>'+sourceBadge("BOQ working","ready")+' <span class="muted">5-item vertical slice</span></div>'+
           '<div>'+sourceBadge("DUDBC mapping pending","pending")+'</div>'+
           '<div>'+sourceBadge("Kaski rate ingestion pending","pending")+'</div>'+
-          '<div>'+sourceBadge("Neon persistence pending","pending")+'</div>'+
+          '<div>'+sourceBadge("Neon production schema live","ready")+' <span class="muted">source registry seeded</span></div>'+
         '</div></section>'+
     '</div>';
   }
@@ -116,9 +116,9 @@
       '<tr><td>Project / built-up area</td><td>User input</td><td>'+sourceBadge("ACTIVE","ready")+'</td><td>CAD / IFC / governed project model</td></tr>'+
       '<tr><td>Quantity coefficients</td><td class="code">'+D.provenance.quantity_source_id+'</td><td>'+sourceBadge("LEGACY BENCHMARK","demo")+'</td><td>Drawing/IFC/BBS traceable quantities</td></tr>'+
       '<tr><td>Work classification</td><td>JP research work IDs</td><td>'+sourceBadge("ACTIVE","ready")+'</td><td>IFC/QTO + Nepal mapping</td></tr>'+
-      '<tr><td>Resource recipe</td><td>Not yet loaded</td><td>'+sourceBadge("PENDING","pending")+'</td><td>DUDBC structured norm mapping</td></tr>'+
-      '<tr><td>Resource prices</td><td class="code">'+D.provenance.rate_source_id+'</td><td>'+sourceBadge("DEMO","demo")+'</td><td>Kaski rate book + vendor/company rates</td></tr>'+
-      '<tr><td>Persistence</td><td>Git branch JSON/JS</td><td>'+sourceBadge("ACTIVE","ready")+'</td><td>Neon Postgres after project selection</td></tr>'+
+      '<tr><td>Resource recipe</td><td>DUDBC source registered</td><td>'+sourceBadge("PARSE PENDING","pending")+'</td><td>Structured norm mapping</td></tr>'+
+      '<tr><td>Resource prices</td><td>Kaski 2083/84 rate book registered · current displayed values still '+D.provenance.rate_source_id+'</td><td>'+sourceBadge("PARSE PENDING","pending")+'</td><td>Replace demo values only after official row-level ingestion</td></tr>'+
+      '<tr><td>Persistence</td><td>Neon Postgres · jp_estimation</td><td>'+sourceBadge("SCHEMA LIVE","ready")+'</td><td>Frontend API wiring / governed writes next</td></tr>'+
     '</tbody></table></div></section>';
   }
 
