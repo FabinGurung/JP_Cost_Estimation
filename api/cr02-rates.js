@@ -5,6 +5,12 @@ const jsonHeaders = {
   "Cache-Control": "public, s-maxage=300, stale-while-revalidate=900"
 };
 
+function applyHeaders(res) {
+  for (const [key, value] of Object.entries(jsonHeaders)) {
+    res.setHeader(key, value);
+  }
+}
+
 export default async function handler(req, res) {
   if (req.method !== "GET") {
     res.setHeader("Allow", "GET");
@@ -13,7 +19,8 @@ export default async function handler(req, res) {
 
   const connectionString = process.env.CR02_DATABASE_URL;
   if (!connectionString) {
-    return res.status(503).set(jsonHeaders).json({
+    applyHeaders(res);
+    return res.status(503).json({
       ok: false,
       status: "CONFIG_REQUIRED",
       error: "CR02_DATABASE_URL_MISSING"
@@ -95,7 +102,8 @@ export default async function handler(req, res) {
       ORDER BY rac.analysis_component_id
     `;
 
-    return res.status(200).set(jsonHeaders).json({
+    applyHeaders(res);
+    return res.status(200).json({
       ok: true,
       authority: "AEC_Cost_Rate_Master_v1.0",
       mirror: "Neon production cr02",
@@ -113,7 +121,8 @@ export default async function handler(req, res) {
     });
   } catch (error) {
     console.error("CR02 read-only API failure", error);
-    return res.status(500).set(jsonHeaders).json({
+    applyHeaders(res);
+    return res.status(500).json({
       ok: false,
       status: "QUERY_FAILED",
       error: "CR02_READ_FAILED"
