@@ -10,6 +10,7 @@
     floors:D.project.floors
   };
   let last = null;
+  let cr02State = {status:"loading", data:null, error:null};
 
   const titles = {
     dashboard:"Estimate Dashboard",
@@ -44,6 +45,29 @@
   function metric(k,v,s){return '<div class="metric"><div class="k">'+k+'</div><div class="v">'+v+'</div><div class="s">'+s+'</div></div>'}
   function sourceBadge(text,kind="pending"){return '<span class="badge '+kind+'">'+text+'</span>'}
 
+  async function loadCr02(){
+    cr02State = {status:"loading",data:null,error:null};
+    try{
+      const response = await fetch("/api/cr02-rates",{headers:{Accept:"application/json"}});
+      let payload = null;
+      try { payload = await response.json(); } catch(_){}
+      if(!response.ok || !payload || !payload.ok){
+        const code = payload && (payload.error || payload.status) ? (payload.error || payload.status) : "CR02_API_UNAVAILABLE";
+        throw new Error(code);
+      }
+      cr02State = {status:"ready",data:payload,error:null};
+    }catch(error){
+      cr02State = {status:"error",data:null,error:String(error && error.message ? error.message : error)};
+    }
+    if(["dashboard","rates","provenance"].includes(currentView)) render();
+  }
+
+  function cr02StatusBadge(){
+    if(cr02State.status==="ready") return sourceBadge("CR02 READ-ONLY API LIVE","ready");
+    if(cr02State.status==="loading") return sourceBadge("CR02 API CHECKING","pending");
+    return sourceBadge("CR02 API CONFIG PENDING","demo");
+  }
+
   function dashboard(){
     const sourceCoverage = 67;
     return '<div class="grid metrics">'+
@@ -64,7 +88,7 @@
           '<div>'+sourceBadge("Quantity engine working","ready")+' <span class="muted">legacy benchmark basis</span></div>'+
           '<div>'+sourceBadge("BOQ working","ready")+' <span class="muted">5-item vertical slice</span></div>'+
           '<div>'+sourceBadge("DUDBC mapping pending","pending")+'</div>'+
-          '<div>'+sourceBadge("Kaski bounded mirror live","ready")+' <span class="muted">4 canonical RO rows in Neon; UI wiring pending</span></div>'+
+          '<div>'+cr02StatusBadge()+' <span class="muted">'+(cr02State.status==="ready" ? (cr02State.data.counts.rate_observations+" canonical RO rows served from Neon") : "bounded Neon mirror exists; endpoint needs secure runtime configuration")+'</span></div>'+
           '<div>'+sourceBadge("Neon production schema live","ready")+' <span class="muted">source registry seeded</span></div>'+
         '</div></section>'+
     '</div>';
@@ -96,12 +120,39 @@
       '</section>';
   }
 
+  function canonicalRatesPanel(){
+    if(cr02State.status==="loading"){
+      return '<section class="panel"><div class="section-head"><div><h2>Canonical CR-02 backend</h2><p class="sub">Checking the read-only production API.</p></div>'+cr02StatusBadge()+'</div><div class="empty">Loading canonical rate observations…</div></section>';
+    }
+    if(cr02State.status!=="ready"){
+      const setup = cr02State.error==="CR02_DATABASE_URL_MISSING";
+      return '<section class="panel"><div class="section-head"><div><h2>Canonical CR-02 backend</h2><p class="sub">The frontend is wired, but the server-side database connection is not active yet.</p></div>'+cr02StatusBadge()+'</div>'+
+        '<div class="notice"><b>'+(setup ? "Secure Vercel environment variable required." : "Read-only API is currently unavailable.")+'</b><br>'+
+        (setup ? 'Set <code>CR02_DATABASE_URL</code> in Vercel using the dedicated <code>cr02_api_reader</code> role. No credential belongs in browser code or Git.' : 'The demo estimator remains isolated from this failure. Error: <code>'+cr02State.error+'</code>')+
+        '</div></section>';
+    }
+
+    const rows=cr02State.data.rates||[];
+    return '<section class="panel"><div class="section-head"><div><h2>Canonical CR-02 backend</h2><p class="sub">Read-only production mirror. These rows come from governed <code>cr02</code> data, not the demo estimator seed.</p></div>'+cr02StatusBadge()+'</div>'+
+      '<div class="grid metrics" style="margin-bottom:16px">'+
+        metric("Canonical observations",rows.length,"served by /api/cr02-rates")+
+        metric("Source records",cr02State.data.counts.sources,"governed source mirror")+
+        metric("Rate analyses",cr02State.data.counts.rate_analysis,"headers in bounded slice")+
+        metric("API mode",cr02State.data.mode,"server-side SELECT only")+
+      '</div>'+
+      '<div class="table-wrap"><table><thead><tr><th>RO ID</th><th>Material</th><th>Location</th><th>Unit</th><th>Rate</th><th>Source</th><th>Transport</th><th>Confidence</th></tr></thead><tbody>'+
+      rows.map(r=>'<tr><td class="code">'+r.rate_observation_id+'</td><td><b>'+(r.material_name||r.subject_id)+'</b><br><span class="muted code">'+r.subject_id+'</span></td><td>'+(r.location_label||r.location_id||"—")+'</td><td>'+r.unit+'</td><td class="num"><b>'+money(r.rate_npr)+'</b></td><td class="code">'+r.source_id+'</td><td>'+r.transport_included+'</td><td>'+sourceBadge(r.confidence||r.status||"VERIFIED","ready")+'</td></tr>').join("")+
+      '</tbody></table></div>'+
+      '<div class="notice" style="margin-top:14px"><b>Read-only POC:</b> these canonical rows are displayed for lookup/provenance only. They do not replace the demo estimate calculation inputs in this phase.</div></section>';
+  }
+
   function rates(){
-    return '<section class="panel"><div class="section-head"><div><h2>Rate Library</h2><p class="sub">Historical and official rates are versioned and never silently overwritten.</p></div>'+sourceBadge("BACKEND SUBSET LIVE · UI WIRING PENDING","ready")+'</div>'+
+    return canonicalRatesPanel()+
+      '<section class="panel"><div class="section-head"><div><h2>Legacy demo rate seed</h2><p class="sub">Historical research estimator inputs retained separately until governed mapping replaces them item by item.</p></div>'+sourceBadge("DEMO / NOT OFFICIAL","demo")+'</div>'+
       '<div class="table-wrap"><table><thead><tr><th>Rate code</th><th>Item</th><th>Unit</th><th>Current seed</th><th>Source</th><th>Status</th></tr></thead><tbody>'+
       last.items.map(x=>'<tr><td class="code">'+x.rate_code+'</td><td>'+x.name+'</td><td>'+x.unit+'</td><td class="num">'+money(x.rate)+'</td><td class="code">'+D.provenance.rate_source_id+'</td><td>'+sourceBadge("DEMO / NOT OFFICIAL","demo")+'</td></tr>').join("")+
       '</tbody></table></div>'+
-      '<div class="notice" style="margin-top:14px">Four canonical Kaski observations are now mirrored in production cr02, but this visible table still shows the legacy demo seed. No demo value is presented as an official Kaski rate until the frontend is wired to cr02.</div></section>';
+      '<div class="notice" style="margin-top:14px">The visible estimate still uses these legacy research values. Canonical CR-02 observations above remain a separate read-only reference until work-item/specification mapping is explicitly governed.</div></section>';
   }
 
   function sources(){
@@ -118,7 +169,7 @@
       '<tr><td>Work classification</td><td>JP research work IDs</td><td>'+sourceBadge("ACTIVE","ready")+'</td><td>IFC/QTO + Nepal mapping</td></tr>'+
       '<tr><td>Resource recipe</td><td>DUDBC source registered</td><td>'+sourceBadge("PARSE PENDING","pending")+'</td><td>Structured norm mapping</td></tr>'+
       '<tr><td>Resource prices</td><td>Kaski SRC-0005 bounded production mirror · current displayed values still '+D.provenance.rate_source_id+'</td><td>'+sourceBadge("4 RO ROWS LIVE","ready")+'</td><td>Wire frontend read-only API to cr02 before replacing demo values</td></tr>'+
-      '<tr><td>Persistence</td><td>Neon Postgres · jp_estimation</td><td>'+sourceBadge("SCHEMA LIVE","ready")+'</td><td>Frontend API wiring / governed writes next</td></tr>'+
+      '<tr><td>Persistence</td><td>Neon Postgres · jp_estimation / cr02</td><td>'+cr02StatusBadge()+'</td><td>'+(cr02State.status==="ready" ? "Read-only Vercel API connected; governed write workflows remain separate" : "Read-only API code deployed; secure Vercel env configuration pending")+'</td></tr>'+
     '</tbody></table></div></section>';
   }
 
@@ -138,4 +189,5 @@
     a.download="jp_estimation_research_v0_1.json";a.click();URL.revokeObjectURL(a.href);
   });
   calculate();
+  loadCr02();
 })();
