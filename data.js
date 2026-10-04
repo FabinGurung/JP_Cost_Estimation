@@ -61,12 +61,12 @@ window.JP_ESTIMATION_DATA = {
       status:"PENDING STRUCTURED INGESTION"
     },
     {
-      source_id:"SRC-KASKI-2083-84",
+      source_id:"SRC-0005",
       name:"Kaski District Rate",
       role:"Dated local labour / material / equipment rates",
       url:"https://dcckaski.gov.np/detail/53",
       license:"Official publication; reuse terms to be verified",
-      status:"PENDING STRUCTURED INGESTION"
+      status:"BOUNDED CANONICAL MIRROR LIVE · 4 RO ROWS · FULL INGESTION INCOMPLETE"
     }
   ],
   provenance: {
@@ -77,7 +77,7 @@ window.JP_ESTIMATION_DATA = {
     rate_status: "DEMO / NOT OFFICIAL",
     norm_status: "DUDBC SOURCE REGISTERED · STRUCTURED INGESTION PENDING",
     persistence_status: "NEON PRODUCTION SCHEMA LIVE",
-    rate_book_status: "KASKI 2083/84 REGISTERED AS DRAFT",
+    rate_book_status: "KASKI SRC-0005 · BOUNDED CANONICAL PRODUCTION MIRROR LIVE",
     vercel_preview_url: "https://jp-building-cost-estimator-4d3nxcpsb-fabingurung-2646.vercel.app"
   }
 };
