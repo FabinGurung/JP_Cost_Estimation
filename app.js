@@ -126,10 +126,10 @@
     $("viewTitle").textContent = titles[currentView];
     const map={dashboard,takeoff,boq,analysis,rates,sources,provenance};
     $("view").innerHTML = map[currentView]();
-    document.querySelectorAll(".nav-item").forEach(b=>b.classList.toggle("active",b.dataset.view===currentView));
+    document.querySelectorAll(".nav-item[data-view]").forEach(b=>b.classList.toggle("active",b.dataset.view===currentView));
   }
 
-  document.querySelectorAll(".nav-item").forEach(b=>b.addEventListener("click",()=>{currentView=b.dataset.view;render();window.scrollTo({top:0,behavior:"smooth"});}));
+  document.querySelectorAll(".nav-item[data-view]").forEach(b=>b.addEventListener("click",()=>{currentView=b.dataset.view;render();window.scrollTo({top:0,behavior:"smooth"});}));
   $("recalculate").addEventListener("click",calculate);
   $("exportBtn").addEventListener("click",()=>{
     const payload={system:"JP-CES Open Estimation Engine",version:D.version,project:state,result:last,sources:D.sourceRegistry,provenance:D.provenance};
