@@ -59,12 +59,12 @@
         return '<div class="progress-row"><span>'+x.name+'</span><div class="track"><div class="fill" style="width:'+pct.toFixed(1)+'%"></div></div><b>'+money(x.amount).replace("NPR ","")+'</b></div>';
       }).join("")+'</div></section>'+
       '<section class="panel"><h2>Research gate</h2><p class="sub">What is real now vs what is still intentionally blocked.</p>'+
-        '<div class="notice"><b>Product is functional, but not tender-ready.</b><br>Quantities and rates are inherited from the v0.1 benchmark/demo baseline. DUDBC resource recipes and Kaski official rates are not yet ingested, so they are not represented as verified numbers.</div>'+
+        '<div class="notice"><b>Product is functional, but not tender-ready.</b><br>The visible estimate still uses the v0.1 benchmark/demo rates. A bounded canonical Kaski subset is now mirrored in production Neon, but this frontend is not yet reading those records. DUDBC resource recipes remain pending.</div>'+
         '<div style="margin-top:14px;display:grid;gap:8px">'+
           '<div>'+sourceBadge("Quantity engine working","ready")+' <span class="muted">legacy benchmark basis</span></div>'+
           '<div>'+sourceBadge("BOQ working","ready")+' <span class="muted">5-item vertical slice</span></div>'+
           '<div>'+sourceBadge("DUDBC mapping pending","pending")+'</div>'+
-          '<div>'+sourceBadge("Kaski rate ingestion pending","pending")+'</div>'+
+          '<div>'+sourceBadge("Kaski bounded mirror live","ready")+' <span class="muted">4 canonical RO rows in Neon; UI wiring pending</span></div>'+
           '<div>'+sourceBadge("Neon production schema live","ready")+' <span class="muted">source registry seeded</span></div>'+
         '</div></section>'+
     '</div>';
@@ -97,11 +97,11 @@
   }
 
   function rates(){
-    return '<section class="panel"><div class="section-head"><div><h2>Rate Library</h2><p class="sub">Historical and official rates will be versioned, never silently overwritten.</p></div>'+sourceBadge("KASKI INGESTION PENDING","pending")+'</div>'+
+    return '<section class="panel"><div class="section-head"><div><h2>Rate Library</h2><p class="sub">Historical and official rates are versioned and never silently overwritten.</p></div>'+sourceBadge("BACKEND SUBSET LIVE · UI WIRING PENDING","ready")+'</div>'+
       '<div class="table-wrap"><table><thead><tr><th>Rate code</th><th>Item</th><th>Unit</th><th>Current seed</th><th>Source</th><th>Status</th></tr></thead><tbody>'+
       last.items.map(x=>'<tr><td class="code">'+x.rate_code+'</td><td>'+x.name+'</td><td>'+x.unit+'</td><td class="num">'+money(x.rate)+'</td><td class="code">'+D.provenance.rate_source_id+'</td><td>'+sourceBadge("DEMO / NOT OFFICIAL","demo")+'</td></tr>').join("")+
       '</tbody></table></div>'+
-      '<div class="notice" style="margin-top:14px">The official Kaski rate book is registered as a source but has not yet been parsed into structured rate rows. Until that happens, no value on this page is presented as an official Kaski rate.</div></section>';
+      '<div class="notice" style="margin-top:14px">Four canonical Kaski observations are now mirrored in production cr02, but this visible table still shows the legacy demo seed. No demo value is presented as an official Kaski rate until the frontend is wired to cr02.</div></section>';
   }
 
   function sources(){
@@ -117,7 +117,7 @@
       '<tr><td>Quantity coefficients</td><td class="code">'+D.provenance.quantity_source_id+'</td><td>'+sourceBadge("LEGACY BENCHMARK","demo")+'</td><td>Drawing/IFC/BBS traceable quantities</td></tr>'+
       '<tr><td>Work classification</td><td>JP research work IDs</td><td>'+sourceBadge("ACTIVE","ready")+'</td><td>IFC/QTO + Nepal mapping</td></tr>'+
       '<tr><td>Resource recipe</td><td>DUDBC source registered</td><td>'+sourceBadge("PARSE PENDING","pending")+'</td><td>Structured norm mapping</td></tr>'+
-      '<tr><td>Resource prices</td><td>Kaski 2083/84 rate book registered · current displayed values still '+D.provenance.rate_source_id+'</td><td>'+sourceBadge("PARSE PENDING","pending")+'</td><td>Replace demo values only after official row-level ingestion</td></tr>'+
+      '<tr><td>Resource prices</td><td>Kaski SRC-0005 bounded production mirror · current displayed values still '+D.provenance.rate_source_id+'</td><td>'+sourceBadge("4 RO ROWS LIVE","ready")+'</td><td>Wire frontend read-only API to cr02 before replacing demo values</td></tr>'+
       '<tr><td>Persistence</td><td>Neon Postgres · jp_estimation</td><td>'+sourceBadge("SCHEMA LIVE","ready")+'</td><td>Frontend API wiring / governed writes next</td></tr>'+
     '</tbody></table></div></section>';
   }
