@@ -1,4 +1,4 @@
-name: Deploy Research Estimator Preview
+name: Validate Research Estimator Preview
 
 on:
   push:
@@ -8,31 +8,22 @@ on:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
-
-concurrency:
-  group: research-pages
-  cancel-in-progress: true
 
 jobs:
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+  validate:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout research branch
         uses: actions/checkout@v4
-
-      - name: Configure Pages
-        uses: actions/configure-pages@v5
-
-      - name: Upload research site
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: .
-
-      - name: Deploy
-        id: deployment
-        uses: actions/deploy-pages@v4
+      - name: Verify static estimator files
+        run: |
+          test -f index.html
+          test -f styles.css
+          test -f app.js
+          test -f data.js
+          node --check app.js
+          node --check data.js
+      - name: Confirm non-production boundary
+        run: |
+          echo "VALIDATION_ONLY=PASS"
+          echo "Research branch cannot deploy to the github-pages environment."
