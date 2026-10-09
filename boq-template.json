@@ -1,0 +1,29 @@
+{
+  "schema": "JP_CAD_FID_BOQ_HANDOFF_TEMPLATE",
+  "schema_version": "v0.5.0",
+  "status": "BLOCKED_PENDING_VERIFIED_CAD_FID_DATA",
+  "owner_of_measurement": "CAD repository",
+  "owner_of_rate_analysis": "JP_Cost_Estimation",
+  "source_cad_repository": null,
+  "source_cad_commit": null,
+  "drawing_or_model_revision": null,
+  "measurement_export_id": null,
+  "measurement_export_sha256": null,
+  "measurement_items": [],
+  "boq_items": [],
+  "required_measurement_fields": [
+    "fid",
+    "cad_model_id",
+    "cad_revision",
+    "work_item_id",
+    "measured_quantity",
+    "quantity_unit",
+    "measurement_method",
+    "source_element_fids",
+    "geometry_or_drawing_reference",
+    "source_version_or_hash",
+    "verification_status"
+  ],
+  "ready_for_population": false,
+  "rule": "Do not fill quantities, prices, totals, work-item mappings or FIDs without a validated CAD export, explicit compatible rate mapping and approval. This is a schema/template only."
+}

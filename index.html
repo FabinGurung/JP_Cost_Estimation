@@ -2,82 +2,124 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>JP Estimation Workbench — Research v0.1</title>
-  <meta name="description" content="Traceable Nepal-focused construction estimation workbench.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>JP Cost &amp; Rate Intelligence — v0.5.0-alpha</title>
+  <meta name="description" content="Transparent Nepal construction rate library and resource-based unit rate analysis. No invented quantity takeoff.">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="site-shell.css">
+  <link rel="stylesheet" href="rate-intelligence.css">
   <script src="theme.js" defer></script>
 </head>
 <body>
   <aside class="sidebar">
     <div class="brand">
       <div class="logo">JP</div>
-      <div><strong>Estimation</strong><small>Open Engine v0.1</small></div>
+      <div><strong>Cost &amp; Rate Intelligence</strong><small>Rate-only research v0.5.0-alpha</small></div>
     </div>
-    <div class="preview-badge">RESEARCH BRANCH</div>
-    <nav id="nav" aria-label="Site navigation">
-      <div class="nav-group-label">ESTIMATION ENGINE</div>
-      <button class="nav-item active" data-view="dashboard">Dashboard</button>
-      <button class="nav-item" data-view="takeoff">Quantity Takeoff</button>
-      <button class="nav-item" data-view="boq">BOQ / Cost Plan</button>
-      <button class="nav-item" data-view="analysis">Rate Analysis</button>
-      <button class="nav-item" data-view="rates">Rate Library</button>
-      <button class="nav-item" data-view="sources">Source Registry</button>
-      <button class="nav-item" data-view="provenance">Provenance</button>
-      <div class="nav-group-label">SOURCE &amp; REFERENCE</div>
-      <a class="nav-item subpage-link" href="known-rates.html">Known Rates ↗</a>
-      <div class="nav-group-label">COMPANIES &amp; PROJECTS</div>
-      <a class="nav-item finance-nav-link" href="finance.html">Finance &amp; Project Payments ↗</a>
-      <div class="nav-group-label">SYSTEM &amp; RELEASES</div>
-      <a class="nav-item" href="system-map.html">System Map &amp; Branches ↗</a>
+    <nav aria-label="Primary navigation">
+      <button type="button" class="nav-item active" data-rate-view="rates">Rate Library</button>
+      <button type="button" class="nav-item" data-rate-view="analysis">Rate Analysis</button>
+      <button type="button" class="nav-item" data-rate-view="sources">Sources &amp; Provenance</button>
+      <a class="nav-item" href="known-rates.html">Known Rates Detail ↗</a>
+      <a class="nav-item" href="boq-template.json">Blank BOQ Template ↗</a>
     </nav>
-    <div class="side-foot">
-      <span>Baseline</span>
-      <code>main@98b09c4</code>
-    </div>
   </aside>
-
   <main class="app-shell">
-<section class="landscape-hero " aria-label="Green hills, trees and open landscape">
-  <div class="landscape-hero-content">
-    <p class="eyebrow">JP · GREEN LAND / OPEN ENGINEERING</p>
-    <h2>Plan thoughtfully. <em>Build greener.</em></h2>
-    <p>A Nepal-focused construction workbench connecting quantities, engineering estimates, traceable rates, and real project evidence — organized under the right company.</p>
-    <div class="hero-actions"><a class="hero-cta primary" href="#view">Explore estimator ↓</a>
-<a class="hero-cta secondary" href="finance.html">Rohini payment summary ↗</a></div>
-  </div>
-</section>
-
+    <section class="landscape-hero compact" aria-label="Green landscape">
+      <div class="landscape-hero-content">
+        <p class="eyebrow">JP · RATE INTELLIGENCE · NEPAL</p>
+        <h2>Know the rate. <em>See every reason.</em></h2>
+        <p>Browse source-linked construction rates and calculate transparent resource-based unit rates. Measurement belongs to the CAD repository; this site does not invent quantities or calculate a project BOQ.</p>
+        <div class="hero-actions">
+          <a class="hero-cta primary" href="#rateWorkspace">Explore the rate library ↓</a>
+          <a class="hero-cta secondary" href="known-rates.html">User-known references ↗</a>
+        </div>
+      </div>
+    </section>
     <header class="topbar">
       <div>
-        <p class="eyebrow">JP CONSTRUCTION ESTIMATION SYSTEM</p>
-        <h1 id="viewTitle">Estimate Dashboard</h1>
+        <p class="eyebrow">JP COST &amp; RATE INTELLIGENCE · RESEARCH v0.5.0-alpha</p>
+        <h1 id="viewTitle">Rate Library</h1>
       </div>
       <div class="top-actions">
-        <span class="status warn">DEMO / RESEARCH DATA</span>
+        <span class="status warn">SOURCE STATUS MUST BE VERIFIED</span>
         <button id="themeToggle" type="button" class="btn theme-toggle" aria-label="Change appearance">Dark mode</button>
-        <button id="exportBtn" class="btn">Export JSON</button>
       </div>
     </header>
+    <div class="rate-boundary" role="note">
+      <strong>System boundary:</strong> CAD → measured quantities and FIDs. This repository → source-linked rates and resource recipes.
+      The <a href="boq-template.json">BOQ template</a> contains no quantities, rates, or totals and remains blocked until verified CAD data is supplied.
+    </div>
+    <div id="rateWorkspace">
+      <section class="rate-workspace" id="rateLibraryPanel" aria-labelledby="libraryHeading">
+        <div class="rate-section-head">
+          <div><h2 id="libraryHeading">Rate Library</h2><p>Search independently sourced rates. User-known references are not government-approved rate observations.</p></div>
+        </div>
+        <div class="rate-toolbar">
+          <label for="rateSearch">Search by name, specification, source, location, unit, or ID
+            <input id="rateSearch" type="search" placeholder="e.g. stone cladding, aggregate, RO-..." autocomplete="off">
+          </label>
+          <label for="rateClass">Source class
+            <select id="rateClass">
+              <option value="all">All available</option>
+              <option value="canonical">Canonical CR-02</option>
+              <option value="known">User-known references</option>
+            </select>
+          </label>
+        </div>
+        <div class="rate-message" id="rateStatus" role="status" aria-live="polite">Checking canonical read-only rate source…</div>
+        <div id="rateMetrics" class="rate-summary"></div>
+        <div id="rateResults" class="rate-list" aria-live="polite"></div>
+      </section>
 
-    <section class="control-strip">
-      <label>Project
-        <input id="projectName" value="Kumari Gurung Residence">
-      </label>
-      <label>Built-up area
-        <div class="unit-input"><input id="builtSqft" type="number" min="100" step="1" value="1295.21"><span>sq.ft</span></div>
-      </label>
-      <label>Floors
-        <input id="floors" type="number" min="1" max="8" value="2">
-      </label>
-      <button id="recalculate" class="btn primary">Recalculate</button>
-    </section>
+      <section class="rate-workspace" id="rateAnalysisPanel" aria-labelledby="analysisHeading" hidden>
+        <div class="rate-section-head">
+          <div><h2 id="analysisHeading">Transparent Rate Analysis</h2><p>Work out the cost of one finished unit of work from explicit resource consumption and price evidence.</p></div>
+        </div>
+        <div class="rate-message" role="note">
+          <strong>Draft calculator.</strong> No default quantities, material recipes, market prices, productivity, overhead, profit or taxes are injected.
+          Enter each resource and its source yourself; saving to the canonical database is not enabled.
+        </div>
+        <div class="rate-fields">
+          <label for="analysisCode">Work item ID<input id="analysisCode" placeholder="e.g. WRK-PCC-001"></label>
+          <label for="analysisName">Work description<input id="analysisName" placeholder="e.g. PCC M10, specific mix and scope"></label>
+          <label for="outputUnit">Finished output unit<input id="outputUnit" placeholder="e.g. m³" aria-describedby="unitHelp"></label>
+        </div>
+        <p id="unitHelp" class="rate-muted">Resource quantities must be the amounts required for <strong>one</strong> finished output unit; their price basis must match their consumption unit.</p>
+        <div class="table-wrap">
+          <table class="rate-analysis-table">
+            <thead><tr><th>Resource / item</th><th>Type</th><th>Qty per unit</th><th>Resource unit</th><th>Waste %</th><th>Price per resource unit (NPR)</th><th>Source ID / evidence reference</th><th>Derived amount</th><th></th></tr></thead>
+            <tbody id="resourceRows"></tbody>
+          </table>
+        </div>
+        <div class="rate-actions">
+          <button type="button" class="btn primary" id="addResource">+ Add resource</button>
+          <button type="button" class="btn" id="exportAnalysis">Export draft JSON</button>
+        </div>
+        <div id="analysisResult" class="rate-result" role="status" aria-live="polite">Add resource rows to begin. No calculated rate exists yet.</div>
+        <div class="rate-formula">
+          <strong>Calculation disclosed</strong>
+          <code>line_cost = resource_qty_per_output_unit × (1 + waste_pct / 100) × unit_price</code>
+          <code>draft_direct_rate = sum(line_costs) for 1 output unit</code>
+          <p>No automatic markup, escalation, tax, labour productivity or transport allowance is applied. Add a separately priced, sourced resource line when such a cost belongs in the recipe. Output is an unapproved draft until its quantities, specifications and evidence are verified.</p>
+        </div>
+      </section>
 
-    <section id="view"></section>
+      <section class="rate-workspace" id="rateSourcesPanel" aria-labelledby="sourcesHeading" hidden>
+        <div class="rate-section-head"><div><h2 id="sourcesHeading">Sources &amp; Provenance</h2><p>Where data comes from, which authority class it belongs to and what has not been verified.</p></div></div>
+        <div id="sourceList" class="grid source-grid"></div>
+        <section class="panel">
+          <h2>Canonical authority</h2>
+          <p class="sub">The AEC Cost/Rate Master on Google Drive owns normalized source observations. The Neon CR-02 subset is a read-only mirror; user-known rates are separate. Project expenses are not silently converted into rate-book observations.</p>
+          <p><a href="https://docs.google.com/spreadsheets/d/1yJX1Dep0_2ZDvRftu3u-Bb6ZbDqtQWKDChQQlYCWYXY/edit" target="_blank" rel="noopener noreferrer">Open AEC Cost/Rate Master ↗</a></p>
+          <p class="rate-muted">The current public GitHub Pages host may not expose the Vercel /api/cr02-rates endpoint. Unavailable live data must be shown as unavailable, never substituted by demo rates.</p>
+        </section>
+      </section>
+    </div>
+    <footer class="rate-footer">Research scope: Rate Library + Rate Analysis. <a href="docs/SCOPE_CAD_FID_HANDOFF_v0.5.0.md">CAD/BOQ data boundary</a> · <a href="system-map.html">System history</a> · <a href="finance.html">Separate project-finance reference</a></footer>
   </main>
-
   <script src="data.js"></script>
+  <script src="known-rates-data.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

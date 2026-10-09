@@ -1,0 +1,50 @@
+/* JP Cost & Rate Intelligence v0.5.0-alpha. Scoped over original green landscape shell. */
+:root { --rate-border:#d5e4d9 }
+.rate-boundary{margin:18px clamp(18px,4vw,72px) 0;background:var(--soft);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:9px;padding:14px 17px;font-size:13px;line-height:1.65}
+.rate-boundary a,.rate-footer a,.rate-workspace a{color:var(--accent);text-underline-offset:3px}
+.rate-workspace{max-width:1510px;padding:26px clamp(18px,4vw,72px) 60px;margin:auto}
+.rate-workspace[hidden]{display:none!important}
+.rate-section-head{display:flex;align-items:start;justify-content:space-between;gap:16px;margin-bottom:20px}
+.rate-section-head h2{font-size:clamp(22px,2.7vw,30px);letter-spacing:-.02em;margin:0 0 6px}
+.rate-section-head p{font-size:13px;line-height:1.6;color:var(--muted);margin:0}
+.rate-toolbar{display:grid;grid-template-columns:minmax(200px,1fr) minmax(180px,240px);gap:15px;align-items:end;margin:14px 0}
+.rate-toolbar label,.rate-fields label{display:block;font-size:12px;color:var(--muted);font-weight:800}
+.rate-toolbar input,.rate-toolbar select,.rate-fields input,.rate-analysis-table input,.rate-analysis-table select{background:var(--panel);color:var(--ink);border:1px solid var(--line);border-radius:9px;padding:11px 12px;font-size:13px;max-width:100%}
+.rate-toolbar input{font-size:16px}
+.rate-toolbar select{width:100%;margin-top:6px;min-height:42px}
+.rate-summary{display:flex;flex-wrap:wrap;gap:9px;margin:18px 0}
+.rate-summary span{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 14px;font-size:12px;color:var(--muted)}
+.rate-summary strong{font-size:19px;color:var(--ink);margin-right:4px}
+.rate-message{background:var(--soft);border:1px solid var(--line);border-radius:9px;padding:13px 14px;font-size:13px;line-height:1.6;color:var(--ink);margin:12px 0}
+.rate-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,410px),1fr));gap:13px}
+.rate-entry{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:19px;min-width:0;box-shadow:var(--shadow)}
+.rate-entry-head{display:flex;align-items:start;justify-content:space-between;gap:12px}
+.rate-entry h3{font-size:17px;margin:8px 0 4px}.rate-entry p{font-size:12px;color:var(--muted);line-height:1.5;margin:0}
+.rate-price{text-align:right;min-width:120px}.rate-price strong{display:block;font-size:18px}.rate-price span{font-size:11px;color:var(--muted)}
+.rate-entry-tags{display:flex;flex-wrap:wrap;gap:6px;margin:14px 0}
+.rate-evidence{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin:14px 0 0}
+.rate-evidence div{border-top:1px solid var(--line);padding-top:9px;min-width:0}
+.rate-evidence dt{font-size:10px;color:var(--muted);font-weight:850;text-transform:uppercase;letter-spacing:.045em}
+.rate-evidence dd{font-size:12px;margin:5px 0 0;line-height:1.4;overflow-wrap:anywhere}
+.rate-fields{display:grid;grid-template-columns:minmax(130px,.8fr) minmax(200px,1.7fr) minmax(120px,.5fr);gap:12px;margin:18px 0 10px}
+.rate-fields input{margin-top:7px;font-size:14px}
+.rate-muted{font-size:12px;color:var(--muted);line-height:1.65}
+.rate-analysis-table{min-width:1250px}
+.rate-analysis-table td{padding:9px 7px}.rate-analysis-table th{white-space:normal;vertical-align:bottom}
+.rate-analysis-table input,.rate-analysis-table select{min-width:115px;width:100%;margin:0;padding:9px}
+.rate-analysis-table td:first-child input{min-width:140px}
+.rate-analysis-table td:nth-child(7) input{min-width:180px}
+.rate-analysis-table .rate-remove{font-size:11px;padding:8px}
+.rate-actions{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}
+.rate-result{padding:18px 20px;background:var(--soft);border:1px solid var(--line);border-radius:12px;font-size:15px;line-height:1.6}
+.rate-result strong{font-size:19px}.rate-result p{font-size:12px;color:var(--muted);margin-bottom:0}
+.rate-formula{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px;margin:16px 0}
+.rate-formula strong{display:block;margin-bottom:10px}
+.rate-formula code{display:block;padding:9px 10px;border-radius:7px;background:var(--soft);margin:7px 0;white-space:normal;overflow-wrap:anywhere;font-size:12px}
+.rate-formula p{font-size:12px;color:var(--muted);line-height:1.65;margin-bottom:0}
+.rate-footer{max-width:1510px;padding:25px clamp(18px,4vw,72px) 40px;margin:auto;border-top:1px solid var(--line);color:var(--muted);font-size:12px;line-height:1.8}
+html[data-theme="dark"] .rate-analysis-table input,html[data-theme="dark"] .rate-analysis-table select,
+html[data-theme="dark"] .rate-toolbar select{background:var(--panel);color:var(--ink);border-color:var(--line)}
+@media(max-width:800px){.rate-fields{grid-template-columns:1fr 1fr}.rate-fields label:nth-child(2){grid-column:span 2}}
+@media(max-width:600px){.rate-toolbar,.rate-fields{grid-template-columns:1fr}.rate-fields label:nth-child(2){grid-column:auto}
+.rate-entry-head{flex-direction:column}.rate-price{text-align:left}.rate-evidence{grid-template-columns:1fr}.rate-workspace{padding-bottom:40px}}
