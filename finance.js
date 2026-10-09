@@ -51,7 +51,7 @@
       </div>
     </article>
     <div class="finance-info-note">
-      <strong>No amounts are exposed here.</strong> The payment register's edit timestamps, vendor details and financial values remain in the private Google Sheet. Do not confuse this evidence with government `RO-*` unit rates or with the demo BOQ totals.
+      <strong>No amounts are exposed here.</strong> The payment register's edit timestamps, vendor details and financial values remain in the private Google Sheet. Do not confuse this evidence with government RO-* unit rates or with the demo BOQ totals.
     </div>`;
   const disconnectedHtml = `
     <div class="finance-empty">
