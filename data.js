@@ -66,7 +66,7 @@ window.JP_ESTIMATION_DATA = {
       role:"Dated local labour / material / equipment rates",
       url:"https://dcckaski.gov.np/detail/53",
       license:"Official publication; reuse terms to be verified",
-      status:"BOUNDED CANONICAL MIRROR LIVE · 4 RO ROWS · FULL INGESTION INCOMPLETE"
+      status:"BOUNDED CANONICAL MIRROR LIVE · COUNT FROM API · FULL INGESTION INCOMPLETE"
     }
   ],
   provenance: {
