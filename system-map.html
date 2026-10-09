@@ -5,7 +5,7 @@
   <meta name="description" content="JP Estimation repository website and branch map, including preserved archived snapshots.">
   <title>System Map &amp; Branches — JP Estimation</title>
   <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="site-shell.css"><script src="theme.js" defer></script>
+  <link rel="stylesheet" href="site-shell.css"><script src="theme.js" defer></script><script src="branch-map.js" defer></script>
 </head>
 <body>
   <aside class="sidebar">
@@ -50,11 +50,12 @@
           <article><strong>Vercel — research previews / main production</strong>
             <p>Vercel commit statuses may be successful even when current deployment HTTP status cannot be checked. Its team API was inaccessible at the last audit.</p></article>
         </div>
-        <div class="finance-info-note"><strong>Privacy boundary:</strong> the Estimator website is public. The owner-approved payment summary and Google Sheets source link are published in Finance &amp; Project Payments. Other company records stay separate.</div>
+        <div class="finance-info-note"><strong>Open-source boundary:</strong> the Estimator website is public. The owner-approved payment summary and Google Sheets source link are published in Finance &amp; Project Payments. Other company records stay separate.</div>
       </section>
       <section class="panel">
         <div class="section-head"><div><h2>Audited GitHub branches</h2><p class="sub">Source: provider branch inventory. The original refs are retained; Archive_ branches are preserved aliases, not deletions.</p></div>
           <span class="badge pending">SNAPSHOTS PRESERVED</span></div>
+        <p class="finance-asof" id="branchRefreshStatus">Source-verified GitHub branch snapshot · refreshed when live API responds.</p>
         <div class="table-wrap"><table class="branch-table" id="branch-table"><thead><tr><th>GitHub branch</th><th>Classification</th><th>Purpose</th></tr></thead>
           <tbody><tr><td><a href="https://github.com/FabinGurung/JP_Cost_Estimation/tree/main" target="_blank" rel="noopener noreferrer"><code>main</code></a></td><td><span class="status-pill">DEFAULT / PUBLISH WORKFLOW</span></td><td>Current default GitHub branch; v0.1 estimator remains here. The Pages workflow is triggered here but checks out research files.</td></tr>
 <tr><td><a href="https://github.com/FabinGurung/JP_Cost_Estimation/tree/research/open-estimation-engine-v0.1" target="_blank" rel="noopener noreferrer"><code>research/open-estimation-engine-v0.1</code></a></td><td><span class="status-pill">ACTIVE SITE CONTENT</span></td><td>Research workbench and serverless API; used by GitHub Pages checkout and Vercel Preview.</td></tr>
