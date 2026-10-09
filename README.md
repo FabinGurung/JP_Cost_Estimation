@@ -50,3 +50,42 @@ The structural quantities are benchmark-based. This is a planning estimator, not
 - Variation orders
 - Client PDF report
 - Engineer audit trail
+
+---
+
+## Current repository topology and deployment contract (2026-10-09)
+
+Repository canonical name: **[FabinGurung/JP_Cost_Estimation](https://github.com/FabinGurung/JP_Cost_Estimation)**. The old `jp-building-cost-estimator` URL is a GitHub redirect, not a second repository.
+
+### Roles of the active branches
+
+| Ref | Role | Rule |
+| --- | --- | --- |
+| `main` | Preserved v0.1 homeowner estimator and A7 routing manifest; GitHub Pages workflow owner | Do not overwrite the old estimator with unreviewed research code |
+| `research/open-estimation-engine-v0.1` | Active v0.2.0-alpha research workbench, read-only CR-02 API, searchable Known Rates | Open draft PR #1; do not merge automatically |
+| `milestone/CR02-SEQ10A-readonly-rate-library-v0.2.0-alpha` | Named immutable-by-policy milestone checkpoint of the research engine after documentation/label correction | Preserve this release candidate; continue development on `research/...` |
+
+Historical feature and snapshot branches are preserved through `Archive_`-prefixed *commit-identical alias refs*. **This is not a server-side rename or deletion**: original refs remain for A9 history, old PR references, and audit. See `docs/REPOSITORY_TOPOLOGY_AND_BRANCH_POLICY_20261009.md`.
+
+### Why the two publicly served pages may differ
+
+- **GitHub Pages**: `main` owns `.github/workflows/deploy-estimation-product.yml`, which explicitly checks out the research branch to publish static files. The default branch's actual application files are still v0.1. GitHub Pages cannot execute Vercel's `/api/cr02-rates` serverless backend; treat its read-only CR-02 panel as unavailable unless separately proxied.
+- **Vercel Production**: its configured production branch is `main`, historically serving v0.1 demo/calculator behavior. This is not evidence that canonical CR-02 rates are driving estimate amounts.
+- **Vercel Preview**: the research branch contains `api/cr02-rates.js`; it uses the server-side `CR02_DATABASE_URL` (never store the secret in Git). Previous runtime QA confirmed the read-only API, but current Vercel dashboard permissions must be reverified before claiming a present-day live deployment.
+- **Known Rates**: `known-rates.html` is a separate searchable user-reference subpage. `KR-0001` stone cladding is NPR 2,300/m² for labour+materials+equipment, excluding water and electricity; no location/date/tax/transport is implied. `KR-*` values are **not official `RO-*` observations**.
+
+### Authority and graph boundaries
+
+- **A7** maps this code module via `A7_MODULE.json`: `REPO-000008`, `MOD-COST-001`, `OWN-MOD-COST-001`. It is *routing metadata*, not a rate authority.
+- **A9 Drive** holds the governed AEC cost/rate control, original/source documents, canonical normalized Sheet, history and artifact edges. Owning project documents remain authoritative for their project-specific evidence.
+- **Neon `jp_estimation.cr02`** is a normalized operational **mirror**, not an independent authority. The Vercel API uses a restricted `cr02_api_reader` SELECT-only role.
+- **`RO-*`** records are dated rates tied to material/work, source, location, unit and context. `RA-*` / `RAC-*` are rate-analysis headers/components. **`ART-*` / `EDGE-*`** are A9 document-lineage nodes and edges, not SQL foreign keys.
+- **`public` database schema** has the separate estimation-engine project/BOQ/quantity/recipe model; `cr02` is the source-rate warehouse mirror. Both need explicit integration before real canonical BOQ computation.
+
+### Verified scope vs remaining work
+
+The last live Neon read in this audit found **9 canonical CR-02 observations**, **10 materials**, and **1 source**. The last A9 source count was **973 `SRC-0005` observations**, **964 not yet mirrored**. The initial bounded rate-analysis set has 2 headers/5 components. `MAT-GETTI-10-16` has no exact resolved rate and must not silently inherit the wider crushed 4.75–25 mm rate.
+
+The current estimator's BOQ totals still use **demo/benchmark inputs** and are **not tender-ready**. Do not represent CR-02 lookup rates as already applied to those totals. Next phase: **Seq10B**, verified insert-only completion of the RMC M15/M25 family, preserving M20; then source-family expansion, compatible rate selection, DUDBC recipes, QTO/IFC, Primavera 4D/5D and procurement/actuals.
+
+See `docs/REPOSITORY_TOPOLOGY_AND_BRANCH_POLICY_20261009.md` for branch history, system topology, and publication/security caveats.
