@@ -6,7 +6,7 @@ const status = document.getElementById('branchRefreshStatus');
 const body = table.querySelector('tbody');
 function classify(name) {
  if(name==='main') return ['DEFAULT • PAGES PUBLISHER','Retains original v0.1 app; triggers GitHub Pages workflow checking out research content.'];
- if(name==='research/open-estimation-engine-v0.1') return ['ACTIVE • RESEARCH WEBSITE','Publishes estimator, known rates, landscape theme, approved finance summary, and CR-02 API source.'];
+ if(name==='research/open-estimation-engine-v0.1') return ['ACTIVE • RESEARCH WEBSITE','Publishes rate-first research website, Kaski static snapshot, Known Rates, source-verified finance, system lifecycle and CR-02 API source.'];
  if(name.startsWith('milestone/')) return ['MILESTONE • RELEASE CHECKPOINT','Frozen named checkpoint; not automatically the currently published website.'];
  if(name.startsWith('Archive_')) return ['ARCHIVED NAME • RETAINED','Archive-prefixed historical branch name; other original refs may remain for lineage.'];
  if(name.startsWith('snapshot/pre-')) return ['PRE SNAPSHOT • RETAINED','Repository state immediately before an identified governed update.'];

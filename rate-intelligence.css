@@ -48,3 +48,75 @@ html[data-theme="dark"] .rate-toolbar select{background:var(--panel);color:var(-
 @media(max-width:800px){.rate-fields{grid-template-columns:1fr 1fr}.rate-fields label:nth-child(2){grid-column:span 2}}
 @media(max-width:600px){.rate-toolbar,.rate-fields{grid-template-columns:1fr}.rate-fields label:nth-child(2){grid-column:auto}
 .rate-entry-head{flex-direction:column}.rate-price{text-align:left}.rate-evidence{grid-template-columns:1fr}.rate-workspace{padding-bottom:40px}}
+
+
+/* v0.5.1 · Morning in the Pokhara valley: white cloud sky / golden sunshine / emerald land.
+   This is a light-first overlay. Dark mode remains optional, not the default. */
+:root {
+  --sun-cream:#fffbe8;
+  --sun-gold:#f3c457;
+  --sky-tint:#eef9fa;
+  --grass-line:#d7ead3;
+}
+.rate-sky-hero {
+  min-height:340px;
+  border-bottom:5px solid #e3bd65;
+  background-color:#e6f7e9;
+  background-image:url("assets/green-landscape.svg");
+  background-position:right center;
+  background-size:cover;
+  color:#1d5135;
+}
+.rate-sky-hero::before {
+  background:linear-gradient(92deg,rgba(247,253,243,.97) 0%,rgba(249,253,240,.90) 30%,rgba(255,250,230,.60) 54%,rgba(235,249,236,.05) 100%);
+}
+.rate-sky-hero h2 {color:#184932;max-width:740px;text-shadow:0 2px 13px rgba(255,255,255,.33)}
+.rate-sky-hero h2 em {color:#b77d18}
+.rate-sky-hero .eyebrow {color:#6a845e}
+.rate-sky-hero p {color:#406d50;max-width:640px;font-size:15px}
+.rate-sky-hero .hero-cta.primary{background:linear-gradient(120deg,#edb83b,#ffd778);color:#463b17;border:1px solid #e8b440;box-shadow:0 7px 19px rgba(176,120,35,.14)}
+.rate-sky-hero .hero-cta.secondary{background:rgba(255,255,255,.89);color:#286047;border:1px solid #abcda9}
+.rate-sky-hero .hero-cta:focus-visible{outline:3px solid #b88017;outline-offset:3px}
+.rate-portal{max-width:1510px;margin:0 auto;padding:29px clamp(18px,4vw,72px) 0}
+.rate-portal-head{display:flex;align-items:flex-end;justify-content:space-between;gap:15px;flex-wrap:wrap;margin-bottom:17px}
+.rate-portal-head h2{font-size:clamp(21px,2.7vw,31px);letter-spacing:-.025em;margin:3px 0 0}
+.rate-portal-head .eyebrow{color:#98732a}
+.rate-snapshot-tag{font-size:11px;font-weight:800;color:#4b734e;background:#f6f9df;border:1px solid #dce4bd;border-radius:24px;padding:8px 12px}
+.rate-portal-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px}
+.rate-portal-card{display:flex;flex-direction:column;gap:12px;justify-content:flex-start;align-items:flex-start;min-width:0;min-height:209px;text-align:left;padding:19px;border-radius:16px;border:1px solid #d9e8d8;background:linear-gradient(160deg,#fff,#f8fcf4);color:var(--ink);box-shadow:0 5px 19px rgba(24,74,47,.06);font:inherit;text-decoration:none;cursor:pointer;transition:transform .15s,box-shadow .15s,border-color .15s}
+.rate-portal-card:hover,.rate-portal-card.active,.rate-portal-card:focus-visible{transform:translateY(-2px);border-color:#d1a43e;box-shadow:0 10px 23px rgba(96,115,44,.12)}
+.rate-portal-card strong{font-size:16px;line-height:1.2}
+.rate-portal-card>span:not(.portal-icon){font-size:12px;line-height:1.6;color:var(--muted)}
+.rate-portal-card em{font-style:normal;font-size:12px;font-weight:850;color:#3c8056;margin-top:auto}
+.portal-icon{display:inline-grid;place-items:center;width:38px;height:38px;border-radius:11px;background:#fcecc5;border:1px solid #ebd397;color:#826014;font-weight:850;font-size:12px}
+.rate-source-key{display:flex;flex-wrap:wrap;gap:9px;margin:12px 0}
+.rate-source-key span{font-size:11px;font-weight:750;line-height:1.4;border:1px solid var(--line);background:var(--panel);color:var(--muted);border-radius:100px;padding:7px 10px}
+.rate-boundary{max-width:1366px;margin:21px auto 0;border-left-color:#efc15e;background:#fffdf3;color:#466048}
+.sidebar{border-bottom-color:#e5bc64}
+.sidebar .logo{background:#fdf4d8;color:#336044}
+.sidebar .nav-item.active,.sidebar .nav-item:hover{background:#fff3cd;color:#43502d}
+#rateLibraryPanel{padding-top:30px}
+.rate-workspace .rate-message{border-left:4px solid #e5bc64}
+.rate-workspace .rate-price strong{color:#2c6d45}
+.rate-workspace .rate-entry:hover{border-color:#b2d1b3}
+html[data-theme="dark"] .rate-sky-hero::before {background:linear-gradient(92deg,rgba(9,43,28,.95),rgba(15,55,37,.86) 45%,rgba(14,56,34,.22) 100%)}
+html[data-theme="dark"] .rate-sky-hero h2,html[data-theme="dark"] .rate-sky-hero p,html[data-theme="dark"] .rate-sky-hero .eyebrow{color:#f0f8ee}
+html[data-theme="dark"] .rate-sky-hero h2 em{color:#ffda82}
+html[data-theme="dark"] .rate-portal-card{background:var(--panel);border-color:var(--line);color:var(--ink)}
+html[data-theme="dark"] .rate-portal-card:hover,html[data-theme="dark"] .rate-portal-card.active{border-color:#cdb774}
+html[data-theme="dark"] .rate-boundary{background:var(--panel);color:var(--ink)}
+html[data-theme="dark"] .rate-workspace .rate-price strong{color:#90d9aa}
+@media(max-width:1100px){.rate-portal-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:620px){
+ .rate-portal-grid{grid-template-columns:1fr 1fr;gap:9px}
+ .rate-portal-card{min-height:180px;padding:13px;gap:9px}
+ .rate-portal-card strong{font-size:14px}
+ .rate-portal-card>span:not(.portal-icon){font-size:11px;line-height:1.4}
+ .rate-sky-hero{min-height:340px}
+ .rate-sky-hero::before{background:linear-gradient(92deg,rgba(248,253,243,.98),rgba(247,251,235,.87) 70%,rgba(240,251,238,.55))}
+ .rate-sky-hero h2{font-size:33px}
+ .rate-sky-hero p{font-size:13px}
+ .rate-boundary{margin-left:16px;margin-right:16px}
+}
+@media(max-width:350px){.rate-portal-grid{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){.rate-portal-card{transition:none}.rate-portal-card:hover{transform:none}}

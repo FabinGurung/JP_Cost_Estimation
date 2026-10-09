@@ -9,20 +9,25 @@
   const label = v => text(v) || "Not specified";
   const isFiniteNumber = v => v !== "" && v !== null && Number.isFinite(Number(v));
   const knownRates = Array.isArray(K && K.entries) ? K.entries : [];
-  let canonical = {status:"loading", rates:[], analyses:[], sources:[], error:""};
+  let canonical = {status:"loading", rates:[], analyses:[], sources:[], error:"",origin:null};
   let exportPayload = null;
   let rowSequence = 0;
 
+  function navigate(name) {
+    const panels = {rates:"rateLibraryPanel",analysis:"rateAnalysisPanel",sources:"rateSourcesPanel"};
+    if(!Object.hasOwn(panels,name))return;
+    Object.values(panels).forEach(id => { $(id).hidden = id !== panels[name]; });
+    document.querySelectorAll("[data-rate-view]").forEach(n => n.classList.toggle("active",n.dataset.rateView===name));
+    document.querySelectorAll("[data-jump-view]").forEach(n => n.classList.toggle("active",n.dataset.jumpView===name));
+    $("viewTitle").textContent = {rates:"Rate Library",analysis:"Rate Analysis",sources:"Sources & Provenance"}[name];
+    if (name === "rates") renderRates();
+    if (name === "sources") renderSources();
+    const node=$("rateWorkspace");window.scrollTo({top:Math.max(0,node.getBoundingClientRect().top + window.scrollY - 96),behavior:"smooth"});
+  }
+  document.querySelectorAll("[data-jump-view]").forEach(btn => btn.addEventListener("click",()=>navigate(btn.dataset.jumpView)));
   document.querySelectorAll("[data-rate-view]").forEach(btn => {
     btn.addEventListener("click", () => {
-      const name = btn.dataset.rateView;
-      const panels = {rates:"rateLibraryPanel",analysis:"rateAnalysisPanel",sources:"rateSourcesPanel"};
-      Object.values(panels).forEach(id => { $(id).hidden = id !== panels[name]; });
-      document.querySelectorAll("[data-rate-view]").forEach(n => n.classList.toggle("active",n === btn));
-      $("viewTitle").textContent = {rates:"Rate Library",analysis:"Rate Analysis",sources:"Sources & Provenance"}[name];
-      if (name === "rates") renderRates();
-      if (name === "sources") renderSources();
-      window.scrollTo({top:Math.max(0,$("rateWorkspace").getBoundingClientRect().top + window.scrollY - 96),behavior:"smooth"});
+      navigate(btn.dataset.rateView);
     });
   });
 
@@ -80,24 +85,39 @@
     const list=all.filter(r => Object.values(r).some(v => text(v).toLowerCase().includes(query)));
     $("rateMetrics").innerHTML =
       "<span><strong>" + knownRates.length + "</strong> user-known entries</span>" +
-      "<span><strong>" + (canonical.status==="ready"?canonical.rates.length:"—") + "</strong> canonical observations via API</span>" +
+      "<span><strong>" + (canonical.status==="ready"?canonical.rates.length:"—") + "</strong> canonical observations (" + safe(canonical.origin||"unavailable") + ")</span>" +
       "<span><strong>" + list.length + "</strong> shown</span>";
     $("rateResults").innerHTML = list.length ? list.map(rateCard).join("") :
       "<div class='panel'><h2>No matching accessible rate observations</h2><p class='sub'>Clear the search or try another source class. Unavailable canonical rows are not replaced with guessed prices.</p></div>";
     $("rateStatus").textContent = canonical.status==="ready" ?
-      "Canonical CR-02 read-only API responded. Rates remain source observations, not automatically approved project prices." :
-      canonical.status==="loading" ? "Checking canonical read-only rate source…" :
-      "Canonical CR-02 API unavailable on this host (" + canonical.error + "). User-known references remain searchable. Open the canonical Master for current governed data.";
+      (canonical.origin==="LIVE_READ_ONLY_API" ?
+       "LIVE CR-02 read-only API available. Observations are source-linked but not automatically approved project prices." :
+       "DATED STATIC SNAPSHOT · Kaski District FY 2083/84 · source observation snapshot 2026-10-09. These are NOT live current prices. Tax/transport unknowns are retained. Open the AEC Master for updated records.") :
+      canonical.status==="loading" ? "Checking canonical read-only API and dated public snapshot…" :
+      "Canonical source unavailable (" + canonical.error + "). No guessed government prices are displayed; user-known references remain searchable.";
   }
 
   async function loadCanonical() {
+    let liveError="";
     try {
       const response = await fetch("/api/cr02-rates",{headers:{"Accept":"application/json"}});
+      if(!response.ok)throw new Error("API_HTTP_"+response.status);
       const payload = await response.json();
-      if(!response.ok || !payload || payload.ok !== true || !Array.isArray(payload.rates)) throw new Error(payload && payload.error || "READ_ONLY_API_UNAVAILABLE");
-      canonical = {status:"ready",rates:payload.rates,analyses:payload.analyses || [],sources:payload.sources || [],error:""};
-    } catch(error) {
-      canonical = {status:"unavailable",rates:[],analyses:[],sources:[],error:text(error && error.message || error)};
+      if(!payload || payload.ok !== true || !Array.isArray(payload.rates))throw new Error("INVALID_API_RESULT");
+      canonical = {status:"ready",rates:payload.rates,analyses:payload.analyses||[],sources:payload.sources||[],error:"",origin:"LIVE_READ_ONLY_API"};
+    }catch(error) {
+      liveError=text(error && error.message || error);
+      try {
+        const response=await fetch("public-kaski-rates-v0.5.1.json",{headers:{"Accept":"application/json"}});
+        if(!response.ok)throw new Error("SNAPSHOT_HTTP_"+response.status);
+        const payload=await response.json();
+        if(payload.schema!=="JP_CES_PUBLIC_GOVERNMENT_RATE_OBSERVATION_SNAPSHOT"||
+            payload.snapshot_date!=="2026-10-09"||!Array.isArray(payload.rates)||
+            payload.rates.some(r=>r.source_id!=="SRC-0005")) throw new Error("INVALID_SNAPSHOT_SCHEMA");
+        canonical = {status:"ready",rates:payload.rates,analyses:[],sources:[],error:liveError,origin:"STATIC_SNAPSHOT_2026-10-09"};
+      }catch(snapshotError) {
+        canonical={status:"unavailable",rates:[],analyses:[],sources:[],error:"API: "+liveError+"; snapshot: "+text(snapshotError && snapshotError.message || snapshotError),origin:null};
+      }
     }
     renderRates();
   }

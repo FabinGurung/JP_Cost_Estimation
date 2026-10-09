@@ -36,3 +36,14 @@ This change is developed in \`feature/rate-intelligence-only-v0.5.0-20261009\`; 
 See the historical [original estimation research document](docs/OPEN_ESTIMATION_ENGINE_V0.1.md) as **historical architecture only**, not current responsibility.
 
 Source authority: [AEC Cost/Rate Master](https://docs.google.com/spreadsheets/d/1yJX1Dep0_2ZDvRftu3u-Bb6ZbDqtQWKDChQQlYCWYXY/edit). Project finance remains separate.
+
+
+## v0.5.1-alpha — Sunlit Valley rate-first portal (2026-10-09)
+
+- Green valley + white-cloud morning sky + gentle amber-yellow sunlight. Light theme by default; high-contrast readable type and reduced-motion handling.
+- Top-level portal: **Rate Library**, **Rate Analysis**, **Finance & Payments** (preserved Rohini), **System Lifecycle** (preserved branch map).
+- A dated nine-observation Kaski public-source JSON snapshot is available on static GitHub Pages when the secure read-only CR-02 API is unavailable. It is explicitly labelled static; live refresh is not implied.
+- The original \`finance.html\`, \`finance.js\` and \`finance-summary.json\` are preserved; source-verified 26-row Rohini publication remains an independent snapshot and **not** a rate book.
+- Quantity takeoff is CAD-owned. Only the blocked, empty \`boq-template.json\` exists here.
+- All changes are additive or navigational and preserve the legacy v0.1 main branch and 2026-10-09 v0.4 release snapshots.
+- Page and connector verification gates are described in [release notes](docs/RATE_PORTAL_RELEASE_v0.5.1.md).

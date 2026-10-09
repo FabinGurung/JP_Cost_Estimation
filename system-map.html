@@ -12,7 +12,7 @@
     <div class="brand"><div class="logo">JP</div><div><strong>Estimation</strong><small>System Map</small></div></div>
     <div class="preview-badge">REPOSITORY / RELEASE TOPOLOGY</div>
     <nav aria-label="Site navigation">
-      <div class="nav-group-label">ESTIMATION</div><a class="nav-item" href="index.html">← Estimation Workbench</a>
+      <div class="nav-group-label">ESTIMATION</div><a class="nav-item" href="index.html">← Rate Intelligence</a>
       <a class="nav-item" href="known-rates.html">Known Rates</a>
       <div class="nav-group-label">COMPANIES &amp; PROJECTS</div>
       <a class="nav-item" href="finance.html">Finance &amp; Project Payments</a>
@@ -28,7 +28,7 @@
     <h2>Explore the system. <em>Follow every branch.</em></h2>
     <p>From the main publishing branch to research milestones and snapshots, find the right path through the estimation project.</p>
     <div class="hero-actions"><a class="hero-cta primary" href="#branch-table">View branch map ↓</a>
-<a class="hero-cta secondary" href="index.html">Estimator ↗</a></div>
+<a class="hero-cta secondary" href="index.html">Rate Library ↗</a></div>
   </div>
 </section>
 
@@ -39,14 +39,23 @@
     </header>
     <div class="finance-main">
       <section class="panel">
+        <h2>Lifecycle: how a rate source becomes a governed public view</h2>
+        <div class="finance-policy-grid">
+          <article><strong>01 · Capture and authority</strong><p>Kaski/DUDBC documents, vendor quotations and company evidence stay under their actual owning authority. The AEC Master stores source-linked normalized rate facts.</p></article>
+          <article><strong>02 · Canonical rate observation</strong><p>Each dated RO record preserves unit, location, source ID, specification and tax/transport uncertainty. User-known KR records never become official automatically.</p></article>
+          <article><strong>03 · Rate analysis and calculation</strong><p>Every recipe exposes resource consumption per finished unit, waste factor, source price and formula. Drafts are not approved official construction rates.</p></article>
+          <article><strong>04 · Controlled release and recovery</strong><p>Git commits, PRE/POST snapshots and workflow runs preserve the full system lifecycle; Rohini project payments remain separately sourced and unchanged.</p></article>
+        </div>
+      </section>
+      <section class="panel">
         <h2>Which branch controls which website?</h2>
         <div class="finance-policy-grid">
           <article><strong>main — GitHub default / workflow owner</strong>
-            <p>Preserves the original v0.1 homeowner estimator and runs the Pages publication workflow. <b>Do not confuse a publishing trigger with the files served.</b></p></article>
+            <p>Preserves the original v0.1 homeowner estimator for reproducibility and runs the Pages publication workflow. <b>Do not confuse a publishing trigger with the files served.</b></p></article>
           <article><strong>research/open-estimation-engine-v0.1 — research site source</strong>
-            <p>The Pages workflow checks out this branch. Vercel Preview also builds from this branch, where the read-only CR-02 serverless API exists.</p></article>
+            <p>The Pages workflow checks out this branch. The active website is rate-first; Vercel's separate read-only CR-02 API requires a configured server runtime.</p></article>
           <article><strong>GitHub Pages — static</strong>
-            <p>Serves HTML/CSS/JS and Known Rates/Finance navigation. It does not run Vercel's serverless /api/cr02-rates backend.</p></article>
+            <p>Serves Rate Library, Rate Analysis, finance, lifecycle and a dated public Kaski subset when API is unavailable. It does not run the Vercel serverless API.</p></article>
           <article><strong>Vercel — research previews / main production</strong>
             <p>Vercel commit statuses may be successful even when current deployment HTTP status cannot be checked. Its team API was inaccessible at the last audit.</p></article>
         </div>

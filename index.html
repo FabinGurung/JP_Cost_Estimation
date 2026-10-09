@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>JP Cost &amp; Rate Intelligence — v0.5.0-alpha</title>
+  <title>JP Cost &amp; Rate Intelligence — v0.5.1-alpha</title>
   <meta name="description" content="Transparent Nepal construction rate library and resource-based unit rate analysis. No invented quantity takeoff.">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="site-shell.css">
@@ -14,31 +14,32 @@
   <aside class="sidebar">
     <div class="brand">
       <div class="logo">JP</div>
-      <div><strong>Cost &amp; Rate Intelligence</strong><small>Rate-only research v0.5.0-alpha</small></div>
+      <div><strong>Cost &amp; Rate Intelligence</strong><small>Rate library · analysis · finance</small></div>
     </div>
     <nav aria-label="Primary navigation">
       <button type="button" class="nav-item active" data-rate-view="rates">Rate Library</button>
       <button type="button" class="nav-item" data-rate-view="analysis">Rate Analysis</button>
       <button type="button" class="nav-item" data-rate-view="sources">Sources &amp; Provenance</button>
       <a class="nav-item" href="known-rates.html">Known Rates Detail ↗</a>
-      <a class="nav-item" href="boq-template.json">Blank BOQ Template ↗</a>
+      <a class="nav-item finance-nav-link" href="finance.html">Finance &amp; Payments ↗</a>
+      <a class="nav-item" href="system-map.html">System Lifecycle ↗</a>
     </nav>
   </aside>
   <main class="app-shell">
-    <section class="landscape-hero compact" aria-label="Green landscape">
+    <section class="landscape-hero rate-sky-hero" aria-label="Sunlit green valley and open white clouds">
       <div class="landscape-hero-content">
         <p class="eyebrow">JP · RATE INTELLIGENCE · NEPAL</p>
-        <h2>Know the rate. <em>See every reason.</em></h2>
-        <p>Browse source-linked construction rates and calculate transparent resource-based unit rates. Measurement belongs to the CAD repository; this site does not invent quantities or calculate a project BOQ.</p>
+        <h2>Every rate has <em>a story.</em></h2>
+        <p>Open-sky clarity for Nepal construction rates: published district prices, independent user references and transparent, resource-by-resource analysis. No invented building measurements.</p>
         <div class="hero-actions">
           <a class="hero-cta primary" href="#rateWorkspace">Explore the rate library ↓</a>
-          <a class="hero-cta secondary" href="known-rates.html">User-known references ↗</a>
+          <a class="hero-cta secondary" href="finance.html">Rohini payments &amp; finance ↗</a>
         </div>
       </div>
     </section>
     <header class="topbar">
       <div>
-        <p class="eyebrow">JP COST &amp; RATE INTELLIGENCE · RESEARCH v0.5.0-alpha</p>
+        <p class="eyebrow">JP COST &amp; RATE INTELLIGENCE · RESEARCH v0.5.1-alpha</p>
         <h1 id="viewTitle">Rate Library</h1>
       </div>
       <div class="top-actions">
@@ -46,6 +47,18 @@
         <button id="themeToggle" type="button" class="btn theme-toggle" aria-label="Change appearance">Dark mode</button>
       </div>
     </header>
+    <section class="rate-portal" aria-label="System workspaces">
+      <div class="rate-portal-head">
+        <div><p class="eyebrow">CHOOSE YOUR WORKSPACE</p><h2>One open system. Four clear destinations.</h2></div>
+        <span class="rate-snapshot-tag">Source-led · No hidden totals</span>
+      </div>
+      <div class="rate-portal-grid">
+        <button type="button" class="rate-portal-card active" data-jump-view="rates"><span class="portal-icon">01</span><strong>Rate Library</strong><span>Government rate observations, manual references and source filters.</span><em>Explore prices →</em></button>
+        <button type="button" class="rate-portal-card" data-jump-view="analysis"><span class="portal-icon">02</span><strong>Rate Analysis</strong><span>See every resource, unit, waste factor, source and formula.</span><em>Open calculator →</em></button>
+        <a class="rate-portal-card" href="finance.html"><span class="portal-icon">03</span><strong>Finance &amp; Payments</strong><span>Rohini's preserved project payment records and their source lifecycle.</span><em>View financial register →</em></a>
+        <a class="rate-portal-card" href="system-map.html"><span class="portal-icon">04</span><strong>System Lifecycle</strong><span>Versioned branches, snapshots, release path and archived history.</span><em>Trace the system →</em></a>
+      </div>
+    </section>
     <div class="rate-boundary" role="note">
       <strong>System boundary:</strong> CAD → measured quantities and FIDs. This repository → source-linked rates and resource recipes.
       The <a href="boq-template.json">BOQ template</a> contains no quantities, rates, or totals and remains blocked until verified CAD data is supplied.
@@ -53,7 +66,7 @@
     <div id="rateWorkspace">
       <section class="rate-workspace" id="rateLibraryPanel" aria-labelledby="libraryHeading">
         <div class="rate-section-head">
-          <div><h2 id="libraryHeading">Rate Library</h2><p>Search independently sourced rates. User-known references are not government-approved rate observations.</p></div>
+          <div><h2 id="libraryHeading">Rate Library</h2><p>Search separately attributed rates by specification, source, location and unit. Government benchmarks are not vendor quotations or approved job prices.</p></div>
         </div>
         <div class="rate-toolbar">
           <label for="rateSearch">Search by name, specification, source, location, unit, or ID
@@ -67,7 +80,8 @@
             </select>
           </label>
         </div>
-        <div class="rate-message" id="rateStatus" role="status" aria-live="polite">Checking canonical read-only rate source…</div>
+        <div class="rate-message" id="rateStatus" role="status" aria-live="polite">Checking source data…</div>
+        <div class="rate-source-key" aria-label="Source types"><span>Government benchmark: public Kaski observation</span><span>User-known: manually supplied reference</span><span>Live API: only when connected</span></div>
         <div id="rateMetrics" class="rate-summary"></div>
         <div id="rateResults" class="rate-list" aria-live="polite"></div>
       </section>
@@ -116,7 +130,7 @@
         </section>
       </section>
     </div>
-    <footer class="rate-footer">Research scope: Rate Library + Rate Analysis. <a href="docs/SCOPE_CAD_FID_HANDOFF_v0.5.0.md">CAD/BOQ data boundary</a> · <a href="system-map.html">System history</a> · <a href="finance.html">Separate project-finance reference</a></footer>
+    <footer class="rate-footer"><strong>JP Cost &amp; Rate Intelligence</strong> · Rates and analyses are the active scope · <a href="docs/SCOPE_CAD_FID_HANDOFF_v0.5.0.md">CAD/FID → blank BOQ interface</a> · <a href="boq-template.json">Blank BOQ schema</a> · <a href="finance.html">Finance &amp; Payments</a> · <a href="system-map.html">System Lifecycle</a> · <a href="docs/RATE_PORTAL_RELEASE_v0.5.1.md">Release explanation</a></footer>
   </main>
   <script src="data.js"></script>
   <script src="known-rates-data.js"></script>
