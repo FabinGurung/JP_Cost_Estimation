@@ -6,6 +6,7 @@
   <title>Known Rates — JP Estimation Workbench</title>
   <meta name="description" content="Fast searchable user-known construction rate references, kept separate from official and governed rate sources.">
   <link rel="stylesheet" href="styles.css">
+  <script src="theme.js" defer></script>
 </head>
 <body>
   <aside class="sidebar">
@@ -14,9 +15,11 @@
       <div><strong>Estimation</strong><small>Known Rates</small></div>
     </div>
     <div class="preview-badge">SECONDARY SUB-PAGE</div>
-    <nav>
+    <nav aria-label="Site navigation">
       <a class="nav-item" href="index.html">← Estimation Workbench</a>
       <a class="nav-item active" href="known-rates.html">Known Rates</a>
+      <div class="nav-group-label">COMPANIES &amp; PROJECTS</div>
+      <a class="nav-item finance-nav-link" href="finance.html">Finance &amp; Project Payments ↗</a>
     </nav>
     <div class="side-foot">
       <span>Authority class</span>
@@ -32,6 +35,7 @@
       </div>
       <div class="top-actions">
         <span class="status warn">REFERENCE — NOT OFFICIAL RATE BOOK</span>
+        <button id="themeToggle" type="button" class="btn theme-toggle" aria-label="Change appearance">Dark mode</button>
         <button id="exportKnownRates" class="btn">Export JSON</button>
       </div>
     </header>
