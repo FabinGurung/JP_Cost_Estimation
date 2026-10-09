@@ -107,3 +107,21 @@ This documentation-only `main` commit requests the normal GitHub Pages publishin
 **Privacy:** No private payment-sheet URL, Google Drive ID, vendor data, totals, or edit log is checked into this public repository. An authorized user may paste their own private Google Sheets URL at runtime; Google Drive permissions still govern access. The static Pages site does not become a finance backend, and the estimator still uses demo BOQ pricing.
 
 **A9 branch preservation:** `snapshot/pre-main-pages-finance-v0.3.0-20261009` and its matching `Archive_snapshot/...` alias capture the main PRE state. The research site has its own PRE snapshot and the milestone `milestone/FINANCE-COMPANY-PORTAL-v0.3.0-alpha-20261009`. Original historic refs are preserved; none have been deleted or force-renamed. Draft research PR #1 remains unmerged.
+
+---
+
+## GitHub Pages publication trigger — Green Landscape + source-verified finance (2026-10-09)
+
+This **documentation-only `main` update** requests the existing Pages Actions workflow to publish the new `research/open-estimation-engine-v0.1` static website. The original `main` v0.1 estimator files and `.github/workflows/deploy-estimation-product.yml` remain unchanged.
+
+- Horizontal top-navigation site header instead of the former left-side document-like pane.
+- Local illustrated green mountains, open meadow, oak/pine trees and existing opt-in dark mode.
+- The original seven estimator modules, Known Rates, CR-02 lookup separation, and branch system map all preserved.
+- Rohini → `14_Bishal_Paija` → Krishna Kumar Gupta Payment to Project now links directly to the underlying Google Sheet.
+- **Explicitly approved public summary**, read and reconciled from native Google Sheets `A6:E33`: 26 named entries, **NPR 2,47,008** amount total, **NPR 130** QR column total, **NPR 2,400** recorded discount aggregate (discount total not specified in sheet Total row).
+- `finance-summary.json` is a **dated 2026-10-09 snapshot**, not an automatically synchronized live feed; no invented net amount, discount netting or QR-fee classification.
+- Separate Fishtail and Rohini company navigation; no implicit merging of records or application of payments to demo BOQ rates.
+
+**Refs:** `snapshot/pre-landscape-header-finance-summary-v0.4.0-20261009`, `snapshot/post-landscape-header-finance-summary-v0.4.0-20261009`, matching `Archive_` aliases, and `milestone/GREEN-LANDSCAPE-FINANCE-SUMMARY-v0.4.0-alpha-20261009`. Before this trigger, `snapshot/pre-main-landscape-release-v0.4.0-20261009` and its Archive_ alias preserved main's prior commit.
+
+**Source and QA:** `research/open-estimation-engine-v0.1/docs/LANDSCAPE_SITE_FINANCE_SUMMARY_v0.4.0_20261009.md`. The source sheet remains the editorial authority. All private source originals and existing estimate calculations are untouched.
