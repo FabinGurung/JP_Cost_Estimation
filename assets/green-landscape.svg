@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 470" role="img" aria-label="Open grassy green hills, mountain valley and trees in morning light">
+<defs>
+ <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#d7f4eb"/><stop offset=".47" stop-color="#edf9d6"/><stop offset="1" stop-color="#b4df9e"/></linearGradient>
+ <radialGradient id="sun"><stop stop-color="#fffbe0" stop-opacity=".98"/><stop offset=".58" stop-color="#fff4ba" stop-opacity=".53"/><stop offset="1" stop-color="#fff4ba" stop-opacity="0"/></radialGradient>
+ <linearGradient id="hills" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#94c99b"/><stop offset="1" stop-color="#53976e"/></linearGradient>
+ <linearGradient id="grass" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#78bb70"/><stop offset="1" stop-color="#2b7046"/></linearGradient>
+ <linearGradient id="front" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#458b55"/><stop offset="1" stop-color="#206039"/></linearGradient>
+ <g id="pine"><path d="M-3 0V-60H3V0" fill="#3c6041"/><path d="M0-142-31-84h15l-29 42h24l-27 38h96L21-42h24L16-84h15Z" fill="#256f49"/><path d="M0-142-15-84H0V-4h-48L-21-42h-24L-16-84h-15Z" fill="#358e5b"/></g>
+ <g id="oak"><path d="M-7 0V-69h14V0" fill="#5c6540"/><path d="M0-70c-55 14-57-47-21-61 7-32 53-39 72-8 38 6 47 53 17 76-14 28-52 29-68-7Z" fill="#2c7850"/><path d="M-36-107c-18-20 4-52 26-44 16-29 46-20 51-3 28-6 39 25 14 44-25-19-51 20-91 3Z" fill="#4d9d62"/></g>
+ <g id="cloud" opacity=".64" fill="#fff"><ellipse rx="48" ry="11" cx="0" cy="0"/><ellipse rx="24" ry="16" cx="-16" cy="-6"/><ellipse rx="29" ry="17" cx="13" cy="-5"/></g>
+</defs>
+<rect width="1440" height="470" fill="url(#sky)"/>
+<circle cx="1140" cy="99" r="133" fill="url(#sun)"/><circle cx="1140" cy="99" r="36" fill="#fff7c9" opacity=".77"/>
+<use href="#cloud" x="290" y="78"/><use href="#cloud" x="920" y="60" transform="translate(920 60) scale(.7) translate(-920 -60)"/>
+<path d="M0 273 111 206 180 234 327 122 400 189 515 99 690 236 806 165 905 231 1067 143 1160 200 1278 118 1440 231V420H0Z" fill="#8bb7a1" opacity=".4"/>
+<path d="m0 292 146-55 92 22 140-92 114 87 143-108 129 115 121-53 107 72 125-92 179 104 124-30V470H0Z" fill="#87be92" opacity=".63"/>
+<path d="M0 301Q160 232 342 296T735 287Q902 211 1065 267T1440 251V470H0Z" fill="url(#hills)"/>
+<path d="M0 347Q216 297 371 343T724 334Q955 280 1130 340T1440 306V470H0Z" fill="#75b575"/>
+<path d="M0 385Q191 328 374 380T727 380Q920 347 1106 390T1440 358V470H0Z" fill="url(#grass)"/>
+<path d="M712 470Q715 426 886 383Q1044 344 1160 323" stroke="#e1d6a2" stroke-width="14" stroke-linecap="round" fill="none" opacity=".68"/>
+<path d="M712 470Q715 426 886 383Q1044 344 1160 323" stroke="#f8eec5" stroke-width="5" stroke-linecap="round" fill="none" opacity=".86"/>
+<g opacity=".45" fill="#d4efa3"><path d="m55 408 8-15 7 16M96 428l6-12 6 14m119-19 8-15 7 16m239 17 8-17 5 17m523-18 7-13 6 14m228-27 5-17 6 18"/></g>
+<g opacity=".78"><use href="#pine" transform="translate(80 365) scale(.72)"/><use href="#pine" transform="translate(122 364) scale(.96)"/><use href="#pine" transform="translate(167 358) scale(.63)"/><use href="#pine" transform="translate(1355 331) scale(.65)"/><use href="#pine" transform="translate(1405 350) scale(.9)"/><use href="#pine" transform="translate(1276 351) scale(.44)"/></g>
+<g><use href="#oak" transform="translate(40 433) scale(1.26)"/><use href="#oak" transform="translate(229 415) scale(.83)"/><use href="#oak" transform="translate(1333 424) scale(1.23)"/></g>
+<g fill="none" stroke="#366e49" stroke-width="2" opacity=".55"><path d="m980 100 7-4 7 4m-7-4 8 0m64-21 7-4 7 4m-7-4 8 0m-50 39 7-4 7 4"/></g>
+<path d="M0 457Q212 425 380 454Q567 476 740 453Q1050 425 1224 460T1440 450V470H0Z" fill="url(#front)" opacity=".84"/>
+</svg>
