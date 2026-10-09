@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Company-aware finance navigation for JP Construction Estimation. No private payment data is published.">
+  <title>Company Finance & Project Payments — JP Estimation</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="theme.js" defer></script>
+  <script src="finance.js" defer></script>
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="logo">JP</div>
+      <div><strong>Estimation</strong><small>Company Finance</small></div>
+    </div>
+    <div class="preview-badge">MULTI-COMPANY / PUBLIC-SAFE NAVIGATION</div>
+    <nav aria-label="Site navigation">
+      <div class="nav-group-label">ESTIMATION</div>
+      <a class="nav-item" href="index.html">← Estimation Workbench</a>
+      <a class="nav-item" href="known-rates.html">Known Rates</a>
+      <div class="nav-group-label">COMPANIES &amp; PROJECTS</div>
+      <a class="nav-item active" href="finance.html" aria-current="page">Finance &amp; Project Payments</a>
+    </nav>
+    <div class="side-foot">Finance source authority <code>OWNING COMPANY / PRIVATE DRIVE</code></div>
+  </aside>
+
+  <main class="app-shell">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">JP CONSTRUCTION ESTIMATION / COMPANY WORKSPACES</p>
+        <h1>Finance &amp; Project Payments</h1>
+      </div>
+      <div class="top-actions">
+        <span class="status good">NO PRIVATE DATA PUBLISHED</span>
+        <button id="themeToggle" type="button" class="btn theme-toggle" aria-label="Change appearance">Dark mode</button>
+      </div>
+    </header>
+
+    <section class="finance-main">
+      <section class="finance-intro">
+        <p class="eyebrow">ORGANIZATION FIRST • PROJECT SECOND • REGISTER THIRD</p>
+        <h2>Keep each company's records in its own authority lane.</h2>
+        <p>This page organizes navigation only. It does not import payments, publish totals, authenticate visitors, or combine Rohini and Fishtail records. Financial data remains in permission-controlled Google Drive.</p>
+      </section>
+
+      <section class="panel">
+        <div class="section-head">
+          <div><h2>Choose organization</h2><p class="sub">Different legal entities must never share a payment ledger by default.</p></div>
+          <span class="badge ready">COMPANY-SCOPED</span>
+        </div>
+        <div class="finance-company-grid" role="group" aria-label="Organization selection">
+          <button class="finance-company active" type="button" data-company="rohini" aria-pressed="true">
+            <span class="company-icon">R</span><strong>Rohini Engineering and Builders Pvt. Ltd.</strong>
+            <small>Project payments · Governed Google Sheets</small>
+          </button>
+          <button class="finance-company" type="button" data-company="fishtail" aria-pressed="false">
+            <span class="company-icon">F</span><strong>Fishtail Builders Pvt. Ltd.</strong>
+            <small>Independent company records · Not connected here</small>
+          </button>
+          <button class="finance-company" type="button" data-company="other" aria-pressed="false">
+            <span class="company-icon">+</span><strong>Other organizations</strong>
+            <small>Separate onboarding and explicit ownership required</small>
+          </button>
+        </div>
+      </section>
+
+      <section class="panel" aria-live="polite">
+        <div class="section-head">
+          <div><h2 id="companyHeading">Rohini Engineering and Builders Pvt. Ltd.</h2>
+            <p class="sub" id="companySubheading">Choose a project, then its authorized evidence register.</p>
+          </div>
+          <span class="badge pending">DRIVE OWNS PAYMENT FACTS</span>
+        </div>
+        <div id="financeContent"></div>
+      </section>
+
+      <section class="panel">
+        <h2>Data ownership and access policy</h2>
+        <div class="finance-policy-grid">
+          <article><strong>Company</strong><p>Owns the financial register and controls access. No cross-company consolidation without a separately approved mapping.</p></article>
+          <article><strong>Project</strong><p>Receives payment evidence linked to its verified project ID. A payer or vendor name is not a project owner.</p></article>
+          <article><strong>Private Drive</strong><p>Holds the actual editable workbook and PRE/POST versions. No amounts, vendor records, file IDs or secret tokens are bundled into this public page.</p></article>
+          <article><strong>Estimator</strong><p>BOQ and cost-rate data stay separate from actual payments until an explicit, audited Estimate vs Actual mapping is approved.</p></article>
+        </div>
+      </section>
+    </section>
+  </main>
+</body>
+</html>
