@@ -89,8 +89,15 @@
     });
     open.addEventListener('click', () => {
       if (!validated) return;
-      const newTab = window.open(validated, '_blank', 'noopener,noreferrer');
-      if (!newTab) error.textContent = 'Your browser blocked the new tab. Allow pop-ups for this action, or open the private URL directly.';
+      // A real user click, so the browser handles an ordinary external link.
+      // Never retain this private URL in the page source, browser storage, or backend.
+      const anchor = document.createElement('a');
+      anchor.href = validated;
+      anchor.target = '_blank';
+      anchor.rel = 'noopener noreferrer';
+      document.body.appendChild(anchor);
+      anchor.click();
+      anchor.remove();
     });
   }
   buttons.forEach(btn => btn.addEventListener('click', () => render(btn.dataset.company)));
