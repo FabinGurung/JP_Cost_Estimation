@@ -119,3 +119,34 @@ html[data-theme="dark"] .landscape-hero::before{background:linear-gradient(92deg
 html[data-theme="dark"] .finance-source-strip{background:#1b4029;border-color:#476c4e;color:#c6edcd}
 html[data-theme="dark"] .finance-source-strip a{color:#a5edb6}
 html[data-theme="dark"] .finance-source-strip span{color:#a7c5a9}
+
+
+/* v0.5.1 shared light sky — consistent across Rate Library, Known Rates, Rohini Finance and System Lifecycle.
+   SVG source imagery is original repository asset; open clouds and sun remain clearly visible. */
+.landscape-hero {
+  background-color:#f5fbef;
+  border-bottom-color:#eac771;
+}
+.landscape-hero::before {
+  background:linear-gradient(92deg,rgba(248,253,245,.97),rgba(248,253,242,.91) 32%,rgba(255,251,232,.57) 59%,rgba(250,251,237,.10) 100%);
+}
+.landscape-hero .eyebrow{color:#607d62}
+.landscape-hero h2{color:#22523d;text-shadow:0 1px 8px rgba(255,255,255,.35)}
+.landscape-hero h2 em{color:#b77d18}
+.landscape-hero p{color:#47735d}
+.landscape-hero .hero-cta.primary{background:linear-gradient(110deg,#f0bf4e,#ffe39c);color:#493d24;box-shadow:0 6px 18px rgba(161,107,23,.12);border:1px solid #ebc36a}
+.landscape-hero .hero-cta.secondary{background:rgba(255,255,255,.91);border:1px solid #b9d8b1;color:#22583e}
+.sidebar .logo{background:#fff6d9;color:#205f40}
+.sidebar .nav-item.active,.sidebar .nav-item:hover{background:#fff2c7;color:#244b36}
+.sidebar{border-bottom-color:#dec078}
+.sidebar .nav-item.finance-nav-link{color:#eaffed}
+.sidebar .nav-item.finance-nav-link:hover,.sidebar .nav-item.finance-nav-link.active{background:#fff2c7;color:#244b36}
+.landscape-hero a:focus-visible,.sidebar a:focus-visible,.sidebar button:focus-visible{outline:3px solid #d7a731;outline-offset:3px}
+html[data-theme="dark"] .landscape-hero::before{background:linear-gradient(92deg,rgba(7,34,22,.97),rgba(10,54,34,.88) 40%,rgba(12,57,32,.3) 100%)}
+html[data-theme="dark"] .landscape-hero .eyebrow,html[data-theme="dark"] .landscape-hero h2,html[data-theme="dark"] .landscape-hero p{color:#f0f8ec}
+html[data-theme="dark"] .landscape-hero h2 em{color:#ffd778}
+@media(max-width:620px) {
+  .landscape-hero::before{background:linear-gradient(90deg,rgba(249,253,246,.99),rgba(250,254,243,.87) 82%,rgba(251,252,236,.45))}
+  .landscape-hero .hero-cta{width:auto}
+}
+@media(prefers-reduced-motion:reduce){.landscape-hero *{scroll-behavior:auto}}
