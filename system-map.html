@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="JP Estimation repository website and branch map, including preserved archived snapshots.">
+  <title>System Map &amp; Branches — JP Estimation</title>
+  <link rel="stylesheet" href="styles.css"><script src="theme.js" defer></script>
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="brand"><div class="logo">JP</div><div><strong>Estimation</strong><small>System Map</small></div></div>
+    <div class="preview-badge">REPOSITORY / RELEASE TOPOLOGY</div>
+    <nav aria-label="Site navigation">
+      <div class="nav-group-label">ESTIMATION</div><a class="nav-item" href="index.html">← Estimation Workbench</a>
+      <a class="nav-item" href="known-rates.html">Known Rates</a>
+      <div class="nav-group-label">COMPANIES &amp; PROJECTS</div>
+      <a class="nav-item" href="finance.html">Finance &amp; Project Payments</a>
+      <div class="nav-group-label">SYSTEM &amp; RELEASES</div>
+      <a class="nav-item active" href="system-map.html" aria-current="page">System Map &amp; Branches</a>
+    </nav>
+    <div class="side-foot">Audit basis <code>GITHUB REFS / 2026-10-09</code></div>
+  </aside>
+  <main class="app-shell">
+    <header class="topbar">
+      <div><p class="eyebrow">JP ESTIMATION / WEBSITE NAVIGATION</p><h1>System Map &amp; Branches</h1></div>
+      <div class="top-actions"><span class="status warn">STATIC AUDIT · 2026-10-09</span>
+        <button id="themeToggle" class="btn theme-toggle" type="button">Dark mode</button></div>
+    </header>
+    <div class="finance-main">
+      <section class="panel">
+        <h2>Which branch controls which website?</h2>
+        <div class="finance-policy-grid">
+          <article><strong>main — GitHub default / workflow owner</strong>
+            <p>Preserves the original v0.1 homeowner estimator and runs the Pages publication workflow. <b>Do not confuse a publishing trigger with the files served.</b></p></article>
+          <article><strong>research/open-estimation-engine-v0.1 — research site source</strong>
+            <p>The Pages workflow checks out this branch. Vercel Preview also builds from this branch, where the read-only CR-02 serverless API exists.</p></article>
+          <article><strong>GitHub Pages — static</strong>
+            <p>Serves HTML/CSS/JS and Known Rates/Finance navigation. It does not run Vercel's serverless /api/cr02-rates backend.</p></article>
+          <article><strong>Vercel — research previews / main production</strong>
+            <p>Vercel commit statuses may be successful even when current deployment HTTP status cannot be checked. Its team API was inaccessible at the last audit.</p></article>
+        </div>
+        <div class="finance-info-note"><strong>Privacy boundary:</strong> the Estimator website is public. Company payment amounts and private Drive workbook identifiers are deliberately not embedded. See Finance &amp; Project Payments for an authorized navigation flow.</div>
+      </section>
+      <section class="panel">
+        <div class="section-head"><div><h2>Audited GitHub branches</h2><p class="sub">Source: provider branch inventory. The original refs are retained; Archive_ branches are verified aliases, not deletions.</p></div>
+          <span class="badge pending">SNAPSHOTS PRESERVED</span></div>
+        <div class="table-wrap"><table class="branch-table"><thead><tr><th>GitHub branch</th><th>Classification</th><th>Purpose</th></tr></thead>
+          <tbody><tr><td><a href="https://github.com/FabinGurung/JP_Cost_Estimation/tree/main" target="_blank" rel="noopener noreferrer"><code>main</code></a></td><td><span class="status-pill">DEFAULT / PUBLISH WORKFLOW</span></td><td>Current default GitHub branch; v0.1 estimator remains here. The Pages workflow is triggered here but checks out research files.</td></tr>
+<tr><td><a href="https://github.com/FabinGurung/JP_Cost_Estimation/tree/research/open-estimation-engine-v0.1" target="_blank" rel="noopener noreferrer"><code>research/open-estimation-engine-v0.1</code></a></td><td><span class="status-pill">ACTIVE SITE CONTENT</span></td><td>Research workbench and serverless API; used by GitHub Pages checkout and Vercel Preview.</td></tr>
+<tr><td><a href="https://github.com/FabinGurung/JP_Cost_Estimation/tree/milestone/CR02-SEQ10A-readonly-rate-library-v0.2.0-alpha" target="_blank" rel="noopener noreferrer"><code>milestone/CR02-SEQ10A-readonly-rate-library-v0.2.0-alpha</code></a></td><td><span class="status-pill">MILESTONE / FROZEN</span></td><td>Verified read-only rate-library milestone; not merged into main.</td></tr>
+<tr><td><a href="https://github.com/FabinGurung/JP_Cost_Estimation/tree/feature/a7-seq-000007-module-manifest" target="_blank" rel="noopener noreferrer"><code>feature/a7-seq-000007-module-manifest</code></a></td><td><span class="status-pill">LEGACY FEATURE / MERGED</span></td><td>Historical feature ref retained for closed PR #2; matching Archive_ ref exists.</td></tr>
+<tr><td><a href="https://github.com/FabinGurung/JP_Cost_Estimation/tree/snapshot/pre-a7-seq-000007-module-manifest" target="_blank" rel="noopener noreferrer"><code>snapshot/pre-a7-seq-000007-module-manifest</code></a></td><td><span class="status-pill">LEGACY SNAPSHOT / PRE</span></td><td>PRE snapshot retained with Archive_ alias.</td></tr>
+<tr><td><a href="https://github.com/FabinGurung/JP_Cost_Estimation/tree/snapshot/post-a7-seq-000007-module-manifest" target="_blank" rel="noopener noreferrer"><code>snapshot/post-a7-seq-000007-module-manifest</code></a></td><td><span class="status-pill">LEGACY SNAPSHOT / POST</span></td><td>POST snapshot retained with Archive_ alias.</td></tr>
+<tr><td><a href="https://github.com/FabinGurung/JP_Cost_Estimation/tree/snapshot/pre-pages-policy-research-20261005" target="_blank" rel="noopener noreferrer"><code>snapshot/pre-pages-policy-research-20261005</code></a></td><td><span class="status-pill">LEGACY SNAPSHOT / PRE</span></td><td>Pages workflow policy snapshot retained with Archive_ alias.</td></tr>
+<tr><td><a href="https://github.com/FabinGurung/JP_Cost_Estimation/tree/Archive_feature/a7-seq-000007-module-manifest" target="_blank" rel="noopener noreferrer"><code>Archive_feature/a7-seq-000007-module-manifest</code></a></td><td><span class="status-pill">ARCHIVED ALIAS / FEATURE</span></td><td>Commit-identical alias of historical A7 feature.</td></tr>
+<tr><td><a href="https://github.com/FabinGurung/JP_Cost_Estimation/tree/Archive_snapshot/pre-a7-seq-000007-module-manifest" target="_blank" rel="noopener noreferrer"><code>Archive_snapshot/pre-a7-seq-000007-module-manifest</code></a></td><td><span class="status-pill">ARCHIVED ALIAS / PRE SNAPSHOT</span></td><td>Commit-identical alias for historical A7 PRE snapshot.</td></tr>
+<tr><td><a href="https://github.com/FabinGurung/JP_Cost_Estimation/tree/Archive_snapshot/post-a7-seq-000007-module-manifest" target="_blank" rel="noopener noreferrer"><code>Archive_snapshot/post-a7-seq-000007-module-manifest</code></a></td><td><span class="status-pill">ARCHIVED ALIAS / POST SNAPSHOT</span></td><td>Commit-identical alias for historical A7 POST snapshot.</td></tr>
+<tr><td><a href="https://github.com/FabinGurung/JP_Cost_Estimation/tree/Archive_snapshot/pre-pages-policy-research-20261005" target="_blank" rel="noopener noreferrer"><code>Archive_snapshot/pre-pages-policy-research-20261005</code></a></td><td><span class="status-pill">ARCHIVED ALIAS / PRE SNAPSHOT</span></td><td>Commit-identical alias for historical Pages-policy PRE snapshot.</td></tr>
+<tr><td><a href="https://github.com/FabinGurung/JP_Cost_Estimation/tree/Archive_PRE_20261009_main_readme_refresh" target="_blank" rel="noopener noreferrer"><code>Archive_PRE_20261009_main_readme_refresh</code></a></td><td><span class="status-pill">ARCHIVED PRE / MAIN</span></td><td>Repository documentation PRE checkpoint.</td></tr>
+<tr><td><a href="https://github.com/FabinGurung/JP_Cost_Estimation/tree/Archive_PRE_20261009_research_estimator_docs_refresh" target="_blank" rel="noopener noreferrer"><code>Archive_PRE_20261009_research_estimator_docs_refresh</code></a></td><td><span class="status-pill">ARCHIVED PRE / RESEARCH</span></td><td>Research UI/documentation PRE checkpoint.</td></tr>
+<tr><td><a href="https://github.com/FabinGurung/JP_Cost_Estimation/tree/snapshot/pre-finance-company-portal-v0.3.0-20261009" target="_blank" rel="noopener noreferrer"><code>snapshot/pre-finance-company-portal-v0.3.0-20261009</code></a></td><td><span class="status-pill">SNAPSHOT / PRE FINANCE UI</span></td><td>Exact PRE state before new company finance page and theme.</td></tr>
+<tr><td><a href="https://github.com/FabinGurung/JP_Cost_Estimation/tree/Archive_snapshot/pre-finance-company-portal-v0.3.0-20261009" target="_blank" rel="noopener noreferrer"><code>Archive_snapshot/pre-finance-company-portal-v0.3.0-20261009</code></a></td><td><span class="status-pill">ARCHIVED ALIAS / PRE FINANCE</span></td><td>Matching archived alias for finance-page PRE checkpoint.</td></tr></tbody></table></div>
+      </section>
+      <section class="panel">
+        <h2>Why milestones, snapshots and archives differ</h2>
+        <div class="finance-policy-grid">
+          <article><strong>Milestone</strong><p>A frozen, named checkpoint of a meaningful capability with supporting QA. It is not necessarily published to Production.</p></article>
+          <article><strong>PRE / POST snapshot</strong><p>Exact Git states on either side of a governed mutation; the rollback lineage is retained.</p></article>
+          <article><strong>Archive_ alias</strong><p>Commit-identical archived name for an older feature or snapshot. The source ref remains for audit until an authorized real rename is possible.</p></article>
+          <article><strong>Current development</strong><p>New work is appended on the research branch after a PRE snapshot, verified, then frozen at a new milestone when appropriate.</p></article>
+        </div>
+      </section>
+    </div>
+  </main>
+</body>
+</html>
