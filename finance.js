@@ -55,7 +55,7 @@
     const cards=el('div','finance-fact-grid');
     [
       ['Recorded amount',money(data.summary.amount_npr),'Sheet Total · Amount column'],
-      ['QR charges',money(data.summary.qr_npr),'Sheet Total · QR column'],
+      ['Recorded QR',money(data.summary.qr_npr),'Sheet Total · QR column'],
       ['Recorded discount',money(data.summary.discount_recorded_npr),'Summed from listed discount cells'],
       ['Summary entries',fmt(data.summary.entry_count),'Individual named lines in source']
     ].forEach(([label,value,detail])=>{
