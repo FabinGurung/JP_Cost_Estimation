@@ -125,3 +125,13 @@ This **documentation-only `main` update** requests the existing Pages Actions wo
 **Refs:** `snapshot/pre-landscape-header-finance-summary-v0.4.0-20261009`, `snapshot/post-landscape-header-finance-summary-v0.4.0-20261009`, matching `Archive_` aliases, and `milestone/GREEN-LANDSCAPE-FINANCE-SUMMARY-v0.4.0-alpha-20261009`. Before this trigger, `snapshot/pre-main-landscape-release-v0.4.0-20261009` and its Archive_ alias preserved main's prior commit.
 
 **Source and QA:** `research/open-estimation-engine-v0.1/docs/LANDSCAPE_SITE_FINANCE_SUMMARY_v0.4.0_20261009.md`. The source sheet remains the editorial authority. All private source originals and existing estimate calculations are untouched.
+
+---
+
+## v0.5.1-alpha publishing checkpoint — 2026-10-09
+
+The GitHub Pages source remains `research/open-estimation-engine-v0.1`, now at commit `fc52c65c7bb311e9c4ebc57372aefa428205484a`.
+Its active public UI focuses on **Rate Library, transparent Rate Analysis, Sources/Provenance** while retaining **Rohini Finance & Project Payments** and the **System Lifecycle/Branch Map**.
+The light visual design uses open white clouds, green valleys and warm yellow sunlight. The previous site and finance records remain preserved.
+The separately governed public Kaski rate snapshot is clearly dated, and the `boq-template.json` stays empty until verified CAD FIDs/measurements are imported.
+This documentation update is the intentional `main`-branch Pages deployment trigger. The original v0.1 main estimator files remain preserved.
