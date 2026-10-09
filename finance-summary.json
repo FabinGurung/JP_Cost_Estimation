@@ -1,0 +1,212 @@
+{
+  "schema": "jp.ces.finance.summary.v1",
+  "snapshot_date": "2026-10-09",
+  "authority": "Google Sheets / current human working register",
+  "source": {
+    "google_sheets_url": "https://docs.google.com/spreadsheets/d/1S1fkWzo6XGzyD3p92_pTG32zZ9fF3Y/edit",
+    "source_sheet": "14_bishal_paija",
+    "range": "A6:E33",
+    "template": "v1.1"
+  },
+  "organization": "Rohini Engineering and Builders Pvt Ltd",
+  "project": "14_Bishal_Paija",
+  "register": "Krishna Kumar Gupta — Payment to Project",
+  "column_semantics": {
+    "amount_npr": "Reported amount per summary source; do not deduct discount or QR again without owner-approved rule",
+    "qr_npr": "Optional QR figures, blank means not recorded",
+    "discount_npr": "Optional discount figures, blank means not recorded"
+  },
+  "rows": [
+    {
+      "id": 1,
+      "name": "Amrit hardware",
+      "amount_npr": 85415,
+      "qr_npr": 30,
+      "discount_npr": 2400
+    },
+    {
+      "id": 2,
+      "name": "Narayan",
+      "amount_npr": 1000,
+      "qr_npr": null,
+      "discount_npr": null
+    },
+    {
+      "id": 3,
+      "name": "Freight",
+      "amount_npr": 610,
+      "qr_npr": null,
+      "discount_npr": null
+    },
+    {
+      "id": 4,
+      "name": "Pradip paree hardware",
+      "amount_npr": 190,
+      "qr_npr": null,
+      "discount_npr": null
+    },
+    {
+      "id": 5,
+      "name": "Chauthee kabadi",
+      "amount_npr": 3800,
+      "qr_npr": 20,
+      "discount_npr": null
+    },
+    {
+      "id": 6,
+      "name": "Random hardware",
+      "amount_npr": 700,
+      "qr_npr": null,
+      "discount_npr": null
+    },
+    {
+      "id": 7,
+      "name": "Drinking water",
+      "amount_npr": 2580,
+      "qr_npr": null,
+      "discount_npr": null
+    },
+    {
+      "id": 8,
+      "name": "Rohini engineering and builders Pvt Ltd",
+      "amount_npr": 22018,
+      "qr_npr": 20,
+      "discount_npr": null
+    },
+    {
+      "id": 9,
+      "name": "Ration and tip",
+      "amount_npr": 2000,
+      "qr_npr": null,
+      "discount_npr": null
+    },
+    {
+      "id": 10,
+      "name": "Pradip hardware",
+      "amount_npr": 6730,
+      "qr_npr": null,
+      "discount_npr": null
+    },
+    {
+      "id": 11,
+      "name": "Gautam trading house",
+      "amount_npr": 1350,
+      "qr_npr": null,
+      "discount_npr": null
+    },
+    {
+      "id": 12,
+      "name": "NS suppliers",
+      "amount_npr": 40100,
+      "qr_npr": 40,
+      "discount_npr": null
+    },
+    {
+      "id": 13,
+      "name": "Fuel_Machinery",
+      "amount_npr": 2300,
+      "qr_npr": null,
+      "discount_npr": null
+    },
+    {
+      "id": 14,
+      "name": "Diner",
+      "amount_npr": 3650,
+      "qr_npr": null,
+      "discount_npr": null
+    },
+    {
+      "id": 15,
+      "name": "Contractor_Hari_Chaudhari",
+      "amount_npr": 34920,
+      "qr_npr": null,
+      "discount_npr": null
+    },
+    {
+      "id": 16,
+      "name": "Arjun acharaya_JCB",
+      "amount_npr": 17100,
+      "qr_npr": 10,
+      "discount_npr": null
+    },
+    {
+      "id": 17,
+      "name": "Subin suppliers_freight",
+      "amount_npr": 11000,
+      "qr_npr": null,
+      "discount_npr": null
+    },
+    {
+      "id": 18,
+      "name": "Gandaki petroleum company Pvt Ltd",
+      "amount_npr": 500,
+      "qr_npr": null,
+      "discount_npr": null
+    },
+    {
+      "id": 19,
+      "name": "r-lamichhane-plastic-store",
+      "amount_npr": 120,
+      "qr_npr": null,
+      "discount_npr": null
+    },
+    {
+      "id": 20,
+      "name": "Krishna machinery amarsingh",
+      "amount_npr": 2000,
+      "qr_npr": 10,
+      "discount_npr": null
+    },
+    {
+      "id": 21,
+      "name": "jute-bag-sirjana-chowk",
+      "amount_npr": 1625,
+      "qr_npr": null,
+      "discount_npr": null
+    },
+    {
+      "id": 22,
+      "name": "Subin suppliers",
+      "amount_npr": 2500,
+      "qr_npr": null,
+      "discount_npr": null
+    },
+    {
+      "id": 23,
+      "name": "Formwork_yem gurung",
+      "amount_npr": 4000,
+      "qr_npr": null,
+      "discount_npr": null
+    },
+    {
+      "id": 24,
+      "name": "New sangam traders",
+      "amount_npr": 300,
+      "qr_npr": null,
+      "discount_npr": null
+    },
+    {
+      "id": 25,
+      "name": "pokhara-sahitya-pustak-pasal",
+      "amount_npr": 200,
+      "qr_npr": null,
+      "discount_npr": null
+    },
+    {
+      "id": 26,
+      "name": "Chauthe swashthya clinic Pvt Ltd",
+      "amount_npr": 300,
+      "qr_npr": null,
+      "discount_npr": null
+    }
+  ],
+  "summary": {
+    "entry_count": 26,
+    "amount_npr": 247008,
+    "qr_npr": 130,
+    "discount_recorded_npr": 2400,
+    "amount_equals_sheet_total": true,
+    "qr_equals_sheet_total": true
+  },
+  "freshness": "Static snapshot from live Google Sheet as of 2026-10-09. Future Google Sheet changes require a new verified GitHub snapshot."
+}
