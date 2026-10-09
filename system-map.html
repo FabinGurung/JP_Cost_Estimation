@@ -4,7 +4,8 @@
   <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="description" content="JP Estimation repository website and branch map, including preserved archived snapshots.">
   <title>System Map &amp; Branches — JP Estimation</title>
-  <link rel="stylesheet" href="styles.css"><script src="theme.js" defer></script>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="site-shell.css"><script src="theme.js" defer></script>
 </head>
 <body>
   <aside class="sidebar">
@@ -21,6 +22,16 @@
     <div class="side-foot">Audit basis <code>GITHUB REFS / 2026-10-09</code></div>
   </aside>
   <main class="app-shell">
+<section class="landscape-hero compact" aria-label="Green hills, trees and open landscape">
+  <div class="landscape-hero-content">
+    <p class="eyebrow">JP · GREEN LAND / OPEN ENGINEERING</p>
+    <h2>Explore the system. <em>Follow every branch.</em></h2>
+    <p>From the main publishing branch to research milestones and snapshots, find the right path through the estimation project.</p>
+    <div class="hero-actions"><a class="hero-cta primary" href=".branch-table">View branch map ↓</a>
+<a class="hero-cta secondary" href="index.html">Estimator ↗</a></div>
+  </div>
+</section>
+
     <header class="topbar">
       <div><p class="eyebrow">JP ESTIMATION / WEBSITE NAVIGATION</p><h1>System Map &amp; Branches</h1></div>
       <div class="top-actions"><span class="status warn">STATIC AUDIT · 2026-10-09</span>
@@ -39,10 +50,10 @@
           <article><strong>Vercel — research previews / main production</strong>
             <p>Vercel commit statuses may be successful even when current deployment HTTP status cannot be checked. Its team API was inaccessible at the last audit.</p></article>
         </div>
-        <div class="finance-info-note"><strong>Privacy boundary:</strong> the Estimator website is public. Company payment amounts and private Drive workbook identifiers are deliberately not embedded. See Finance &amp; Project Payments for an authorized navigation flow.</div>
+        <div class="finance-info-note"><strong>Privacy boundary:</strong> the Estimator website is public. The owner-approved payment summary and Google Sheets source link are published in Finance &amp; Project Payments. Other company records stay separate.</div>
       </section>
       <section class="panel">
-        <div class="section-head"><div><h2>Audited GitHub branches</h2><p class="sub">Source: provider branch inventory. The original refs are retained; Archive_ branches are verified aliases, not deletions.</p></div>
+        <div class="section-head"><div><h2>Audited GitHub branches</h2><p class="sub">Source: provider branch inventory. The original refs are retained; Archive_ branches are preserved aliases, not deletions.</p></div>
           <span class="badge pending">SNAPSHOTS PRESERVED</span></div>
         <div class="table-wrap"><table class="branch-table"><thead><tr><th>GitHub branch</th><th>Classification</th><th>Purpose</th></tr></thead>
           <tbody><tr><td><a href="https://github.com/FabinGurung/JP_Cost_Estimation/tree/main" target="_blank" rel="noopener noreferrer"><code>main</code></a></td><td><span class="status-pill">DEFAULT / PUBLISH WORKFLOW</span></td><td>Current default GitHub branch; v0.1 estimator remains here. The Pages workflow is triggered here but checks out research files.</td></tr>
