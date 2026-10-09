@@ -1,0 +1,29 @@
+name: Validate Research Estimator Preview
+
+on:
+  push:
+    branches:
+      - research/open-estimation-engine-v0.1
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout research branch
+        uses: actions/checkout@v4
+      - name: Verify static estimator files
+        run: |
+          test -f index.html
+          test -f styles.css
+          test -f app.js
+          test -f data.js
+          node --check app.js
+          node --check data.js
+      - name: Confirm non-production boundary
+        run: |
+          echo "VALIDATION_ONLY=PASS"
+          echo "Research branch cannot deploy to the github-pages environment."

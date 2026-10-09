@@ -1,0 +1,9 @@
+{
+  "name": "jp-building-cost-estimator",
+  "version": "0.2.0-alpha",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@neondatabase/serverless": "^1.0.0"
+  }
+}

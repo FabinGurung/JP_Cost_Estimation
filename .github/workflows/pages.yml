@@ -1,0 +1,15 @@
+name: Production Pages ownership guard
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  guard:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "JP_Cost_Estimation production Pages owner is main."
+          echo "This research branch copy of pages.yml is intentionally non-deploying."

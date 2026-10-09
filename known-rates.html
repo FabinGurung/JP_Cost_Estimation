@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Known Rates — JP Estimation Workbench</title>
+  <meta name="description" content="Fast searchable user-known construction rate references, kept separate from official and governed rate sources.">
+  <link rel="stylesheet" href="styles.css">
+  <script src="theme.js" defer></script>
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="logo">JP</div>
+      <div><strong>Estimation</strong><small>Known Rates</small></div>
+    </div>
+    <div class="preview-badge">SECONDARY SUB-PAGE</div>
+    <nav aria-label="Site navigation">
+      <a class="nav-item" href="index.html">← Estimation Workbench</a>
+      <a class="nav-item active" href="known-rates.html">Known Rates</a>
+      <div class="nav-group-label">COMPANIES &amp; PROJECTS</div>
+      <a class="nav-item finance-nav-link" href="finance.html">Finance &amp; Project Payments ↗</a>
+      <div class="nav-group-label">SYSTEM &amp; RELEASES</div>
+      <a class="nav-item" href="system-map.html">System Map &amp; Branches ↗</a>
+    </nav>
+    <div class="side-foot">
+      <span>Authority class</span>
+      <code>USER_KNOWN_REFERENCE</code>
+    </div>
+  </aside>
+
+  <main class="app-shell">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">JP CONSTRUCTION ESTIMATION SYSTEM / QUICK REFERENCE</p>
+        <h1>Known Rates</h1>
+      </div>
+      <div class="top-actions">
+        <span class="status warn">REFERENCE — NOT OFFICIAL RATE BOOK</span>
+        <button id="themeToggle" type="button" class="btn theme-toggle" aria-label="Change appearance">Dark mode</button>
+        <button id="exportKnownRates" class="btn">Export JSON</button>
+      </div>
+    </header>
+
+    <section class="known-search-strip">
+      <div class="known-search-main">
+        <label for="knownRateSearch">Search rate knowledge</label>
+        <input id="knownRateSearch" type="search" autocomplete="off" placeholder="Try: stone cladding">
+      </div>
+      <button id="clearKnownSearch" class="btn">Clear</button>
+    </section>
+
+    <section id="knownRatesView">
+      <div class="grid metrics" id="knownMetrics"></div>
+
+      <section class="panel">
+        <div class="section-head">
+          <div>
+            <h2>Fast lookup</h2>
+            <p class="sub">Searches work name, aliases, category, scope, inclusions, exclusions, unit, location and notes.</p>
+          </div>
+          <span class="badge demo">USER-SUPPLIED REFERENCE</span>
+        </div>
+        <div class="notice">
+          These values are intentionally separate from Kaski/DUDBC, vendor quotations and verified project actuals. Missing location, date, tax or transport context stays explicitly unspecified.
+        </div>
+        <div id="knownRateResults" class="known-rate-list"></div>
+      </section>
+
+      <section class="panel">
+        <h2>How future entries are stored</h2>
+        <p class="sub">Send the rate in chat. The durable record keeps the scope instead of storing only a naked number.</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>ID</th><th>Work</th><th>Rate</th><th>Unit</th><th>Included</th><th>Excluded</th><th>Location</th><th>Effective date</th></tr></thead>
+            <tbody id="knownRateTable"></tbody>
+          </table>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script src="known-rates-data.js"></script>
+  <script src="known-rates.js"></script>
+</body>
+</html>

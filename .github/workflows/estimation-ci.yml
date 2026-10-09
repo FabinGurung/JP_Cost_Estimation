@@ -1,0 +1,41 @@
+name: Estimation CI
+
+on:
+  push:
+    branches:
+      - "research/**"
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  static-validation:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Verify baseline files
+        run: |
+          test -f index.html
+          test -f styles.css
+          test -f app.js
+          test -f data.js
+          test -f README.md
+
+      - name: JavaScript syntax check
+        run: |
+          node --check app.js
+          node --check data.js
+
+      - name: Public-site secret pattern check
+        shell: bash
+        run: |
+          if grep -RInE '(BEGIN (RSA|OPENSSH|EC) PRIVATE KEY|api[_-]?key[[:space:]]*[:=][[:space:]]*["'"'"'][A-Za-z0-9_-]{20,}|password[[:space:]]*[:=][[:space:]]*["'"'"'][^"'"'"']{8,})'             --exclude-dir=.git .; then
+            echo "Potential secret-like material found in public repository."
+            exit 1
+          fi
