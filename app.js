@@ -83,7 +83,7 @@
         return '<div class="progress-row"><span>'+x.name+'</span><div class="track"><div class="fill" style="width:'+pct.toFixed(1)+'%"></div></div><b>'+money(x.amount).replace("NPR ","")+'</b></div>';
       }).join("")+'</div></section>'+
       '<section class="panel"><h2>Research gate</h2><p class="sub">What is real now vs what is still intentionally blocked.</p>'+
-        '<div class="notice"><b>Product is functional, but not tender-ready.</b><br>The visible estimate still uses the v0.1 benchmark/demo rates. A bounded canonical Kaski subset is now mirrored in production Neon, but this frontend is not yet reading those records. DUDBC resource recipes remain pending.</div>'+
+        '<div class="notice"><b>Product is functional, but not tender-ready.</b><br>The visible estimate still uses the v0.1 benchmark/demo rates. A bounded canonical Kaski subset is mirrored in production Neon and displayed in the separate read-only Rate Library panel. The estimate still uses demo benchmark rates. DUDBC resource recipes remain pending.</div>'+
         '<div style="margin-top:14px;display:grid;gap:8px">'+
           '<div>'+sourceBadge("Quantity engine working","ready")+' <span class="muted">legacy benchmark basis</span></div>'+
           '<div>'+sourceBadge("BOQ working","ready")+' <span class="muted">5-item vertical slice</span></div>'+
@@ -168,7 +168,7 @@
       '<tr><td>Quantity coefficients</td><td class="code">'+D.provenance.quantity_source_id+'</td><td>'+sourceBadge("LEGACY BENCHMARK","demo")+'</td><td>Drawing/IFC/BBS traceable quantities</td></tr>'+
       '<tr><td>Work classification</td><td>JP research work IDs</td><td>'+sourceBadge("ACTIVE","ready")+'</td><td>IFC/QTO + Nepal mapping</td></tr>'+
       '<tr><td>Resource recipe</td><td>DUDBC source registered</td><td>'+sourceBadge("PARSE PENDING","pending")+'</td><td>Structured norm mapping</td></tr>'+
-      '<tr><td>Resource prices</td><td>Kaski SRC-0005 bounded production mirror · current displayed values still '+D.provenance.rate_source_id+'</td><td>'+sourceBadge("4 RO ROWS LIVE","ready")+'</td><td>Wire frontend read-only API to cr02 before replacing demo values</td></tr>'+
+      '<tr><td>Resource prices</td><td>Kaski SRC-0005 bounded production mirror · current displayed values still '+D.provenance.rate_source_id+'</td><td>'+(cr02State.status==="ready" ? sourceBadge(cr02State.data.counts.rate_observations+" RO ROWS LIVE","ready") : cr02StatusBadge())+'</td><td>Govern compatible work-item/rate selection before replacing demo values</td></tr>'+
       '<tr><td>Persistence</td><td>Neon Postgres · jp_estimation / cr02</td><td>'+cr02StatusBadge()+'</td><td>'+(cr02State.status==="ready" ? "Read-only Vercel API connected; governed write workflows remain separate" : "Read-only API code deployed; secure Vercel env configuration pending")+'</td></tr>'+
     '</tbody></table></div></section>';
   }
