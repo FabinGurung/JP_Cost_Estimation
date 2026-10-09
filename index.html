@@ -6,6 +6,7 @@
   <title>JP Estimation Workbench — Research v0.1</title>
   <meta name="description" content="Traceable Nepal-focused construction estimation workbench.">
   <link rel="stylesheet" href="styles.css">
+  <script src="theme.js" defer></script>
 </head>
 <body>
   <aside class="sidebar">
@@ -14,7 +15,8 @@
       <div><strong>Estimation</strong><small>Open Engine v0.1</small></div>
     </div>
     <div class="preview-badge">RESEARCH BRANCH</div>
-    <nav id="nav">
+    <nav id="nav" aria-label="Site navigation">
+      <div class="nav-group-label">ESTIMATION ENGINE</div>
       <button class="nav-item active" data-view="dashboard">Dashboard</button>
       <button class="nav-item" data-view="takeoff">Quantity Takeoff</button>
       <button class="nav-item" data-view="boq">BOQ / Cost Plan</button>
@@ -22,7 +24,10 @@
       <button class="nav-item" data-view="rates">Rate Library</button>
       <button class="nav-item" data-view="sources">Source Registry</button>
       <button class="nav-item" data-view="provenance">Provenance</button>
+      <div class="nav-group-label">SOURCE &amp; REFERENCE</div>
       <a class="nav-item subpage-link" href="known-rates.html">Known Rates ↗</a>
+      <div class="nav-group-label">COMPANIES &amp; PROJECTS</div>
+      <a class="nav-item finance-nav-link" href="finance.html">Finance &amp; Project Payments ↗</a>
     </nav>
     <div class="side-foot">
       <span>Baseline</span>
@@ -38,6 +43,7 @@
       </div>
       <div class="top-actions">
         <span class="status warn">DEMO / RESEARCH DATA</span>
+        <button id="themeToggle" type="button" class="btn theme-toggle" aria-label="Change appearance">Dark mode</button>
         <button id="exportBtn" class="btn">Export JSON</button>
       </div>
     </header>
