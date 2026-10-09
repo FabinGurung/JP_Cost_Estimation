@@ -96,7 +96,7 @@ See `docs/REPOSITORY_TOPOLOGY_AND_BRANCH_POLICY_20261009.md` for branch history,
 
 The research website now **adds** (without replacing any older app blocks):
 
-- [Company Finance & Project Payments](finance.html): company-first → project → private evidence register. Rohini Engineering and Builders has a `14_Bishal_Paija` project-payment navigation card. Fishtail and other organizations remain separate. **No payment totals, private Google Sheets IDs, tokens or ledger exports appear in this public repository.** Authorized viewers supply their own private Google Sheets URL at runtime.
+- [Company Finance & Project Payments](finance.html): originally company-first navigation without figures in v0.3.0-alpha. **Superseded for user-approved Krishna summary by v0.4.0-alpha below.** Rohini and Fishtail remain separate; no company-wide consolidation is implied.
 - [System Map & Branches](system-map.html): readable, provider-audited publishing/branch map, including the default `main`, the active research branch, milestones, pre/post snapshots, archived aliases and preserved legacy refs.
 - A shared **soft light-green** UI with optional **dark mode** (`theme.js`); old Dashboard, Takeoff, BOQ, Rate Analysis, Rate Library, Source Registry, Provenance and Known Rates remain.
 - The Krishna payment v1.1 Google Sheet has its **own Rohini Drive authority** and edit-history mechanism. Its amounts are neither public website data nor Kaski/DUDBC `RO-*` source rates.
@@ -104,3 +104,23 @@ The research website now **adds** (without replacing any older app blocks):
 **Publishing:** the default `main` triggers the Pages workflow but that workflow explicitly checks out `research/open-estimation-engine-v0.1`. Therefore Pages content is the research site, not the v0.1 `main` HTML. GitHub Pages does not execute `api/cr02-rates.js`; Vercel research Preview is a separate serverless deployment. Do not merge draft PR #1 as part of finance navigation.
 
 **Branch governance:** the existing `Archive_` branches are commit-identical aliases; their historical original refs have not been deleted. The finance navigation has a PRE snapshot and a separate named milestone. See [the website branch map](system-map.html) and [publishing contract](docs/FINANCE_COMPANY_PORTAL_v0.3.0__PUBLIC_SAFE.md).
+
+---
+
+## v0.4.0-alpha — landscape website and verified Rohini project-payment summary (2026-10-09)
+
+**Owner approval:** this public/open-source repository may show the actual Krishna Kumar Gupta → Rohini → 14_Bishal_Paija **payment summary** and the direct editable Google Sheets source link. This supersedes the older v0.3 UI rule that required pasting a private URL. The published summary contains 26 names and amounts from the sheet's source summary `14_bishal_paija!A6:E33`.
+
+**Verified source report (Google Sheets, 2026-10-09):**
+- Reported Amount total = **NPR 2,47,008** across 26 rows, exact agreement with the sheet's `Total` row.
+- Reported QR total = **NPR 130**, exact agreement with the sheet's `Total` row.
+- Nonblank Discount entries = **NPR 2,400**, derived sum; source Total row contains **no discount total**.
+- Amount, QR and Discount are separate reported columns. No new netting/deduction is assumed.
+- The authoritative live Google Sheet is directly linked in `finance.html` and `finance-summary.json`. Access to the editable sheet continues to be governed by Google Drive.
+- `finance-summary.json` is a **verified 2026-10-09 publication snapshot**, **not** a live synchronized feed. Future Sheet edits require a new source read, reconciliation and publication commit.
+
+**Website changes:** the former fixed left navigation pane is restyled as a horizontal sticky top header on all four site pages by the new additive `site-shell.css`. Original SVG landscape `assets/green-landscape.svg` shows trees, open meadows and mountain greenery. `index.html`, `known-rates.html`, `finance.html` and `system-map.html` have landscaped hero regions and retain all existing estimation blocks. The soft light-green default and optional dark mode remain. `branch-map.js` refreshes the public branch inventory from GitHub's API with the previous static list as fallback.
+
+**Data governance:** publishing this approved project-specific summary does not imply Rohini payments are official `RO-*` Kaski rates or that the demo BOQ uses actual expenditure. Fishtail remains a separate organization. The private A9 source original and Google Sheets formulas are untouched by the website refresh.
+
+**Release boundary:** the default `main` still owns Pages publication and original v0.1 files; `research/open-estimation-engine-v0.1` supplies the current website. Preserve snapshot/milestone refs and keep PR #1 unmerged until its independent research gate passes.
