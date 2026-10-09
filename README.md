@@ -89,3 +89,18 @@ The last live Neon read in this audit found **9 canonical CR-02 observations**, 
 The current estimator's BOQ totals still use **demo/benchmark inputs** and are **not tender-ready**. Do not represent CR-02 lookup rates as already applied to those totals. Next phase: **Seq10B**, verified insert-only completion of the RMC M15/M25 family, preserving M20; then source-family expansion, compatible rate selection, DUDBC recipes, QTO/IFC, Primavera 4D/5D and procurement/actuals.
 
 See `docs/REPOSITORY_TOPOLOGY_AND_BRANCH_POLICY_20261009.md` for branch history, system topology, and publication/security caveats.
+
+---
+
+## Company finance navigation and release map — v0.3.0-alpha (2026-10-09)
+
+The research website now **adds** (without replacing any older app blocks):
+
+- [Company Finance & Project Payments](finance.html): company-first → project → private evidence register. Rohini Engineering and Builders has a `14_Bishal_Paija` project-payment navigation card. Fishtail and other organizations remain separate. **No payment totals, private Google Sheets IDs, tokens or ledger exports appear in this public repository.** Authorized viewers supply their own private Google Sheets URL at runtime.
+- [System Map & Branches](system-map.html): readable, provider-audited publishing/branch map, including the default `main`, the active research branch, milestones, pre/post snapshots, archived aliases and preserved legacy refs.
+- A shared **soft light-green** UI with optional **dark mode** (`theme.js`); old Dashboard, Takeoff, BOQ, Rate Analysis, Rate Library, Source Registry, Provenance and Known Rates remain.
+- The Krishna payment v1.1 Google Sheet has its **own Rohini Drive authority** and edit-history mechanism. Its amounts are neither public website data nor Kaski/DUDBC `RO-*` source rates.
+
+**Publishing:** the default `main` triggers the Pages workflow but that workflow explicitly checks out `research/open-estimation-engine-v0.1`. Therefore Pages content is the research site, not the v0.1 `main` HTML. GitHub Pages does not execute `api/cr02-rates.js`; Vercel research Preview is a separate serverless deployment. Do not merge draft PR #1 as part of finance navigation.
+
+**Branch governance:** the existing `Archive_` branches are commit-identical aliases; their historical original refs have not been deleted. The finance navigation has a PRE snapshot and a separate named milestone. See [the website branch map](system-map.html) and [publishing contract](docs/FINANCE_COMPANY_PORTAL_v0.3.0__PUBLIC_SAFE.md).
