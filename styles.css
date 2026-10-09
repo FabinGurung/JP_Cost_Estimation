@@ -131,3 +131,12 @@ html[data-theme="dark"] .company-icon{background:#345b43;color:#e9ffee}
   .theme-toggle{min-width:auto}
 }
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+
+/* Provider-audited branch register */
+.branch-table td{white-space:normal;line-height:1.45;vertical-align:top}
+.branch-table td:first-child{min-width:310px}
+.branch-table td:first-child code{overflow-wrap:anywhere;word-break:break-word}
+.branch-table td:nth-child(2){min-width:215px}
+.branch-table .status-pill{display:inline-block;border-radius:7px;background:var(--soft);color:var(--ink);border:1px solid var(--line);font:700 10px ui-monospace,SFMono-Regular,Consolas,monospace;padding:5px 8px}
+.branch-table a{color:var(--accent);text-decoration:none}
+.branch-table a:hover{text-decoration:underline}
