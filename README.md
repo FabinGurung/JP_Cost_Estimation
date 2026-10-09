@@ -89,3 +89,21 @@ The last live Neon read in this audit found **9 canonical CR-02 observations**, 
 The current estimator's BOQ totals still use **demo/benchmark inputs** and are **not tender-ready**. Do not represent CR-02 lookup rates as already applied to those totals. Next phase: **Seq10B**, verified insert-only completion of the RMC M15/M25 family, preserving M20; then source-family expansion, compatible rate selection, DUDBC recipes, QTO/IFC, Primavera 4D/5D and procurement/actuals.
 
 See `docs/REPOSITORY_TOPOLOGY_AND_BRANCH_POLICY_20261009.md` for branch history, system topology, and publication/security caveats.
+
+---
+
+## Pages publication — company finance navigation (2026-10-09)
+
+**Publisher:** `main` (default branch; retains original v0.1 estimator and its unchanged application code).
+**Published static-content checkout:** `research/open-estimation-engine-v0.1`, as defined by `.github/workflows/deploy-estimation-product.yml`.
+
+This documentation-only `main` commit requests the normal GitHub Pages publishing workflow to pick up the updated research site:
+
+- `finance.html`: new company-scoped Finance & Project Payments navigation; Rohini project route exists, Fishtail and other companies are separate unconnected lanes.
+- `system-map.html`: all 18 audited Git refs with explicit MAIN / ACTIVE RESEARCH / MILESTONE / SNAPSHOT / ARCHIVED ALIAS classifications.
+- `theme.js` and additive CSS: soft light-green default with optional dark mode on all existing and new pages.
+- The original Dashboard, Takeoff, BOQ, Rate Analysis, Rate Library, Source Registry, Provenance, and Known Rates remain intact.
+
+**Privacy:** No private payment-sheet URL, Google Drive ID, vendor data, totals, or edit log is checked into this public repository. An authorized user may paste their own private Google Sheets URL at runtime; Google Drive permissions still govern access. The static Pages site does not become a finance backend, and the estimator still uses demo BOQ pricing.
+
+**A9 branch preservation:** `snapshot/pre-main-pages-finance-v0.3.0-20261009` and its matching `Archive_snapshot/...` alias capture the main PRE state. The research site has its own PRE snapshot and the milestone `milestone/FINANCE-COMPANY-PORTAL-v0.3.0-alpha-20261009`. Original historic refs are preserved; none have been deleted or force-renamed. Draft research PR #1 remains unmerged.
