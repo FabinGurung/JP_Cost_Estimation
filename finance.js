@@ -1,105 +1,153 @@
 (() => {
   'use strict';
-  const companies = {
-    rohini: {
-      heading: 'Rohini Engineering and Builders Pvt. Ltd.',
-      description: 'Independent Rohini payment evidence. Project-scoped, not an all-company vendor bill or a canonical construction rate.',
-      connected: true
-    },
-    fishtail: {
-      heading: 'Fishtail Builders Pvt. Ltd.',
-      description: 'Distinct company authority. No Fishtail finance register is attached to this public navigation.',
-      connected: false
-    },
-    other: {
-      heading: 'Other organizations',
-      description: 'Add each organization through explicit governance and ownership approval. No existing finance sheet is inherited.',
-      connected: false
-    }
-  };
-  const content = document.getElementById('financeContent');
+  const root = document.getElementById('financeContent');
   const heading = document.getElementById('companyHeading');
-  const subheading = document.getElementById('companySubheading');
-  const buttons = Array.from(document.querySelectorAll('[data-company]'));
+  const intro = document.getElementById('companySubheading');
+  const selectors = Array.from(document.querySelectorAll('[data-company]'));
+  const sheetUrl = 'https://docs.google.com/spreadsheets/d/1S1fkWzo6XGzyD3p92_pTG32zZ9fF3YICAv3HPTomZsE/edit';
+  const companies = {
+    rohini: { title:'Rohini Engineering and Builders Pvt. Ltd.', description:'Project-by-project Rohini payment records, not a consolidated cross-company ledger.',connected:true },
+    fishtail: { title:'Fishtail Builders Pvt. Ltd.', description:'Fishtail is a separate organization. Its records are not inferred from Rohini transactions.',connected:false },
+    other: { title:'Other organizations', description:'Each organization can be onboarded independently with its own source registers.',connected:false }
+  };
+  const fmt = n => new Intl.NumberFormat('en-IN',{maximumFractionDigits:0}).format(Number(n||0));
+  const money = n => 'NPR ' + fmt(n);
+  let summaryPromise;
 
-  const rohiniHtml = `
-    <div class="finance-breadcrumb"><strong>Rohini</strong><span aria-hidden="true">›</span>
-      <strong>14_Bishal_Paija</strong><span aria-hidden="true">›</span>
-      <strong>Payment to Project</strong></div>
-    <article class="finance-register">
-      <div class="finance-register-top"><div>
-        <p class="eyebrow">PRIVATE GOOGLE SHEETS • HUMAN WORKING REGISTER</p>
-        <h3>Payment to Project — KKG register</h3>
-        <p>This is a project-payment evidence link for the Rohini workstream. It is not a company-wide payment ledger, and the original paid dates/times remain in Google Sheets.</p>
-      </div><span class="badge ready">TEMPLATE v1.1</span></div>
-      <div class="finance-meta">
-        <div><small>Organization</small><strong>Rohini Engineering and Builders</strong></div>
-        <div><small>Project</small><strong>14_Bishal_Paija</strong></div>
-        <div><small>Record type</small><strong>Payment to Project</strong></div>
-        <div><small>Ownership</small><strong>Private Drive / Rohini</strong></div>
-      </div>
-      <div class="finance-access">
-        <label for="privateSheetUrl">Authorized users: paste your private Google Sheets URL</label>
-        <div class="finance-access-row">
-          <input type="url" id="privateSheetUrl" inputmode="url" autocomplete="off"
-            placeholder="https://docs.google.com/spreadsheets/d/.../edit"
-            aria-describedby="financeAccessHelp">
-          <button id="openPrivateSheet" type="button" class="btn primary" disabled>Open private workbook ↗</button>
-        </div>
-        <p id="financeAccessHelp" class="finance-help">This public page does not store or transmit your link. Drive sharing permissions still apply. Obtain the link from your private A9 workspace.</p>
-        <p id="financeAccessError" class="finance-error" role="status" aria-live="polite"></p>
-      </div>
-    </article>
-    <div class="finance-info-note">
-      <strong>No amounts are exposed here.</strong> The payment register's edit timestamps, vendor details and financial values remain in the private Google Sheet. Do not confuse this evidence with government RO-* unit rates or with the demo BOQ totals.
-    </div>`;
-  const disconnectedHtml = `
-    <div class="finance-empty">
-      <h3>No register connected in this navigation</h3>
-      <p>The original company/project records remain wherever their owning Drive controls place them. New links require verified ownership and an explicit private-access design, not a copy of Rohini's payment register.</p>
-      <a href="index.html" class="btn">Return to estimator</a>
-    </div>`;
-
-  function render(companyKey) {
-    const data = companies[companyKey] || companies.rohini;
-    heading.textContent = data.heading;
-    subheading.textContent = data.description;
-    content.innerHTML = data.connected ? rohiniHtml : disconnectedHtml;
-    buttons.forEach(btn => {
-      const selected = btn.dataset.company === companyKey;
-      btn.classList.toggle('active', selected);
-      btn.setAttribute('aria-pressed', String(selected));
+  function el(tag, cls, text) {
+    const item = document.createElement(tag);
+    if(cls) item.className = cls;
+    if(text !== undefined) item.textContent = text;
+    return item;
+  }
+  function safeSummary(data) {
+    const rows = data && data.rows;
+    if(!data || !Array.isArray(rows) || rows.length !== 26 || !data.summary) throw new Error('Unexpected source snapshot');
+    const amount = rows.reduce((s,r)=>s+Number(r.amount_npr||0),0);
+    const qr = rows.reduce((s,r)=>s+Number(r.qr_npr||0),0);
+    const discount = rows.reduce((s,r)=>s+Number(r.discount_npr||0),0);
+    if(amount !== data.summary.amount_npr || qr !== data.summary.qr_npr ||
+       discount !== data.summary.discount_recorded_npr || data.summary.entry_count !== rows.length) {
+       throw new Error('Published summary reconciliation failed');
+    }
+    return data;
+  }
+  function loadSummary() {
+    if(!summaryPromise) summaryPromise = fetch('finance-summary.json',{cache:'no-cache'})
+      .then(r=>{if(!r.ok)throw new Error('Source snapshot unavailable');return r.json()})
+      .then(safeSummary);
+    return summaryPromise;
+  }
+  function renderSummary(data) {
+    const mount = document.getElementById('financeDashboard');
+    if(!mount) return;
+    mount.textContent = '';
+    const head = el('div','finance-summary-header');
+    const caption = el('div');
+    caption.appendChild(el('p','eyebrow','GOOGLE SHEETS · SOURCE-DERIVED SUMMARY'));
+    caption.appendChild(el('h3','','Payment summary — 14 Bishal Paija'));
+    caption.appendChild(el('p','','The 26 named rows below are reproduced from the workbook summary. The reported amount and QR totals were checked against its Total row.'));
+    head.appendChild(caption);
+    const open = el('a','finance-source-link','Open original Google Sheet ↗');
+    open.href=sheetUrl;open.target='_blank';open.rel='noopener noreferrer';
+    head.appendChild(open);
+    mount.appendChild(head);
+    const cards=el('div','finance-fact-grid');
+    [
+      ['Recorded amount',money(data.summary.amount_npr),'Sheet Total · Amount column'],
+      ['QR charges',money(data.summary.qr_npr),'Sheet Total · QR column'],
+      ['Recorded discount',money(data.summary.discount_recorded_npr),'Summed from listed discount cells'],
+      ['Summary entries',fmt(data.summary.entry_count),'Individual named lines in source']
+    ].forEach(([label,value,detail])=>{
+      const card=el('article','finance-fact');
+      card.appendChild(el('small','',label));card.appendChild(el('strong','',value));card.appendChild(el('span','',detail));cards.appendChild(card);
     });
-    const input = document.getElementById('privateSheetUrl');
-    const open = document.getElementById('openPrivateSheet');
-    if (!input || !open) return;
-    const error = document.getElementById('financeAccessError');
-    let validated = null;
-    input.addEventListener('input', () => {
-      validated = null;
-      try {
-        const url = new URL(input.value.trim());
-        const ok = url.protocol === 'https:' &&
-          url.hostname === 'docs.google.com' &&
-          /^\/spreadsheets\/d\/[A-Za-z0-9_-]+(?:\/|$)/.test(url.pathname);
-        if (ok) validated = url.href;
-      } catch (_) {}
-      open.disabled = !validated;
-      error.textContent = input.value.trim() && !validated ? 'Enter a full Google Sheets document URL.' : '';
+    mount.appendChild(cards);
+    const tools=el('div','finance-data-search');
+    tools.appendChild(el('label','','Vendor / item register'));
+    const search=el('input');search.type='search';search.placeholder='Search vendor or item…';
+    search.setAttribute('aria-label','Search payment summary');
+    tools.appendChild(search);mount.appendChild(tools);
+    const wrap=el('div','table-wrap');
+    const table=el('table','finance-data-table');
+    const thead=el('thead');
+    const tr=el('tr');
+    ['ID','Vendor / purpose','Amount (NPR)','QR (NPR)','Discount (NPR)'].forEach(t=>tr.appendChild(el('th','',t)));
+    thead.appendChild(tr);table.appendChild(thead);
+    const tbody=el('tbody');table.appendChild(tbody);
+    const tfoot=el('tfoot');const footer=el('tr');
+    ['','SOURCE TOTAL',fmt(data.summary.amount_npr),fmt(data.summary.qr_npr),'—'].forEach((v,i)=>{
+      const cell=el('td',i>1?'num':'',v);
+      footer.appendChild(cell);
     });
-    open.addEventListener('click', () => {
-      if (!validated) return;
-      // A real user click, so the browser handles an ordinary external link.
-      // Never retain this private URL in the page source, browser storage, or backend.
-      const anchor = document.createElement('a');
-      anchor.href = validated;
-      anchor.target = '_blank';
-      anchor.rel = 'noopener noreferrer';
-      document.body.appendChild(anchor);
-      anchor.click();
-      anchor.remove();
+    tfoot.appendChild(footer);table.appendChild(tfoot);wrap.appendChild(table);mount.appendChild(wrap);
+    const counter=el('p','finance-asof');mount.appendChild(counter);
+    function draw(filter) {
+      tbody.textContent='';
+      const list=data.rows.filter(r=>(r.name+' '+r.id).toLowerCase().includes(filter.toLowerCase()));
+      list.forEach(r=>{
+        const row=el('tr');
+        [r.id,r.name,fmt(r.amount_npr),r.qr_npr===null?'—':fmt(r.qr_npr),r.discount_npr===null?'—':fmt(r.discount_npr)]
+         .forEach((v,i)=>row.appendChild(el('td',i>1?'num':'',String(v))));
+        tbody.appendChild(row);
+      });
+      if(!list.length){const empty=el('tr');const cell=el('td','','No entries match your search.');cell.colSpan=5;empty.appendChild(cell);tbody.appendChild(empty)}
+      counter.textContent = 'Showing '+list.length+' of '+data.rows.length+' source rows · Snapshot '+data.snapshot_date+
+        ' · Exact source: '+data.source.source_sheet+'!'+data.source.range+
+        ' · Searching does not change the full-source totals.';
+    }
+    search.addEventListener('input',()=>draw(search.value.trim()));
+    draw('');
+    const chart=el('div','finance-rank-list');
+    const top=[...data.rows].sort((a,b)=>b.amount_npr-a.amount_npr).slice(0,7);
+    const max=top[0] ? top[0].amount_npr : 1;
+    top.forEach(r=>{
+      const line=el('div','finance-rank-item');
+      const name=el('label','',r.name);name.title=r.name;line.appendChild(name);
+      const track=el('div','rank-track');const bar=el('div','rank-bar');
+      bar.style.width=(100*r.amount_npr/max).toFixed(2)+'%';track.appendChild(bar);line.appendChild(track);
+      line.appendChild(el('span','',fmt(r.amount_npr)));
+      chart.appendChild(line);
+    });
+    const chartSection=el('section','panel');
+    chartSection.appendChild(el('h2','','Largest recorded summary amounts'));
+    chartSection.appendChild(el('p','sub','Visual comparison from the same source snapshot, not an independent estimate.'));
+    chartSection.appendChild(chart);
+    mount.appendChild(chartSection);
+    const disclaimer=el('div','finance-summary-note',
+      'The Amount, QR and Discount columns are shown separately. The discount aggregate is derived from populated entries; the source Total row does not contain a discount total. No additional subtraction or payment-netting is assumed. This is a source snapshot, not live synchronization. The linked Google Sheet remains the editable authority.');
+    mount.appendChild(disclaimer);
+  }
+  function render(key){
+    const company=companies[key] || companies.rohini;
+    heading.textContent=company.title;intro.textContent=company.description;
+    selectors.forEach(b=>{const active=b.dataset.company===key;b.classList.toggle('active',active);b.setAttribute('aria-pressed',String(active))});
+    root.textContent='';
+    if(!company.connected){
+      const section=el('section','finance-empty');
+      section.appendChild(el('h3','','A separate company workspace'));
+      section.appendChild(el('p','',company.description+' No Rohini payment amounts have been assigned here.'));
+      root.appendChild(section);return;
+    }
+    const crumb=el('div','finance-breadcrumb');
+    ['Rohini','›','14_Bishal_Paija','›','Payment to Project'].forEach(s=>crumb.appendChild(el('strong','',s)));
+    root.appendChild(crumb);
+    const source=el('article','finance-register');
+    source.innerHTML='<div class="finance-register-top"><div><p class="eyebrow">ROHINI · SOURCE GOOGLE SHEET · TEMPLATE v1.1</p>'+
+      '<h3>Krishna Kumar Gupta — Payment to Project</h3>'+
+      '<p>The payment source belongs to the Rohini project register. Its vendor/date/time details are maintained in the editable Google Sheet; the approved summary is presented below.</p>'+
+      '</div><span class="badge ready">GOOGLE SHEETS SOURCE</span></div>';
+    const button=el('a','finance-source-link','Open editable payment workbook ↗');
+    button.href=sheetUrl;button.target='_blank';button.rel='noopener noreferrer';source.appendChild(button);
+    root.appendChild(source);
+    const dash=el('section','finance-dashboard');dash.id='financeDashboard';
+    dash.appendChild(el('p','','Loading verified payment summary snapshot…'));root.appendChild(dash);
+    loadSummary().then(renderSummary).catch(err=>{
+      if(!document.getElementById('financeDashboard'))return;
+      dash.textContent='';
+      dash.appendChild(el('p','finance-error','The public summary snapshot could not be verified: '+err.message+'. Open the source Google Sheet for the authoritative values.'));
     });
   }
-  buttons.forEach(btn => btn.addEventListener('click', () => render(btn.dataset.company)));
+  selectors.forEach(b=>b.addEventListener('click',()=>render(b.dataset.company)));
   render('rohini');
 })();
