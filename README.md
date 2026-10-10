@@ -187,3 +187,9 @@ The GitHub Pages checkout source, `research/open-estimation-engine-v0.1`, points
 ## Deploy v0.5.10 — MEP navigation and quality-context corrections (2026-10-10)
 
 The website Pages source `research/open-estimation-engine-v0.1` now points to `af34e96b8f8190ce0c69bc2fdc7bb2593e7b1d4a`. This patch gives Mechanical ventilation-specific editorial quality notes while retaining the fan's original Electrical worksheet provenance, makes specifications breadcrumbs/hero return to the right MEP trade, preserves search, worksheet-set, unit, category and sorting choices through drilldown, and aligns previous/next with the selected trade view. Mixed-unit numeric price sorting is clearly qualified. The research CI and preview workflow now run the new MEP regression test and verify the existing 204 source observations without modifying them. Finance, CAD-FID QTO, blocked BOQ, rate analysis and original baseline remain unchanged. This main README-only commit triggers GitHub Pages.
+
+---
+
+## Deploy v0.5.11 — MEP nested inside Rate Library construction journey (2026-10-10)
+
+Existing Pages checkout research branch `research/open-estimation-engine-v0.1` now points to `fc97985aed01f9b31b95c71125fa85f29c41b76d`. MEP is now a single construction journey stage like excavation, soling, PCC and RCC, with Mechanical, Electrical and Plumbing as three in-stage drilldowns. The homepage/Rate Library sidebars no longer treat MEP as their sibling, and the MEP pages use a nested Rate Library navigation group and breadcrumbs back to the stage. All existing MEP URLs and 204 source work-rate records, SI/Imperial calculations, source cell lineage, Rate Analysis, financial ledger, CAD QTO and BOQ constraints are preserved. Updated CI validates 62 MEP stage records per Excel worksheet set and navigation hierarchy. This main README-only commit triggers the existing Pages workflow.
