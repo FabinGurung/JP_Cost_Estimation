@@ -13,6 +13,7 @@
 <script defer="" src="theme.js"></script>
 <script defer="" src="work-rate-units.js"></script>
 <script defer="" src="work-construction-guide.js"></script>
+<script defer="" src="mep-catalog.js"></script>
 <script defer="" src="work-rate-library.js"></script>
 </head>
 <body>
@@ -43,7 +44,7 @@
 <section class="work-library-main">
 <div class="work-intro">
 <div><p class="eyebrow">HUMAN-READABLE WORK RATE INDEX</p><h1>Rate Library</h1>
-<p class="work-intro-copy">A visual construction sequence with helpful work emojis. Tap a title for the original specification and practical workmanship checks. Rates are in NPR per unit.</p></div>
+<p class="work-intro-copy">A visual construction sequence with helpful work emojis. MEP categories switch directly within this page. Tap a title for the original specification and practical workmanship checks. Rates are in NPR per unit.</p></div>
 <button aria-label="Change appearance" class="btn theme-toggle" id="themeToggle" type="button">Dark mode</button>
 </div>
 <aside class="work-reference-notice" role="note">
@@ -92,14 +93,14 @@
   <div class="stage-explorer-head"><div><p class="eyebrow">FROM THE GROUND UP</p><h2>🏗️ Construction journey</h2></div><span class="stage-explorer-note">Illustrative order · some trades overlap</span></div>
   <div class="stage-ribbon" id="stageRibbon" role="group" aria-label="Choose a stage in the construction journey"><span class="stage-ribbon-loading">Loading stages…</span></div>
 </section>
-<section id="mepStageDetails" class="stage-mep-children" aria-label="MEP child trades of the construction journey" hidden>
-  <div class="stage-mep-intro"><span aria-hidden="true">🏢</span><div><strong>MEP — Building services</strong><p>Mechanical, Electrical and Plumbing sit inside this construction stage. Choose a trade for its work rates and detailed descriptions.</p></div></div>
-  <div class="mep-shortcut-grid">
-    <a href="mep-mechanical.html"><span aria-hidden="true">⚙️</span><strong>Mechanical</strong><small>Cooling and ventilation</small></a>
-    <a href="mep-electrical.html"><span aria-hidden="true">⚡</span><strong>Electrical</strong><small>Power and lighting</small></a>
-    <a href="mep-plumbing.html"><span aria-hidden="true">🚰</span><strong>Plumbing</strong><small>Water and sanitary</small></a>
+<section id="mepStageDetails" class="stage-mep-children" aria-label="MEP work categories within the construction journey" hidden>
+  <div class="stage-mep-intro"><span aria-hidden="true">🏢</span><div><strong>MEP — Building services</strong><p>Choose Mechanical, Electrical or Plumbing. The rate table below updates here, without opening another page.</p></div></div>
+  <div class="mep-shortcut-grid mep-inline-tabs" id="mepTradeTabs" role="group" aria-label="Filter MEP work items">
+    <button type="button" data-mep-trade="mechanical" aria-pressed="false"><span aria-hidden="true">⚙️</span><strong>Mechanical</strong><small>3 works · cooling and ventilation</small></button>
+    <button type="button" data-mep-trade="electrical" aria-pressed="false"><span aria-hidden="true">⚡</span><strong>Electrical</strong><small>37 works · power and lighting</small></button>
+    <button type="button" data-mep-trade="plumbing" aria-pressed="false"><span aria-hidden="true">🚰</span><strong>Plumbing</strong><small>22 works · water and sanitary</small></button>
   </div>
-  <a class="stage-mep-overview" href="mep.html">Explore all MEP works →</a>
+  <div class="mep-inline-footer"><span id="mepActiveLabel" role="status" aria-live="polite">All 62 MEP work items</span><button id="mepShowAll" type="button" class="mep-show-all">Show all MEP work items</button></div>
 </section>
 
 <div class="work-table-top"><p aria-live="polite" id="workStatus" role="status">Loading rates…</p><button class="btn work-clear" id="workClear" type="button">Clear filters</button></div>

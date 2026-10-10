@@ -1,6 +1,6 @@
 #!/usr/bin/env node
-/* Read-only regression guard for JP-CRES MEP v0.5.11.
- * Assert that the 3 trade pages are navigable projections of the immutable
+/* Read-only regression guard for JP-CRES MEP v0.5.12.
+ * Assert that the three MEP trades are inline projections of the immutable
  * rate catalog, not new project, source or financial records. Node built-ins only.
  */
 import assert from 'node:assert/strict';
@@ -36,24 +36,34 @@ for (const version of ['visible','hidden']){
   }
 }
 const eachTrade=['mechanical','electrical','plumbing'];
-for(const name of eachTrade){
-  const path='mep-'+name+'.html', page=read(path);
-  assert(page.startsWith('<!doctype html>'),'valid document type '+path);
-  assert(page.includes('data-mep-trade="'+name+'"'),'trade mode declared '+path);
-  assert(page.includes('mep-catalog.js')&&page.includes('mep-app.js')&&page.includes('work-rate-units.js'),'scripts loaded '+path);
-  assert(page.includes('id="mepSearch"')&&page.includes('id="mepWorksheet"')&&page.includes('id="mepUnits"'),'filters exist '+path);
-  assert(page.includes('id="mepCategory"')&&page.includes('id="mepSort"'),'category sorting '+path);
-  assert(page.includes('Description of Work</th>')&&page.includes('Unit</th>')&&page.includes('Rate (NPR)</th>'),'three-column table '+path);
-  assert(page.includes('rate-library.html')&&page.includes('mep.html'),'breadcrumbs '+path);
+const rateLibrary=read('rate-library.html'),rateApp=read('work-rate-library.js');
+assert(rateLibrary.includes('id="stageRibbon"'),'Rate Library preserves construction-stage journey');
+assert(rateLibrary.includes('id="mepStageDetails"'),'MEP is a child of the construction journey');
+assert(rateLibrary.includes('id="mepTradeTabs"'),'inline MEP trade buttons exist');
+assert(rateLibrary.includes('id="workRateRows"'),'same Rate Library table remains the display surface');
+assert(rateLibrary.includes('id="mepShowAll"'),'all MEP reset stays in-page');
+assert(rateLibrary.includes('mep-catalog.js'),'shared source taxonomy required for tab filtering');
+for(const trade of eachTrade){
+ assert(rateLibrary.includes('data-mep-trade="'+trade+'"'),'in-page trade button: '+trade);
+ assert(rateLibrary.includes('data-mep-trade="'+trade+'" aria-pressed="false"'),'accessible pressed state: '+trade);
+ assert(!rateLibrary.includes('href="mep-'+trade+'.html"'),'no navigation to stand-alone trade page: '+trade);
+ const legacy=read('mep-'+trade+'.html');
+ assert(legacy.includes('data-legacy-mep-trade="'+trade+'"'),'old trade URL remains supported: '+trade);
+ assert(legacy.includes('mep-legacy-redirect.js'),'old trade URL redirects to inline stage: '+trade);
+ assert(!legacy.includes('id="mepRows"'),'old trade page no longer duplicates a rate table: '+trade);
 }
-// MEP is not a sibling of Rate Library: it is a journey stage with 3 nested trade pages.
-assert(read('rate-library.html').includes('id="stageRibbon"'),'Rate Library has construction-stage journey');
-assert(read('rate-library.html').includes('id="mepStageDetails"'),'MEP child branch lives inside journey');
-assert(read('rate-library.html').includes('class="stage-mep-children"'),'MEP sub-branch styled with other stages');
-assert(read('rate-library.html').includes('href="mep.html"'),'journey child links MEP overview');
-assert(!/<a class="nav-item" href="mep\.html">/.test(read('rate-library.html')),'MEP removed as top-level Rate Library sidebar peer');
-assert(!/<a class="nav-item" href="mep\.html">/.test(read('index.html')),'MEP removed as top-level homepage sidebar peer');
-assert(read('index.html').includes('href="rate-library.html?stage=mep"'),'homepage directs visitors to journey stage');
+assert(read('mep.html').includes('mep-legacy-redirect.js'),'old MEP overview redirects');
+assert(read('mep.html').includes('data-legacy-mep-trade="all"'),'overview target is all MEP');
+assert(read('mep-legacy-redirect.js').includes("target.searchParams.set('stage','mep')"),'legacy redirect targets MEP stage');
+assert(read('mep-legacy-redirect.js').includes("window.location.replace(target.href)"),'legacy URL replaced without new tab/page lane');
+assert(rateApp.includes("mep.tradeOf(r,t)===activeTrade"),'same-table filter uses existing MEP source taxonomy');
+assert(rateApp.includes("button.addEventListener('click'"),'MEP buttons update in-page');
+assert(rateApp.includes("mepChildren.hidden=activeStage!=='mep'"),'MEP controls shown only while MEP stage selected');
+assert(rateApp.includes("syncJourneyUrl()"),'in-page state updates shareable URL');
+assert(rateApp.includes("dest.set('trade',activeTrade)"),'specification deep links preserve selected trade');
+assert(!/<a class="nav-item" href="mep\.html">/.test(rateLibrary),'MEP not sibling in Rate Library navigation');
+assert(!/<a class="nav-item" href="mep\.html">/.test(read('index.html')),'MEP not sibling on homepage');
+assert(read('index.html').includes('href="rate-library.html?stage=mep"'),'homepage links to MEP inside journey');
 const constructionWindow={};
 runInNewContext(read('work-construction-guide.js'),{window:constructionWindow,globalThis:constructionWindow});
 const construction=constructionWindow.JPConstructionGuide;
@@ -70,18 +80,16 @@ for(const version of ['visible','hidden']){
  assert.equal(subset.filter(item=>construction.sequence(item,taxonomy[item.id]).stage_id!=='mep').length,40,'40 nonMEP works unchanged');
  for(const row of mepRows)assert(mep.tradeOf(row,taxonomy[row.id]),'journey MEP must have trade drilldown');
 }
-for(const html of ['mep.html','mep-mechanical.html','mep-electrical.html','mep-plumbing.html']){
- assert(read(html).includes('class="nav-subtree"'),'nested trade navigation '+html);
- assert(read(html).includes('href="rate-library.html?stage=mep"'),'stage breadcrumb '+html);
-}
-assert(read('rate-library.html').includes('mep-mechanical.html')&&read('rate-library.html').includes('mep-electrical.html')&&read('rate-library.html').includes('mep-plumbing.html'),'all three MEP child destinations');
-
+assert(rateLibrary.includes('data-mep-trade="electrical"'),'Electrical inline filter present');
+assert(rateLibrary.includes('Description of Work</th>')&&rateLibrary.includes('Unit</th>')&&rateLibrary.includes('Rate (NPR)</th>'),'original three-column rate table preserved');
 const specific=read('rate-specifications.html');
 assert(specific.includes('id="specHeroBack"')&&specific.includes('id="specBackCrumb"'),'contextual breadcrumbs');
-const tradeApp=read('mep-app.js'),details=read('work-specifications.js');
-assert(tradeApp.includes('q:search.value')&&tradeApp.includes('sort:sort.value')&&tradeApp.includes('category:category.value'),'search filters carried to details');
+const details=read('work-specifications.js');
+assert(rateApp.includes('dest.set(\'q\',query.value)')&&rateApp.includes('dest.set(\'sort\',sort.value)'),'inline list passes search and sort to details');
 assert(details.includes("context.get('q')")&&details.includes("context.get('sort')"),'drilldown state read back');
-assert(details.includes("route.phaseOf("),'trade previous/next follows the MEP workflow');
+assert(details.includes("route.phaseOf("),'detail previous/next follows the MEP workflow');
+assert(details.includes("'rate-library.html?'+new URLSearchParams("),'detail return remains in Rate Library rather than a separate MEP page');
+assert(details.includes("stage:'mep',trade:trade"),'detail back link carries stage and trade');
 assert(details.includes("nextContext.set('id'"),'previous and next preserve trade context');
 assert(details.includes("'specHeroBack'"),'hero return link contextual');
 const qualityWindow={};
@@ -102,4 +110,4 @@ for(const name of ['mep-app.js','mep-catalog.js','work-construction-guide.js','w
 for(const path of ['finance.html','finance.js','finance-summary.json','boq-template.json','rate-comparison.html']){
  assert(existsSync(new URL('../'+path,import.meta.url)),'protected module exists: '+path);
 }
-console.log('PASS MEP journey regression: 204 immutable source rows, 62 unique trades per worksheet set (3/37/22), routing, source history, SI/Imperial, search, quality guide, protected modules.');
+console.log('PASS inline MEP switching regression: 204 immutable source rows, 62 unique trades per worksheet set (3/37/22), routing, source history, SI/Imperial, search, quality guide, protected modules.');

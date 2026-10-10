@@ -1,55 +1,10 @@
 <!doctype html>
-<html lang="en">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Browse cables, wiring, panels, protective equipment, switches, sockets and lighting with clear unit prices.">
-<title>Electrical Works | JP Cost &amp; Rate Intelligence</title>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Electrical Works — Rate Library</title><meta name="robots" content="noindex">
 <link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="site-shell.css">
-<link rel="stylesheet" href="work-rate-library.css"><link rel="stylesheet" href="mep-pages.css">
-<script src="theme.js" defer></script><script src="work-rate-units.js" defer></script>
-<script src="mep-catalog.js" defer></script><script src="mep-app.js" defer></script>
-</head><body data-mep-trade="electrical">
-<aside class="sidebar"><div class="brand"><div class="logo">JP</div><div><strong>Cost &amp; Rate Intelligence</strong><small>Mechanical · Electrical · Plumbing</small></div></div>
-<nav aria-label="Primary site navigation">
-<a class="nav-item" href="index.html">← Overview</a>
-<a class="nav-item" href="rate-library.html">Rate Library · Construction Journey</a>
-<div class="nav-subtree" role="group" aria-label="MEP stage inside Rate Library">
-  <span class="nav-subtree-title">🏢 MEP · Construction stage</span>
-  <a class="nav-item" href="mep.html">MEP Overview</a>
-  <a class="nav-item" href="mep-mechanical.html">⚙️ Mechanical</a>
-  <a class="nav-item active" href="mep-electrical.html" aria-current="page">⚡ Electrical</a>
-  <a class="nav-item" href="mep-plumbing.html">🚰 Plumbing</a>
-</div>
-<a class="nav-item" href="rate-comparison.html">Compare Rates</a>
-<a class="nav-item" href="finance.html">Finance &amp; Payments</a>
-</nav></aside>
-<main class="app-shell">
-<section class="landscape-hero compact work-hero mep-hero"><div class="landscape-hero-content">
-<p class="eyebrow">JP · CONSTRUCTION JOURNEY · BUILDING SERVICES</p>
-<h2><span aria-hidden="true">⚡</span> Electrical Works<em> · Clearly connected.</em></h2>
-<p>Browse cables, wiring, panels, protective equipment, switches, sockets and lighting with clear unit prices.</p><div class="hero-actions"><a class="hero-cta primary" href="#mepWorks">Explore work rates ↓</a>
-<a class="hero-cta secondary" href="rate-library.html">← Ground-up Rate Library</a></div>
-</div></section>
-<section class="work-library-main mep-main">
-<nav class="mep-breadcrumb" aria-label="Breadcrumb"><a href="rate-library.html">Rate Library</a><span aria-hidden="true">›</span><a href="rate-library.html?stage=mep">Construction journey · MEP</a><span aria-hidden="true">›</span><a href="mep.html">MEP overview</a><span aria-hidden="true">›</span><strong>Electrical Works</strong></nav>
-<div class="work-intro"><div><p class="eyebrow">TRADE-SPECIFIC RATE INDEX</p><h1><span aria-hidden="true">⚡</span> Electrical Works</h1><p class="work-intro-copy">Browse cables, wiring, panels, protective equipment, switches, sockets and lighting with clear unit prices. Tap a title for the original Excel description and separately labelled quality guidance.</p></div><button class="btn theme-toggle" id="themeToggle" type="button">Dark mode</button></div>
-<div class="mep-other-trades" aria-label="Switch MEP trade">
-<a href="mep-mechanical.html" >⚙️ Mechanical</a>
-<a href="mep-electrical.html" class="selected" aria-current="page">⚡ Electrical</a>
-<a href="mep-plumbing.html" >🚰 Plumbing</a>
-</div>
-<aside class="work-reference-notice"><strong>Historical estimate references · unverified rate year.</strong> Source values are read from one Excel workbook, not an approved material-rate master. Visible and hidden sheet sets remain separate and are not proven to be successive revisions.</aside>
-<div class="mep-mini-stats"><div><span>Works in this trade</span><strong id="mepTradeCount">37</strong><small>per worksheet set</small></div><div><span>Displayed rates</span><strong id="mepDisplayMode">SI</strong><small>Original workbook units by default</small></div><div><span>Current source</span><strong id="mepSourceName">Visible tabs</strong><small>Alternate hidden tabs selectable</small></div></div>
-<section class="mep-controls" aria-label="Search and filter Electrical Works">
-<label for="mepSearch">Find a work item<input id="mepSearch" type="search" autocomplete="off" placeholder="Search short titles or complete descriptions"></label>
-<label for="mepCategory">Work category<select id="mepCategory"><option value="all">All work categories</option></select></label>
-<label for="mepWorksheet">Excel worksheet set<select id="mepWorksheet"><option value="visible">Visible worksheets</option><option value="hidden">Hidden worksheets</option></select></label>
-<label for="mepUnits">Measurement system<select id="mepUnits"><option value="si">SI / metric</option><option value="imperial">Imperial / feet</option></select></label>
-<label for="mepSort">Sort order<select id="mepSort"><option value="trade">Trade workflow</option><option value="source">Original workbook order</option><option value="title">Work name A–Z</option><option value="low">Lowest numeric rate</option><option value="high">Highest numeric rate</option></select></label>
-</section>
-<div class="work-table-top" id="mepWorks"><p id="mepStatus" role="status" aria-live="polite">Loading electrical works rates…</p><button class="btn work-clear" type="button" id="mepClear">Clear filters</button></div>
-<div class="work-table-frame"><table class="work-rate-table mep-rate-table" aria-label="Electrical Works descriptions, units and NPR prices"><colgroup><col class="work-description-col"><col class="work-unit-col"><col class="work-rate-col"></colgroup><thead><tr><th scope="col">Description of Work</th><th scope="col">Unit</th><th scope="col">Rate (NPR)</th></tr></thead><tbody id="mepRows"><tr><td colspan="3">Loading…</td></tr></tbody></table></div>
-<div class="work-pagination"><span id="mepPageSummary">—</span><div><button type="button" class="btn" id="mepPrev" disabled>← Previous</button><button type="button" class="btn" id="mepNext" disabled>Next →</button></div></div>
-<p class="work-conversion-note" id="mepConversionInfo" aria-live="polite">The default view shows original SI rates; Imperial values are derived mathematically using exact conversion factors. These are not independent supplier quotations.</p>
-<p class="mep-small-print" id="mepScopeNote">Ventilation fan and AC items are linked under Mechanical in this navigation; the Electrical source worksheet remains unchanged.</p>
-<p class="mep-small-print">Trade workflow sorting is illustrative only, not a project-specific installation sequence or approved construction methodology. The full work specification page preserves source wording; workmanship checklists are editorial educational guidance.</p>
-<footer class="work-links"><a href="rate-library.html">🏗️ Construction journey →</a><a href="rate-comparison.html">Compare worksheet rates →</a><a href="index.html?view=analysis">Rate Analysis →</a><a href="system-map.html">Version &amp; rollback →</a></footer></section></main></body></html>
+<script src="mep-legacy-redirect.js" defer></script></head>
+<body data-legacy-mep-trade="electrical">
+<main style="max-width:640px;margin:12vh auto;padding:24px"><h1>🏢 MEP now lives inside the Rate Library</h1>
+<p>The same Mechanical, Electrical and Plumbing rates are shown in-place within the construction journey. Your original work descriptions and links are preserved.</p>
+<p><a id="mepInlineDestination" href="rate-library.html?stage=mep&amp;trade=electrical">Open Electrical Works inside the Rate Library →</a></p></main>
+</body></html>

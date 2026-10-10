@@ -85,3 +85,25 @@ html[data-theme="dark"] .stage-mep-intro strong,html[data-theme="dark"] .stage-h
 html[data-theme="dark"] .stage-mep-intro p,html[data-theme="dark"] .nav-subtree-title{color:var(--muted)}
 html[data-theme="dark"] .nav-subtree{border-color:var(--line)}
 @media(max-width:720px){.stage-mep-children{padding:12px 10px}.stage-heading-link{display:block;margin:3px 0 0}.nav-subtree .nav-item{min-height:30px}}
+
+/* v0.5.12: MEP work switching happens inline, with no navigation to a trade page */
+.mep-inline-tabs{margin-top:8px}
+.mep-inline-tabs button{font:inherit;min-width:0;display:grid;grid-template-columns:auto 1fr;column-gap:10px;row-gap:3px;align-items:center;padding:12px 14px;background:var(--panel);color:#256543;border:1px solid #d4e3cf;border-radius:11px;text-align:left;cursor:pointer;transition:background .15s,border-color .15s,box-shadow .15s}
+.mep-inline-tabs button:hover{background:#eaf6e8;border-color:#acd2af}
+.mep-inline-tabs button[aria-pressed="true"]{background:#237748;border-color:#17663b;color:#fff;box-shadow:0 4px 14px rgba(22,99,58,.18)}
+.mep-inline-tabs button:focus-visible,.mep-show-all:focus-visible{outline:3px solid #ddb450;outline-offset:3px}
+.mep-inline-tabs button>span{font-size:22px;grid-row:span 2}
+.mep-inline-tabs button strong{font-size:13px}
+.mep-inline-tabs button small{font-size:11px;color:#68816e;overflow-wrap:anywhere}
+.mep-inline-tabs button[aria-pressed="true"] small{color:#d8f3de}
+.mep-inline-footer{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-top:11px;color:#3b7150;font-size:12px;font-weight:760}
+.mep-show-all{border:0;background:transparent;color:#286f45;text-decoration:underline;text-underline-offset:3px;cursor:pointer;font:inherit;font-size:12px;font-weight:830;padding:6px}
+.mep-show-all:disabled{opacity:.45;cursor:default;text-decoration:none}
+.stage-heading-link{border:0;background:transparent;padding:2px 0;cursor:pointer;font:inherit}
+html[data-theme="dark"] .mep-inline-tabs button{background:var(--panel);color:var(--ink);border-color:var(--line)}
+html[data-theme="dark"] .mep-inline-tabs button[aria-pressed="true"]{background:#237748;color:#fff;border-color:#4b9964}
+html[data-theme="dark"] .mep-inline-tabs button small{color:var(--muted)}
+html[data-theme="dark"] .mep-inline-tabs button[aria-pressed="true"] small{color:#d8f3de}
+html[data-theme="dark"] .mep-inline-footer,html[data-theme="dark"] .mep-show-all{color:#b8ebc1}
+@media(max-width:650px){.mep-inline-tabs button{padding:11px 12px}.mep-inline-footer{align-items:flex-start}}
+@media(prefers-reduced-motion:reduce){.mep-inline-tabs button{transition:none}}

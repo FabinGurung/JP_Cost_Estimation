@@ -28,12 +28,13 @@
       units.match([short.labels[x.id],x.description,kind,x.unit,t.family,t.variant,x.section].join(' '),q);
    });
    if(narrowed.some(x=>x.id===item.id))peers=narrowed;
-   const sort=['trade','source','title','low','high'].includes(context.get('sort'))?context.get('sort'):'trade';
-   if(sort==='trade')peers.sort((a,b)=>route.phaseOf(a,tax.records[a.id],trade)-route.phaseOf(b,tax.records[b.id],trade)||catalog.items.indexOf(a)-catalog.items.indexOf(b));
-   if(sort==='title')peers.sort((a,b)=>short.labels[a.id].localeCompare(short.labels[b.id]));
+   const requestedSort=context.get('sort');
+   const sort=['construction','trade','source','name','title','price-low','price-high','low','high'].includes(requestedSort)?requestedSort:'construction';
+   if(sort==='trade'||sort==='construction')peers.sort((a,b)=>route.phaseOf(a,tax.records[a.id],trade)-route.phaseOf(b,tax.records[b.id],trade)||catalog.items.indexOf(a)-catalog.items.indexOf(b));
+   if(sort==='title'||sort==='name')peers.sort((a,b)=>short.labels[a.id].localeCompare(short.labels[b.id]));
    const measurement=['si','imperial'].includes(context.get('units'))?context.get('units'):units.preferred();
-   if(sort==='low')peers.sort((a,b)=>units.convert(a.rate,a.unit,measurement).rate-units.convert(b.rate,b.unit,measurement).rate);
-   if(sort==='high')peers.sort((a,b)=>units.convert(b.rate,b.unit,measurement).rate-units.convert(a.rate,a.unit,measurement).rate);
+   if(sort==='low'||sort==='price-low')peers.sort((a,b)=>units.convert(a.rate,a.unit,measurement).rate-units.convert(b.rate,b.unit,measurement).rate);
+   if(sort==='high'||sort==='price-high')peers.sort((a,b)=>units.convert(b.rate,b.unit,measurement).rate-units.convert(a.rate,a.unit,measurement).rate);
   }else{
    peers.sort((a,b)=>{
     const sa=guide.sequence(a,tax.records[a.id]),sb=guide.sequence(b,tax.records[b.id]);
@@ -44,16 +45,16 @@
   const ix=peers.findIndex(x=>x.id===item.id);
   const stage=guide.sequence(item,category);
   const back=trade?
-    route.trades[trade].file+'?'+new URLSearchParams({
-      units:context.get('units')||units.preferred(),version:item.version,
-      category:context.get('category')||'all',q:context.get('q')||'',
-      sort:context.get('sort')||'trade'
+    'rate-library.html?'+new URLSearchParams({
+      stage:'mep',trade:trade,units:context.get('units')||units.preferred(),
+      version:item.version,q:context.get('q')||'',
+      sort:['construction','source','name','price-low','price-high'].includes(context.get('sort'))?context.get('sort'):'construction'
     }).toString():
     'rate-library.html?units='+encodeURIComponent(units.preferred())+'&version='+encodeURIComponent(item.version)+'&division='+encodeURIComponent(item.section)+'&family='+encodeURIComponent(category.family)+'&type='+encodeURIComponent(category.work_type)+'&stage='+encodeURIComponent(stage.stage_id);
   $('specBackCrumb').href=back;
-  $('specBackCrumb').textContent=trade?route.trades[trade].name+' Works':'Rate Library';
+  $('specBackCrumb').textContent=trade?'Rate Library · MEP · '+route.trades[trade].name:'Rate Library';
   $('specHeroBack').href=back;
-  $('specHeroBack').textContent=trade?'← Back to '+route.trades[trade].name+' Works':'← Back to Rate Library';
+  $('specHeroBack').textContent=trade?'← Back to '+route.trades[trade].name+' in Rate Library':'← Back to Rate Library';
   $('specHeading').textContent=short.labels[id];
   document.title=short.labels[id]+' | Work Specifications';
   $('specSection').textContent=item.section;
@@ -67,7 +68,7 @@
   for(const text of guide.checks(item,category)){
    const li=document.createElement('li');li.textContent=text;qualityList.appendChild(li);
   }
-  const system=$('specUnitSystem');system.value=units.preferred();
+  const system=$('specUnitSystem');system.value=['si','imperial'].includes(context.get('units'))?context.get('units'):units.preferred();
   const display=()=>{
    const v=units.rateText(item.rate,item.unit,system.value),base=units.rateText(item.rate,item.unit,'si'),imp=units.rateText(item.rate,item.unit,'imperial');
    $('specUnit').textContent=v.unit;$('specRate').textContent=v.formatted;
@@ -85,7 +86,7 @@
   $('specYear').textContent='Not recorded in verified source metadata';
   $('specLocation').textContent='Not verified';
   const links=$('specNeighbors');links.replaceChildren();
-  const home=document.createElement('a');home.href=back;home.textContent=trade?'← Back to '+route.trades[trade].name+' works':'← Back to filtered Rate Library';links.appendChild(home);
+  const home=document.createElement('a');home.href=back;home.textContent=trade?'← Back to '+route.trades[trade].name+' in Rate Library':'← Back to filtered Rate Library';links.appendChild(home);
   for(const [delta,label] of [[-1,'← Previous work'],[1,'Next work →']]){
    if(!peers[ix+delta])continue;
    const a=document.createElement('a'),nextContext=new URLSearchParams(context);

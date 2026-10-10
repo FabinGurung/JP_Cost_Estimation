@@ -1,12 +1,12 @@
 (() => {
   'use strict';
   const $ = id => document.getElementById(id);
-  const units=window.JPRateUnits, guide=window.JPConstructionGuide;
+  const units=window.JPRateUnits, guide=window.JPConstructionGuide, mep=window.JPMep;
   const PAGE_SIZE = 25;
-  let records=[], names={}, taxonomy={}, page=0, loaded=false, activeStage='all';
+  let records=[], names={}, taxonomy={}, page=0, loaded=false, activeStage='all', activeTrade='all';
   const query=$('workSearch'),division=$('workDivision'),family=$('workFamily'),type=$('workType'),version=$('workVersion'),sort=$('workSort');
   const status=$('workStatus'), tbody=$('workRateRows'),pageSummary=$('workPageSummary');
-  const previous=$('workPrev'),next=$('workNext'),system=$('unitSystem'),ribbon=$('stageRibbon'),mepChildren=$('mepStageDetails');
+  const previous=$('workPrev'),next=$('workNext'),system=$('unitSystem'),ribbon=$('stageRibbon'),mepChildren=$('mepStageDetails'),mepTabs=$('mepTradeTabs');
   system.value=units.preferred();
   const unitLabel=u=>u==='running m'?'r.m.':u;
   function fillSelect(node,values,preserve){
@@ -23,6 +23,30 @@
     fillSelect(type,kinds,true);
   }
   function stageOf(item){return guide.sequence(item,taxonomy[item.id]);}
+  function syncJourneyUrl(){
+    if(!window.history||typeof window.history.replaceState!=='function')return;
+    const url=new URL(window.location.href);
+    if(activeStage==='all')url.searchParams.delete('stage');
+    else url.searchParams.set('stage',activeStage);
+    if(activeStage==='mep'&&activeTrade!=='all')url.searchParams.set('trade',activeTrade);
+    else url.searchParams.delete('trade');
+    window.history.replaceState(null,'',url.pathname+url.search+url.hash);
+  }
+  function updateTradeButtons(){
+    mepChildren.hidden=activeStage!=='mep';
+    for(const button of mepTabs.querySelectorAll('[data-mep-trade]')){
+      const isSelected=activeStage==='mep'&&button.dataset.mepTrade===activeTrade;
+      button.setAttribute('aria-pressed',String(isSelected));
+    }
+    const tradeName=activeStage==='mep'&&mep.trades[activeTrade]?mep.trades[activeTrade].name:null;
+    $('mepActiveLabel').textContent=tradeName?tradeName+' work rates · '+mep.partition(records,taxonomy,version.value)[activeTrade].length+' items':'All 62 MEP work items';
+    $('mepShowAll').disabled=activeTrade==='all';
+  }
+  function chooseStage(stage){
+    activeStage=stage;activeTrade='all';page=0;
+    division.value='all';family.value='all';type.value='all';
+    updateChoices();renderRibbon();syncJourneyUrl();update();
+  }
   function renderRibbon(){
     if(!loaded)return;
     const subset=records.filter(r=>r.version===version.value&&(division.value==='all'||r.section===division.value)&&(family.value==='all'||taxonomy[r.id].family===family.value)&&(type.value==='all'||taxonomy[r.id].work_type===type.value));
@@ -37,12 +61,12 @@
       const label=document.createElement('span');label.textContent=stage.short;
       const small=document.createElement('small');small.textContent=count+' works';
       b.append(emoji,label,small);
-      b.addEventListener('click',()=>{activeStage=stage.id;page=0;renderRibbon();update();});
+      b.addEventListener('click',()=>chooseStage(stage.id));
       fragment.appendChild(b);
     }
     ribbon.replaceChildren(fragment);
     // Drill into MEP only when the visitor chooses MEP, just like other journey stages.
-    mepChildren.hidden=activeStage!=='mep';
+    updateTradeButtons();
   }
   function filtered(){
     const q=query.value.trim().toLocaleLowerCase();
@@ -50,10 +74,17 @@
       const t=taxonomy[r.id];
       return r.version===version.value&&(division.value==='all'||r.section===division.value)&&
        (family.value==='all'||t.family===family.value)&&(type.value==='all'||t.work_type===type.value)&&(activeStage==='all'||stageOf(r).stage_id===activeStage)&&
+       (activeStage!=='mep'||activeTrade==='all'||mep.tradeOf(r,t)===activeTrade)&&
        (!q||units.match([names[r.id],r.description,r.unit,r.section,t.family,t.work_type,t.variant,stageOf(r).stage.label].join(' '),q));
     });
     if(sort.value==='construction')result.sort((a,b)=>{
       const sa=stageOf(a),sb=stageOf(b);
+      if(activeStage==='mep'){
+        const tradeOrder=['mechanical','electrical','plumbing'],ta=mep.tradeOf(a,taxonomy[a.id]),tb=mep.tradeOf(b,taxonomy[b.id]);
+        return tradeOrder.indexOf(ta)-tradeOrder.indexOf(tb)||
+          mep.phaseOf(a,taxonomy[a.id],ta)-mep.phaseOf(b,taxonomy[b.id],tb)||
+          records.indexOf(a)-records.indexOf(b);
+      }
       return sa.stage.order-sb.stage.order||sa.priority-sb.priority||
         (a.section==='Building Works'?0:a.section==='Other Structures'?1:2)-
         (b.section==='Building Works'?0:b.section==='Other Structures'?1:2)||
@@ -80,8 +111,9 @@
         heading.append(em,label);
         if(seq.stage_id==='mep'){
           const deep=document.createElement('a');
-          deep.href='mep.html';deep.className='stage-heading-link';
-          deep.textContent='Explore Mechanical · Electrical · Plumbing →';
+          deep.type='button';deep.className='stage-heading-link';
+          deep.textContent='Choose Mechanical · Electrical · Plumbing ↓';
+          deep.addEventListener('click',()=>chooseStage('mep'));
           heading.appendChild(deep);
         }
         if(activeStage==='all'){
@@ -97,7 +129,15 @@
       work.appendChild(category);
       const inline=document.createElement('div');inline.className='work-name-row';
       const pict=document.createElement('span');pict.className='work-item-emoji';pict.textContent=seq.emoji;pict.setAttribute('aria-hidden','true');
-      const a=document.createElement('a');a.className='work-name-link';a.href='rate-specifications.html?id='+encodeURIComponent(item.id);
+      const a=document.createElement('a');a.className='work-name-link';
+      const dest=new URLSearchParams({id:item.id,version:version.value,units:system.value});
+      if(activeStage==='mep'&&activeTrade!=='all'){
+        dest.set('trade',activeTrade);
+        dest.set('stage','mep');
+        dest.set('q',query.value);
+        dest.set('sort',sort.value);
+      }
+      a.href='rate-specifications.html?'+dest.toString();
       a.textContent=names[item.id];a.title='Read the original Excel work description and separate general workmanship guidance';inline.append(pict,a);work.appendChild(inline);
       const displayed=units.rateText(item.rate,item.unit,system.value);
       const u=document.createElement('td');u.className='work-unit-cell';u.textContent=displayed.unit;
@@ -109,7 +149,8 @@
     }
     if(!shown.length){const tr=document.createElement('tr'),td=document.createElement('td');td.className='work-empty';td.colSpan=3;td.textContent='No matching work items. Try a different category or search.';tr.appendChild(td);fragment.appendChild(tr);}
     tbody.replaceChildren(fragment);
-    status.textContent=matches.length+' '+(version.value==='visible'?'visible-worksheet':'hidden-worksheet')+' rates found · '+(system.value==='imperial'?'Imperial equivalents':'Source SI rates')+' · Archived estimate / unverified year';
+    const tradeLabel=activeStage==='mep'&&mep.trades[activeTrade]?mep.trades[activeTrade].name+' · ':'';
+    status.textContent=tradeLabel+matches.length+' '+(version.value==='visible'?'visible-worksheet':'hidden-worksheet')+' rates found · '+(system.value==='imperial'?'Imperial equivalents':'Source SI rates')+' · Archived estimate / unverified year';
     $('unitConversionNote').textContent=system.value==='imperial'?'Imperial values are calculated from the original SI rate (not independent quotations): NPR/ft² = NPR/m² × 0.09290304; NPR/ft³ = NPR/m³ × 0.028316846592; NPR/ft = NPR/m × 0.3048; NPR/lb = NPR/kg × 0.45359237. Item/set/job/point rates remain unchanged.':'SI units and original NPR prices are shown. Select Imperial to see equivalent per-foot, per-square-foot, per-cubic-foot and per-pound rates. Stored source values remain unchanged.';
     pageSummary.textContent=matches.length?(start+1)+'–'+Math.min(start+PAGE_SIZE,matches.length)+' of '+matches.length+' · Page '+(page+1)+' of '+(maxPage+1):'0 results';
     previous.disabled=page===0;next.disabled=matches.length===0||page===maxPage;
@@ -117,12 +158,30 @@
   function fail(message){
     status.textContent=message;const tr=document.createElement('tr'),td=document.createElement('td');td.className='work-empty';td.colSpan=3;td.textContent=message;tr.appendChild(td);tbody.replaceChildren(tr);pageSummary.textContent='No rates available';previous.disabled=true;next.disabled=true;
   }
+  for(const button of mepTabs.querySelectorAll('[data-mep-trade]')){
+    button.addEventListener('click',()=>{
+      const trade=button.dataset.mepTrade;
+      if(!mep.trades[trade]||!loaded)return;
+      activeStage='mep';activeTrade=trade;page=0;
+      query.value='';division.value='all';family.value='all';type.value='all';
+      updateChoices();renderRibbon();syncJourneyUrl();update();
+    });
+  }
+  $('mepShowAll').addEventListener('click',()=>{
+    activeStage='mep';activeTrade='all';page=0;query.value='';
+    division.value='all';family.value='all';type.value='all';
+    updateChoices();renderRibbon();syncJourneyUrl();update();
+  });
   query.addEventListener('input',()=>{page=0;update();});
   sort.addEventListener('change',()=>{page=0;update();});
   system.addEventListener('change',()=>{units.save(system.value);page=0;update();});
-  for(const control of [division,version,family])control.addEventListener('change',()=>{page=0;activeStage='all';updateChoices();renderRibbon();update();});
-  type.addEventListener('change',()=>{page=0;activeStage='all';renderRibbon();update();});
-  $('workClear').addEventListener('click',()=>{query.value='';division.value='all';family.value='all';type.value='all';version.value='visible';sort.value='construction';activeStage='all';page=0;updateChoices();renderRibbon();update();query.focus();});
+  for(const control of [division,version,family])control.addEventListener('change',()=>{
+    page=0;
+    if(control!==version){activeStage='all';activeTrade='all';}
+    updateChoices();renderRibbon();syncJourneyUrl();update();
+  });
+  type.addEventListener('change',()=>{page=0;activeStage='all';activeTrade='all';renderRibbon();syncJourneyUrl();update();});
+  $('workClear').addEventListener('click',()=>{query.value='';division.value='all';family.value='all';type.value='all';version.value='visible';sort.value='construction';activeStage='all';activeTrade='all';page=0;updateChoices();renderRibbon();syncJourneyUrl();update();query.focus();});
   previous.addEventListener('click',()=>{if(page>0){page--;update();}});
   next.addEventListener('click',()=>{if((page+1)*PAGE_SIZE<filtered().length){page++;update();}});
   const params=new URLSearchParams(window.location.search);
@@ -144,6 +203,11 @@
     updateChoices();
     if(params.get('type')&&[...type.options].some(x=>x.value===params.get('type')))type.value=params.get('type');
     if(params.get('stage')&&['all',...guide.stages.map(x=>x.id)].includes(params.get('stage')))activeStage=params.get('stage');
+    const requestedTrade=params.get('trade');
+    if(mep.trades[requestedTrade]){activeStage='mep';activeTrade=requestedTrade;}
+    if(params.get('q'))query.value=params.get('q');
+    if(['construction','source','price-low','price-high','name'].includes(params.get('sort')))sort.value=params.get('sort');
+    if(['si','imperial'].includes(params.get('units')))system.value=params.get('units');
     renderRibbon();update();
   }).catch(error=>fail('Could not load rate library: '+error.message));
 })();

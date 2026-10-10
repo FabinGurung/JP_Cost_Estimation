@@ -81,3 +81,7 @@ Fixed the Mechanical ventilation fan's educational guidance, contextual specific
 ## v0.5.11 — MEP inside the construction journey
 
 MEP is no longer a sibling to Rate Library. The construction journey now presents a single 🏢 MEP stage, between openings and plaster, with Mechanical/Electrical/Plumbing drilldown inside the stage. All original 62 MEP records per Excel worksheet set and 40 non-MEP works remain visible in the parent Rate Library. Trade-page breadcrumbs/sidebar are nested under Rate Library and all existing URL bookmarks remain valid. Source data, rates, finance, quantity takeoff and BOQ are preserved. See [navigation fix](docs/MEP_NESTED_IN_CONSTRUCTION_JOURNEY_v0.5.11.md).
+
+## v0.5.12 — MEP now switches inside Rate Library (2026-10-11)
+
+The Rate Library's 🏢 MEP construction-stage child choices are now **interactive in-page filters**, not links to another full website page. Mechanical, Electrical and Plumbing reuse the same Description | Unit | Rate table, with 3/37/22 items per worksheet set and a 62-item all-MEP option. Selected state is reflected in the shareable `?stage=mep&trade=...` query; the worksheet choice and SI/Imperial display persist. Existing /mep.html and /mep-{mechanical,electrical,plumbing}.html URLs redirect to the corresponding in-page views and are not deleted. Work Specifications still have separate full-description pages and return to the selected in-page category. The original 204 rates and all Finance, CAD and BOQ boundaries are unchanged. See [release notes](docs/INLINE_MEP_RATE_LIBRARY_v0.5.12.md).
