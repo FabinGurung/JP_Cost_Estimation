@@ -193,3 +193,9 @@ The website Pages source `research/open-estimation-engine-v0.1` now points to `a
 ## Deploy v0.5.11 — MEP nested inside Rate Library construction journey (2026-10-10)
 
 Existing Pages checkout research branch `research/open-estimation-engine-v0.1` now points to `fc97985aed01f9b31b95c71125fa85f29c41b76d`. MEP is now a single construction journey stage like excavation, soling, PCC and RCC, with Mechanical, Electrical and Plumbing as three in-stage drilldowns. The homepage/Rate Library sidebars no longer treat MEP as their sibling, and the MEP pages use a nested Rate Library navigation group and breadcrumbs back to the stage. All existing MEP URLs and 204 source work-rate records, SI/Imperial calculations, source cell lineage, Rate Analysis, financial ledger, CAD QTO and BOQ constraints are preserved. Updated CI validates 62 MEP stage records per Excel worksheet set and navigation hierarchy. This main README-only commit triggers the existing Pages workflow.
+
+---
+
+## Deploy v0.5.12 — in-page Mechanical / Electrical / Plumbing selection (2026-10-11)
+
+GitHub Pages checkout branch `research/open-estimation-engine-v0.1` points to `726d60538b390e2a944f87d3a389be4bf30e93c8`. The Rate Library's MEP stage has three keyboard-operable category buttons which update its existing work-rate table **without navigation**. Per source worksheet set, the displayed counts are Mechanical 3, Electrical 37, and Plumbing/Sanitary 22. Existing bookmarked MEP overview/trade page paths now redirect directly to equivalent `rate-library.html?stage=mep&trade=...` in-page views; no obsolete separate MEP lane remains. Detailed work-specification pages remain and return to the chosen in-page trade. The original 204 source rates, taxonomy, SI/Imperial conversions, Rate Analysis, Rohini Finance, CAD FID/QTO and blank BOQ remain unchanged. CI and Preview were successful on the new source. This main README-only update triggers the established GitHub Pages deployment workflow.
