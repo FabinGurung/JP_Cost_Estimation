@@ -1,0 +1,69 @@
+/* JP-CRES v0.5.9 · Three MEP subpages with common sunlit valley visual language */
+.mep-main{padding-top:25px}
+.mep-hero h2{max-width:930px}
+.mep-hero h2 span[aria-hidden]{display:inline-block;margin-right:5px;filter:drop-shadow(0 2px 1px rgba(255,255,255,.3))}
+.mep-breadcrumb{display:flex;gap:9px;align-items:center;flex-wrap:wrap;font-size:12px;margin:0 0 18px;color:var(--muted)}
+.mep-breadcrumb a{font-weight:750;color:#236b45;text-decoration:underline;text-underline-offset:3px}
+.mep-breadcrumb strong{color:var(--ink)}
+.mep-overview-stats,.mep-mini-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:20px 0 25px}
+.mep-overview-stats>div,.mep-mini-stats>div{border:1px solid var(--line);border-radius:14px;background:var(--panel);padding:16px 19px}
+.mep-overview-stats span,.mep-mini-stats span,.mep-overview-stats small,.mep-mini-stats small{display:block;color:var(--muted);font-size:11px;line-height:1.45}
+.mep-overview-stats strong,.mep-mini-stats strong{display:block;font-size:clamp(18px,2vw,28px);font-weight:850;color:#256c43;margin:6px 0;font-variant-numeric:tabular-nums}
+.mep-section-heading{margin:24px 0 14px}
+.mep-section-heading .eyebrow{font-size:11px;font-weight:850;color:#977025}
+.mep-section-heading h2{font-size:24px;color:var(--ink);margin:2px 0 8px;letter-spacing:-.02em}
+.mep-section-heading>p:last-child{color:var(--muted);font-size:13px;line-height:1.6;margin:0}
+.mep-card-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}
+.mep-trade-card{border:1px solid #d4e5d1;border-radius:17px;padding:25px 22px;background:linear-gradient(150deg,rgba(241,249,238,.99),rgba(255,255,255,.95));display:flex;flex-direction:column;align-items:flex-start;gap:7px;text-decoration:none;color:#245940;min-width:0;box-shadow:0 6px 19px rgba(41,85,40,.06);transition:box-shadow .18s ease,transform .18s ease,border-color .18s ease}
+.mep-trade-card:hover{border-color:#8fbea0;box-shadow:0 11px 24px rgba(37,91,50,.12);transform:translateY(-2px)}
+.mep-trade-card:focus-visible,.mep-other-trades a:focus-visible{outline:3px solid #dcb650;outline-offset:3px}
+.mep-card-icon{display:flex;align-items:center;justify-content:center;background:#e5f3e5;border:1px solid #d3e4d1;border-radius:14px;width:62px;height:62px;font-size:31px;margin-bottom:10px}
+.mep-trade-card strong{font-size:24px;letter-spacing:-.025em;color:#1f5b38}
+.mep-trade-card>span:not(.mep-card-icon){font-size:13px;color:#557458;font-weight:750}
+.mep-trade-card p{font-size:13px;line-height:1.6;color:#53725c;margin:5px 0 8px;flex:1}
+.mep-trade-card small{font-size:11px;color:#5f7b65}
+.mep-trade-card small b{font-size:13px;color:#235e3c}
+.mep-trade-card em{font-size:13px;font-style:normal;font-weight:850;color:#216944;margin-top:8px;text-decoration:underline;text-underline-offset:4px}
+.mep-electrical .mep-card-icon{background:#fff5d8;border-color:#f0df9c}
+.mep-plumbing .mep-card-icon{background:#e5f5ff;border-color:#c5e7f4}
+.mep-next-panel{border:1px solid #d6e8d2;background:#edf6eb;border-radius:15px;padding:19px 23px;display:flex;gap:14px;margin:25px 0}
+.mep-next-panel>span{font-size:29px}
+.mep-next-panel strong{color:#205c3c}
+.mep-next-panel p{font-size:13px;line-height:1.6;margin:5px 0 0;color:#526e54}
+.mep-small-print{margin:17px 0 0;font-size:12px;color:var(--muted);line-height:1.7}
+.mep-other-trades{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0}
+.mep-other-trades a{display:inline-flex;padding:11px 15px;align-items:center;border:1px solid #d1e0ce;color:#205c3e;background:var(--panel);border-radius:999px;font-size:12px;font-weight:800;text-decoration:none}
+.mep-other-trades a:hover{background:#e9f5e9}
+.mep-other-trades a.selected{background:#286f46;color:#fff;border-color:#246c44}
+.mep-controls{display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr;gap:11px;align-items:end;margin:22px 0 12px;border:1px solid #d7e6d4;border-radius:15px;padding:15px;background:#f4faf2}
+.mep-controls label{font-size:12px;font-weight:800;color:#385942;min-width:0;display:flex;flex-direction:column;gap:7px}
+.mep-controls select,.mep-controls input{background:var(--panel);border:1px solid #cbdccb;border-radius:9px;width:100%;min-height:44px;font-size:13px;color:var(--ink);padding:9px 11px;min-width:0}
+.mep-controls input{font-size:16px}
+.mep-controls select:focus-visible,.mep-controls input:focus-visible{outline:3px solid #dcb650;outline-offset:2px}
+.mep-rate-table .work-description-col{width:67%}
+.mep-rate-table .work-unit-col{width:10%}
+.mep-rate-table .work-rate-col{width:23%}
+.mep-rate-table .work-name-link{font-weight:800;line-height:1.5}
+.mep-rate-table td.work-unit-cell{white-space:normal!important;overflow-wrap:anywhere;text-align:center;font-weight:750}
+.mep-rate-table td.work-price-cell{text-align:left!important;vertical-align:middle;white-space:normal!important;padding-left:9px!important;padding-right:8px!important}
+.mep-category-kicker{display:block;color:#5f8063;font-size:10px;margin-bottom:4px;line-height:1.2;font-weight:650}
+.mep-row-inner{display:flex;gap:8px;align-items:flex-start;min-width:0}
+.mep-item-emoji{font-size:18px;line-height:1;flex:0 0 24px;background:#f0f8ef;border-radius:8px;text-align:center;padding:4px 0}
+.mep-row-inner a{min-width:0;flex:1;overflow-wrap:anywhere}
+.mep-rate-pill{display:inline-block;max-width:100%;background:#eef7ed;border:1px solid #d2e4d0;color:#205f3e;border-radius:9px;padding:6px 8px;font-weight:850;font-variant-numeric:tabular-nums;white-space:nowrap;font-size:clamp(11px,1vw,15px)}
+.mep-group-row td{background:#e8f3e4!important;color:#276240!important;font-size:12px!important;font-weight:850!important;padding:13px 17px!important;border-bottom:1px solid #cbdcc5}
+.mep-group-row span[aria-hidden]{margin-right:8px}
+html[data-theme="dark"] .mep-card-grid .mep-trade-card,html[data-theme="dark"] .mep-overview-stats>div,html[data-theme="dark"] .mep-mini-stats>div{background:var(--panel);border-color:var(--line)}
+html[data-theme="dark"] .mep-controls,html[data-theme="dark"] .mep-next-panel{background:var(--panel);border-color:var(--line)}
+html[data-theme="dark"] .mep-trade-card strong,html[data-theme="dark"] .mep-trade-card em,html[data-theme="dark"] .mep-breadcrumb a,html[data-theme="dark"] .mep-overview-stats strong,html[data-theme="dark"] .mep-mini-stats strong{color:#b5e8bf}
+html[data-theme="dark"] .mep-trade-card p,html[data-theme="dark"] .mep-trade-card>span:not(.mep-card-icon),html[data-theme="dark"] .mep-next-panel p,html[data-theme="dark"] .mep-trade-card small{color:var(--muted)}
+html[data-theme="dark"] .mep-other-trades a,html[data-theme="dark"] .mep-controls select,html[data-theme="dark"] .mep-controls input{background:var(--panel);color:var(--ink);border-color:var(--line)}
+html[data-theme="dark"] .mep-other-trades a.selected{background:#286f46;color:#fff}
+html[data-theme="dark"] .mep-controls label{color:var(--ink)}
+html[data-theme="dark"] .mep-rate-pill{background:#173e2b;color:#a4e4b3;border-color:#4d7057}
+html[data-theme="dark"] .mep-group-row td{background:#183d2c!important;color:#ccf3d0!important;border-color:var(--line)}
+html[data-theme="dark"] .mep-item-emoji,html[data-theme="dark"] .mep-card-icon{background:#19452d}
+@media(max-width:1150px){.mep-card-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.mep-controls{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:720px){.mep-main{padding-top:17px}.mep-card-grid{grid-template-columns:1fr}.mep-trade-card{padding:20px}.mep-overview-stats,.mep-mini-stats{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.mep-overview-stats>div:last-child,.mep-mini-stats>div:last-child{grid-column:span 2}.mep-overview-stats>div,.mep-mini-stats>div{padding:13px}.mep-controls{grid-template-columns:1fr 1fr;gap:10px;padding:12px}.mep-controls label:first-child{grid-column:span 2}.mep-rate-table .work-description-col{width:60%}.mep-rate-table .work-unit-col{width:11%}.mep-rate-table .work-rate-col{width:29%}.mep-item-emoji{font-size:15px;flex-basis:18px}.mep-row-inner{gap:5px}.mep-rate-pill{padding:4px;font-size:11px}.mep-rate-table tbody td{padding:12px 6px!important}.mep-rate-table td.work-price-cell{padding-left:4px!important;padding-right:4px!important}.mep-other-trades a{padding:8px 11px}}
+@media(max-width:360px){.mep-controls{grid-template-columns:1fr}.mep-controls label:first-child{grid-column:span 1}.mep-rate-table .work-description-col{width:58%}.mep-rate-table .work-unit-col{width:12%}.mep-rate-table .work-rate-col{width:30%}}
+@media(prefers-reduced-motion:reduce){.mep-trade-card{transition:none}.mep-trade-card:hover{transform:none}}

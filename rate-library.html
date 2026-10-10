@@ -9,6 +9,7 @@
 <link href="styles.css" rel="stylesheet"/>
 <link href="site-shell.css" rel="stylesheet"/>
 <link href="work-rate-library.css" rel="stylesheet"/>
+<link href="mep-pages.css" rel="stylesheet"/>
 <script defer="" src="theme.js"></script>
 <script defer="" src="work-rate-units.js"></script>
 <script defer="" src="work-construction-guide.js"></script>
@@ -19,7 +20,7 @@
 <div class="brand"><div class="logo">JP</div><div><strong>Cost &amp; Rate Intelligence</strong><small>Construction work-rate library</small></div></div>
 <nav aria-label="Primary site navigation">
 <a class="nav-item" href="index.html">← Overview</a>
-<a aria-current="page" class="nav-item active" href="rate-library.html">Rate Library</a><a class="nav-item" href="rate-comparison.html">Compare Rates</a>
+<a aria-current="page" class="nav-item active" href="rate-library.html">Rate Library</a><a class="nav-item" href="mep.html">⚙️ MEP Trades</a><a class="nav-item" href="rate-comparison.html">Compare Rates</a>
 <a class="nav-item" href="rate-specifications.html">Work Specifications</a>
 <a class="nav-item" href="index.html?view=rates">Source Rates</a>
 <a class="nav-item" href="index.html?view=analysis">Rate Analysis</a>
@@ -91,6 +92,14 @@
   <div class="stage-explorer-head"><div><p class="eyebrow">FROM THE GROUND UP</p><h2>🏗️ Construction journey</h2></div><span class="stage-explorer-note">Illustrative order · some trades overlap</span></div>
   <div class="stage-ribbon" id="stageRibbon" role="group" aria-label="Filter by construction stage"><span class="stage-ribbon-loading">Loading stages…</span></div>
 </section>
+<section class="mep-shortcuts" aria-label="Explore mechanical, electrical and plumbing works">
+  <div class="mep-shortcuts-head"><span aria-hidden="true">🏢</span><div><strong>Building services — three MEP workspaces</strong><p>Explore source-linked work rates and specifications by trade.</p></div><a href="mep.html">All MEP works →</a></div>
+  <div class="mep-shortcut-grid">
+    <a href="mep-mechanical.html"><span aria-hidden="true">⚙️</span><strong>Mechanical</strong><small>Cooling and ventilation</small></a>
+    <a href="mep-electrical.html"><span aria-hidden="true">⚡</span><strong>Electrical</strong><small>Power, wiring and lighting</small></a>
+    <a href="mep-plumbing.html"><span aria-hidden="true">🚰</span><strong>Plumbing</strong><small>Water, drainage and sanitary</small></a>
+  </div>
+</section>
 <div class="work-table-top"><p aria-live="polite" id="workStatus" role="status">Loading rates…</p><button class="btn work-clear" id="workClear" type="button">Clear filters</button></div>
 <div class="work-table-frame" id="rateTable">
 <table aria-label="Work descriptions, measurement units and unit rates in Nepalese rupees" class="work-rate-table">
@@ -107,7 +116,7 @@
 <p class="work-source-note"><strong>Construction order:</strong> a general learning journey, not a construction method statement or project schedule. Backfill follows the relevant approved below-ground foundation works; walls, RCC and services can repeat at different levels and overlap depending on the actual design.</p>
 <p class="work-source-note">The list uses short editorial titles; tap one for the original Excel work description and separately labelled general quality guidance. Units are displayed in human-readable notation (for example m³ rather than Cum, m² rather than Sqm, running m rather than Rm). Original SI values are extracted and never rewritten; Imperial display values are calculated from those SI prices, not new supplier quotations. Source formulas, original wording and coordinates remain in the private Drive archive. These are not the approved AEC Rate Master or CAD-verified quantities.</p><p class="work-source-note">Categories and work types are <strong>editorial labels derived from the original work descriptions</strong>, not authoritative classifications. Compare source alternatives on the <a href="rate-comparison.html">Rate Comparison</a> page; hidden sheets are not assumed to be older or newer than visible sheets.</p>
 <footer class="work-links">
-<a href="rate-specifications.html">Work Specifications →</a><a href="rate-comparison.html">Compare workbook rates →</a>
+<a href="mep.html">⚙️ MEP — Mechanical / Electrical / Plumbing →</a><a href="rate-specifications.html">Work Specifications →</a><a href="rate-comparison.html">Compare workbook rates →</a>
 <a href="index.html?view=rates">Government and user-known source rates →</a>
 <a href="index.html?view=analysis">Transparent rate analysis →</a>
 <a href="finance.html">Rohini finance →</a>
