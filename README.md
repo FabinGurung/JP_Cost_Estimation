@@ -135,3 +135,9 @@ Its active public UI focuses on **Rate Library, transparent Rate Analysis, Sourc
 The light visual design uses open white clouds, green valleys and warm yellow sunlight. The previous site and finance records remain preserved.
 The separately governed public Kaski rate snapshot is clearly dated, and the `boq-template.json` stays empty until verified CAD FIDs/measurements are imported.
 This documentation update is the intentional `main`-branch Pages deployment trigger. The original v0.1 main estimator files remain preserved.
+
+---
+
+## v0.5.2 cleanup trigger — 2026-10-10
+
+The GitHub Pages source branch `research/open-estimation-engine-v0.1` now points to `3373925e399d9d65abfcdf9b6ea9cabade966a3d`. Its old area-factor building demonstration seed is retired from the newest public source, recoverable intact through `snapshot/pre-legacy-kumari-seed-retirement-v0.5.2-20261010`, earlier site snapshot or the original `main` tree. The rate-only user interface, separate Rohini finance snapshot and system lifecycle remain unchanged. This main documentation-only commit triggers the existing GitHub Pages publish workflow.
