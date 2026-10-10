@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-/* Read-only regression guard for JP-CRES MEP v0.5.10.
+/* Read-only regression guard for JP-CRES MEP v0.5.11.
  * Assert that the 3 trade pages are navigable projections of the immutable
  * rate catalog, not new project, source or financial records. Node built-ins only.
  */
@@ -46,9 +46,36 @@ for(const name of eachTrade){
   assert(page.includes('Description of Work</th>')&&page.includes('Unit</th>')&&page.includes('Rate (NPR)</th>'),'three-column table '+path);
   assert(page.includes('rate-library.html')&&page.includes('mep.html'),'breadcrumbs '+path);
 }
-for(const html of ['mep.html','rate-library.html','index.html']){
- assert(read(html).includes('href="mep.html"')||html==='mep.html','MEP linked '+html);
+// MEP is not a sibling of Rate Library: it is a journey stage with 3 nested trade pages.
+assert(read('rate-library.html').includes('id="stageRibbon"'),'Rate Library has construction-stage journey');
+assert(read('rate-library.html').includes('id="mepStageDetails"'),'MEP child branch lives inside journey');
+assert(read('rate-library.html').includes('class="stage-mep-children"'),'MEP sub-branch styled with other stages');
+assert(read('rate-library.html').includes('href="mep.html"'),'journey child links MEP overview');
+assert(!/<a class="nav-item" href="mep\.html">/.test(read('rate-library.html')),'MEP removed as top-level Rate Library sidebar peer');
+assert(!/<a class="nav-item" href="mep\.html">/.test(read('index.html')),'MEP removed as top-level homepage sidebar peer');
+assert(read('index.html').includes('href="rate-library.html?stage=mep"'),'homepage directs visitors to journey stage');
+const constructionWindow={};
+runInNewContext(read('work-construction-guide.js'),{window:constructionWindow,globalThis:constructionWindow});
+const construction=constructionWindow.JPConstructionGuide;
+const mepStage=construction.stages.filter(stage=>stage.id==='mep');
+assert.equal(mepStage.length,1,'MEP exists as exactly one journey stage');
+assert.equal(construction.stages.filter(stage=>stage.id==='roughin'||stage.id==='fixtures').length,0,'old split MEP stages removed');
+assert(construction.stages.find(stage=>stage.id==='openings').order<mepStage[0].order,'MEP follows openings');
+assert(mepStage[0].order<construction.stages.find(stage=>stage.id==='substrates').order,'MEP precedes plaster and finishes');
+for(const version of ['visible','hidden']){
+ const subset=catalog.items.filter(item=>item.version===version);
+ assert.equal(subset.length,102);
+ const mepRows=subset.filter(item=>construction.sequence(item,taxonomy[item.id]).stage_id==='mep');
+ assert.equal(mepRows.length,62,'62 MEP items in one construction journey stage');
+ assert.equal(subset.filter(item=>construction.sequence(item,taxonomy[item.id]).stage_id!=='mep').length,40,'40 nonMEP works unchanged');
+ for(const row of mepRows)assert(mep.tradeOf(row,taxonomy[row.id]),'journey MEP must have trade drilldown');
 }
+for(const html of ['mep.html','mep-mechanical.html','mep-electrical.html','mep-plumbing.html']){
+ assert(read(html).includes('class="nav-subtree"'),'nested trade navigation '+html);
+ assert(read(html).includes('href="rate-library.html?stage=mep"'),'stage breadcrumb '+html);
+}
+assert(read('rate-library.html').includes('mep-mechanical.html')&&read('rate-library.html').includes('mep-electrical.html')&&read('rate-library.html').includes('mep-plumbing.html'),'all three MEP child destinations');
+
 const specific=read('rate-specifications.html');
 assert(specific.includes('id="specHeroBack"')&&specific.includes('id="specBackCrumb"'),'contextual breadcrumbs');
 const tradeApp=read('mep-app.js'),details=read('work-specifications.js');
@@ -75,4 +102,4 @@ for(const name of ['mep-app.js','mep-catalog.js','work-construction-guide.js','w
 for(const path of ['finance.html','finance.js','finance-summary.json','boq-template.json','rate-comparison.html']){
  assert(existsSync(new URL('../'+path,import.meta.url)),'protected module exists: '+path);
 }
-console.log('PASS MEP regression: 204 immutable source rows, 62 unique trades per worksheet set (3/37/22), routing, source history, SI/Imperial, search, quality guide, protected modules.');
+console.log('PASS MEP journey regression: 204 immutable source rows, 62 unique trades per worksheet set (3/37/22), routing, source history, SI/Imperial, search, quality guide, protected modules.');

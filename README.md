@@ -77,3 +77,7 @@ The [MEP overview](mep.html) links separate [Mechanical](mep-mechanical.html), [
 ## v0.5.10 — MEP navigation and regression hardening (2026-10-10)
 
 Fixed the Mechanical ventilation fan's educational guidance, contextual specifications hero/breadcrumb navigation, and persistent MEP search/worksheet/units/category/sort controls on drilldown. Previous/next now follows the selected trade view. Price sorting warns about unlike rate units. Both CI and preview workflows run a 204-record MEP regression test and check new JavaScript modules. Original source rates, labels, taxonomy, finance and CAD/QTO boundaries are untouched. See [v0.5.10 notes](docs/MEP_NAVIGATION_REGRESSION_v0.5.10.md).
+
+## v0.5.11 — MEP inside the construction journey
+
+MEP is no longer a sibling to Rate Library. The construction journey now presents a single 🏢 MEP stage, between openings and plaster, with Mechanical/Electrical/Plumbing drilldown inside the stage. All original 62 MEP records per Excel worksheet set and 40 non-MEP works remain visible in the parent Rate Library. Trade-page breadcrumbs/sidebar are nested under Rate Library and all existing URL bookmarks remain valid. Source data, rates, finance, quantity takeoff and BOQ are preserved. See [navigation fix](docs/MEP_NESTED_IN_CONSTRUCTION_JOURNEY_v0.5.11.md).

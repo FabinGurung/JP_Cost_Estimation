@@ -6,7 +6,7 @@
   let records=[], names={}, taxonomy={}, page=0, loaded=false, activeStage='all';
   const query=$('workSearch'),division=$('workDivision'),family=$('workFamily'),type=$('workType'),version=$('workVersion'),sort=$('workSort');
   const status=$('workStatus'), tbody=$('workRateRows'),pageSummary=$('workPageSummary');
-  const previous=$('workPrev'),next=$('workNext'),system=$('unitSystem'),ribbon=$('stageRibbon');
+  const previous=$('workPrev'),next=$('workNext'),system=$('unitSystem'),ribbon=$('stageRibbon'),mepChildren=$('mepStageDetails');
   system.value=units.preferred();
   const unitLabel=u=>u==='running m'?'r.m.':u;
   function fillSelect(node,values,preserve){
@@ -41,6 +41,8 @@
       fragment.appendChild(b);
     }
     ribbon.replaceChildren(fragment);
+    // Drill into MEP only when the visitor chooses MEP, just like other journey stages.
+    mepChildren.hidden=activeStage!=='mep';
   }
   function filtered(){
     const q=query.value.trim().toLocaleLowerCase();
@@ -76,6 +78,12 @@
         const em=document.createElement('span');em.className='stage-heading-emoji';em.textContent=seq.stage.emoji;em.setAttribute('aria-hidden','true');
         const label=document.createElement('span');label.textContent=seq.stage.label;
         heading.append(em,label);
+        if(seq.stage_id==='mep'){
+          const deep=document.createElement('a');
+          deep.href='mep.html';deep.className='stage-heading-link';
+          deep.textContent='Explore Mechanical · Electrical · Plumbing →';
+          heading.appendChild(deep);
+        }
         if(activeStage==='all'){
           const hint=document.createElement('span');hint.className='stage-heading-hint';hint.textContent='Typical building-work sequence';heading.appendChild(hint);
         }

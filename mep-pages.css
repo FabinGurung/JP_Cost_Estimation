@@ -67,3 +67,21 @@ html[data-theme="dark"] .mep-item-emoji,html[data-theme="dark"] .mep-card-icon{b
 @media(max-width:720px){.mep-main{padding-top:17px}.mep-card-grid{grid-template-columns:1fr}.mep-trade-card{padding:20px}.mep-overview-stats,.mep-mini-stats{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.mep-overview-stats>div:last-child,.mep-mini-stats>div:last-child{grid-column:span 2}.mep-overview-stats>div,.mep-mini-stats>div{padding:13px}.mep-controls{grid-template-columns:1fr 1fr;gap:10px;padding:12px}.mep-controls label:first-child{grid-column:span 2}.mep-rate-table .work-description-col{width:60%}.mep-rate-table .work-unit-col{width:11%}.mep-rate-table .work-rate-col{width:29%}.mep-item-emoji{font-size:15px;flex-basis:18px}.mep-row-inner{gap:5px}.mep-rate-pill{padding:4px;font-size:11px}.mep-rate-table tbody td{padding:12px 6px!important}.mep-rate-table td.work-price-cell{padding-left:4px!important;padding-right:4px!important}.mep-other-trades a{padding:8px 11px}}
 @media(max-width:360px){.mep-controls{grid-template-columns:1fr}.mep-controls label:first-child{grid-column:span 1}.mep-rate-table .work-description-col{width:58%}.mep-rate-table .work-unit-col{width:12%}.mep-rate-table .work-rate-col{width:30%}}
 @media(prefers-reduced-motion:reduce){.mep-trade-card{transition:none}.mep-trade-card:hover{transform:none}}
+
+/* v0.5.11 MEP is a construction-stage child, never a Rate Library peer. */
+.nav-subtree{margin:5px 0 10px 11px;padding:7px 0 7px 12px;border-left:2px solid #c6dcbf;display:flex;flex-direction:column;gap:3px}
+.nav-subtree-title{font-size:11px;color:#6a836a;font-weight:850;letter-spacing:.02em;padding:6px 11px}
+.nav-subtree .nav-item{font-size:13px;min-height:34px;padding:8px 11px}
+.stage-mep-children{margin:14px 0 22px;border:1px solid #ccdfca;border-radius:16px;padding:15px 18px;background:linear-gradient(120deg,#eaf6e7,#fffaf0)}
+.stage-mep-children[hidden]{display:none!important}
+.stage-mep-intro{display:flex;gap:12px;align-items:center;margin-bottom:12px}
+.stage-mep-intro>span{font-size:28px}
+.stage-mep-intro strong{font-size:15px;color:#235e3b}
+.stage-mep-intro p{font-size:12px;line-height:1.6;color:#5d745f;margin:3px 0 0}
+.stage-mep-overview{display:inline-block;color:#246c41;font-weight:850;font-size:12px;text-decoration:underline;text-underline-offset:3px;margin-top:12px}
+.stage-heading-link{font-size:11px;font-weight:800;color:#256c45;text-decoration:underline;text-underline-offset:3px;margin-left:12px}
+html[data-theme="dark"] .stage-mep-children{background:var(--panel);border-color:var(--line)}
+html[data-theme="dark"] .stage-mep-intro strong,html[data-theme="dark"] .stage-heading-link,html[data-theme="dark"] .stage-mep-overview{color:#b1e9be}
+html[data-theme="dark"] .stage-mep-intro p,html[data-theme="dark"] .nav-subtree-title{color:var(--muted)}
+html[data-theme="dark"] .nav-subtree{border-color:var(--line)}
+@media(max-width:720px){.stage-mep-children{padding:12px 10px}.stage-heading-link{display:block;margin:3px 0 0}.nav-subtree .nav-item{min-height:30px}}

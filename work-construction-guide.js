@@ -11,11 +11,10 @@
   {id:"masonry",order:60,emoji:"🧱",label:"Masonry & wall construction",short:"Walls"},
   {id:"backfill",order:55,emoji:"🚜",label:"Foundation backfilling",short:"Backfill"},
   {id:"openings",order:80,emoji:"🚪",label:"Doors, windows & joinery",short:"Openings"},
-  {id:"roughin",order:90,emoji:"🔌",label:"Electrical & plumbing rough-in",short:"MEP rough-in"},
+  {id:"mep",order:90,emoji:"🏢",label:"MEP — Mechanical, Electrical & Plumbing",short:"MEP"},
   {id:"substrates",order:100,emoji:"🧰",label:"Plaster, screed & waterproofing",short:"Plaster"},
   {id:"surfaces",order:110,emoji:"🔲",label:"Flooring, cladding & stonework",short:"Surfaces"},
   {id:"painting",order:120,emoji:"🎨",label:"Painting & final finishes",short:"Finishes"},
-  {id:"fixtures",order:130,emoji:"💡",label:"Services, fixtures & commissioning",short:"Fixtures"},
   {id:"external",order:140,emoji:"🏡",label:"External works & boundaries",short:"External"}
  ]);
  const byId=Object.fromEntries(stages.map(s=>[s.id,s]));
@@ -29,14 +28,14 @@
   if(family==="Masonry")return "masonry";
   if(type==="Backfilling")return "backfill";
   if(family==="Joinery"&&type!=="Wood Finish")return "openings";
-  if(family==="Plumbing"&&["Drainage","Water Supply Pipes","Valves"].includes(type))return "roughin";
-  if(family==="Electrical"&&["Cables","Wiring Points","Earthing","Panels","Distribution Boards","Protection Devices","Panel Accessories"].includes(type))return "roughin";
+  // One MEP stage in the user journey; trade-specific drilldown lives below it.
+  // Source taxonomy/worksheet identity is preserved and remains a separate authority.
+  if(["Electrical","HVAC","Plumbing","Sanitary"].includes(family))return "mep";
   if(family==="Waterproofing"||type==="Wall Plaster"||type==="Screed"||type==="Screed Finish")return "substrates";
   if(family==="Flooring"||type==="Stone Cladding")return "surfaces";
   if(type==="Painting"||type==="Putty"||type==="Wood Finish")return "painting";
   if(family==="Boundary Works"||family==="Metalwork")return "external";
-  if(family==="Electrical"||family==="HVAC"||family==="Sanitary"||family==="Plumbing")return "fixtures";
-  return "fixtures";
+  return "external";
  }
  function iconFor(item,t){
   const f=t.family,k=t.work_type;
