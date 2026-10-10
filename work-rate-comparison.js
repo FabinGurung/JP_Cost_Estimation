@@ -1,7 +1,8 @@
 (() => {
  'use strict';
- const $=id=>document.getElementById(id), fmt=new Intl.NumberFormat('en-IN',{maximumFractionDigits:2});
- const search=$('compareSearch'),division=$('compareDivision'),family=$('compareFamily'),show=$('compareDifferences'),status=$('compareStatus'),rows=$('compareRows');
+ const $=id=>document.getElementById(id), units=window.JPRateUnits, fmt=new Intl.NumberFormat('en-IN',{maximumFractionDigits:2});
+ const search=$('compareSearch'),division=$('compareDivision'),family=$('compareFamily'),show=$('compareDifferences'),status=$('compareStatus'),rows=$('compareRows'),system=$('compareUnits');
+ system.value=units.preferred();
  let joined=[];
  function families(){
   const old=family.value;
@@ -16,22 +17,29 @@
    (division.value==='all'||p.section===division.value)&&
    (family.value==='all'||p.family===family.value)&&
    (show.value==='all'||(show.value==='changed'&&!p.equal)||(show.value==='same'&&p.equal))&&
-   (!q||[p.title,p.section,p.family,p.work_type,p.variant,p.visible.description].join(' ').toLocaleLowerCase().includes(q))
+   (!q||units.match([p.title,p.section,p.family,p.work_type,p.variant,p.visible.description].join(' '),q))
   );
   const fragment=document.createDocumentFragment();
   for(const p of filtered){
    const row=document.createElement('tr');
    const td=document.createElement('td');const a=document.createElement('a');a.href='rate-specifications.html?id='+encodeURIComponent(p.visible.id);a.textContent=p.title;td.appendChild(a);row.appendChild(td);
-   for(const value of [p.visible.unit==='running m'?'r.m.':p.visible.unit,fmt.format(p.visible.rate),fmt.format(p.hidden.rate),p.equal?'Same':(p.delta>0?'+':'')+fmt.format(p.delta)]){
+   const vis=units.rateText(p.visible.rate,p.visible.unit,system.value);
+    const alt=units.rateText(p.hidden.rate,p.hidden.unit,system.value);
+    const delta=vis.rate-alt.rate;
+    for(const value of [vis.unit,vis.formatted,alt.formatted,p.equal?'Same':(delta>0?'+':'')+fmt.format(delta)]){
     const cell=document.createElement('td');cell.textContent=String(value);row.appendChild(cell);
    }
    row.lastElementChild.className=p.equal?'unchanged':'changed';fragment.appendChild(row);
   }
   if(!filtered.length){const row=document.createElement('tr'),cell=document.createElement('td');cell.colSpan=5;cell.textContent='No rate pairs match these filters.';row.appendChild(cell);fragment.appendChild(row);}
   rows.replaceChildren(fragment);
-  status.textContent=filtered.length+' matched work items shown · '+filtered.filter(p=>!p.equal).length+' rate differences';
+  status.textContent=filtered.length+' matched work items shown · '+filtered.filter(p=>!p.equal).length+' rate differences · '+(system.value==='imperial'?'Imperial equivalents':'Original SI');
+   $('compareUnitNote').textContent=system.value==='imperial'?
+    'Both versions and their differences use Imperial rate-per-unit conversions. Original SI data is unchanged: m²→ft² ×0.09290304; m³→ft³ ×0.028316846592; m→ft ×0.3048; kg→lb ×0.45359237.':
+    "All rates are shown in original SI units, in NPR. Select Imperial for mathematically equivalent units on both sides.";
  }
  search.addEventListener('input',render);
+ system.addEventListener('change',()=>{units.save(system.value);render();});
  for(const el of [show,family])el.addEventListener('change',render);
  division.addEventListener('change',()=>{families();render();});
  const requested=new URLSearchParams(location.search);

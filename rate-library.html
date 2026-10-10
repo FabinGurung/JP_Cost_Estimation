@@ -10,6 +10,7 @@
 <link href="site-shell.css" rel="stylesheet"/>
 <link href="work-rate-library.css" rel="stylesheet"/>
 <script defer="" src="theme.js"></script>
+<script defer="" src="work-rate-units.js"></script>
 <script defer="" src="work-rate-library.js"></script>
 </head>
 <body>
@@ -54,7 +55,7 @@
 </div><div aria-label="Rate source status" class="work-source-identity"><span><strong>Source:</strong> Historical workbook</span><span><strong>Rate year:</strong> Not recorded</span><span><strong>Location:</strong> Not verified</span><span class="work-unverified-pill">Unverified rates</span></div>
 <section aria-label="Search and filter work rates" class="work-controls">
 <label class="work-query-label" for="workSearch">Find a work item
-          <input autocomplete="off" id="workSearch" placeholder="Try shuttering, Fe500, tile, plumbing, LED…" type="search"/>
+          <input autocomplete="off" id="workSearch" placeholder="Try cut piece, cut-piece, stone cladding, Fe500…" type="search"/>
 </label>
 <label for="workDivision">Work division
           <select id="workDivision">
@@ -71,6 +72,7 @@
 <option value="hidden">Hidden sheets · alternative</option>
 </select>
 </label>
+<label for="unitSystem">Measurement system<select id="unitSystem" aria-label="Measurement system: SI or Imperial"><option value="si">SI · m, m², m³, kg</option><option value="imperial">Imperial · ft, ft², ft³, lb</option></select></label>
 <label for="workSort">Sort by
           <select id="workSort">
 <option value="source">Original workbook order</option>
@@ -92,7 +94,8 @@
 <button class="btn" disabled="" id="workPrev" type="button">← Previous</button>
 <button class="btn" disabled="" id="workNext" type="button">Next →</button>
 </div></div>
-<p class="work-source-note">The list displays editorial short titles; tap one to read the full unabridged source description on the Work Specifications subpage. Units are displayed in human-readable notation (for example m³ rather than Cum, m² rather than Sqm, running m rather than Rm). Values are extracted, not recalculated. Source formulas, original wording and coordinates remain in the private Drive archive. These are not the approved AEC Rate Master or CAD-verified quantities.</p><p class="work-source-note">Categories and work types are <strong>editorial labels derived from the original work descriptions</strong>, not authoritative classifications. Compare source alternatives on the <a href="rate-comparison.html">Rate Comparison</a> page; hidden sheets are not assumed to be older or newer than visible sheets.</p>
+<p class="work-conversion-note" id="unitConversionNote" aria-live="polite">SI units are displayed from the original workbook. Choose Imperial for mathematically equivalent prices per foot, square foot, cubic foot or pound. Original source observations never change.</p>
+<p class="work-source-note">The list displays editorial short titles; tap one to read the full unabridged source description on the Work Specifications subpage. Units are displayed in human-readable notation (for example m³ rather than Cum, m² rather than Sqm, running m rather than Rm). Original SI values are extracted and never rewritten; Imperial display values are calculated from those SI prices, not new supplier quotations. Source formulas, original wording and coordinates remain in the private Drive archive. These are not the approved AEC Rate Master or CAD-verified quantities.</p><p class="work-source-note">Categories and work types are <strong>editorial labels derived from the original work descriptions</strong>, not authoritative classifications. Compare source alternatives on the <a href="rate-comparison.html">Rate Comparison</a> page; hidden sheets are not assumed to be older or newer than visible sheets.</p>
 <footer class="work-links">
 <a href="rate-specifications.html">Work Specifications →</a><a href="rate-comparison.html">Compare workbook rates →</a>
 <a href="index.html?view=rates">Government and user-known source rates →</a>

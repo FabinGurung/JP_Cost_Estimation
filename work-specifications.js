@@ -1,6 +1,6 @@
 (() => {
  'use strict';
- const $=id=>document.getElementById(id),money=new Intl.NumberFormat('en-IN',{maximumFractionDigits:2});
+ const $=id=>document.getElementById(id),units=window.JPRateUnits;
  const id=new URLSearchParams(window.location.search).get('id');
  const status=$('specStatus'),content=$('specContent');
  function failure(reason){status.textContent=reason;content.hidden=true;}
@@ -16,7 +16,7 @@
   const category=tax.records[id];
   const peers=catalog.items.filter(x=>x.section===item.section&&x.version===item.version);
   const ix=peers.findIndex(x=>x.id===item.id);
-  const back='rate-library.html?version='+encodeURIComponent(item.version)+'&division='+encodeURIComponent(item.section)+'&family='+encodeURIComponent(category.family)+'&type='+encodeURIComponent(category.work_type);
+  const back='rate-library.html?units='+encodeURIComponent(units.preferred())+'&version='+encodeURIComponent(item.version)+'&division='+encodeURIComponent(item.section)+'&family='+encodeURIComponent(category.family)+'&type='+encodeURIComponent(category.work_type);
   $('specBackCrumb').href=back;
   $('specHeading').textContent=short.labels[id];
   document.title=short.labels[id]+' | Work Specifications';
@@ -25,8 +25,16 @@
   $('specFamily').textContent=category.family;
   $('specType').textContent=category.work_type;
   $('specVariant').textContent=category.variant;
-  $('specUnit').textContent=item.unit;
-  $('specRate').textContent=money.format(item.rate);
+  const system=$('specUnitSystem');system.value=units.preferred();
+  const display=()=>{
+   const v=units.rateText(item.rate,item.unit,system.value),base=units.rateText(item.rate,item.unit,'si'),imp=units.rateText(item.rate,item.unit,'imperial');
+   $('specUnit').textContent=v.unit;$('specRate').textContent=v.formatted;
+   $('specRateLabel').textContent=v.derived?'converted Imperial':'original source SI';
+   $('specConversionNote').textContent=v.derived?
+    'Original workbook: NPR '+base.formatted+'/'+item.unit+'. '+v.formula+'. This is a mathematical equivalent, not a separately quoted price.':
+    'Original workbook: NPR '+base.formatted+'/'+item.unit+'. Imperial equivalent: NPR '+imp.formatted+'/'+imp.unit+'. Unit conversion does not change the project scope.';
+  };
+  system.addEventListener('change',()=>{units.save(system.value);display();});display();
   $('specFullText').textContent=item.description;
   $('specSourceSheet').textContent=item.source_sheet;
   $('specRateCell').textContent=item.source_rate_cell;

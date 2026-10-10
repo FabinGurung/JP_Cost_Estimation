@@ -222,3 +222,22 @@ html[data-theme="dark"] .comparison-table tbody tr:nth-child(even){background:rg
 @media(max-width:360px){
   .compare-controls{grid-template-columns:1fr}
 }
+
+/* v0.5.6: optically left-anchored prices and SI/Imperial unit controls */
+.work-rate-table .work-description-col{width:62%}
+.work-rate-table .work-unit-col{width:10%}
+.work-rate-table .work-rate-col{width:28%}
+.work-rate-table thead th:last-child,.work-rate-table td.work-price-cell{text-align:left!important}
+.work-rate-table td.work-price-cell{white-space:normal!important;overflow-wrap:normal;vertical-align:middle;padding-left:8px!important;padding-right:10px!important}
+.work-rate-table th:nth-child(3){padding-left:8px!important}
+.work-price-number{font-size:clamp(12px,1vw,15px);display:inline-block;padding:6px 9px;border:1px solid #d8e7d9;border-radius:9px;background:#eef8f0;color:#195e39;font-weight:830;font-variant-numeric:tabular-nums;white-space:nowrap;max-width:100%;box-sizing:border-box}
+.work-controls{grid-template-columns:repeat(3,minmax(0,1fr))}
+.work-conversion-note{margin:13px 0 19px;padding:10px 13px;background:#eff7f0;color:#305742;border:1px solid #d8e7d7;border-radius:11px;font-size:12px;line-height:1.7;overflow-wrap:anywhere}
+.spec-unit-control{display:flex;justify-content:flex-end;margin:14px 0}
+.spec-unit-control label{display:flex;gap:10px;align-items:center;font-weight:750;color:var(--ink);font-size:13px}
+.spec-unit-control select{padding:9px 14px;border:1px solid var(--line);border-radius:10px;background:var(--panel);color:var(--ink);font-size:15px}
+html[data-theme="dark"] .work-price-number{background:#173e28;border-color:#396247;color:#b7ebc3}
+html[data-theme="dark"] .work-conversion-note{background:var(--panel);border-color:var(--line);color:var(--ink)}
+@media(max-width:1050px){.work-rate-table .work-description-col{width:61%}.work-rate-table .work-unit-col{width:10%}.work-rate-table .work-rate-col{width:29%}}
+@media(max-width:720px){.work-rate-table .work-description-col{width:59%}.work-rate-table .work-unit-col{width:11%}.work-rate-table .work-rate-col{width:30%}.work-price-number{padding:5px 5px;font-size:11px}}
+@media(max-width:375px){.work-rate-table .work-description-col{width:57%}.work-rate-table .work-unit-col{width:12%}.work-rate-table .work-rate-col{width:31%}.work-rate-table td.work-price-cell{padding-right:4px!important;padding-left:4px!important}.work-price-number{padding:4px 4px;font-size:10.5px}}

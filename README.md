@@ -55,3 +55,9 @@ Source authority: [AEC Cost/Rate Master](https://docs.google.com/spreadsheets/d/
 ## v0.5.5 — Work-rate classification & comparison (2026-10-10)
 
 The [Rate Library](rate-library.html) stays a **three-column** compact table with a narrower **wrapped Unit** column, an editorial **work family → type → variant** browsing hierarchy, and explicit source year/location/approval uncertainty. [Rate Comparison](rate-comparison.html) pairs 102 exactly matching visible/hidden alternative work items and surfaces **four differing unit prices** (no chronology inferred). Complete original descriptions, provenance, and paired values are available via the [Work Specifications](rate-specifications.html) page. The canonical AEC rate master, finance ledger, source workbook, QTO and original 204 rate observations are unchanged. See [v0.5.5 release notes](docs/RATE_LIBRARY_TAXONOMY_COMPARISON_v0.5.5.md).
+
+## v0.5.6 — price readability, search normalization and SI/Imperial display (2026-10-10)
+
+The [Rate Library](rate-library.html) still has exactly three columns, but displays left-anchored NPR prices rather than far-right values. Search now indexes a normalized version of the full source specification so `cut piece`, `cut-piece` and `CUTPIECE` find the same source item. An SI/Imperial switch is available on Rate Library, [Work Specifications](rate-specifications.html) and [Rate Comparison](rate-comparison.html). Derived unit prices use exact conversion denominators and **never overwrite the 204 source rates**. Unknown rate year/location/approval are unchanged; Rohini Finance, existing AEC source library, Rate Analysis, CAD-owned takeoff, and rollback history remain preserved.
+
+See [conversion design and QA](docs/RATE_LIBRARY_SEARCH_IMPERIAL_v0.5.6.md).

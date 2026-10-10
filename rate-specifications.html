@@ -7,7 +7,7 @@
 <title>Work Specifications | JP Cost &amp; Rate Intelligence</title>
 <link href="styles.css" rel="stylesheet"/><link href="site-shell.css" rel="stylesheet"/>
 <link href="work-rate-library.css" rel="stylesheet"/>
-<script defer="" src="theme.js"></script><script defer="" src="work-specifications.js"></script>
+<script defer="" src="theme.js"></script><script defer="" src="work-rate-units.js"></script><script defer="" src="work-specifications.js"></script>
 </head>
 <body>
 <aside class="sidebar">
@@ -37,7 +37,7 @@
 <div aria-live="polite" id="specStatus" role="status">Loading full work specification…</div>
 <section class="spec-content" hidden="" id="specContent">
 <div class="spec-tag-row"><span class="spec-tag" id="specSection"></span><span class="spec-tag spec-tag-warn" id="specVersion"></span></div><div aria-label="Work classification" class="spec-class-path"><strong>Classification:</strong> <span id="specFamily"></span> <span aria-hidden="true">›</span> <span id="specType"></span> <span aria-hidden="true">›</span> <span id="specVariant"></span></div>
-<div aria-label="Work item reference price" class="spec-facts"><div><small>Unit</small><strong id="specUnit"></strong></div><div><small>Historical rate (NPR)</small><strong id="specRate"></strong></div></div>
+<div class="spec-unit-control"><label for="specUnitSystem">Show rates in <select id="specUnitSystem"><option value="si">SI</option><option value="imperial">Imperial</option></select></label></div><div aria-label="Work item reference price" class="spec-facts"><div><small>Display unit</small><strong id="specUnit"></strong></div><div><small>Historical rate (NPR) · <span id="specRateLabel">source SI</span></small><strong id="specRate"></strong></div></div><p class="work-conversion-note" id="specConversionNote"></p>
 <article class="spec-body"><h2>Full source specification</h2><p class="spec-explainer">The wording below is preserved from the source estimate. It has not been expanded or corrected with invented requirements.</p>
 <div class="spec-full-text" id="specFullText"></div></article>
 <section aria-labelledby="specProvenanceHeading" class="spec-provenance"><h2 id="specProvenanceHeading">Record and traceability</h2>

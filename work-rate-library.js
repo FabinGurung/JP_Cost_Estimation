@@ -1,12 +1,13 @@
 (() => {
   'use strict';
   const $ = id => document.getElementById(id);
-  const price = new Intl.NumberFormat('en-IN',{maximumFractionDigits:2});
+  const units=window.JPRateUnits;
   const PAGE_SIZE = 25;
   let records=[], names={}, taxonomy={}, page=0, loaded=false;
   const query=$('workSearch'),division=$('workDivision'),family=$('workFamily'),type=$('workType'),version=$('workVersion'),sort=$('workSort');
   const status=$('workStatus'), tbody=$('workRateRows'),pageSummary=$('workPageSummary');
-  const previous=$('workPrev'),next=$('workNext');
+  const previous=$('workPrev'),next=$('workNext'),system=$('unitSystem');
+  system.value=units.preferred();
   const unitLabel=u=>u==='running m'?'r.m.':u;
   function fillSelect(node,values,preserve){
     const current=preserve?node.value:'all';
@@ -27,10 +28,10 @@
       const t=taxonomy[r.id];
       return r.version===version.value&&(division.value==='all'||r.section===division.value)&&
        (family.value==='all'||t.family===family.value)&&(type.value==='all'||t.work_type===type.value)&&
-       (!q||[names[r.id],r.description,r.unit,r.section,t.family,t.work_type,t.variant].join(' ').toLocaleLowerCase().includes(q));
+       (!q||units.match([names[r.id],r.description,r.unit,r.section,t.family,t.work_type,t.variant].join(' '),q));
     });
-    if(sort.value==='price-low')result.sort((a,b)=>a.rate-b.rate);
-    if(sort.value==='price-high')result.sort((a,b)=>b.rate-a.rate);
+    if(sort.value==='price-low')result.sort((a,b)=>units.convert(a.rate,a.unit,system.value).rate-units.convert(b.rate,b.unit,system.value).rate);
+    if(sort.value==='price-high')result.sort((a,b)=>units.convert(b.rate,b.unit,system.value).rate-units.convert(a.rate,a.unit,system.value).rate);
     if(sort.value==='name')result.sort((a,b)=>names[a.id].localeCompare(names[b.id]));
     return result;
   }
@@ -47,14 +48,18 @@
       work.appendChild(category);
       const a=document.createElement('a');a.className='work-name-link';a.href='rate-specifications.html?id='+encodeURIComponent(item.id);
       a.textContent=names[item.id];a.title='Read the complete source specification';work.appendChild(a);
-      const u=document.createElement('td');u.className='work-unit-cell';u.textContent=unitLabel(item.unit);
-      u.title=item.unit;u.setAttribute('aria-label','Unit: '+item.unit);
-      const amount=document.createElement('td');amount.className='work-price-cell';amount.textContent=price.format(item.rate);
+      const displayed=units.rateText(item.rate,item.unit,system.value);
+      const u=document.createElement('td');u.className='work-unit-cell';u.textContent=displayed.unit;
+      u.title=displayed.derived?'Converted unit from '+item.unit:'Source unit: '+item.unit;u.setAttribute('aria-label','Unit: '+displayed.unit);
+      const amount=document.createElement('td');amount.className='work-price-cell';
+      const value=document.createElement('span');value.className='work-price-number';value.textContent=displayed.formatted;amount.appendChild(value);
+      amount.title=displayed.derived?'Calculated from original NPR '+units.rateText(item.rate,item.unit,'si').formatted+'/'+item.unit:'Source workbook NPR per '+item.unit;
       tr.append(work,u,amount);fragment.appendChild(tr);
     }
     if(!shown.length){const tr=document.createElement('tr'),td=document.createElement('td');td.className='work-empty';td.colSpan=3;td.textContent='No matching work items. Try a different category or search.';tr.appendChild(td);fragment.appendChild(tr);}
     tbody.replaceChildren(fragment);
-    status.textContent=matches.length+' '+(version.value==='visible'?'visible-sheet':'hidden alternative')+' rates found · Historical and unverified';
+    status.textContent=matches.length+' '+(version.value==='visible'?'visible-sheet':'hidden alternative')+' rates found · '+(system.value==='imperial'?'Imperial equivalents':'Source SI rates')+' · Historical/unverified';
+    $('unitConversionNote').textContent=system.value==='imperial'?'Imperial values are calculated from the original SI rate (not independent quotations): NPR/ft² = NPR/m² × 0.09290304; NPR/ft³ = NPR/m³ × 0.028316846592; NPR/ft = NPR/m × 0.3048; NPR/lb = NPR/kg × 0.45359237. Item/set/job/point rates remain unchanged.':'SI units and original NPR prices are shown. Select Imperial to see equivalent per-foot, per-square-foot, per-cubic-foot and per-pound rates. Stored source values remain unchanged.';
     pageSummary.textContent=matches.length?(start+1)+'–'+Math.min(start+PAGE_SIZE,matches.length)+' of '+matches.length+' · Page '+(page+1)+' of '+(maxPage+1):'0 results';
     previous.disabled=page===0;next.disabled=matches.length===0||page===maxPage;
   }
@@ -63,6 +68,7 @@
   }
   query.addEventListener('input',()=>{page=0;update();});
   sort.addEventListener('change',()=>{page=0;update();});
+  system.addEventListener('change',()=>{units.save(system.value);page=0;update();});
   for(const control of [division,version,family])control.addEventListener('change',()=>{page=0;updateChoices();update();});
   type.addEventListener('change',()=>{page=0;update();});
   $('workClear').addEventListener('click',()=>{query.value='';division.value='all';family.value='all';type.value='all';version.value='visible';sort.value='source';page=0;updateChoices();update();query.focus();});
