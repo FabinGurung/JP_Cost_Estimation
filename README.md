@@ -51,3 +51,7 @@ Source authority: [AEC Cost/Rate Master](https://docs.google.com/spreadsheets/d/
 ## v0.5.2 — Retired legacy project demonstration seed (2026-10-10)
 
 `data/research_seed.json` is a nonfunctional, project-free placeholder in the active research release. The original file remains in `snapshot/pre-legacy-kumari-seed-retirement-v0.5.2-20261010` and original `main` for rollback. No engineering project data has been deleted from its independent Drive authority. Rate Library, Analysis, Rohini Finance and System Lifecycle remain unchanged.
+
+## v0.5.5 — Work-rate classification & comparison (2026-10-10)
+
+The [Rate Library](rate-library.html) stays a **three-column** compact table with a narrower **wrapped Unit** column, an editorial **work family → type → variant** browsing hierarchy, and explicit source year/location/approval uncertainty. [Rate Comparison](rate-comparison.html) pairs 102 exactly matching visible/hidden alternative work items and surfaces **four differing unit prices** (no chronology inferred). Complete original descriptions, provenance, and paired values are available via the [Work Specifications](rate-specifications.html) page. The canonical AEC rate master, finance ledger, source workbook, QTO and original 204 rate observations are unchanged. See [v0.5.5 release notes](docs/RATE_LIBRARY_TAXONOMY_COMPARISON_v0.5.5.md).

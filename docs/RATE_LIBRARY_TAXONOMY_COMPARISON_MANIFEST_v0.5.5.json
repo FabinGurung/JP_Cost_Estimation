@@ -1,0 +1,45 @@
+{
+  "release": "v0.5.5",
+  "files": {
+    "rate-library.html": {
+      "sha256": "13b9bc55fe486a592039cb3c64e4334983651ee342f4da8c68177272b01f5867",
+      "bytes": 7173
+    },
+    "rate-specifications.html": {
+      "sha256": "b366701a15aedae373090baa892cff947c423a427e6fa6842cc97d0181269490",
+      "bytes": 4753
+    },
+    "rate-comparison.html": {
+      "sha256": "ed746e9f572bede226ac7ef061990da323eb97e2219dd9acaf6c590ace62c821",
+      "bytes": 5281
+    },
+    "work-rate-library.css": {
+      "sha256": "47dfe872b4066a7c01b6cc60bf0d5c5fa5beb3c461546a292969a620fefbbd07",
+      "bytes": 18514
+    },
+    "work-rate-library.js": {
+      "sha256": "402f2440147824587752d24b9f02980987735009c3822b3b4953bc18822f0a56",
+      "bytes": 7120
+    },
+    "work-rate-comparison.js": {
+      "sha256": "5a6d24762fb9500ea7911bca69befbef0a3c86c12bdaae7d3531f63dd132f721",
+      "bytes": 4295
+    },
+    "work-specifications.js": {
+      "sha256": "86ee7e48669d35925477d8535a0fa1276b0c6a98ea61daa3cc736d2361dab143",
+      "bytes": 3391
+    },
+    "data/work-rate-taxonomy-v0.5.5.json": {
+      "sha256": "77dc4302316b6fcc80678ac7765f933c8e0da31cab5a2894dcdacae84e1db8ed",
+      "bytes": 61866
+    },
+    "RELEASE_NOTES_v0.5.5.md": {
+      "sha256": "50a6580fb40fd957906a2e1dafaa4198665d0fef42187302883443c1d7498bf3",
+      "bytes": 4287
+    }
+  },
+  "source_rate_count": 204,
+  "pair_count": 102,
+  "different_pair_count": 4,
+  "rate_authority": "unverified historical workbook; rate year/location unknown"
+}

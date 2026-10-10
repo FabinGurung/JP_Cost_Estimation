@@ -1,105 +1,106 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="Browse construction work descriptions, units and historical reference rates in Nepalese rupees.">
-  <title>Rate Library — Clear Work Prices | JP Cost &amp; Rate Intelligence</title>
-  <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="site-shell.css">
-  <link rel="stylesheet" href="work-rate-library.css">
-  <script src="theme.js" defer></script>
-  <script src="work-rate-library.js" defer></script>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="Browse construction work descriptions, units and historical reference rates in Nepalese rupees." name="description"/>
+<title>Rate Library — Clear Work Prices | JP Cost &amp; Rate Intelligence</title>
+<link href="styles.css" rel="stylesheet"/>
+<link href="site-shell.css" rel="stylesheet"/>
+<link href="work-rate-library.css" rel="stylesheet"/>
+<script defer="" src="theme.js"></script>
+<script defer="" src="work-rate-library.js"></script>
 </head>
 <body>
-  <aside class="sidebar">
-    <div class="brand"><div class="logo">JP</div><div><strong>Cost &amp; Rate Intelligence</strong><small>Construction work-rate library</small></div></div>
-    <nav aria-label="Primary site navigation">
-      <a class="nav-item" href="index.html">← Overview</a>
-      <a class="nav-item active" aria-current="page" href="rate-library.html">Rate Library</a>
-      <a class="nav-item" href="rate-specifications.html">Work Specifications</a>
-      <a class="nav-item" href="index.html?view=rates">Source Rates</a>
-      <a class="nav-item" href="index.html?view=analysis">Rate Analysis</a>
-      <a class="nav-item" href="finance.html">Finance &amp; Payments</a>
-      <a class="nav-item" href="system-map.html">System Lifecycle</a>
-    </nav>
-  </aside>
-  <main class="app-shell">
-    <section class="landscape-hero compact work-hero" aria-label="Open white clouds, sunlight and green valley">
-      <div class="landscape-hero-content">
-        <p class="eyebrow">JP · CONSTRUCTION KNOWLEDGE · RATE LIBRARY</p>
-        <h2>Every work item. <em>Clearly priced.</em></h2>
-        <p>Short work titles and rates, side by side. Tap any work title for its complete specification.</p>
-        <div class="hero-actions">
-          <a class="hero-cta primary" href="#rateTable">Browse the table ↓</a>
-          <a class="hero-cta secondary" href="index.html?view=analysis">Rate Analysis ↗</a>
-        </div>
-      </div>
-    </section>
-    <section class="work-library-main">
-      <div class="work-intro">
-        <div><p class="eyebrow">HUMAN-READABLE WORK RATE INDEX</p><h1>Rate Library</h1>
-        <p class="work-intro-copy">A clean price index. Tap a work title to read the complete scope and specification on its own page. Rates are in NPR per unit.</p></div>
-        <button id="themeToggle" type="button" class="btn theme-toggle" aria-label="Change appearance">Dark mode</button>
-      </div>
-      <aside class="work-reference-notice" role="note">
-        <strong>Historical estimate references—not approved prices.</strong>
+<aside class="sidebar">
+<div class="brand"><div class="logo">JP</div><div><strong>Cost &amp; Rate Intelligence</strong><small>Construction work-rate library</small></div></div>
+<nav aria-label="Primary site navigation">
+<a class="nav-item" href="index.html">← Overview</a>
+<a aria-current="page" class="nav-item active" href="rate-library.html">Rate Library</a><a class="nav-item" href="rate-comparison.html">Compare Rates</a>
+<a class="nav-item" href="rate-specifications.html">Work Specifications</a>
+<a class="nav-item" href="index.html?view=rates">Source Rates</a>
+<a class="nav-item" href="index.html?view=analysis">Rate Analysis</a>
+<a class="nav-item" href="finance.html">Finance &amp; Payments</a>
+<a class="nav-item" href="system-map.html">System Lifecycle</a>
+</nav>
+</aside>
+<main class="app-shell">
+<section aria-label="Open white clouds, sunlight and green valley" class="landscape-hero compact work-hero">
+<div class="landscape-hero-content">
+<p class="eyebrow">JP · CONSTRUCTION KNOWLEDGE · RATE LIBRARY</p>
+<h2>Every work item. <em>Clearly priced.</em></h2>
+<p>Short work titles and rates, side by side. Tap any work title for its complete specification.</p>
+<div class="hero-actions">
+<a class="hero-cta primary" href="#rateTable">Browse the table ↓</a>
+<a class="hero-cta secondary" href="rate-comparison.html">Compare alternatives ↗</a>
+</div>
+</div>
+</section>
+<section class="work-library-main">
+<div class="work-intro">
+<div><p class="eyebrow">HUMAN-READABLE WORK RATE INDEX</p><h1>Rate Library</h1>
+<p class="work-intro-copy">A clean price index. Tap a work title to read the complete scope and specification on its own page. Rates are in NPR per unit.</p></div>
+<button aria-label="Change appearance" class="btn theme-toggle" id="themeToggle" type="button">Dark mode</button>
+</div>
+<aside class="work-reference-notice" role="note">
+<strong>Historical estimate references—not approved prices.</strong>
         The workbook's project identity is inconsistent. The public list deliberately contains no client name, project quantities or costs. The hidden-sheet alternatives are a separate historic version and never combined with the primary list. Short titles are navigation aids, not replacements for the recorded specifications.
       </aside>
-      <div class="work-kpi-strip" aria-label="Catalog summary">
-        <div><span>Visible worksheet rates</span><strong id="visibleCount">102</strong><small>records</small></div>
-        <div><span>Hidden alternative rates</span><strong id="hiddenCount">102</strong><small>records</small></div>
-        <div><span>Data class</span><strong>Historical BOQ</strong><small>unit-rate reference</small></div>
-      </div>
-      <section class="work-controls" aria-label="Search and filter work rates">
-        <label class="work-query-label" for="workSearch">Find a work item
-          <input type="search" id="workSearch" autocomplete="off" placeholder="Try shuttering, Fe500, tile, plumbing, LED…">
-        </label>
-        <label for="workDivision">Work division
+<div aria-label="Catalog summary" class="work-kpi-strip">
+<div><span>Visible worksheet rates</span><strong id="visibleCount">102</strong><small>records</small></div>
+<div><span>Hidden alternative rates</span><strong id="hiddenCount">102</strong><small>records</small></div>
+<div><span>Data class</span><strong>Historical BOQ</strong><small>unit-rate reference</small></div>
+</div><div aria-label="Rate source status" class="work-source-identity"><span><strong>Source:</strong> Historical workbook</span><span><strong>Rate year:</strong> Not recorded</span><span><strong>Location:</strong> Not verified</span><span class="work-unverified-pill">Unverified rates</span></div>
+<section aria-label="Search and filter work rates" class="work-controls">
+<label class="work-query-label" for="workSearch">Find a work item
+          <input autocomplete="off" id="workSearch" placeholder="Try shuttering, Fe500, tile, plumbing, LED…" type="search"/>
+</label>
+<label for="workDivision">Work division
           <select id="workDivision">
-            <option value="all">All divisions</option>
-            <option value="Building Works">Building Works</option>
-            <option value="Other Structures">Other Structures</option>
-            <option value="Electrical Works">Electrical Works</option>
-            <option value="Sanitary Works">Sanitary Works</option>
-          </select>
-        </label>
-        <label for="workVersion">Workbook version
+<option value="all">All divisions</option>
+<option value="Building Works">Building Works</option>
+<option value="Other Structures">Other Structures</option>
+<option value="Electrical Works">Electrical Works</option>
+<option value="Sanitary Works">Sanitary Works</option>
+</select>
+</label><label for="workFamily">Work category<select id="workFamily"><option value="all">All categories</option></select></label><label for="workType">Work type<select id="workType"><option value="all">All work types</option></select></label>
+<label for="workVersion">Workbook version
           <select id="workVersion">
-            <option value="visible">Visible sheets · primary</option>
-            <option value="hidden">Hidden sheets · alternative</option>
-          </select>
-        </label>
-        <label for="workSort">Sort by
+<option value="visible">Visible sheets · primary</option>
+<option value="hidden">Hidden sheets · alternative</option>
+</select>
+</label>
+<label for="workSort">Sort by
           <select id="workSort">
-            <option value="source">Original workbook order</option>
-            <option value="price-low">Lowest rate first</option>
-            <option value="price-high">Highest rate first</option>
-            <option value="name">Description A–Z</option>
-          </select>
-        </label>
-      </section>
-      <div class="work-table-top"><p id="workStatus" role="status" aria-live="polite">Loading rates…</p><button type="button" class="btn work-clear" id="workClear">Clear filters</button></div>
-      <div class="work-table-frame" id="rateTable">
-        <table class="work-rate-table" aria-label="Work descriptions, measurement units and unit rates in Nepalese rupees">
-          <colgroup><col class="work-description-col"><col class="work-unit-col"><col class="work-rate-col"></colgroup>
-          <thead><tr><th scope="col">Description of Work</th><th scope="col">Unit</th><th scope="col">Rate (NPR)</th></tr></thead>
-          <tbody id="workRateRows"><tr><td colspan="3">Loading work items…</td></tr></tbody>
-        </table>
-      </div>
-      <div class="work-pagination"><span id="workPageSummary">—</span><div>
-        <button type="button" class="btn" id="workPrev" disabled>← Previous</button>
-        <button type="button" class="btn" id="workNext" disabled>Next →</button>
-      </div></div>
-      <p class="work-source-note">The list displays editorial short titles; tap one to read the full unabridged source description on the Work Specifications subpage. Units are displayed in human-readable notation (for example m³ rather than Cum, m² rather than Sqm, running m rather than Rm). Values are extracted, not recalculated. Source formulas, original wording and coordinates remain in the private Drive archive. These are not the approved AEC Rate Master or CAD-verified quantities.</p>
-      <footer class="work-links">
-        <a href="rate-specifications.html">Work Specifications →</a>
-        <a href="index.html?view=rates">Government and user-known source rates →</a>
-        <a href="index.html?view=analysis">Transparent rate analysis →</a>
-        <a href="finance.html">Rohini finance →</a>
-        <a href="system-map.html">System history and rollback →</a>
-      </footer>
-    </section>
-  </main>
+<option value="source">Original workbook order</option>
+<option value="price-low">Lowest rate first</option>
+<option value="price-high">Highest rate first</option>
+<option value="name">Description A–Z</option>
+</select>
+</label>
+</section>
+<div class="work-table-top"><p aria-live="polite" id="workStatus" role="status">Loading rates…</p><button class="btn work-clear" id="workClear" type="button">Clear filters</button></div>
+<div class="work-table-frame" id="rateTable">
+<table aria-label="Work descriptions, measurement units and unit rates in Nepalese rupees" class="work-rate-table">
+<colgroup><col class="work-description-col"/><col class="work-unit-col"/><col class="work-rate-col"/></colgroup>
+<thead><tr><th scope="col">Description of Work</th><th scope="col">Unit</th><th scope="col">Rate (NPR)</th></tr></thead>
+<tbody id="workRateRows"><tr><td colspan="3">Loading work items…</td></tr></tbody>
+</table>
+</div>
+<div class="work-pagination"><span id="workPageSummary">—</span><div>
+<button class="btn" disabled="" id="workPrev" type="button">← Previous</button>
+<button class="btn" disabled="" id="workNext" type="button">Next →</button>
+</div></div>
+<p class="work-source-note">The list displays editorial short titles; tap one to read the full unabridged source description on the Work Specifications subpage. Units are displayed in human-readable notation (for example m³ rather than Cum, m² rather than Sqm, running m rather than Rm). Values are extracted, not recalculated. Source formulas, original wording and coordinates remain in the private Drive archive. These are not the approved AEC Rate Master or CAD-verified quantities.</p><p class="work-source-note">Categories and work types are <strong>editorial labels derived from the original work descriptions</strong>, not authoritative classifications. Compare source alternatives on the <a href="rate-comparison.html">Rate Comparison</a> page; hidden sheets are not assumed to be older or newer than visible sheets.</p>
+<footer class="work-links">
+<a href="rate-specifications.html">Work Specifications →</a><a href="rate-comparison.html">Compare workbook rates →</a>
+<a href="index.html?view=rates">Government and user-known source rates →</a>
+<a href="index.html?view=analysis">Transparent rate analysis →</a>
+<a href="finance.html">Rohini finance →</a>
+<a href="system-map.html">System history and rollback →</a>
+</footer>
+</section>
+</main>
 </body>
 </html>
