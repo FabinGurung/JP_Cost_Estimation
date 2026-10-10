@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Browse construction work descriptions, units and historical reference rates in Nepalese rupees.">
+  <title>Rate Library | JP Cost &amp; Rate Intelligence</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="site-shell.css">
+  <link rel="stylesheet" href="work-rate-library.css">
+  <script src="theme.js" defer></script>
+  <script src="work-rate-library.js" defer></script>
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="brand"><div class="logo">JP</div><div><strong>Cost &amp; Rate Intelligence</strong><small>Construction work-rate library</small></div></div>
+    <nav aria-label="Primary site navigation">
+      <a class="nav-item" href="index.html">← Overview</a>
+      <a class="nav-item active" aria-current="page" href="rate-library.html">Rate Library</a>
+      <a class="nav-item" href="index.html?view=rates">Source Rates</a>
+      <a class="nav-item" href="index.html?view=analysis">Rate Analysis</a>
+      <a class="nav-item" href="finance.html">Finance &amp; Payments</a>
+      <a class="nav-item" href="system-map.html">System Lifecycle</a>
+    </nav>
+  </aside>
+  <main class="app-shell">
+    <section class="landscape-hero compact work-hero" aria-label="Open white clouds, sunlight and green valley">
+      <div class="landscape-hero-content">
+        <p class="eyebrow">JP · CONSTRUCTION KNOWLEDGE · RATE LIBRARY</p>
+        <h2>Every work item. <em>Clearly priced.</em></h2>
+        <p>The description of work, its measurement unit, and the recorded rate—side by side.</p>
+        <div class="hero-actions">
+          <a class="hero-cta primary" href="#rateTable">Browse the table ↓</a>
+          <a class="hero-cta secondary" href="index.html?view=analysis">Rate Analysis ↗</a>
+        </div>
+      </div>
+    </section>
+    <section class="work-library-main">
+      <div class="work-intro">
+        <div><p class="eyebrow">HUMAN-READABLE WORK RATE INDEX</p><h1>Rate Library</h1>
+        <p class="work-intro-copy">Descriptions follow the recorded estimate wording. Rates are in Nepalese rupees per unit.</p></div>
+        <button id="themeToggle" type="button" class="btn theme-toggle" aria-label="Change appearance">Dark mode</button>
+      </div>
+      <aside class="work-reference-notice" role="note">
+        <strong>Historical estimate references—not approved prices.</strong>
+        The workbook's project identity is inconsistent. The public list deliberately contains no client name, project quantities or costs. The hidden-sheet alternatives are a separate historic version and never combined with the primary list.
+      </aside>
+      <div class="work-kpi-strip" aria-label="Catalog summary">
+        <div><span>Visible worksheet rates</span><strong id="visibleCount">102</strong><small>records</small></div>
+        <div><span>Hidden alternative rates</span><strong id="hiddenCount">102</strong><small>records</small></div>
+        <div><span>Data class</span><strong>Historical BOQ</strong><small>unit-rate reference</small></div>
+      </div>
+      <section class="work-controls" aria-label="Search and filter work rates">
+        <label class="work-query-label" for="workSearch">Find a work item
+          <input type="search" id="workSearch" autocomplete="off" placeholder="Try shuttering, Fe500, tile, plumbing, LED…">
+        </label>
+        <label for="workDivision">Work division
+          <select id="workDivision">
+            <option value="all">All divisions</option>
+            <option value="Building Works">Building Works</option>
+            <option value="Other Structures">Other Structures</option>
+            <option value="Electrical Works">Electrical Works</option>
+            <option value="Sanitary Works">Sanitary Works</option>
+          </select>
+        </label>
+        <label for="workVersion">Workbook version
+          <select id="workVersion">
+            <option value="visible">Visible sheets · primary</option>
+            <option value="hidden">Hidden sheets · alternative</option>
+          </select>
+        </label>
+        <label for="workSort">Sort by
+          <select id="workSort">
+            <option value="source">Original workbook order</option>
+            <option value="price-low">Lowest rate first</option>
+            <option value="price-high">Highest rate first</option>
+            <option value="name">Description A–Z</option>
+          </select>
+        </label>
+      </section>
+      <div class="work-table-top"><p id="workStatus" role="status" aria-live="polite">Loading rates…</p><button type="button" class="btn work-clear" id="workClear">Clear filters</button></div>
+      <div class="work-table-frame" id="rateTable">
+        <table class="work-rate-table" aria-label="Work descriptions, measurement units and unit rates in Nepalese rupees">
+          <colgroup><col class="work-description-col"><col class="work-unit-col"><col class="work-rate-col"></colgroup>
+          <thead><tr><th scope="col">Description of Work</th><th scope="col">Unit</th><th scope="col">Rate (NPR)</th></tr></thead>
+          <tbody id="workRateRows"><tr><td colspan="3">Loading work items…</td></tr></tbody>
+        </table>
+      </div>
+      <div class="work-pagination"><span id="workPageSummary">—</span><div>
+        <button type="button" class="btn" id="workPrev" disabled>← Previous</button>
+        <button type="button" class="btn" id="workNext" disabled>Next →</button>
+      </div></div>
+      <p class="work-source-note">Units are displayed in human-readable notation (for example m³ rather than Cum, m² rather than Sqm, running m rather than Rm). Values are extracted, not recalculated. Source formulas, original wording and coordinates remain in the private Drive archive. These are not the approved AEC Rate Master or CAD-verified quantities.</p>
+      <footer class="work-links">
+        <a href="index.html?view=rates">Government and user-known source rates →</a>
+        <a href="index.html?view=analysis">Transparent rate analysis →</a>
+        <a href="finance.html">Rohini finance →</a>
+        <a href="system-map.html">System history and rollback →</a>
+      </footer>
+    </section>
+  </main>
+</body>
+</html>

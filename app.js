@@ -225,4 +225,6 @@
   $("rateSearch").addEventListener("input",renderRates);
   $("rateClass").addEventListener("change",renderRates);
   renderSources();calculateDraft();renderRates();loadCanonical();
+  const requestedView=new URLSearchParams(window.location.search).get("view");
+  if(["analysis","sources","rates"].includes(requestedView))navigate(requestedView);
 })();
