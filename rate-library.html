@@ -11,6 +11,7 @@
 <link href="work-rate-library.css" rel="stylesheet"/>
 <script defer="" src="theme.js"></script>
 <script defer="" src="work-rate-units.js"></script>
+<script defer="" src="work-construction-guide.js"></script>
 <script defer="" src="work-rate-library.js"></script>
 </head>
 <body>
@@ -31,7 +32,7 @@
 <div class="landscape-hero-content">
 <p class="eyebrow">JP · CONSTRUCTION KNOWLEDGE · RATE LIBRARY</p>
 <h2>Every work item. <em>Clearly priced.</em></h2>
-<p>Short work titles and rates, side by side. Tap any work title for its complete specification.</p>
+<p>Follow the construction journey—from excavation and foundations to structure, finishes and fixtures. Tap any work to see its source wording and quality-check guidance.</p>
 <div class="hero-actions">
 <a class="hero-cta primary" href="#rateTable">Browse the table ↓</a>
 <a class="hero-cta secondary" href="rate-comparison.html">Compare alternatives ↗</a>
@@ -41,7 +42,7 @@
 <section class="work-library-main">
 <div class="work-intro">
 <div><p class="eyebrow">HUMAN-READABLE WORK RATE INDEX</p><h1>Rate Library</h1>
-<p class="work-intro-copy">A clean price index. Tap a work title to read the complete scope and specification on its own page. Rates are in NPR per unit.</p></div>
+<p class="work-intro-copy">A visual construction sequence with helpful work emojis. Tap a title for the original specification and practical workmanship checks. Rates are in NPR per unit.</p></div>
 <button aria-label="Change appearance" class="btn theme-toggle" id="themeToggle" type="button">Dark mode</button>
 </div>
 <aside class="work-reference-notice" role="note">
@@ -75,12 +76,16 @@
 <label for="unitSystem">Measurement system<select id="unitSystem" aria-label="Measurement system: SI or Imperial"><option value="si">SI · m, m², m³, kg</option><option value="imperial">Imperial · ft, ft², ft³, lb</option></select></label>
 <label for="workSort">Sort by
           <select id="workSort">
-<option value="source">Original workbook order</option>
+<option value="construction" selected>Construction sequence · foundation first</option><option value="source">Original workbook order</option>
 <option value="price-low">Lowest rate first</option>
 <option value="price-high">Highest rate first</option>
 <option value="name">Description A–Z</option>
 </select>
 </label>
+</section>
+<section class="stage-explorer" aria-label="Browse typical construction stages">
+  <div class="stage-explorer-head"><div><p class="eyebrow">FROM THE GROUND UP</p><h2>🏗️ Construction journey</h2></div><span class="stage-explorer-note">Illustrative order · some trades overlap</span></div>
+  <div class="stage-ribbon" id="stageRibbon" role="group" aria-label="Filter by construction stage"><span class="stage-ribbon-loading">Loading stages…</span></div>
 </section>
 <div class="work-table-top"><p aria-live="polite" id="workStatus" role="status">Loading rates…</p><button class="btn work-clear" id="workClear" type="button">Clear filters</button></div>
 <div class="work-table-frame" id="rateTable">
@@ -95,6 +100,7 @@
 <button class="btn" disabled="" id="workNext" type="button">Next →</button>
 </div></div>
 <p class="work-conversion-note" id="unitConversionNote" aria-live="polite">SI units are displayed from the original workbook. Choose Imperial for mathematically equivalent prices per foot, square foot, cubic foot or pound. Original source observations never change.</p>
+<p class="work-source-note"><strong>Construction order:</strong> this is a general illustrative building-work sequence, not an actual project programme, method statement, or engineering approval. Some work types are repeated at multiple building levels, and site/MEP operations overlap.</p>
 <p class="work-source-note">The list displays editorial short titles; tap one to read the full unabridged source description on the Work Specifications subpage. Units are displayed in human-readable notation (for example m³ rather than Cum, m² rather than Sqm, running m rather than Rm). Original SI values are extracted and never rewritten; Imperial display values are calculated from those SI prices, not new supplier quotations. Source formulas, original wording and coordinates remain in the private Drive archive. These are not the approved AEC Rate Master or CAD-verified quantities.</p><p class="work-source-note">Categories and work types are <strong>editorial labels derived from the original work descriptions</strong>, not authoritative classifications. Compare source alternatives on the <a href="rate-comparison.html">Rate Comparison</a> page; hidden sheets are not assumed to be older or newer than visible sheets.</p>
 <footer class="work-links">
 <a href="rate-specifications.html">Work Specifications →</a><a href="rate-comparison.html">Compare workbook rates →</a>

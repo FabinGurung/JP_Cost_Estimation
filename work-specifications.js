@@ -1,6 +1,6 @@
 (() => {
  'use strict';
- const $=id=>document.getElementById(id),units=window.JPRateUnits;
+ const $=id=>document.getElementById(id),units=window.JPRateUnits,guide=window.JPConstructionGuide;
  const id=new URLSearchParams(window.location.search).get('id');
  const status=$('specStatus'),content=$('specContent');
  function failure(reason){status.textContent=reason;content.hidden=true;}
@@ -15,8 +15,14 @@
   if(!item||!short.labels[id]||!tax.records[id]){failure('This item could not be found. Return to the Rate Library.');return;}
   const category=tax.records[id];
   const peers=catalog.items.filter(x=>x.section===item.section&&x.version===item.version);
+  peers.sort((a,b)=>{
+   const sa=guide.sequence(a,tax.records[a.id]),sb=guide.sequence(b,tax.records[b.id]);
+   return sa.stage.order-sb.stage.order||sa.priority-sb.priority||
+    catalog.items.indexOf(a)-catalog.items.indexOf(b);
+  });
   const ix=peers.findIndex(x=>x.id===item.id);
-  const back='rate-library.html?units='+encodeURIComponent(units.preferred())+'&version='+encodeURIComponent(item.version)+'&division='+encodeURIComponent(item.section)+'&family='+encodeURIComponent(category.family)+'&type='+encodeURIComponent(category.work_type);
+  const stage=guide.sequence(item,category);
+  const back='rate-library.html?units='+encodeURIComponent(units.preferred())+'&version='+encodeURIComponent(item.version)+'&division='+encodeURIComponent(item.section)+'&family='+encodeURIComponent(category.family)+'&type='+encodeURIComponent(category.work_type)+'&stage='+encodeURIComponent(stage.stage_id);
   $('specBackCrumb').href=back;
   $('specHeading').textContent=short.labels[id];
   document.title=short.labels[id]+' | Work Specifications';
@@ -25,6 +31,12 @@
   $('specFamily').textContent=category.family;
   $('specType').textContent=category.work_type;
   $('specVariant').textContent=category.variant;
+  $('specStageEmoji').textContent=stage.emoji;
+  $('specStageName').textContent=stage.stage.label;
+  const qualityList=$('specQualityList');qualityList.replaceChildren();
+  for(const text of guide.checks(item,category)){
+   const li=document.createElement('li');li.textContent=text;qualityList.appendChild(li);
+  }
   const system=$('specUnitSystem');system.value=units.preferred();
   const display=()=>{
    const v=units.rateText(item.rate,item.unit,system.value),base=units.rateText(item.rate,item.unit,'si'),imp=units.rateText(item.rate,item.unit,'imperial');
