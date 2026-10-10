@@ -153,3 +153,9 @@ The Pages workflow publishes research source at `2c3579ce06cc9649fdb8825bad52495
 ## Pages deployment v0.5.4 · mobile Rate Library and Work Specifications (2026-10-10)
 
 The published research source is now `041e84971d9042f2ccbe674484a2fffa18d574ad`. The Rate Library uses short human-readable work titles and a fixed 3-column responsive table; a per-item `rate-specifications.html?id=...` page holds the complete original work descriptions. All 204 source records, historical version separation, rate observations, source identity restrictions, finance summaries, original baseline and rollback snapshots remain unchanged. Documentation-only change to trigger GitHub Pages from the existing workflow.
+
+---
+
+## Publish v0.5.5 · category navigation, rate comparison and narrow Unit column (2026-10-10)
+
+The Pages checkout branch `research/open-estimation-engine-v0.1` has source SHA `85cdca3d775173951a6147efef087d2dec0b1514`: new category/type filters, rate comparison for 102 matched pairs (4 differing unit rates), narrower wrapped Unit column, complete specification page metadata and explicit unresolved source year/location/approval. Original 204 rates, rate analysis, finance, BOQ template and histories are preserved. This documentation-only commit triggers the existing Pages workflow. PRE snapshot: `snapshot/pre-main-rate-taxonomy-v0.5.5-20261010`.
