@@ -159,3 +159,8 @@ The published research source is now `041e84971d9042f2ccbe674484a2fffa18d574ad`.
 ## Publish v0.5.5 · category navigation, rate comparison and narrow Unit column (2026-10-10)
 
 The Pages checkout branch `research/open-estimation-engine-v0.1` has source SHA `85cdca3d775173951a6147efef087d2dec0b1514`: new category/type filters, rate comparison for 102 matched pairs (4 differing unit rates), narrower wrapped Unit column, complete specification page metadata and explicit unresolved source year/location/approval. Original 204 rates, rate analysis, finance, BOQ template and histories are preserved. This documentation-only commit triggers the existing Pages workflow. PRE snapshot: `snapshot/pre-main-rate-taxonomy-v0.5.5-20261010`.
+
+---
+## Deploy v0.5.6 · rate price alignment, search aliases, SI/Imperial (2026-10-10)
+
+GitHub Pages checkout source `research/open-estimation-engine-v0.1` now points to `53eef3f788903f2e986fe8f0eab472ee63d65f99`. The three-column rate index shows left-anchored NPR prices; normalized search matches `cut piece`, `cut-piece` and `CUTPIECE`. SI/Imperial controls convert historical rate-per-unit denominators throughout Rate Library, Work Specifications and Rate Comparison using exact meter/foot/kilogram/pound factors. Source rates, classified rate references, finance, original engineering takeoff ownership and history remain unchanged. This main README-only commit triggers the existing Pages workflow.
