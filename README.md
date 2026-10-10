@@ -147,3 +147,9 @@ The GitHub Pages source branch `research/open-estimation-engine-v0.1` now points
 ## Publish v0.5.3: Three-column historical work-rate library (2026-10-10)
 
 The Pages workflow publishes research source at `2c3579ce06cc9649fdb8825bad524951ed4f1449`, adding `rate-library.html`: the human-readable **Description of Work | Unit | Rate (NPR)** table. It includes 102 visible-source-sheet unit-rate observations with separately selectable 102 hidden-sheet alternatives, described as historical unverified rates; no project/client identifying details or quantities are published. Rate Analysis, finance, original `main` baseline and system lifecycle are preserved. This documentation-only commit triggers existing Pages deployment.
+
+---
+
+## Pages deployment v0.5.4 · mobile Rate Library and Work Specifications (2026-10-10)
+
+The published research source is now `041e84971d9042f2ccbe674484a2fffa18d574ad`. The Rate Library uses short human-readable work titles and a fixed 3-column responsive table; a per-item `rate-specifications.html?id=...` page holds the complete original work descriptions. All 204 source records, historical version separation, rate observations, source identity restrictions, finance summaries, original baseline and rollback snapshots remain unchanged. Documentation-only change to trigger GitHub Pages from the existing workflow.
