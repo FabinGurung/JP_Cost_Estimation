@@ -9,7 +9,7 @@
   {id:"steel",order:40,emoji:"🧲",label:"RCC reinforcement & formwork",short:"Rebar / Forms"},
   {id:"rcc",order:50,emoji:"🏗️",label:"RCC and structural concrete",short:"RCC"},
   {id:"masonry",order:60,emoji:"🧱",label:"Masonry & wall construction",short:"Walls"},
-  {id:"backfill",order:70,emoji:"🚜",label:"Backfill & foundation completion",short:"Backfill"},
+  {id:"backfill",order:55,emoji:"🚜",label:"Foundation backfilling",short:"Backfill"},
   {id:"openings",order:80,emoji:"🚪",label:"Doors, windows & joinery",short:"Openings"},
   {id:"roughin",order:90,emoji:"🔌",label:"Electrical & plumbing rough-in",short:"MEP rough-in"},
   {id:"substrates",order:100,emoji:"🧰",label:"Plaster, screed & waterproofing",short:"Plaster"},
@@ -63,7 +63,7 @@
   return "🛠️";
  }
  function priority(t){
-  const keys={"Excavation":1,"Clearance":2,"Boulder Soling":1,"PCC":1,"Steel Bars":1,"RCC Shuttering":2,
+  const keys={"Clearance":1,"Excavation":2,"Boulder Soling":1,"PCC":1,"Steel Bars":1,"RCC Shuttering":2,
   "M20 Concrete":1,"Stone Masonry":1,"Brick Masonry":2,"Backfilling":1,
   "Timber Frames":1,"Timber Shutters":2,"Aluminium Windows":3,
   "Drainage":1,"Water Supply Pipes":2,"Cables":3,"Wiring Points":4,"Earthing":5,"Panels":6,"Distribution Boards":7,
@@ -83,11 +83,12 @@
  const BASE=[
   "Check the approved project drawings and the actual item scope before execution.",
   "Check installed dimensions, materials and workmanship against the applicable approved requirements.",
-  "Record field inspection and rectify nonconformities before handover or concealment."
+  "Record required inspections and resolve observed nonconformities before handover or concealment."
  ];
  const quality={
   Excavation:["Confirm excavation lines, founding level and dimensions with approved drawings.","Check exposed ground conditions and trench stability before following trades.","Remove unsuitable loose material and manage water before placing foundation layers."],
   Clearance:["Confirm the designated work area and identify utilities or elements to protect.","Clear and segregate debris without disturbing retained structures.","Record site condition before foundation activities."],
+  Backfilling:["Check backfill material type and lift/compaction requirements against the approved project specification.","Confirm below-ground concrete, waterproofing and services are inspected or protected before covering.","Inspect placement, compaction and final levels against approved drawings and test requirements."],
   "Boulder Soling":["Inspect stone quality and cleanliness against the project specification.","Check packing, level and thickness before placing concrete.","Confirm bedding and void-filling method with the approved detail."],
   PCC:["Check specified concrete grade/mix, approved proportions and placement surface.","Check thickness, levels, batching and compaction during placement.","Maintain the curing approach and record inspections required by the project."],
   "Steel Bars":["Check reinforcement grade, bar diameter, quantity and spacing from the structural drawings.","Inspect bending, laps, anchorage, cover and positioning before pouring concrete.","Keep bars clean and supported with suitable spacers/chairs."],

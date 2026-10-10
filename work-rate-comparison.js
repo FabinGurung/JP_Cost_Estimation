@@ -33,7 +33,7 @@
   }
   if(!filtered.length){const row=document.createElement('tr'),cell=document.createElement('td');cell.colSpan=5;cell.textContent='No rate pairs match these filters.';row.appendChild(cell);fragment.appendChild(row);}
   rows.replaceChildren(fragment);
-  status.textContent=filtered.length+' matched work items shown · '+filtered.filter(p=>!p.equal).length+' rate differences · '+(system.value==='imperial'?'Imperial equivalents':'Original SI');
+  status.textContent=filtered.length+' matched items across Excel worksheet sets · '+filtered.filter(p=>!p.equal).length+' rate differences · '+(system.value==='imperial'?'Imperial equivalents':'Original SI');
    $('compareUnitNote').textContent=system.value==='imperial'?
     'Both versions and their differences use Imperial rate-per-unit conversions. Original SI data is unchanged: m²→ft² ×0.09290304; m³→ft³ ×0.028316846592; m→ft ×0.3048; kg→lb ×0.45359237.':
     "All rates are shown in original SI units, in NPR. Select Imperial for mathematically equivalent units on both sides.";

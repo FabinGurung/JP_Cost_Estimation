@@ -10,7 +10,7 @@
   fetch('data/work-rate-taxonomy-v0.5.5.json').then(r=>{if(!r.ok)throw Error('Categories HTTP '+r.status);return r.json();})
  ]).then(([catalog,short,tax])=>{
   if(!Array.isArray(catalog.items)||catalog.items.length!==204||Object.keys(short.labels||{}).length!==204||Object.keys(tax.records||{}).length!==204)throw Error('Source records invalid');
-  if(!id){failure('Select a work title from the Rate Library to see its full specification.');return;}
+  if(!id){failure('Select a work title from the Rate Library to read the original Excel description and general quality guidance.');return;}
   const item=catalog.items.find(x=>x.id===id);
   if(!item||!short.labels[id]||!tax.records[id]){failure('This item could not be found. Return to the Rate Library.');return;}
   const category=tax.records[id];
@@ -27,7 +27,7 @@
   $('specHeading').textContent=short.labels[id];
   document.title=short.labels[id]+' | Work Specifications';
   $('specSection').textContent=item.section;
-  $('specVersion').textContent=item.version==='visible'?'Visible workbook version':'Hidden alternative version';
+  $('specVersion').textContent=item.version==='visible'?'Visible Excel worksheets':'Hidden Excel worksheets';
   $('specFamily').textContent=category.family;
   $('specType').textContent=category.work_type;
   $('specVariant').textContent=category.variant;
@@ -62,7 +62,7 @@
   }
   const linkbox=$('specComparisonLink');const comparison=document.createElement('a');
   comparison.href='rate-comparison.html?id='+encodeURIComponent(id);
-  comparison.textContent='Compare this work item across workbook versions ↗';linkbox.replaceChildren(comparison);
+  comparison.textContent='Compare this work item across Excel worksheet sets ↗';linkbox.replaceChildren(comparison);
   status.hidden=true;content.hidden=false;
  }).catch(error=>failure('The specification could not be loaded: '+error.message));
 })();

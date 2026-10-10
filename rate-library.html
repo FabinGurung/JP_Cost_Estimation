@@ -46,14 +46,14 @@
 <button aria-label="Change appearance" class="btn theme-toggle" id="themeToggle" type="button">Dark mode</button>
 </div>
 <aside class="work-reference-notice" role="note">
-<strong>Historical estimate references—not approved prices.</strong>
-        The workbook's project identity is inconsistent. The public list deliberately contains no client name, project quantities or costs. The hidden-sheet alternatives are a separate historic version and never combined with the primary list. Short titles are navigation aids, not replacements for the recorded specifications.
+<strong>Archived estimate references—not approved prices.</strong>
+        The workbook identifies the project inconsistently, so this public list contains no client name or project quantities. It has two Excel worksheet sets: one visible and one hidden. Their dates and revision order are unknown; neither is automatically authoritative. Work titles are short navigation labels, with the original Excel wording on the detail page.
       </aside>
 <div aria-label="Catalog summary" class="work-kpi-strip">
 <div><span>Visible worksheet rates</span><strong id="visibleCount">102</strong><small>records</small></div>
-<div><span>Hidden alternative rates</span><strong id="hiddenCount">102</strong><small>records</small></div>
-<div><span>Data class</span><strong>Historical BOQ</strong><small>unit-rate reference</small></div>
-</div><div aria-label="Rate source status" class="work-source-identity"><span><strong>Source:</strong> Historical workbook</span><span><strong>Rate year:</strong> Not recorded</span><span><strong>Location:</strong> Not verified</span><span class="work-unverified-pill">Unverified rates</span></div>
+<div><span>Hidden worksheet rates</span><strong id="hiddenCount">102</strong><small>records</small></div>
+<div><span>Data class</span><strong>Estimate archive</strong><small>year unknown · unverified</small></div>
+</div><div aria-label="Rate source status" class="work-source-identity"><span><strong>Source:</strong> Archived estimate workbook</span><span><strong>Rate year:</strong> Not recorded</span><span><strong>Location:</strong> Not verified</span><span class="work-unverified-pill">Unverified rates</span></div>
 <section aria-label="Search and filter work rates" class="work-controls">
 <label class="work-query-label" for="workSearch">Find a work item
           <input autocomplete="off" id="workSearch" placeholder="Try cut piece, cut-piece, stone cladding, Fe500…" type="search"/>
@@ -67,12 +67,16 @@
 <option value="Sanitary Works">Sanitary Works</option>
 </select>
 </label><label for="workFamily">Work category<select id="workFamily"><option value="all">All categories</option></select></label><label for="workType">Work type<select id="workType"><option value="all">All work types</option></select></label>
-<label for="workVersion">Workbook version
+<label for="workVersion">Excel worksheet set
           <select id="workVersion">
-<option value="visible">Visible sheets · primary</option>
-<option value="hidden">Hidden sheets · alternative</option>
+<option value="visible">Visible Excel worksheets (102)</option>
+<option value="hidden">Hidden Excel worksheets (102)</option>
 </select>
 </label>
+<details class="worksheet-guide">
+  <summary>What do visible and hidden sheets mean?</summary>
+  <p><strong>Visible</strong> and <strong>hidden</strong> describe Excel tab visibility inside the <em>same</em> workbook—not separate saved file versions. The hidden tabs are not proven to be older, newer, cancelled or approved. “Archived” means we use the estimate as reference evidence, not that we verified its date. <a href="rate-comparison.html">Compare the two sets →</a></p>
+</details>
 <label for="unitSystem">Measurement system<select id="unitSystem" aria-label="Measurement system: SI or Imperial"><option value="si">SI · m, m², m³, kg</option><option value="imperial">Imperial · ft, ft², ft³, lb</option></select></label>
 <label for="workSort">Sort by
           <select id="workSort">
@@ -100,8 +104,8 @@
 <button class="btn" disabled="" id="workNext" type="button">Next →</button>
 </div></div>
 <p class="work-conversion-note" id="unitConversionNote" aria-live="polite">SI units are displayed from the original workbook. Choose Imperial for mathematically equivalent prices per foot, square foot, cubic foot or pound. Original source observations never change.</p>
-<p class="work-source-note"><strong>Construction order:</strong> this is a general illustrative building-work sequence, not an actual project programme, method statement, or engineering approval. Some work types are repeated at multiple building levels, and site/MEP operations overlap.</p>
-<p class="work-source-note">The list displays editorial short titles; tap one to read the full unabridged source description on the Work Specifications subpage. Units are displayed in human-readable notation (for example m³ rather than Cum, m² rather than Sqm, running m rather than Rm). Original SI values are extracted and never rewritten; Imperial display values are calculated from those SI prices, not new supplier quotations. Source formulas, original wording and coordinates remain in the private Drive archive. These are not the approved AEC Rate Master or CAD-verified quantities.</p><p class="work-source-note">Categories and work types are <strong>editorial labels derived from the original work descriptions</strong>, not authoritative classifications. Compare source alternatives on the <a href="rate-comparison.html">Rate Comparison</a> page; hidden sheets are not assumed to be older or newer than visible sheets.</p>
+<p class="work-source-note"><strong>Construction order:</strong> a general learning journey, not a construction method statement or project schedule. Backfill follows the relevant approved below-ground foundation works; walls, RCC and services can repeat at different levels and overlap depending on the actual design.</p>
+<p class="work-source-note">The list uses short editorial titles; tap one for the original Excel work description and separately labelled general quality guidance. Units are displayed in human-readable notation (for example m³ rather than Cum, m² rather than Sqm, running m rather than Rm). Original SI values are extracted and never rewritten; Imperial display values are calculated from those SI prices, not new supplier quotations. Source formulas, original wording and coordinates remain in the private Drive archive. These are not the approved AEC Rate Master or CAD-verified quantities.</p><p class="work-source-note">Categories and work types are <strong>editorial labels derived from the original work descriptions</strong>, not authoritative classifications. Compare source alternatives on the <a href="rate-comparison.html">Rate Comparison</a> page; hidden sheets are not assumed to be older or newer than visible sheets.</p>
 <footer class="work-links">
 <a href="rate-specifications.html">Work Specifications →</a><a href="rate-comparison.html">Compare workbook rates →</a>
 <a href="index.html?view=rates">Government and user-known source rates →</a>

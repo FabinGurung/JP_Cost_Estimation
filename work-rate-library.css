@@ -283,3 +283,12 @@ html[data-theme="dark"] .work-stage-row .stage-heading-hint{color:#a8c7ad}
 html[data-theme="dark"] .work-item-emoji{background:#173f2d}
 html[data-theme="dark"] .spec-quality-boundary{background:#413722;color:#f5e7c6;border-color:#68562e}
 @media(max-width:720px){.stage-explorer{margin:15px 0;padding:13px 10px 8px}.stage-ribbon-button{min-width:76px;padding:7px 8px}.work-item-emoji{flex-basis:21px;width:21px;height:23px;font-size:16px}.work-name-row{gap:5px}.work-stage-row td{padding:10px 9px!important}.work-stage-row .stage-heading-hint{display:block;margin:1px 0 0}.spec-quality{padding:17px 13px}}
+
+/* v0.5.8 — simple worksheet-definition disclosure and readable archival status */
+.worksheet-guide{grid-column:1/-1;margin:0;background:rgba(255,255,255,.78);border:1px solid #d7e6d1;border-radius:10px;padding:11px 13px;color:#315840;line-height:1.65;font-size:12px}
+.worksheet-guide summary{font-weight:800;cursor:pointer;color:#255b3b}
+.worksheet-guide summary:focus-visible{outline:3px solid #d5b65b;outline-offset:3px}
+.worksheet-guide p{margin:10px 0 2px;max-width:960px}
+.worksheet-guide a{color:#1b6940;text-decoration:underline;text-underline-offset:3px}
+html[data-theme="dark"] .worksheet-guide{background:var(--panel);border-color:var(--line);color:var(--ink)}
+html[data-theme="dark"] .worksheet-guide summary,html[data-theme="dark"] .worksheet-guide a{color:#c0e6c8}

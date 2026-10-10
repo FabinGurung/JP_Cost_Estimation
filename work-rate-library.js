@@ -90,7 +90,7 @@
       const inline=document.createElement('div');inline.className='work-name-row';
       const pict=document.createElement('span');pict.className='work-item-emoji';pict.textContent=seq.emoji;pict.setAttribute('aria-hidden','true');
       const a=document.createElement('a');a.className='work-name-link';a.href='rate-specifications.html?id='+encodeURIComponent(item.id);
-      a.textContent=names[item.id];a.title='Read the complete source specification and workmanship guidance';inline.append(pict,a);work.appendChild(inline);
+      a.textContent=names[item.id];a.title='Read the original Excel work description and separate general workmanship guidance';inline.append(pict,a);work.appendChild(inline);
       const displayed=units.rateText(item.rate,item.unit,system.value);
       const u=document.createElement('td');u.className='work-unit-cell';u.textContent=displayed.unit;
       u.title=displayed.derived?'Converted unit from '+item.unit:'Source unit: '+item.unit;u.setAttribute('aria-label','Unit: '+displayed.unit);
@@ -101,7 +101,7 @@
     }
     if(!shown.length){const tr=document.createElement('tr'),td=document.createElement('td');td.className='work-empty';td.colSpan=3;td.textContent='No matching work items. Try a different category or search.';tr.appendChild(td);fragment.appendChild(tr);}
     tbody.replaceChildren(fragment);
-    status.textContent=matches.length+' '+(version.value==='visible'?'visible-sheet':'hidden alternative')+' rates found · '+(system.value==='imperial'?'Imperial equivalents':'Source SI rates')+' · Historical/unverified';
+    status.textContent=matches.length+' '+(version.value==='visible'?'visible-worksheet':'hidden-worksheet')+' rates found · '+(system.value==='imperial'?'Imperial equivalents':'Source SI rates')+' · Archived estimate / unverified year';
     $('unitConversionNote').textContent=system.value==='imperial'?'Imperial values are calculated from the original SI rate (not independent quotations): NPR/ft² = NPR/m² × 0.09290304; NPR/ft³ = NPR/m³ × 0.028316846592; NPR/ft = NPR/m × 0.3048; NPR/lb = NPR/kg × 0.45359237. Item/set/job/point rates remain unchanged.':'SI units and original NPR prices are shown. Select Imperial to see equivalent per-foot, per-square-foot, per-cubic-foot and per-pound rates. Stored source values remain unchanged.';
     pageSummary.textContent=matches.length?(start+1)+'–'+Math.min(start+PAGE_SIZE,matches.length)+' of '+matches.length+' · Page '+(page+1)+' of '+(maxPage+1):'0 results';
     previous.disabled=page===0;next.disabled=matches.length===0||page===maxPage;
