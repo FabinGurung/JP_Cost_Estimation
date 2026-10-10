@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Read the complete original specifications and scope behind construction work-item rates.">
+  <title>Work Specifications | JP Cost &amp; Rate Intelligence</title>
+  <link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="site-shell.css">
+  <link rel="stylesheet" href="work-rate-library.css">
+  <script src="theme.js" defer></script><script src="work-specifications.js" defer></script>
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="brand"><div class="logo">JP</div><div><strong>Cost &amp; Rate Intelligence</strong><small>Construction work specifications</small></div></div>
+    <nav aria-label="Primary site navigation">
+      <a class="nav-item" href="index.html">← Overview</a>
+      <a class="nav-item" href="rate-library.html">Rate Library</a>
+      <a class="nav-item active" aria-current="page" href="rate-specifications.html">Work Specifications</a>
+      <a class="nav-item" href="index.html?view=analysis">Rate Analysis</a>
+      <a class="nav-item" href="finance.html">Finance &amp; Payments</a>
+      <a class="nav-item" href="system-map.html">System Lifecycle</a>
+    </nav>
+  </aside>
+  <main class="app-shell">
+    <section class="landscape-hero compact work-hero" aria-label="Green valley and open sunlit sky">
+      <div class="landscape-hero-content">
+        <p class="eyebrow">JP · RATE LIBRARY · WORK SPECIFICATIONS</p>
+        <h2>Details behind <em>each rate.</em></h2>
+        <p>Full source wording, inclusions and technical requirements—separate from the compact price index.</p>
+        <div class="hero-actions"><a class="hero-cta primary" href="rate-library.html">← Back to Rate Library</a></div>
+      </div>
+    </section>
+    <div class="work-library-main specification-main">
+      <nav class="spec-breadcrumb" aria-label="Breadcrumb"><a href="index.html">Overview</a><span>›</span><a id="specBackCrumb" href="rate-library.html">Rate Library</a><span>›</span><span>Specifications</span></nav>
+      <div class="spec-page-header"><div><p class="eyebrow">COMPLETE WORK DESCRIPTION</p><h1 id="specHeading">Work Specifications</h1></div>
+        <button id="themeToggle" type="button" class="btn theme-toggle" aria-label="Change appearance">Dark mode</button></div>
+      <div id="specStatus" role="status" aria-live="polite">Loading full work specification…</div>
+      <section id="specContent" class="spec-content" hidden>
+        <div class="spec-tag-row"><span class="spec-tag" id="specSection"></span><span class="spec-tag spec-tag-warn" id="specVersion"></span></div>
+        <div class="spec-facts" aria-label="Work item reference price"><div><small>Unit</small><strong id="specUnit"></strong></div><div><small>Historical rate (NPR)</small><strong id="specRate"></strong></div></div>
+        <article class="spec-body"><h2>Full source specification</h2><p class="spec-explainer">The wording below is preserved from the source estimate. It has not been expanded or corrected with invented requirements.</p>
+          <div class="spec-full-text" id="specFullText"></div></article>
+        <section class="spec-provenance" aria-labelledby="specProvenanceHeading"><h2 id="specProvenanceHeading">Record and traceability</h2>
+          <dl><div><dt>Source division</dt><dd id="specSourceSheet"></dd></div>
+            <div><dt>Rate cell</dt><dd id="specRateCell"></dd></div>
+            <div><dt>Description cell</dt><dd id="specDescriptionCell"></dd></div>
+            <div><dt>Source ID</dt><dd id="specId"></dd></div>
+            <div><dt>Approval status</dt><dd>Unverified historical estimate reference</dd></div></dl></section>
+        <div class="spec-neighbor-links" id="specNeighbors"></div>
+      </section>
+      <aside class="work-reference-notice" role="note"><strong>Reference only.</strong> This work description and rate are from a historical project estimate; they do not establish an approved specification, current market price, verified CAD quantity or contractual scope. Any ambiguity in the original source remains unresolved.</aside>
+      <p class="work-source-note">The compact work titles are navigation labels; the specification above is the original workbook text. Hidden-sheet alternatives are not combined with the visible version. The underlying project identity was inconsistent and is not displayed publicly.</p>
+    </div>
+  </main>
+</body>
+</html>

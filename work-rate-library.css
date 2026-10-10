@@ -59,3 +59,93 @@ html[data-theme="dark"] .work-rate-table td:nth-child(2),html[data-theme="dark"]
 .work-rate-table thead th{padding:12px 9px;font-size:11px}.work-rate-table tbody td{padding:14px 9px;font-size:12px}.work-rate-table td:nth-child(3){font-size:12px}.work-description-col{width:60%}.work-unit-col{width:15%}.work-rate-col{width:25%}
 .work-pagination{align-items:flex-start;flex-wrap:wrap}.work-pagination button{padding:8px 10px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+
+/* v0.5.4 — mobile table repair and human-readable short-work navigation.
+   The global styles.css declares 'th,td {white-space:nowrap}'. Override it
+   at this component's scope so a long work title never overlaps other cells. */
+.work-library-main,.work-table-frame,.work-rate-table,.specification-main{min-width:0;max-width:100%;}
+.work-rate-table{table-layout:fixed;width:100%;border-collapse:collapse;}
+.work-rate-table th,.work-rate-table td{
+  box-sizing:border-box;
+  white-space:normal !important;
+  overflow-wrap:anywhere;
+  word-break:normal;
+  vertical-align:top;
+}
+.work-rate-table th{position:static;line-height:1.25;}
+.work-rate-table .work-description-col{width:70%}
+.work-rate-table .work-unit-col{width:12%}
+.work-rate-table .work-rate-col{width:18%}
+.work-rate-table td.work-description-cell{font-weight:650;}
+.work-name-link{display:block;width:100%;min-width:0;max-width:100%;line-height:1.42;text-decoration:none;
+ color:#1c6240;white-space:normal;overflow-wrap:anywhere;}
+.work-name-link:hover,.work-name-link:focus-visible{text-decoration:underline;text-underline-offset:3px;color:#17633c}
+.work-name-link:focus-visible,.spec-neighbor-links a:focus-visible{outline:3px solid #e9bd55;outline-offset:3px;border-radius:3px}
+.work-item-hint{display:block;margin-top:5px;color:#6e866e;font-weight:500;font-size:11px;line-height:1.25}
+.work-rate-table td.work-unit-cell{white-space:nowrap !important;color:#475d4c;font-weight:720}
+.work-rate-table td.work-price-cell{white-space:nowrap !important;overflow-wrap:normal;text-align:right;color:#226d46;
+ font-weight:850;font-variant-numeric:tabular-nums}
+.spec-breadcrumb{display:flex;align-items:center;gap:9px;flex-wrap:wrap;font-size:12px;margin:5px 0 20px;color:var(--muted)}
+.spec-breadcrumb a{color:#30784c;font-weight:700;text-decoration:underline;text-underline-offset:2px}
+.spec-page-header{display:flex;align-items:flex-start;justify-content:space-between;gap:15px;min-width:0}
+.spec-page-header h1{font-size:clamp(24px,3.1vw,38px);line-height:1.25;overflow-wrap:anywhere;letter-spacing:-.025em}
+.spec-content{margin-top:23px}
+.spec-tag-row{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0 14px}
+.spec-tag{display:inline-flex;align-items:center;padding:7px 10px;border-radius:999px;font-weight:750;font-size:11px;
+ background:#e1f3e4;color:#1e653d;border:1px solid #b6dabb}
+.spec-tag-warn{background:#fff8e7;color:#76520b;border-color:#e8d9af}
+.spec-facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:14px 0 24px}
+.spec-facts>div{padding:18px 21px;background:var(--panel);border-radius:14px;border:1px solid var(--line)}
+.spec-facts small{display:block;color:var(--muted);font-weight:680;font-size:12px;margin-bottom:8px}
+.spec-facts strong{font-size:clamp(19px,2.5vw,27px);color:#257448;font-variant-numeric:tabular-nums}
+.spec-body,.spec-provenance{background:var(--panel);padding:clamp(17px,3vw,31px);border:1px solid var(--line);border-radius:15px;margin:17px 0}
+.spec-body h2,.spec-provenance h2{color:var(--ink);font-size:20px;margin:0 0 10px}
+.spec-explainer{margin:0 0 18px;color:var(--muted);font-size:13px;line-height:1.6}
+.spec-full-text{background:#f4f9f2;border:1px solid #deeadc;border-radius:10px;padding:19px 21px;color:#273b2f;
+ font-size:clamp(14px,1.5vw,16px);line-height:1.8;white-space:pre-wrap;overflow-wrap:anywhere;}
+.spec-provenance dl{margin:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.spec-provenance dl>div{border-top:1px solid var(--line);padding-top:11px;min-width:0}
+.spec-provenance dt{color:var(--muted);font-size:11px;font-weight:750;margin-bottom:6px}
+.spec-provenance dd{color:var(--ink);font-size:13px;margin:0;overflow-wrap:anywhere}
+.spec-neighbor-links{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0}
+.spec-neighbor-links a{display:inline-flex;align-items:center;border:1px solid #c9dcca;border-radius:9px;
+ color:#1d6440;background:var(--panel);font-size:12px;font-weight:750;padding:12px 14px;text-decoration:none}
+.spec-neighbor-links a:hover{background:#e8f4e9}
+#specStatus{padding:18px;border:1px solid var(--line);border-radius:12px;font-size:14px;margin-top:17px;color:var(--ink);background:var(--panel)}
+#specStatus[hidden]{display:none}
+html[data-theme="dark"] .work-name-link,html[data-theme="dark"] .spec-breadcrumb a,html[data-theme="dark"] .spec-neighbor-links a{color:#b0ecc1}
+html[data-theme="dark"] .work-item-hint{color:#9ab7a0}
+html[data-theme="dark"] .work-rate-table td.work-price-cell,html[data-theme="dark"] .spec-facts strong{color:#9ce0ae}
+html[data-theme="dark"] .spec-full-text,html[data-theme="dark"] .spec-neighbor-links a{background:var(--panel);border-color:var(--line);color:var(--ink)}
+html[data-theme="dark"] .spec-tag{background:#16462c;color:#d5f7de;border-color:#427455}
+html[data-theme="dark"] .spec-tag-warn{background:#66501c;color:#fff0bf;border-color:#997a30}
+@media(max-width:720px){
+  .sidebar{padding:9px 14px;min-height:0;align-items:flex-start;gap:9px}
+  .sidebar .brand{padding:0;min-width:0;gap:8px}
+  .sidebar .logo{width:34px;height:34px;font-size:14px}
+  .sidebar .brand strong{font-size:13px}
+  .sidebar .brand small{font-size:10px}
+  .sidebar nav{width:100%;justify-content:flex-start;padding-bottom:1px}
+  .sidebar .nav-item{padding:8px 10px;font-size:12px}
+  .work-rate-table .work-description-col{width:54%}
+  .work-rate-table .work-unit-col{width:16%}
+  .work-rate-table .work-rate-col{width:30%}
+  .work-rate-table thead th{padding:12px 7px !important;font-size:10px;letter-spacing:.01em;line-height:1.35}
+  .work-rate-table tbody td{padding:13px 7px !important;line-height:1.45}
+  .work-name-link{font-size:13px;line-height:1.45;hyphens:auto}
+  .work-item-hint{font-size:10px;margin-top:5px}
+  .work-rate-table td.work-unit-cell{font-size:11px}
+  .work-rate-table td.work-price-cell{font-size:12px}
+  .spec-provenance dl{grid-template-columns:1fr}
+  .spec-facts>div{padding:15px 13px}
+  .spec-full-text{padding:14px 13px}
+}
+@media(max-width:375px){
+ .work-rate-table .work-description-col{width:51%}
+ .work-rate-table .work-unit-col{width:18%}
+ .work-rate-table .work-rate-col{width:31%}
+ .work-rate-table tbody td,.work-rate-table thead th{padding-left:6px!important;padding-right:6px!important}
+ .work-name-link{font-size:12px}
+ .work-item-hint{font-size:9px}
+}

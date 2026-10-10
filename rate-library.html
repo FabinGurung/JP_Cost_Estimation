@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="description" content="Browse construction work descriptions, units and historical reference rates in Nepalese rupees.">
-  <title>Rate Library | JP Cost &amp; Rate Intelligence</title>
+  <title>Rate Library — Clear Work Prices | JP Cost &amp; Rate Intelligence</title>
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="site-shell.css">
   <link rel="stylesheet" href="work-rate-library.css">
@@ -17,6 +17,7 @@
     <nav aria-label="Primary site navigation">
       <a class="nav-item" href="index.html">← Overview</a>
       <a class="nav-item active" aria-current="page" href="rate-library.html">Rate Library</a>
+      <a class="nav-item" href="rate-specifications.html">Work Specifications</a>
       <a class="nav-item" href="index.html?view=rates">Source Rates</a>
       <a class="nav-item" href="index.html?view=analysis">Rate Analysis</a>
       <a class="nav-item" href="finance.html">Finance &amp; Payments</a>
@@ -28,7 +29,7 @@
       <div class="landscape-hero-content">
         <p class="eyebrow">JP · CONSTRUCTION KNOWLEDGE · RATE LIBRARY</p>
         <h2>Every work item. <em>Clearly priced.</em></h2>
-        <p>The description of work, its measurement unit, and the recorded rate—side by side.</p>
+        <p>Short work titles and rates, side by side. Tap any work title for its complete specification.</p>
         <div class="hero-actions">
           <a class="hero-cta primary" href="#rateTable">Browse the table ↓</a>
           <a class="hero-cta secondary" href="index.html?view=analysis">Rate Analysis ↗</a>
@@ -38,12 +39,12 @@
     <section class="work-library-main">
       <div class="work-intro">
         <div><p class="eyebrow">HUMAN-READABLE WORK RATE INDEX</p><h1>Rate Library</h1>
-        <p class="work-intro-copy">Descriptions follow the recorded estimate wording. Rates are in Nepalese rupees per unit.</p></div>
+        <p class="work-intro-copy">A clean price index. Tap a work title to read the complete scope and specification on its own page. Rates are in NPR per unit.</p></div>
         <button id="themeToggle" type="button" class="btn theme-toggle" aria-label="Change appearance">Dark mode</button>
       </div>
       <aside class="work-reference-notice" role="note">
         <strong>Historical estimate references—not approved prices.</strong>
-        The workbook's project identity is inconsistent. The public list deliberately contains no client name, project quantities or costs. The hidden-sheet alternatives are a separate historic version and never combined with the primary list.
+        The workbook's project identity is inconsistent. The public list deliberately contains no client name, project quantities or costs. The hidden-sheet alternatives are a separate historic version and never combined with the primary list. Short titles are navigation aids, not replacements for the recorded specifications.
       </aside>
       <div class="work-kpi-strip" aria-label="Catalog summary">
         <div><span>Visible worksheet rates</span><strong id="visibleCount">102</strong><small>records</small></div>
@@ -90,8 +91,9 @@
         <button type="button" class="btn" id="workPrev" disabled>← Previous</button>
         <button type="button" class="btn" id="workNext" disabled>Next →</button>
       </div></div>
-      <p class="work-source-note">Units are displayed in human-readable notation (for example m³ rather than Cum, m² rather than Sqm, running m rather than Rm). Values are extracted, not recalculated. Source formulas, original wording and coordinates remain in the private Drive archive. These are not the approved AEC Rate Master or CAD-verified quantities.</p>
+      <p class="work-source-note">The list displays editorial short titles; tap one to read the full unabridged source description on the Work Specifications subpage. Units are displayed in human-readable notation (for example m³ rather than Cum, m² rather than Sqm, running m rather than Rm). Values are extracted, not recalculated. Source formulas, original wording and coordinates remain in the private Drive archive. These are not the approved AEC Rate Master or CAD-verified quantities.</p>
       <footer class="work-links">
+        <a href="rate-specifications.html">Work Specifications →</a>
         <a href="index.html?view=rates">Government and user-known source rates →</a>
         <a href="index.html?view=analysis">Transparent rate analysis →</a>
         <a href="finance.html">Rohini finance →</a>
