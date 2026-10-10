@@ -111,6 +111,7 @@
   "Wiring Points":["Check circuit allocation, cable size, conduits and protective devices against approved design.","Inspect joints, labeling, boxes and earthing.","Test safety and operation using qualified personnel."],
   "Lighting":["Confirm fixture type, location, mounting and power rating against approved lighting layout.","Check secure installation, connections and protection rating where applicable.","Functional-test the fixture and controls after electrical safety checks."],
   "Fixtures":["Confirm model, fit, setting-out and connection interfaces.","Inspect mounting, sealants, drainage/water supply and clearances.","Test installed operation and check for leakage/damage."],
+  Ventilation:["Check fan size, location, access, airflow path and required ventilation capacity against the approved mechanical/electrical design.","Inspect mounting, vibration isolation where specified, duct or wall connection, weather protection and clearances.","Have qualified personnel check electrical safety, airflow direction and operating performance before handover."],
   "Air Conditioning":["Verify unit location, access, drainage and electrical design requirements.","Check mounting, refrigerant piping and condensate drainage workmanship.","Commission and record functional performance through qualified personnel."]
  };
  function checks(item,t){

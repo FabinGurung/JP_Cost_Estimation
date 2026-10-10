@@ -36,6 +36,8 @@
   const params=new URLSearchParams(window.location.search);
   version.value=["visible","hidden"].includes(params.get("version"))?params.get("version"):"visible";
   measurement.value=["si","imperial"].includes(params.get("units"))?params.get("units"):units.preferred();
+  search.value=params.get("q")??"";
+  if(["trade","source","title","low","high"].includes(params.get("sort")))sort.value=params.get("sort");
   const all=()=>route.partition(state.rows,state.tax,version.value)[mode];
   function fillCategories(){
    const keep=category.value;
@@ -80,7 +82,11 @@
     const inner=document.createElement("div");inner.className="mep-row-inner";
     const icon=document.createElement("span");icon.className="mep-item-emoji";icon.textContent=route.iconFor(row,t,mode);icon.setAttribute("aria-hidden","true");
     const link=document.createElement("a");link.className="work-name-link";
-    link.href="rate-specifications.html?id="+encodeURIComponent(row.id)+"&trade="+encodeURIComponent(mode);
+    const drilldown=new URLSearchParams({
+      id:row.id, trade:mode, version:version.value, units:measurement.value,
+      category:category.value, q:search.value, sort:sort.value
+    });
+    link.href="rate-specifications.html?"+drilldown.toString();
     link.textContent=state.labels[row.id];
     link.title="Read original Excel work description and general quality guidance";
     inner.append(icon,link);work.append(kicker,inner);
@@ -103,6 +109,8 @@
    $("mepConversionInfo").textContent=measurement.value==="imperial"?
      "Imperial rates are calculated from original SI unit rates (e.g. NPR/ft² = NPR/m² × 0.09290304; NPR/ft³ = NPR/m³ × 0.028316846592; NPR/ft = NPR/m × 0.3048). Item, set, job and point rates are unchanged. These are not separate price quotations.":
      "Rates are displayed in the workbook's original metric/SI units. You may switch to Imperial for mathematically equivalent prices per foot, square foot or cubic foot. The underlying source values never change.";
+   if(sort.value==="low"||sort.value==="high")
+     $("mepConversionInfo").textContent+=" Note: numeric sorting mixes prices per different measurement units, so it does not rank relative affordability.";
   }
   function changed(){state.page=0;render();}
   search.addEventListener("input",changed);category.addEventListener("change",changed);

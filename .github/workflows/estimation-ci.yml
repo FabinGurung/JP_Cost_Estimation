@@ -32,6 +32,14 @@ jobs:
           node --check app.js
           node --check data.js
 
+      - name: MEP and Work Specifications regression
+        run: |
+          for file in mep-catalog.js mep-app.js work-specifications.js work-construction-guide.js work-rate-units.js work-rate-library.js work-rate-comparison.js; do
+            node --check "$file"
+          done
+          node --check scripts/qa_mep_site_v0.5.10.mjs
+          node scripts/qa_mep_site_v0.5.10.mjs
+
       - name: Public-site secret pattern check
         shell: bash
         run: |

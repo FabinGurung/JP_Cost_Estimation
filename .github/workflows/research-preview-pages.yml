@@ -23,6 +23,13 @@ jobs:
           test -f data.js
           node --check app.js
           node --check data.js
+      - name: Test MEP trade navigation and rate integrity
+        run: |
+          for file in mep-catalog.js mep-app.js work-specifications.js work-construction-guide.js work-rate-units.js; do
+            node --check "$file"
+          done
+          node scripts/qa_mep_site_v0.5.10.mjs
+
       - name: Confirm non-production boundary
         run: |
           echo "VALIDATION_ONLY=PASS"

@@ -73,3 +73,7 @@ The Rate Library now calls Excel's visible and hidden tabs **worksheet sets** in
 ## v0.5.9 — Dedicated MEP trade pages (2026-10-10)
 
 The [MEP overview](mep.html) links separate [Mechanical](mep-mechanical.html), [Electrical](mep-electrical.html), and [Plumbing](mep-plumbing.html) rate and work-specification navigation. Each visible/hidden worksheet set has exactly 3 mechanical, 37 electrical, and 22 plumbing/sanitary priced items. A ventilation fan is placed under Mechanical for browsing while retaining its original Electrical source identity. All three pages use the existing source rate catalog, normalized searches, SI/Imperial conversion, and existing detailed specification pages with contextual back navigation. No new rate, finance entry, CAD measurement or BOQ was made. See [scope](docs/MEP_TRADE_SUBPAGES_v0.5.9.md).
+
+## v0.5.10 — MEP navigation and regression hardening (2026-10-10)
+
+Fixed the Mechanical ventilation fan's educational guidance, contextual specifications hero/breadcrumb navigation, and persistent MEP search/worksheet/units/category/sort controls on drilldown. Previous/next now follows the selected trade view. Price sorting warns about unlike rate units. Both CI and preview workflows run a 204-record MEP regression test and check new JavaScript modules. Original source rates, labels, taxonomy, finance and CAD/QTO boundaries are untouched. See [v0.5.10 notes](docs/MEP_NAVIGATION_REGRESSION_v0.5.10.md).
