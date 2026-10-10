@@ -1,19 +1,15 @@
 {
-  "schema_version": "0.1",
-  "warning": "Research seed only. Values are inherited from JP-CES v0.1 demo and benchmark data and are not official Kaski rates or tender quantities.",
-  "project": {
-    "project_id": "PRJ-DEMO-KUMARI",
-    "name": "Kumari Gurung Residence",
-    "built_sqft": 1295.21,
-    "floors": 2
-  },
-  "quantity_source_id": "LEGACY-BENCHMARK-V0.1",
-  "rate_source_id": "LEGACY-DEMO-RATE-V0.1",
-  "work_items": [
-    {"work_id":"WRK-EST-001","name":"Foundation excavation","unit":"m3","coefficient_per_m2":0.22,"rate":800},
-    {"work_id":"WRK-EST-002","name":"PCC below foundations","unit":"m3","coefficient_per_m2":0.035,"rate":13000},
-    {"work_id":"WRK-EST-003","name":"RCC concrete","unit":"m3","coefficient_per_m2":0.27,"rate":19000},
-    {"work_id":"WRK-EST-004","name":"Reinforcement steel","unit":"kg","coefficient_per_m2":39,"rate":120},
-    {"work_id":"WRK-EST-005","name":"Brick/block masonry","unit":"m3","coefficient_per_m2":0.18,"rate":14500}
-  ]
+  "schema": "JP_COST_RATE_RESEARCH_SEED",
+  "version": "v0.5.2",
+  "active": false,
+  "status": "RETIRED_LEGACY_ESTIMATOR_SEED",
+  "domain": "RATE_LIBRARY_AND_RATE_ANALYSIS_ONLY",
+  "project": null,
+  "project_quantities": [],
+  "work_items": [],
+  "observations": [],
+  "original_snapshot_commit": "fc52c65c7bb311e9c4ebc57372aefa428205484a",
+  "original_source_file": "data/research_seed.json",
+  "original_main_branch": "main",
+  "note": "Legacy project demonstration, benchmark floor-area factors and demo unit prices are retired. They can be restored from the PRE snapshot or original main branch. This placeholder supplies no project facts or takeoff quantities."
 }

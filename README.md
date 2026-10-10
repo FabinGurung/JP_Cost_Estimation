@@ -47,3 +47,7 @@ Source authority: [AEC Cost/Rate Master](https://docs.google.com/spreadsheets/d/
 - Quantity takeoff is CAD-owned. Only the blocked, empty \`boq-template.json\` exists here.
 - All changes are additive or navigational and preserve the legacy v0.1 main branch and 2026-10-09 v0.4 release snapshots.
 - Page and connector verification gates are described in [release notes](docs/RATE_PORTAL_RELEASE_v0.5.1.md).
+
+## v0.5.2 — Retired legacy project demonstration seed (2026-10-10)
+
+`data/research_seed.json` is a nonfunctional, project-free placeholder in the active research release. The original file remains in `snapshot/pre-legacy-kumari-seed-retirement-v0.5.2-20261010` and original `main` for rollback. No engineering project data has been deleted from its independent Drive authority. Rate Library, Analysis, Rohini Finance and System Lifecycle remain unchanged.

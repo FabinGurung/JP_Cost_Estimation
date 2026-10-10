@@ -1,12 +1,18 @@
-JP-CES v0.1
-============
+JP COST & RATE INTELLIGENCE v0.5.2
+==================================
 
 Open: index.html
 
-This is the first civilian-facing prototype of the building cost estimation system.
+ACTIVE: Rate Library, transparent Rate Analysis, Sources and Provenance,
+Rohini Finance and Payments, and System Lifecycle and history.
 
-IMPORTANT:
-- The UI is designed for non-engineers.
-- Engineer view reveals formulas and technical meanings.
-- The built-in rates are DEMO values for testing only.
-- Replace rates before using the cost result for a real project.
+NOT ACTIVE: Building estimator, area factors, project QTO, populated BOQ.
+CAD repository owns FID-based measured quantities. Only empty BOQ schema lives here.
+
+DATA GOVERNANCE: canonical AEC Cost Rate Master on Drive, Neon limited mirror,
+static Kaski observation snapshot labelled by date. Do not invent work quantities.
+
+LEGACY DEMO: data/research_seed.json is retired and contains no demonstration facts.
+The intact historical seed can be restored from branch
+snapshot/pre-legacy-kumari-seed-retirement-v0.5.2-20261010
+or original main. Original project drawings on Drive remain untouched.
