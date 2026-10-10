@@ -141,3 +141,9 @@ This documentation update is the intentional `main`-branch Pages deployment trig
 ## v0.5.2 cleanup trigger — 2026-10-10
 
 The GitHub Pages source branch `research/open-estimation-engine-v0.1` now points to `3373925e399d9d65abfcdf9b6ea9cabade966a3d`. Its old area-factor building demonstration seed is retired from the newest public source, recoverable intact through `snapshot/pre-legacy-kumari-seed-retirement-v0.5.2-20261010`, earlier site snapshot or the original `main` tree. The rate-only user interface, separate Rohini finance snapshot and system lifecycle remain unchanged. This main documentation-only commit triggers the existing GitHub Pages publish workflow.
+
+---
+
+## Publish v0.5.3: Three-column historical work-rate library (2026-10-10)
+
+The Pages workflow publishes research source at `2c3579ce06cc9649fdb8825bad524951ed4f1449`, adding `rate-library.html`: the human-readable **Description of Work | Unit | Rate (NPR)** table. It includes 102 visible-source-sheet unit-rate observations with separately selectable 102 hidden-sheet alternatives, described as historical unverified rates; no project/client identifying details or quantities are published. Rate Analysis, finance, original `main` baseline and system lifecycle are preserved. This documentation-only commit triggers existing Pages deployment.
