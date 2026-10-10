@@ -164,3 +164,9 @@ The Pages checkout branch `research/open-estimation-engine-v0.1` has source SHA 
 ## Deploy v0.5.6 · rate price alignment, search aliases, SI/Imperial (2026-10-10)
 
 GitHub Pages checkout source `research/open-estimation-engine-v0.1` now points to `53eef3f788903f2e986fe8f0eab472ee63d65f99`. The three-column rate index shows left-anchored NPR prices; normalized search matches `cut piece`, `cut-piece` and `CUTPIECE`. SI/Imperial controls convert historical rate-per-unit denominators throughout Rate Library, Work Specifications and Rate Comparison using exact meter/foot/kilogram/pound factors. Source rates, classified rate references, finance, original engineering takeoff ownership and history remain unchanged. This main README-only commit triggers the existing Pages workflow.
+
+---
+
+## Deploy v0.5.7 — Work emoji + foundation-to-finish journey + editorial workmanship guidance (2026-10-10)
+
+GitHub Pages serves the research branch source at `10b9ac1379680fcd494f6ccb9806b5dc6a4548d0`. A three-column, emoji-accompanied Rate Library has a user-friendly stage ribbon and **illustrative construction-order sort** (excavation → soling → PCC → steel/formwork → RCC → masonry → building services → finishes), with the original workbook order still available. The pre-existing Work Specifications detail page now includes separately identified, general quality-check prompts without inventing source contract requirements. All 204 source rates, two workbook versions, finance data, SI/Imperial conversion, blank BOQ, CAD/FID ownership and historical rollback snapshots remain untouched. This documentation-only change triggers the established Pages deploy workflow.
