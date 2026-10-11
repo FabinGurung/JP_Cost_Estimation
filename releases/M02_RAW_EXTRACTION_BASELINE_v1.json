@@ -1,0 +1,86 @@
+{
+  "milestone_id": "M02",
+  "title": "Raw extraction baseline — ready for iterative derivations",
+  "version": "m02-raw-v1",
+  "date_local": "2026-10-12",
+  "timezone": "Asia/Katmandu",
+  "source_extraction_batch": "JP-PDF-EXTRACT-20261011-01",
+  "status": "RAW_EXTRACTION_FROZEN_READY_FOR_DERIVATIONS",
+  "raw_extraction_complete": true,
+  "semantic_verification_complete": false,
+  "source_count": 6,
+  "page_count": 697,
+  "ocr_pages": 673,
+  "native_text_pages": 24,
+  "format": {
+    "authority": "UTF-8 source-separated JSONL with page/cell provenance and original PDFs",
+    "storage": "Separate compressed source archives; existing split ZIP query-index package",
+    "query_index": "Derived SQLite; rebuildable; not authoritative"
+  },
+  "private_data_published": false,
+  "source_aliases": [
+    {
+      "alias": "SRC-GOV-001",
+      "pages": 80
+    },
+    {
+      "alias": "SRC-VEN-001",
+      "pages": 17
+    },
+    {
+      "alias": "SRC-VEN-002",
+      "pages": 4
+    },
+    {
+      "alias": "SRC-RA-001",
+      "pages": 234
+    },
+    {
+      "alias": "SRC-RA-002",
+      "pages": 302
+    },
+    {
+      "alias": "SRC-RA-003",
+      "pages": 60
+    }
+  ],
+  "readback": {
+    "raw_archives": "Completed; preserved private receipt",
+    "index_zip_sha256": "99c79fe1c3eb38b10c45c3c439713d9dd1c10f15f47352650e31602c28787d22",
+    "full_original_bundle_sha256": "9e8237946ffab7ed846d69c203a2a31835138ae050fd615fba42f959d478aac9"
+  },
+  "additive_review": {
+    "run": "JP-PDF-REVIEW-20261012-01",
+    "zip_sha256": "16fd9bbc0843b13bedb90f755a00ca3f013615c69ab0b0480de972629ed94a86",
+    "part_of_frozen_raw": false,
+    "apply_as_explicit_overlay": true
+  },
+  "derivation_policy": {
+    "qa_is_not_a_prerequisite_for_internal_derivation": true,
+    "uncertain_values": "Retain original text, nulls, and confidence/status; never convert missing to zero",
+    "source_isolation": "Keep six sources independent; compare with links, never silently merge",
+    "raw_mutation": "Never overwrite m02-raw-v1. Every improved extraction gets a new version and parent baseline reference",
+    "branches": {
+      "baseline": "milestone/m02-raw-extraction-20261012",
+      "extraction": "extraction/m02-iteration-001",
+      "website": "website/m02-iteration-001"
+    },
+    "each_iteration_records": [
+      "parent baseline commit",
+      "input source hashes",
+      "extraction version",
+      "derivation version",
+      "website commit",
+      "user visual feedback",
+      "rollback commit"
+    ],
+    "publication": "Public metadata only in this commit. Website population is a subsequent iteration; party-specific vendor data remains private"
+  },
+  "limitations": [
+    "OCR accuracy not certified",
+    "Exact OCR language-pack configuration not recorded in inspected page/source records",
+    "Candidate numeric roles and recipes may be wrong; apply explicit corrections during derivation",
+    "Public website was not modified by this freeze"
+  ],
+  "runtime_note": "Local processing runtime disconnected during freeze; existing efficient source archives and index preserved without repackaging"
+}
