@@ -1,0 +1,219 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/FabinGurung/JP_Cost_Estimation/blob/research/open-estimation-engine-v0.1/schemas/wall-assembly.v0.1.schema.json",
+  "title": "Unpriced wall assembly recipe — JP AEC cost intelligence",
+  "description": "Defines reproducible nested work items. No quantities, rates or totals are invented by the template.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "assembly_id",
+    "status",
+    "name",
+    "basis",
+    "geometry_inputs",
+    "layers",
+    "pricing_gate"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "jp-cres.wall_assembly.v0.1"
+    },
+    "assembly_id": {
+      "type": "string",
+      "pattern": "^JP-WALL-[A-Z0-9-]+$"
+    },
+    "status": {
+      "enum": [
+        "TEMPLATE_ONLY",
+        "DRAFT_UNVERIFIED",
+        "VERIFIED"
+      ]
+    },
+    "name": {
+      "type": "string",
+      "minLength": 3
+    },
+    "basis": {
+      "enum": [
+        "1_m2_gross_wall_elevation",
+        "1_m2_net_wall_elevation",
+        "specified_wall_element"
+      ]
+    },
+    "geometry_inputs": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "thickness_m",
+        "net_area_m2",
+        "side_finish_scope",
+        "opening_deduction_status",
+        "quantity_source"
+      ],
+      "properties": {
+        "thickness_m": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "exclusiveMinimum": 0
+        },
+        "net_area_m2": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "side_finish_scope": {
+          "enum": [
+            "one_face",
+            "two_faces",
+            "mixed",
+            "not_selected"
+          ]
+        },
+        "opening_deduction_status": {
+          "enum": [
+            "NOT_MEASURED",
+            "NET_QUANTITIES_VERIFIED"
+          ]
+        },
+        "quantity_source": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "CAD/FID quantity identity or null (not manually invented in the rate repository)"
+        }
+      }
+    },
+    "layers": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "layer_id",
+          "role",
+          "work_item_ref",
+          "unit",
+          "quantity_expression",
+          "quantity_verified",
+          "rate_source_ref",
+          "rate_verified",
+          "in_scope"
+        ],
+        "properties": {
+          "layer_id": {
+            "type": "string"
+          },
+          "role": {
+            "enum": [
+              "brick_or_block_masonry",
+              "plaster_internal",
+              "plaster_external",
+              "punning",
+              "putty",
+              "primer",
+              "paint",
+              "waterproofing",
+              "electrical_conduit",
+              "electrical_wiring_point",
+              "switch_socket_box",
+              "other"
+            ]
+          },
+          "work_item_ref": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "unit": {
+            "type": "string"
+          },
+          "quantity_expression": {
+            "type": "string",
+            "description": "Transparent formula using CAD inputs; not an executable quantity result"
+          },
+          "quantity_verified": {
+            "type": "boolean"
+          },
+          "rate_source_ref": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "rate_verified": {
+            "type": "boolean"
+          },
+          "in_scope": {
+            "type": "boolean"
+          },
+          "scope_notes": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "pricing_gate": {
+      "type": "object",
+      "required": [
+        "ready_to_price",
+        "reason"
+      ],
+      "properties": {
+        "ready_to_price": {
+          "type": "boolean"
+        },
+        "reason": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "resource_analysis_extension": {
+      "type": "object",
+      "description": "Future child recipe: material, labour, equipment, PPE, electricity, water, site amenities; avoid double counting.",
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "enum": [
+            "NOT_STARTED",
+            "DRAFT",
+            "VERIFIED"
+          ]
+        },
+        "resource_classes": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "material",
+              "labour",
+              "equipment",
+              "ppe",
+              "water",
+              "electricity",
+              "site_amenity",
+              "transport",
+              "other"
+            ]
+          }
+        }
+      }
+    },
+    "source_authority": {
+      "type": "string"
+    },
+    "notes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

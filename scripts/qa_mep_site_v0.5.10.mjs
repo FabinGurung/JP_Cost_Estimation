@@ -110,4 +110,24 @@ for(const name of ['mep-app.js','mep-catalog.js','work-construction-guide.js','w
 for(const path of ['finance.html','finance.js','finance-summary.json','boq-template.json','rate-comparison.html']){
  assert(existsSync(new URL('../'+path,import.meta.url)),'protected module exists: '+path);
 }
+
+// v0.5.13 personal-source identity and item-only details navigation regression.
+const personal=read('rate-library.html'), comparison=read('rate-comparison.html');
+const sourceCategory=json('data/personal-working-rate-source.v0.5.13.json');
+const draftAssembly=json('data/wall-assembly-template.v0.1.json');
+const wallSchema=json('schemas/wall-assembly.v0.1.schema.json');
+assert(personal.includes('<h1>My Personal Working Rates</h1>'),'personal rate collection has a human-readable heading');
+assert(personal.includes('JP personal working-rate references'),'rate category remains source-qualified');
+assert(sourceCategory.collection_id==='JP_PERSONAL_WORKING_RATES'&&sourceCategory.total_original_price_observations===204,'personal source category metadata aligned');
+assert(sourceCategory.original_workbook_name_in_public_metadata===false,'private Excel file name is not publicly projected');
+for (const page of [personal,comparison,read('rate-specifications.html')]){
+  assert(!/<a[^>]*href="rate-specifications\.html"[^>]*>Work Specifications(?: →)?<\/a>/.test(page),'redundant standalone specifications link removed');
+}
+assert(personal.includes('rate-specifications')===false||!personal.includes('href="rate-specifications.html"'),'bare detail link not reintroduced');
+assert(read('work-rate-library.js').includes("'rate-specifications.html?'+dest.toString()"),'item detail links remain');
+assert(read('rate-specifications.html').includes('id="specFullText"'),'original Excel wording detail still available');
+assert(comparison.includes('JP — My Personal Working Rates'),'comparison linked to personal source');
+assert(draftAssembly.status==='TEMPLATE_ONLY'&&draftAssembly.pricing_gate.ready_to_price===false,'wall assembly deliberately unpriced');
+assert(draftAssembly.layers.length>=7&&draftAssembly.layers.every(layer=>layer.rate_source_ref===null&&layer.work_item_ref===null&&layer.rate_verified===false),'wall template has no invented prices or links');
+assert(wallSchema.properties?.layers?.items?.properties?.rate_source_ref,'wall JSON Schema supports source-linked rate members');
 console.log('PASS inline MEP switching regression: 204 immutable source rows, 62 unique trades per worksheet set (3/37/22), routing, source history, SI/Imperial, search, quality guide, protected modules.');

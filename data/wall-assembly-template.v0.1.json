@@ -1,0 +1,160 @@
+{
+  "schema_version": "jp-cres.wall_assembly.v0.1",
+  "assembly_id": "JP-WALL-FINISHED-01",
+  "status": "TEMPLATE_ONLY",
+  "name": "Complete finished brick wall (options for MEP)",
+  "basis": "1_m2_net_wall_elevation",
+  "geometry_inputs": {
+    "thickness_m": null,
+    "net_area_m2": null,
+    "side_finish_scope": "not_selected",
+    "opening_deduction_status": "NOT_MEASURED",
+    "quantity_source": null
+  },
+  "layers": [
+    {
+      "layer_id": "WL-001",
+      "work_item_ref": null,
+      "quantity_verified": false,
+      "rate_source_ref": null,
+      "rate_verified": false,
+      "role": "brick_or_block_masonry",
+      "unit": "m³",
+      "quantity_expression": "Q = A_net(m²) * wall_thickness(m)",
+      "in_scope": true,
+      "scope_notes": "Must match brick grade, mortar, thickness and measurement rules."
+    },
+    {
+      "layer_id": "WL-002",
+      "work_item_ref": null,
+      "quantity_verified": false,
+      "rate_source_ref": null,
+      "rate_verified": false,
+      "role": "plaster_internal",
+      "unit": "m²",
+      "quantity_expression": "Q = A_internal_face_net(m²); source of face count must be verified",
+      "in_scope": true,
+      "scope_notes": "Include only if the selected masonry or bundled item has not already priced it."
+    },
+    {
+      "layer_id": "WL-003",
+      "work_item_ref": null,
+      "quantity_verified": false,
+      "rate_source_ref": null,
+      "rate_verified": false,
+      "role": "plaster_external",
+      "unit": "m²",
+      "quantity_expression": "Q = A_external_face_net(m²); source of face count must be verified",
+      "in_scope": true,
+      "scope_notes": "Choose finish exposure and thickness explicitly."
+    },
+    {
+      "layer_id": "WL-004",
+      "work_item_ref": null,
+      "quantity_verified": false,
+      "rate_source_ref": null,
+      "rate_verified": false,
+      "role": "punning",
+      "unit": "m²",
+      "quantity_expression": "Q = A_face_requiring_punning(m²)",
+      "in_scope": false,
+      "scope_notes": "Optional: punning/putty/skim must not be double-counted; confirm finishing terminology."
+    },
+    {
+      "layer_id": "WL-005",
+      "work_item_ref": null,
+      "quantity_verified": false,
+      "rate_source_ref": null,
+      "rate_verified": false,
+      "role": "putty",
+      "unit": "m²",
+      "quantity_expression": "Q = A_face_requiring_putty(m²)",
+      "in_scope": false,
+      "scope_notes": "Optional; include only if not included in chosen finishing package."
+    },
+    {
+      "layer_id": "WL-006",
+      "work_item_ref": null,
+      "quantity_verified": false,
+      "rate_source_ref": null,
+      "rate_verified": false,
+      "role": "primer",
+      "unit": "m²",
+      "quantity_expression": "Q = A_painted_surface(m²)",
+      "in_scope": false,
+      "scope_notes": "Confirm whether quoted paint rate already includes primer."
+    },
+    {
+      "layer_id": "WL-007",
+      "work_item_ref": null,
+      "quantity_verified": false,
+      "rate_source_ref": null,
+      "rate_verified": false,
+      "role": "paint",
+      "unit": "m²",
+      "quantity_expression": "Q = A_painted_surface(m²)",
+      "in_scope": true,
+      "scope_notes": "Confirm number of coats and whether primers/preparations included."
+    },
+    {
+      "layer_id": "WL-008",
+      "work_item_ref": null,
+      "quantity_verified": false,
+      "rate_source_ref": null,
+      "rate_verified": false,
+      "role": "electrical_conduit",
+      "unit": "m",
+      "quantity_expression": "Q = CAD/MEP-verified concealed_conduit_length(m)",
+      "in_scope": false,
+      "scope_notes": "No automatic points per m² assumed."
+    },
+    {
+      "layer_id": "WL-009",
+      "work_item_ref": null,
+      "quantity_verified": false,
+      "rate_source_ref": null,
+      "rate_verified": false,
+      "role": "electrical_wiring_point",
+      "unit": "point",
+      "quantity_expression": "Q = electrical_layout_verified_point_count",
+      "in_scope": false,
+      "scope_notes": "Count by verified MEP design. Avoid double-charge when points already include conduit and wiring."
+    },
+    {
+      "layer_id": "WL-010",
+      "work_item_ref": null,
+      "quantity_verified": false,
+      "rate_source_ref": null,
+      "rate_verified": false,
+      "role": "switch_socket_box",
+      "unit": "No.",
+      "quantity_expression": "Q = electrical_layout_verified_device_count",
+      "in_scope": false,
+      "scope_notes": "Only separately if excluded from point rate."
+    }
+  ],
+  "pricing_gate": {
+    "ready_to_price": false,
+    "reason": "Wall geometry, opening deductions, finish-face coverage, resource recipes, source-linked unit prices and optional MEP point/device quantities are not verified."
+  },
+  "resource_analysis_extension": {
+    "status": "NOT_STARTED",
+    "resource_classes": [
+      "material",
+      "labour",
+      "equipment",
+      "ppe",
+      "electricity",
+      "water",
+      "site_amenity",
+      "transport"
+    ]
+  },
+  "source_authority": "CAD/FID quantities reside with the CAD repository; rate observations and recipes reside in the JP Cost & Rate Intelligence system; original document authority remains in Google Drive.",
+  "notes": [
+    "Illustrative recipe, not a priced BOQ or quote.",
+    "Scope inclusions must be checked before combining layers.",
+    "Net area and face area are not automatically identical for doors/windows/returns.",
+    "Overhead, markup, VAT, contingency and project utilities require independent policy and no double counting."
+  ]
+}

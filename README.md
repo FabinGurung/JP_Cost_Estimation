@@ -85,3 +85,13 @@ MEP is no longer a sibling to Rate Library. The construction journey now present
 ## v0.5.12 — MEP now switches inside Rate Library (2026-10-11)
 
 The Rate Library's 🏢 MEP construction-stage child choices are now **interactive in-page filters**, not links to another full website page. Mechanical, Electrical and Plumbing reuse the same Description | Unit | Rate table, with 3/37/22 items per worksheet set and a 62-item all-MEP option. Selected state is reflected in the shareable `?stage=mep&trade=...` query; the worksheet choice and SI/Imperial display persist. Existing /mep.html and /mep-{mechanical,electrical,plumbing}.html URLs redirect to the corresponding in-page views and are not deleted. Work Specifications still have separate full-description pages and return to the selected in-page category. The original 204 rates and all Finance, CAD and BOQ boundaries are unchanged. See [release notes](docs/INLINE_MEP_RATE_LIBRARY_v0.5.12.md).
+
+## v0.5.13 — Personal working-rate identity, simplified navigation, future wall assemblies (2026-10-11)
+
+The 204 Excel-derived work price observations now appear as **JP — My Personal Working Rates**, a user-entered estimate-reference collection explicitly separate from government schedules, vendors, approved company rates and the canonical AEC Cost Rate Master. Original private workbook name, file, Drive identity and source extraction are not changed or projected. The redundant top-level **Work Specifications** navigation entry and footer shortcut have been removed; the per-item specification route `rate-specifications.html?id=...`, full Excel wording, metadata and editorial workmanship/quality guidance remain functional.
+
+A **design-only, unpriced** Wall Assembly recipe and JSON Schema now describe how to combine wall masonry, internal/external plaster, punning/putty, paint and optional MEP point quantities in future **without double counting**. Future analysis includes materials, labour, equipment, PPE and water/electricity site amenities; project quantity/FID sources remain CAD-owned. No finished-wall totals or rates were invented, no source PDF was claimed parsed and no migration or finance change was made. Details: [JP personal rates + wall assembly design](docs/PERSONAL_RATES_AND_ASSEMBLIES_v0.5.13.md).
+
+Government backlog: the Drive binary titled `rate analysis DUDBC.pdf` exists but a complete normalized parse/read-back was **not verified**; a separate DUDBC civil works technical-specification index historically reports PDF acquisition pending. Neither source is silently merged with personal rates.
+
+M01 `v0.5.12` tag and pre-release remain immutable; this is a new development revision, not retroactive modification of that milestone.

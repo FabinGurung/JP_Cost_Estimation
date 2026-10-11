@@ -1,0 +1,34 @@
+{
+  "schema": "jp-cres.rate_source_classification.v0.5.13",
+  "collection_id": "JP_PERSONAL_WORKING_RATES",
+  "label": "JP — My Personal Working Rates",
+  "scope": "One user-provided personal Excel estimate workbook; rate observations in the public page only",
+  "source_kind": "user_uploaded_excel_finished_work_rate_reference",
+  "source_status": "UNVERIFIED_USER_ESTIMATE",
+  "canonical_drive_original_retained": true,
+  "original_workbook_name_in_public_metadata": false,
+  "source_workbook_id_in_public_metadata": false,
+  "total_original_price_observations": 204,
+  "visible_worksheet_set": 102,
+  "hidden_worksheet_set": 102,
+  "hidden_sheet_chronology": "UNKNOWN",
+  "rate_year": "UNKNOWN",
+  "project_identity": "NOT_PROJECTED_IN_PUBLIC_SITE",
+  "approval": "NOT_APPROVED",
+  "linked_public_data": "data/historical-work-rates-v0.5.3.json",
+  "canonical_source_library_separate": true,
+  "other_source_families": [
+    "DUDBC_RATE_ANALYSIS",
+    "KASKI_DISTRICT_RATES",
+    "VENDOR_QUOTATIONS",
+    "PROJECT_ACTUALS",
+    "APPROVED_COMPANY_RATES"
+  ],
+  "boundaries": [
+    "Not a company-approved price list",
+    "Not a current quote",
+    "Not government rates",
+    "No CAD/FID quantity takeoff",
+    "No automatic promotion to master"
+  ]
+}
