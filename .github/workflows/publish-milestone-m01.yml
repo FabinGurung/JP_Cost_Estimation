@@ -1,0 +1,95 @@
+name: Release JP Cost & Rate Library Milestone M01
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/publish-milestone-m01.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: jp-cres-milestone-m01
+  cancel-in-progress: false
+
+jobs:
+  release-m01:
+    name: Verify source and create immutable annotated tag + prerelease
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout repository main metadata
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+
+      - name: Verify pinned source and successful quality/deployment evidence
+        env:
+          GH_TOKEN: "${{ github.token }}"
+          SOURCE_SHA: 726d60538b390e2a944f87d3a389be4bf30e93c8
+        shell: bash
+        run: |
+          set -euo pipefail
+          REPO="$GITHUB_REPOSITORY"
+          actual="$(gh api "repos/$REPO/git/ref/heads/research/open-estimation-engine-v0.1" --jq '.object.sha')"
+          test "$actual" = "$SOURCE_SHA" || { echo "::error::Research source has moved: $actual; refusing to tag stale source"; exit 1; }
+          for row in "38093014816:$SOURCE_SHA" "38093014818:$SOURCE_SHA" "38093060021:72a32c9425310f2e3d4e735182cbe1f0809e4573"; do
+            id="${row%%:*}"; expected="${row#*:}"
+            conclusion="$(gh api "repos/$REPO/actions/runs/$id" --jq '.conclusion')"
+            actualsha="$(gh api "repos/$REPO/actions/runs/$id" --jq '.head_sha')"
+            test "$conclusion" = "success" && test "$actualsha" = "$expected" || {
+              echo "::error::Evidence run $id not successful or commit mismatch"; exit 1;
+            }
+          done
+          test -f releases/M01_RATE_LIBRARY_INLINE_MEP_v0.5.12.md
+          test -f releases/M01_RATE_LIBRARY_INLINE_MEP_v0.5.12.json
+          node -e "const m=require('./releases/M01_RATE_LIBRARY_INLINE_MEP_v0.5.12.json');if(m.release_commit!==process.env.SOURCE_SHA||m.source_observations.total!==204||m.git_tag!=='v0.5.12')process.exit(1)"
+          mkdir -p "$RUNNER_TEMP/jp-cres-m01-source"
+          git archive "$SOURCE_SHA" | tar -x -C "$RUNNER_TEMP/jp-cres-m01-source"
+          (
+            cd "$RUNNER_TEMP/jp-cres-m01-source"
+            node --check work-rate-library.js
+            node --check work-specifications.js
+            node scripts/qa_mep_site_v0.5.10.mjs
+          )
+
+      - name: Create or verify annotated milestone tag
+        env:
+          TAG: v0.5.12
+          SOURCE_SHA: 726d60538b390e2a944f87d3a389be4bf30e93c8
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git ls-remote --exit-code --tags origin "refs/tags/$TAG" >/dev/null 2>&1; then
+            git fetch origin "refs/tags/$TAG:refs/tags/$TAG"
+            existing="$(git rev-parse "$TAG^{commit}")"
+            test "$existing" = "$SOURCE_SHA" || { echo "::error::Existing milestone tag points to a different commit: $existing"; exit 1; }
+            echo "Existing tag matches pinned source; will not rewrite it."
+          else
+            git tag -a "$TAG" "$SOURCE_SHA" -m "JP-CRES M01: Ground-Up Rate Library and Inline MEP · $TAG" -m "Frozen source commit: $SOURCE_SHA. Archived rate data remains unverified."
+            git push origin "refs/tags/$TAG"
+          fi
+
+      - name: Create or verify GitHub pre-release
+        env:
+          GH_TOKEN: "${{ github.token }}"
+          TAG: v0.5.12
+          SOURCE_SHA: 726d60538b390e2a944f87d3a389be4bf30e93c8
+        shell: bash
+        run: |
+          set -euo pipefail
+          if gh release view "$TAG" --json url,isPrerelease > "$RUNNER_TEMP/existing-m01.json" 2>/dev/null; then
+            node -e "const x=require(process.env.RUNNER_TEMP+'/existing-m01.json');if(x.isPrerelease!==true)process.exit(1)"
+            echo "Matching pre-release already exists: $(gh release view "$TAG" --json url --jq '.url')"
+          else
+            gh release create "$TAG" --verify-tag --target "$SOURCE_SHA" --prerelease --title "M01 · Rate Library, Construction Journey & Inline MEP (v0.5.12)" --notes-file "releases/M01_RATE_LIBRARY_INLINE_MEP_v0.5.12.md"
+          fi
+          gh release view "$TAG" --json url,tagName,isPrerelease --jq '{url,tagName,isPrerelease}'
+          echo "### GitHub release milestone" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Release: $(gh release view "$TAG" --json url --jq '.url')" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Pinned source: $SOURCE_SHA" >> "$GITHUB_STEP_SUMMARY"

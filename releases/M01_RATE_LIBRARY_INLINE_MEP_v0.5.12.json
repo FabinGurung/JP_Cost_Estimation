@@ -1,0 +1,66 @@
+{
+  "schema": "jp-cres.github_milestone.v1",
+  "id": "JP-CRES-M01",
+  "title": "Rate Library & Ground-Up Construction Journey — Inline MEP",
+  "created_local_date": "2026-10-11",
+  "version": "0.5.12",
+  "git_tag": "v0.5.12",
+  "release_classification": "prerelease_functional_ui_unverified_rate_source",
+  "repository": "FabinGurung/JP_Cost_Estimation",
+  "release_commit": "726d60538b390e2a944f87d3a389be4bf30e93c8",
+  "source_tree_sha": "975692bb43e43bfb1f47cd43270e75d958eb07ec",
+  "source_branch": "research/open-estimation-engine-v0.1",
+  "deploy_main_commit": "72a32c9425310f2e3d4e735182cbe1f0809e4573",
+  "public_pages": "https://fabingurung.github.io/JP_Cost_Estimation/",
+  "rate_library": "https://fabingurung.github.io/JP_Cost_Estimation/rate-library.html",
+  "mep_stage": "https://fabingurung.github.io/JP_Cost_Estimation/rate-library.html?stage=mep",
+  "source_observations": {
+    "total": 204,
+    "visible_worksheets": 102,
+    "hidden_worksheets": 102,
+    "matched_pairs": 102,
+    "different_prices": 4
+  },
+  "mep_unique_per_worksheet_set": {
+    "mechanical": 3,
+    "electrical": 37,
+    "plumbing": 22,
+    "total": 62
+  },
+  "source_git_blob_shas": {
+    "rates_json": "05af2fb666d6b2c989cce3df52e2d8307fc9fdfc",
+    "short_labels_json": "b00a7aee735bfc40441191554b31ba05d6cd0842",
+    "taxonomy_json": "0055f597e0b775570b3fe3fc025f1b33a72c88b2",
+    "inline_rate_library_html": "7312391d1763319e9f28fd61dc83a64f0d1a8ce8",
+    "regression_script": "754fca282fd9968ddb57ac78c655310c5dbdcfe6",
+    "finance_snapshot": "40c8bb4e13e514978c03030e5df0d858e24a74b6"
+  },
+  "verification": {
+    "ci": {
+      "run_id": 38093014816,
+      "conclusion": "success"
+    },
+    "preview": {
+      "run_id": 38093014818,
+      "conclusion": "success"
+    },
+    "pages": {
+      "run_id": 38093060021,
+      "conclusion": "success"
+    }
+  },
+  "rollback": {
+    "pre": "snapshot/pre-inline-mep-tabs-v0.5.12-20261011",
+    "post": "snapshot/post-inline-mep-tabs-v0.5.12-20261011"
+  },
+  "caveats": [
+    "original estimates unverified",
+    "unknown worksheet chronology",
+    "source year and location not verified",
+    "not a contract-approved or market price schedule",
+    "direct device-level visual QA outstanding",
+    "no CAD/QTO/finance migration"
+  ],
+  "source_data_authority": "Original source held in Google Drive; GitHub contains only a derived public-safe projection.",
+  "governance": "Immutable annotated tag; future improvements require new release tag and source commit."
+}
