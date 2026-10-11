@@ -1,0 +1,144 @@
+{
+  "schema": "jp-cres.rate_source_public_skeleton.v0.5.14",
+  "revision": "v0.5.14",
+  "scope": "public-safe_metadata_only",
+  "rate_observation_count": 0,
+  "extraction_complete": false,
+  "source_root_inventory_count": 5,
+  "extra_source_count": 1,
+  "groups": [
+    {
+      "id": "personal",
+      "name": "My Personal Working Rates",
+      "icon": "🏗️",
+      "href": "rate-library.html",
+      "type": "JP_PERSONAL_WORKING_RATES",
+      "tagline": "Your Excel-derived construction work prices",
+      "count": 204,
+      "status": "UNVERIFIED_PERSONAL_REFERENCE",
+      "description": "102 visible + 102 hidden Excel worksheet observations. Existing searchable construction journey and clickable work details.",
+      "entries": []
+    },
+    {
+      "id": "government",
+      "name": "Government District Rates",
+      "icon": "🏛️",
+      "href": "government-rates.html",
+      "type": "GOV_DISTRICT_RATES",
+      "tagline": "Dated official district price sources",
+      "count": null,
+      "status": "SKELETON_PENDING_EXTRACTION",
+      "description": "Local public-works and resource benchmark documents, by jurisdiction and fiscal year. Not contractor quotations or approved project rates.",
+      "entries": [
+        "SRC-GOV-001"
+      ]
+    },
+    {
+      "id": "vendors",
+      "name": "Vendor Prices & Quotations",
+      "icon": "🧾",
+      "href": "vendor-price-lists.html",
+      "type": "VENDOR_PRICE_EVIDENCE",
+      "tagline": "Commercial product prices and quotations",
+      "count": null,
+      "status": "SKELETON_PENDING_EXTRACTION",
+      "description": "Differentiate general price lists from pending/party-specific quotations. Exclude confidential buyer, contact, payment and discount details from public projections.",
+      "entries": [
+        "SRC-VEN-001",
+        "SRC-VEN-002"
+      ]
+    },
+    {
+      "id": "rate-analysis",
+      "name": "Rate Analysis References",
+      "icon": "🧮",
+      "href": "rate-analysis-references.html",
+      "type": "RATE_ANALYSIS_REFERENCES",
+      "tagline": "Norms, resource breakdowns and unit-rate recipes",
+      "count": null,
+      "status": "SKELETON_PENDING_EXTRACTION",
+      "description": "Contractor/user rate-analysis books and a separately located DUDBC source. Do not mistake these for the site's interactive Rate Analysis calculator.",
+      "entries": [
+        "SRC-RA-001",
+        "SRC-RA-002",
+        "SRC-RA-003"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "SRC-GOV-001",
+      "group": "government",
+      "label": "Kaski District Rate — FY 2083/84",
+      "kind": "government_district_rate_book",
+      "source_scope": "Kaski District",
+      "edition_claim": "FY 2083/84 appears in source text; page-by-page validation pending",
+      "parse_status": "TEXT_SAMPLE_ONLY",
+      "verified_pages": null,
+      "verified_observations": null,
+      "notes": "Government rate-book source. No price imported here until page, unit, edition and authority checks pass."
+    },
+    {
+      "id": "SRC-VEN-001",
+      "group": "vendors",
+      "label": "Pipes & Fittings Price List — 2082",
+      "kind": "vendor_catalogue",
+      "source_scope": "CPVC pipes and fittings (source text sample)",
+      "edition_claim": "2082.01.03 appears in filename; issue and validity period to verify",
+      "parse_status": "TEXT_SAMPLE_ONLY",
+      "verified_pages": null,
+      "verified_observations": null,
+      "notes": "Commercial price list; product/size/brand, tax and terms require extraction and verification."
+    },
+    {
+      "id": "SRC-VEN-002",
+      "group": "vendors",
+      "label": "Electrical Wire Quotation",
+      "kind": "vendor_pending_sales_quotation",
+      "source_scope": "Electrical wire offer",
+      "edition_claim": "Print date 2082-11-04 present; quotation status Pending",
+      "parse_status": "TEXT_SAMPLE_ONLY_PRIVATE_FIELDS_PRESENT",
+      "verified_pages": null,
+      "verified_observations": null,
+      "notes": "The source excerpt is explicitly marked Pending and includes customer-specific fields. No name, quotation number, amounts or private details are published."
+    },
+    {
+      "id": "SRC-RA-001",
+      "group": "rate-analysis",
+      "label": "Contractor Rate Analysis — 2082/83",
+      "kind": "resource_rate_analysis_reference_contractor",
+      "source_scope": "Contractor-oriented rate analysis",
+      "edition_claim": "82–83 appears in filename; edition to verify",
+      "parse_status": "PDF_PRESENT_TEXT_UNAVAILABLE",
+      "verified_pages": null,
+      "verified_observations": null,
+      "notes": "Large PDF with no text returned from basic Drive fetch. Requires page/layout extraction and selective OCR only if necessary."
+    },
+    {
+      "id": "SRC-RA-002",
+      "group": "rate-analysis",
+      "label": "Users Rate Analysis — 2082/83",
+      "kind": "resource_rate_analysis_reference_users",
+      "source_scope": "User-oriented rate analysis",
+      "edition_claim": "82–83 appears in filename; edition to verify",
+      "parse_status": "PDF_PRESENT_EXTRACTION_PENDING",
+      "verified_pages": null,
+      "verified_observations": null,
+      "notes": "Separate source from the contractor edition. Never merge on matching item names alone."
+    },
+    {
+      "id": "SRC-RA-003",
+      "group": "rate-analysis",
+      "label": "DUDBC Rate Analysis PDF",
+      "kind": "resource_rate_analysis_reference_dudbc",
+      "source_scope": "DUDBC-titled rate analysis",
+      "edition_claim": "Exact edition, authorship and provenance unverified",
+      "parse_status": "PDF_PRESENT_EXTRACTION_PENDING",
+      "verified_pages": null,
+      "verified_observations": null,
+      "notes": "This source is outside the supplied 01_Source_Documents folder; its title alone does not establish a verified current government edition."
+    }
+  ],
+  "privacy": "No original Drive IDs, customer quotations, price values, PDF text or finance records. Approved public projections only.",
+  "notice": "All source rates, recipes and cross-source matches are pending complete evidence-led extraction and review; this skeleton does not certify prices."
+}

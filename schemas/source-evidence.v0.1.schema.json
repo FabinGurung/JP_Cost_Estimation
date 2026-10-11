@@ -1,0 +1,107 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "JP Cost — Source evidence / extraction inventory record v0.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "record_type",
+    "source_id",
+    "source_family",
+    "source_file_id",
+    "source_title",
+    "source_mime",
+    "source_bytes",
+    "state",
+    "origin_folder_id"
+  ],
+  "properties": {
+    "record_type": {
+      "const": "source"
+    },
+    "source_id": {
+      "type": "string",
+      "pattern": "^SRC-[A-Z]+-[0-9]{3}$"
+    },
+    "source_family": {
+      "enum": [
+        "government",
+        "vendors",
+        "rate-analysis"
+      ]
+    },
+    "source_file_id": {
+      "type": "string",
+      "minLength": 6
+    },
+    "source_title": {
+      "type": "string"
+    },
+    "source_mime": {
+      "const": "application/pdf"
+    },
+    "source_bytes": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "origin_folder_id": {
+      "type": "string",
+      "minLength": 6
+    },
+    "sha256": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "page_count": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 1
+    },
+    "state": {
+      "enum": [
+        "INVENTORIED",
+        "TEXT_SAMPLE_ONLY",
+        "EXTRACTING",
+        "EXTRACTED_UNVERIFIED",
+        "PAGE_QA_DONE",
+        "FULLY_VERIFIED",
+        "BLOCKED"
+      ]
+    },
+    "extraction_run_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "last_completed_page": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 0
+    },
+    "original_preserved": {
+      "const": true
+    },
+    "authority_verified": {
+      "type": "boolean"
+    },
+    "file_uri_local": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "warnings": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

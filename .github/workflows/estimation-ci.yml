@@ -40,6 +40,11 @@ jobs:
           node --check scripts/qa_mep_site_v0.5.10.mjs
           node scripts/qa_mep_site_v0.5.10.mjs
 
+      - name: Source-skeleton integrity and privacy regression
+        run: |
+          node --check rate-source-skeleton.js
+          node scripts/qa_rate_source_skeleton_v0.5.14.mjs
+
       - name: Public-site secret pattern check
         shell: bash
         run: |

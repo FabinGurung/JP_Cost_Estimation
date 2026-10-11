@@ -120,3 +120,9 @@ html[data-theme="dark"] .rate-workspace .rate-price strong{color:#90d9aa}
 }
 @media(max-width:350px){.rate-portal-grid{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){.rate-portal-card{transition:none}.rate-portal-card:hover{transform:none}}
+
+/* v0.5.14 sibling source collections entrance */
+.rate-source-back{color:#266c48;font-weight:800;text-underline-offset:3px}
+.rate-portal-grid .rate-portal-card{min-width:0}
+.rate-portal-grid .rate-portal-card .portal-icon{font-size:20px}
+@media(max-width:760px){.rate-portal-grid{grid-template-columns:repeat(1,minmax(0,1fr))}}

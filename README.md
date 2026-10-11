@@ -95,3 +95,7 @@ A **design-only, unpriced** Wall Assembly recipe and JSON Schema now describe ho
 Government backlog: the Drive binary titled `rate analysis DUDBC.pdf` exists but a complete normalized parse/read-back was **not verified**; a separate DUDBC civil works technical-specification index historically reports PDF acquisition pending. Neither source is silently merged with personal rates.
 
 M01 `v0.5.12` tag and pre-release remain immutable; this is a new development revision, not retroactive modification of that milestone.
+
+## v0.5.14 — Four peer rate libraries and evidence-source skeletons (2026-10-11)
+
+Introduced independent [rate-source collections](rate-sources.html) beside JP Personal Working Rates: [Government District Rates](government-rates.html), [Vendor Prices & Quotations](vendor-price-lists.html), and [Rate Analysis References](rate-analysis-references.html). These three new libraries show six document-specific, public-safe empty preview pages without inventing any observations. Five PDFs are in the Drive 01_Source_Documents hierarchy; one DUDBC-titled PDF is elsewhere in Drive and linked only through private control data. A machine-readable six-source private inventory is stored inside authenticated Drive 02_Normalized_AI_Data; public `SRC-GOV-001` etc. are staging/projection aliases only. [Extraction and QA handoff](docs/RATE_SOURCE_FAMILIES_AND_EXTRACTION_v0.5.14.md). Original 204 personal rates, legacy government public snapshot, Rohini Finance, Rate Analysis, CAD/FID ownership and M01 tag remain unchanged.
