@@ -1,0 +1,19 @@
+name: KKG Finance Entry Test Pilot
+on:
+  push:
+    branches:
+      - feature/kkg-finance-entry-v0.6.0-test-20261012
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  synthetic-validation:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Parse test-only bound Apps Script
+        run: node --check scripts/kkg_v2_entry_test_v0.6.0.js
+      - name: Test guardrails, IDs and payment validation
+        run: node scripts/qa_kkg_v2_entry_v0.6.0.mjs
+      - name: Verify finance snapshot remains unchanged
+        run: node scripts/qa_kkg_finance_snapshot_v1.2.mjs
