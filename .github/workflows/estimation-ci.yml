@@ -50,6 +50,11 @@ jobs:
           node --check rate-source-skeleton.js
           node scripts/qa_source_derivations_v0.5.15.mjs
 
+      - name: Finance snapshot and dynamic-vendor regression
+        run: |
+          node --check finance.js
+          node scripts/qa_kkg_finance_snapshot_v1.2.mjs
+
       - name: Public-site secret pattern check
         shell: bash
         run: |

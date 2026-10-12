@@ -22,7 +22,14 @@
   }
   function safeSummary(data) {
     const rows = data && data.rows;
-    if(!data || !Array.isArray(rows) || rows.length !== 26 || !data.summary) throw new Error('Unexpected source snapshot');
+    if(!data || !Array.isArray(rows) || rows.length < 1 || !data.summary) throw new Error('Unexpected source snapshot');
+    const ids = rows.map(r=>r.id);
+    if(new Set(ids).size !== rows.length || ids.some((id,i)=>id!==i+1) ||
+       rows.some(r=>typeof r.name!=='string'||!r.name.trim()||!Number.isFinite(r.amount_npr)||r.amount_npr<0||
+        (r.qr_npr!==null&&(!Number.isFinite(r.qr_npr)||r.qr_npr<0))||
+        (r.discount_npr!==null&&(!Number.isFinite(r.discount_npr)||r.discount_npr<0)))) {
+      throw new Error('Invalid source summary rows');
+    }
     const amount = rows.reduce((s,r)=>s+Number(r.amount_npr||0),0);
     const qr = rows.reduce((s,r)=>s+Number(r.qr_npr||0),0);
     const discount = rows.reduce((s,r)=>s+Number(r.discount_npr||0),0);
@@ -46,7 +53,7 @@
     const caption = el('div');
     caption.appendChild(el('p','eyebrow','GOOGLE SHEETS · SOURCE-DERIVED SUMMARY'));
     caption.appendChild(el('h3','','Payment summary — 14 Bishal Paija'));
-    caption.appendChild(el('p','','The 26 named rows below are reproduced from the workbook summary. The reported amount and QR totals were checked against its Total row.'));
+    caption.appendChild(el('p','','The '+data.summary.entry_count+' named rows below are reproduced from the workbook summary. The amount and QR totals reconcile to the working Google Sheet.'));
     head.appendChild(caption);
     const open = el('a','finance-source-link','Open original Google Sheet ↗');
     open.href=sheetUrl;open.target='_blank';open.rel='noopener noreferrer';
@@ -133,9 +140,9 @@
     ['Rohini','›','14_Bishal_Paija','›','Payment to Project'].forEach(s=>crumb.appendChild(el('strong','',s)));
     root.appendChild(crumb);
     const source=el('article','finance-register');
-    source.innerHTML='<div class="finance-register-top"><div><p class="eyebrow">ROHINI · SOURCE GOOGLE SHEET · TEMPLATE v1.1</p>'+
+    source.innerHTML='<div class="finance-register-top"><div><p class="eyebrow">ROHINI · SOURCE GOOGLE SHEET · WORKING REGISTER v1.2</p>'+
       '<h3>Krishna Kumar Gupta — Payment to Project</h3>'+
-      '<p>The payment source belongs to the Rohini project register. Its vendor/date/time details are maintained in the editable Google Sheet; the approved summary is presented below.</p>'+
+      '<p>The payment source belongs to the Rohini project register. Its vendor/date/time details are maintained in the editable Google Sheet; the source-reconciled summary is presented below.</p>'+
       '</div><span class="badge ready">GOOGLE SHEETS SOURCE</span></div>';
     const button=el('a','finance-source-link','Open editable payment workbook ↗');
     button.href=sheetUrl;button.target='_blank';button.rel='noopener noreferrer';source.appendChild(button);

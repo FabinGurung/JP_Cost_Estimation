@@ -40,6 +40,11 @@ jobs:
           node --check rate-source-skeleton.js
           node scripts/qa_source_derivations_v0.5.15.mjs
 
+      - name: Finance snapshot regression
+        run: |
+          node --check finance.js
+          node scripts/qa_kkg_finance_snapshot_v1.2.mjs
+
       - name: Confirm non-production boundary
         run: |
           echo "VALIDATION_ONLY=PASS"

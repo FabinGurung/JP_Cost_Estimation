@@ -1,12 +1,12 @@
 {
   "schema": "jp.ces.finance.summary.v1",
-  "snapshot_date": "2026-10-09",
+  "snapshot_date": "2026-10-12",
   "authority": "Google Sheets / current human working register",
   "source": {
     "google_sheets_url": "https://docs.google.com/spreadsheets/d/1S1fkWzo6XGzyD3p92_pTG32zZ9fF3YICAv3HPTomZsE/edit",
     "source_sheet": "14_bishal_paija",
-    "range": "A6:E33",
-    "template": "v1.1"
+    "range": "A6:E34",
+    "template": "v1.2 — human working register; audited manual additions"
   },
   "organization": "Rohini Engineering and Builders Pvt Ltd",
   "project": "14_Bishal_Paija",
@@ -20,7 +20,7 @@
     {
       "id": 1,
       "name": "Amrit hardware",
-      "amount_npr": 85415,
+      "amount_npr": 87415,
       "qr_npr": 30,
       "discount_npr": 2400
     },
@@ -174,8 +174,8 @@
     {
       "id": 23,
       "name": "Formwork_yem gurung",
-      "amount_npr": 4000,
-      "qr_npr": null,
+      "amount_npr": 23000,
+      "qr_npr": 30,
       "discount_npr": null
     },
     {
@@ -198,15 +198,30 @@
       "amount_npr": 300,
       "qr_npr": null,
       "discount_npr": null
+    },
+    {
+      "id": 27,
+      "name": "Thapasthali kitchen plastic and gift house",
+      "amount_npr": 790,
+      "qr_npr": 0,
+      "discount_npr": null
     }
   ],
   "summary": {
-    "entry_count": 26,
-    "amount_npr": 247008,
-    "qr_npr": 130,
+    "entry_count": 27,
+    "amount_npr": 268798,
+    "qr_npr": 160,
     "discount_recorded_npr": 2400,
     "amount_equals_sheet_total": true,
     "qr_equals_sheet_total": true
   },
-  "freshness": "Static snapshot from live Google Sheet as of 2026-10-09. Future Google Sheet changes require a new verified GitHub snapshot."
+  "freshness": "Static, verified summary snapshot from live Google Sheet as of 2026-10-12; Google Sheet remains the editable financial authority. Future edits need new validated GitHub publication.",
+  "source_controls": {
+    "transaction_rows_audited": 74,
+    "transaction_ids_unique": 74,
+    "duplicates_after_id_repair": 0,
+    "native_table_new_vendor": "KKG_Thapasthali_27",
+    "unverified_same_signature_pairs": 2,
+    "pre_repair_backup_drive_id": "1VJGzQ_JNSzFZ9B-PU3rnPcwy-eywbtT03I5p2M0cVT8"
+  }
 }
