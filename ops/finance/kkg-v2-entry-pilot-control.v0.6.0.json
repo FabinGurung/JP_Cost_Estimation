@@ -45,9 +45,11 @@
       "scripts/kkg_v2_entry_test_v0.6.0.js",
       "scripts/qa_kkg_v2_entry_v0.6.0.mjs",
       ".github/workflows/kkg-finance-v2-test.yml",
-      "docs/KKG_FINANCE_ENTRY_PILOT_v0.6.0__20261012.md"
+      "docs/KKG_FINANCE_ENTRY_PILOT_v0.6.0__20261012.md",
+      "finance.js"
     ],
-    "target": "prototype only, no Pages publish or live sheet mutation"
+    "target": "prototype only, no Pages publish or live sheet mutation",
+    "frontend_status": "TEST_BRANCH_ONLY_NOT_DEPLOYED"
   },
   "gates": {
     "synthetic_sheet_calculations": "PASS",
@@ -57,7 +59,8 @@
     "bound_apps_script_trigger": "NOT_INSTALLED_OR_NOT_VERIFIED",
     "device_test": "PENDING",
     "live_cutover": "NOT_AUTHORIZED",
-    "public_snapshot_refresh": "NOT_AUTHORIZED"
+    "public_snapshot_refresh": "NOT_AUTHORIZED",
+    "finance_guide_link_branch_only": "ADDED_NOT_PUBLISHED"
   },
   "rollback": {
     "production_modified": false,
