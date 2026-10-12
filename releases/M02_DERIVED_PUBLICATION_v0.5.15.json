@@ -1,0 +1,28 @@
+{
+  "milestone": "M02",
+  "iteration": "website-001",
+  "version": "v0.5.15",
+  "product_commit": "908f60cf4d4cabd52dba75c87d4e3d512dd38a3c",
+  "raw_baseline_commit": "80a3650e8de3be1488b742f79246620543d2cffc",
+  "product_branch": "research/open-estimation-engine-v0.1",
+  "iteration_branch": "website/m02-iteration-001",
+  "rollback_branch": "Archive_PRE_M02_DERIVED_PUBLICATION_20261012",
+  "source_count": 6,
+  "raw_source_pages": 697,
+  "structured_entries": 2461,
+  "machine_numeric_candidates": 25327,
+  "compressed_dataset_bytes": 1956259,
+  "privacy": "Private quotation prices, quantities, party information and raw quotation transcripts withheld",
+  "sources_mixed": false,
+  "semantic_verification_complete": false,
+  "routes": [
+    "kaski-district-rates.html",
+    "pipes-price-list.html",
+    "electrical-wire-quotation.html",
+    "contractor-rate-analysis.html",
+    "users-rate-analysis.html",
+    "dudbc-rate-analysis.html"
+  ],
+  "validation": "Local MEP, historical skeleton and source-derivation regressions passed; first source commit passed both GitHub checks. Final homepage-only commit will also run CI.",
+  "publication": "Main Pages workflow deploys the product branch. This metadata commit triggers that workflow."
+}
