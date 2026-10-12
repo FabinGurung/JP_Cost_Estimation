@@ -52,6 +52,7 @@ function kkgV2Run_(kind) {
   try {
     kkgV2Context_(ss);
     var result = kind === 'VENDOR' ? kkgV2AddVendor_(ss) : kkgV2AddPayment_(ss);
+    SpreadsheetApp.flush();
     var check = kkgV2Reconcile_(ss);
     form.getRange('B20').setValue('SUCCESS ' + result + ' | ' + check);
     return result;
@@ -82,26 +83,26 @@ function kkgV2Context_(ss) {
   return conf;
 }
 function kkgV2Clean_(x) { return String(x == null ? '' : x).trim(); }
-function kkgV2Normalize_(x) { return kkgV2Clean_(x).replace(/\\s+/g,' ').toLocaleLowerCase(); }
+function kkgV2Normalize_(x) { return kkgV2Clean_(x).replace(/\s+/g,' ').toLocaleLowerCase(); }
 function kkgV2ValidateMoney_(raw, required, label) {
   if (raw === '' || raw == null) {
     if (required) throw new Error(label + ' is required.');
     return 0;
   }
   var num = Number(raw);
-  if (!Number.isFinite(num) || num < 0 || Math.round(num * 100) !== num * 100)
+  if (!Number.isFinite(num) || num < 0 || Math.abs(Math.round(num * 100) - num * 100) > 1e-7)
     throw new Error(label + ' must be a nonnegative NPR value with at most two decimals.');
   return num;
 }
 function kkgV2ValidateDate_(s) {
-  if (!/^\\d{4}-\\d{2}-\\d{2}$/.test(s)) throw new Error('Use payment date YYYY-MM-DD (AD).');
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(s)) throw new Error('Use payment date YYYY-MM-DD (AD).');
   var d = new Date(s + 'T00:00:00Z');
   if (!Number.isFinite(d.getTime()) || d.toISOString().slice(0,10) !== s)
     throw new Error('Invalid payment date.');
   return s;
 }
 function kkgV2ValidateTime_(s) {
-  if (!/^([01]\\d|2[0-3]):[0-5]\\d$/.test(s)) throw new Error('Use paid time HH:MM in 24-hour format.');
+  if (!/^([01]\d|2[0-3]):[0-5]\d$/.test(s)) throw new Error('Use paid time HH:MM in 24-hour format.');
   return s;
 }
 function kkgV2Data_(sheet, columns) {
@@ -114,7 +115,7 @@ function kkgV2Legacy_(ss) {
   var result = [];
   values.slice(1).forEach(function(r) {
     if (kkgV2Clean_(r[1]).toLowerCase() === 'total') return;
-    if (/^\\d+$/.test(kkgV2Clean_(r[0])) && kkgV2Clean_(r[1]))
+    if (/^\d+$/.test(kkgV2Clean_(r[0])) && kkgV2Clean_(r[1]))
       result.push({ no: Number(r[0]), name: r[1] });
   });
   return result;
