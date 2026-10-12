@@ -1,0 +1,69 @@
+{
+  "schema": "jp.cost.finance.entry-pilot-control.v0.6.0",
+  "checkpoint_date": "2026-10-12",
+  "timezone": "Asia/Katmandu",
+  "mode": "EXECUTION_MACHINE_FIRST_TEST_ONLY",
+  "authority": {
+    "company_id": "REB",
+    "project_id": "14_bishal_paija",
+    "source_sheet_tab": "14_bishal_paija",
+    "source_workbook_read_only": true,
+    "existing_public_summary_static": true
+  },
+  "baseline_verified": {
+    "vendors": 27,
+    "transactions": 74,
+    "unique_transaction_ids": 74,
+    "duplicate_transaction_ids": 0,
+    "amount_npr": 268798,
+    "qr_npr": 160,
+    "discount_recorded_npr": 2400
+  },
+  "test_scope": {
+    "location": "PRIVATE_GOOGLE_SHEET_COPY_NOT_PUBLIC_IN_REPOSITORY",
+    "write_live": false,
+    "synthetic_vendor_id": "KKG-V-0028",
+    "synthetic_transaction_id": "KKG-TX-TEST-20261012-0001",
+    "synthetic_amount_npr": 100,
+    "synthetic_qr_npr": 5,
+    "synthetic_discount_npr": 0,
+    "test_audit_records": 2,
+    "test_native_tables": 3,
+    "isolated_tabs": [
+      "00_V2_ENTRY_TEST",
+      "_KKG_V2_CONTROL",
+      "_KKG_V2_VENDORS",
+      "_KKG_V2_PAYMENTS",
+      "_KKG_V2_AUDIT",
+      "KKG_V2_SUMMARY_TEST"
+    ]
+  },
+  "development": {
+    "branch": "feature/kkg-finance-entry-v0.6.0-test-20261012",
+    "base_research_commit": "7efa3cf54d9e11f0d80d42c7f91d81cf54721f76",
+    "files": [
+      "scripts/kkg_v2_entry_test_v0.6.0.js",
+      "scripts/qa_kkg_v2_entry_v0.6.0.mjs",
+      ".github/workflows/kkg-finance-v2-test.yml",
+      "docs/KKG_FINANCE_ENTRY_PILOT_v0.6.0__20261012.md"
+    ],
+    "target": "prototype only, no Pages publish or live sheet mutation"
+  },
+  "gates": {
+    "synthetic_sheet_calculations": "PASS",
+    "test_copy_original_totals": "UNCHANGED",
+    "three_native_test_tables": "READ_BACK_PASS",
+    "script_parse_and_synthetic_ci": "PASS",
+    "bound_apps_script_trigger": "NOT_INSTALLED_OR_NOT_VERIFIED",
+    "device_test": "PENDING",
+    "live_cutover": "NOT_AUTHORIZED",
+    "public_snapshot_refresh": "NOT_AUTHORIZED"
+  },
+  "rollback": {
+    "production_modified": false,
+    "frozen_branches_modified": false,
+    "rate_pdf_workstream_modified": false,
+    "delete_source_evidence": false
+  },
+  "next_checkpoint": "KKG_V2_INSTALLABLE_TRIGGER_REAL_HUMAN_TEST_IN_PRIVATE_COPY"
+}
