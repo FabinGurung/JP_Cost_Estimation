@@ -53,9 +53,10 @@
     const caption = el('div');
     caption.appendChild(el('p','eyebrow','GOOGLE SHEETS · SOURCE-DERIVED SUMMARY'));
     caption.appendChild(el('h3','','Payment summary — 14 Bishal Paija'));
-    caption.appendChild(el('p','','The '+data.summary.entry_count+' named rows below are reproduced from the workbook summary. The amount and QR totals reconcile to the working Google Sheet.'));
+    caption.appendChild(el('p','','The '+data.summary.entry_count+' named rows below are reproduced from the workbook summary. The amount and QR totals reconcile to the dated working-Sheet snapshot.'));
+    caption.appendChild(el('p','finance-asof','Verified snapshot: '+data.snapshot_date+' · NOT a live Google Sheets feed. Check the working Sheet for newer entries.'));
     head.appendChild(caption);
-    const open = el('a','finance-source-link','Open original Google Sheet ↗');
+    const open = el('a','finance-source-link','Open authoritative working Google Sheet ↗');
     open.href=sheetUrl;open.target='_blank';open.rel='noopener noreferrer';
     head.appendChild(open);
     mount.appendChild(head);
@@ -146,6 +147,10 @@
       '</div><span class="badge ready">GOOGLE SHEETS SOURCE</span></div>';
     const button=el('a','finance-source-link','Open editable payment workbook ↗');
     button.href=sheetUrl;button.target='_blank';button.rel='noopener noreferrer';source.appendChild(button);
+    const guide=el('a','finance-source-link','Payment entry instructions ↗');
+    guide.href=sheetUrl+'#gid=1487204034';guide.target='_blank';guide.rel='noopener noreferrer';
+    source.appendChild(guide);
+    source.appendChild(el('p','sub','For a new vendor, do not copy an old vendor table. The simplified Add Vendor / Add Payment workflow is undergoing private-copy testing and is not active in the production workbook.'));
     root.appendChild(source);
     const dash=el('section','finance-dashboard');dash.id='financeDashboard';
     dash.appendChild(el('p','','Loading verified payment summary snapshot…'));root.appendChild(dash);
