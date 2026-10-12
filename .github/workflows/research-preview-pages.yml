@@ -35,6 +35,11 @@ jobs:
           node --check rate-source-skeleton.js
           node scripts/qa_rate_source_skeleton_v0.5.14.mjs
 
+      - name: Source-derived view regression
+        run: |
+          node --check rate-source-skeleton.js
+          node scripts/qa_source_derivations_v0.5.15.mjs
+
       - name: Confirm non-production boundary
         run: |
           echo "VALIDATION_ONLY=PASS"

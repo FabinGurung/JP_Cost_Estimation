@@ -1,0 +1,270 @@
+{
+  "schema": "jp-cres.source_derivations.v0.5.15",
+  "revision": "v0.5.15",
+  "scope": "source_separated_derived_views",
+  "rate_observation_count": 2461,
+  "extraction_complete": true,
+  "source_root_inventory_count": 5,
+  "extra_source_count": 1,
+  "groups": [
+    {
+      "id": "personal",
+      "name": "My Personal Working Rates",
+      "icon": "🏗️",
+      "href": "rate-library.html",
+      "type": "JP_PERSONAL_WORKING_RATES",
+      "tagline": "Your Excel-derived construction work prices",
+      "count": 204,
+      "status": "UNVERIFIED_PERSONAL_REFERENCE",
+      "description": "102 visible + 102 hidden Excel worksheet observations. Existing searchable construction journey and clickable work details.",
+      "entries": []
+    },
+    {
+      "id": "government",
+      "name": "Government District Rates",
+      "icon": "🏛️",
+      "href": "government-rates.html",
+      "type": "GOV_DISTRICT_RATES",
+      "tagline": "Dated official district price sources",
+      "count": 5797,
+      "status": "DERIVED_SOURCE_VIEW",
+      "description": "Local public-works and resource benchmark documents, by jurisdiction and fiscal year. Not contractor quotations or approved project rates.",
+      "entries": [
+        "SRC-GOV-001"
+      ]
+    },
+    {
+      "id": "vendors",
+      "name": "Vendor Prices & Quotations",
+      "icon": "🧾",
+      "href": "vendor-price-lists.html",
+      "type": "VENDOR_PRICE_EVIDENCE",
+      "tagline": "Commercial product prices and quotations",
+      "count": 2957,
+      "status": "DERIVED_SOURCE_VIEW",
+      "description": "Differentiate general price lists from pending/party-specific quotations. Exclude confidential buyer, contact, payment and discount details from public projections.",
+      "entries": [
+        "SRC-VEN-001",
+        "SRC-VEN-002"
+      ]
+    },
+    {
+      "id": "rate-analysis",
+      "name": "Rate Analysis References",
+      "icon": "🧮",
+      "href": "rate-analysis-references.html",
+      "type": "RATE_ANALYSIS_REFERENCES",
+      "tagline": "Norms, resource breakdowns and unit-rate recipes",
+      "count": 19034,
+      "status": "DERIVED_SOURCE_VIEW",
+      "description": "Contractor/user rate-analysis books and a separately located DUDBC source. Do not mistake these for the site's interactive Rate Analysis calculator.",
+      "entries": [
+        "SRC-RA-001",
+        "SRC-RA-002",
+        "SRC-RA-003"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "SRC-GOV-001",
+      "group": "government",
+      "label": "Kaski District Rate — FY 2083/84",
+      "kind": "government_district_rate_book",
+      "source_scope": "Kaski District",
+      "edition_claim": "FY 2083/84 appears in source text; page-by-page validation pending",
+      "parse_status": "RAW_EXTRACTED_CONTENT_REVIEW_PENDING",
+      "verified_pages": null,
+      "verified_observations": null,
+      "notes": "Existing district observations plus a separate machine-candidate view of the full PDF. Reused rows are not new master insertions. OCR text is preserved as extracted.",
+      "page_count": 80,
+      "source_sha256": "4ac52c49879355413fadbbcb1ec4e74c98e37f4a2724c8e58ea081cea8373947",
+      "entry_count": 973,
+      "candidate_count": 4824,
+      "transcript_count": 80,
+      "entries": [
+        "data/source-derived-v0.5.15/src-gov-001-entries-1.json.gz"
+      ],
+      "candidates": [
+        "data/source-derived-v0.5.15/src-gov-001-candidates-1.json.gz",
+        "data/source-derived-v0.5.15/src-gov-001-candidates-2.json.gz",
+        "data/source-derived-v0.5.15/src-gov-001-candidates-3.json.gz",
+        "data/source-derived-v0.5.15/src-gov-001-candidates-4.json.gz",
+        "data/source-derived-v0.5.15/src-gov-001-candidates-5.json.gz"
+      ],
+      "pages": [
+        "data/source-derived-v0.5.15/src-gov-001-pages-1.json.gz",
+        "data/source-derived-v0.5.15/src-gov-001-pages-2.json.gz",
+        "data/source-derived-v0.5.15/src-gov-001-pages-3.json.gz",
+        "data/source-derived-v0.5.15/src-gov-001-pages-4.json.gz"
+      ]
+    },
+    {
+      "id": "SRC-VEN-001",
+      "group": "vendors",
+      "label": "Pipes & Fittings Price List — 2082",
+      "kind": "vendor_catalogue",
+      "source_scope": "CPVC pipes and fittings (source text sample)",
+      "edition_claim": "2082.01.03 appears in filename; issue and validity period to verify",
+      "parse_status": "RAW_EXTRACTED_CONTENT_REVIEW_PENDING",
+      "verified_pages": null,
+      "verified_observations": null,
+      "notes": "Published catalogue observations, kept separate from quotations and district prices. Dates and validity remain source-specific; no current-price guarantee.",
+      "page_count": 17,
+      "source_sha256": "2fa62c86072770f307b9a1ee4117d2be98b63040fa6fca2b59b5555ed41e25c6",
+      "entry_count": 1430,
+      "candidate_count": 1469,
+      "transcript_count": 0,
+      "entries": [
+        "data/source-derived-v0.5.15/src-ven-001-entries-1.json.gz",
+        "data/source-derived-v0.5.15/src-ven-001-entries-2.json.gz"
+      ],
+      "candidates": [
+        "data/source-derived-v0.5.15/src-ven-001-candidates-1.json.gz",
+        "data/source-derived-v0.5.15/src-ven-001-candidates-2.json.gz"
+      ],
+      "pages": []
+    },
+    {
+      "id": "SRC-VEN-002",
+      "group": "vendors",
+      "label": "Electrical Wire Quotation",
+      "kind": "vendor_pending_sales_quotation",
+      "source_scope": "Electrical wire offer",
+      "edition_claim": "Print date 2082-11-04 present; quotation status Pending",
+      "parse_status": "RAW_EXTRACTED_CONTENT_REVIEW_PENDING",
+      "verified_pages": null,
+      "verified_observations": null,
+      "notes": "Two distinct document parts: a typed quotation and a handwritten estimate. Product descriptions only are shown; prices, quantities, totals, customer fields and page transcripts stay private.",
+      "page_count": 4,
+      "source_sha256": "b2a9328dadb435cdb5fc18c5106deede2b2034cb5c57186a0bcd3704e1e2d355",
+      "private_fields_withheld": true,
+      "entry_count": 58,
+      "candidate_count": 0,
+      "transcript_count": 0,
+      "entries": [
+        "data/source-derived-v0.5.15/src-ven-002-entries-1.json.gz"
+      ],
+      "candidates": [],
+      "pages": []
+    },
+    {
+      "id": "SRC-RA-001",
+      "group": "rate-analysis",
+      "label": "Contractor Rate Analysis — 2082/83",
+      "kind": "resource_rate_analysis_reference_contractor",
+      "source_scope": "Contractor-oriented rate analysis",
+      "edition_claim": "82–83 appears in filename; edition to verify",
+      "parse_status": "RAW_EXTRACTED_CONTENT_REVIEW_PENDING",
+      "verified_pages": null,
+      "verified_observations": null,
+      "notes": "Complete page coverage with machine-derived numeric cells. Numbers may be coefficients, rates, quantities, totals or serial numbers; roles and units are unresolved. This evidence book does not calculate a unit rate.",
+      "page_count": 234,
+      "source_sha256": "c2c5123768311631ec0d7aa00d77697fca63b8d983d9927071b6a26610a3cd3c",
+      "entry_count": 0,
+      "candidate_count": 9574,
+      "transcript_count": 234,
+      "entries": [],
+      "candidates": [
+        "data/source-derived-v0.5.15/src-ra-001-candidates-1.json.gz",
+        "data/source-derived-v0.5.15/src-ra-001-candidates-2.json.gz",
+        "data/source-derived-v0.5.15/src-ra-001-candidates-3.json.gz",
+        "data/source-derived-v0.5.15/src-ra-001-candidates-4.json.gz",
+        "data/source-derived-v0.5.15/src-ra-001-candidates-5.json.gz",
+        "data/source-derived-v0.5.15/src-ra-001-candidates-6.json.gz",
+        "data/source-derived-v0.5.15/src-ra-001-candidates-7.json.gz",
+        "data/source-derived-v0.5.15/src-ra-001-candidates-8.json.gz",
+        "data/source-derived-v0.5.15/src-ra-001-candidates-9.json.gz",
+        "data/source-derived-v0.5.15/src-ra-001-candidates-10.json.gz"
+      ],
+      "pages": [
+        "data/source-derived-v0.5.15/src-ra-001-pages-1.json.gz",
+        "data/source-derived-v0.5.15/src-ra-001-pages-2.json.gz",
+        "data/source-derived-v0.5.15/src-ra-001-pages-3.json.gz",
+        "data/source-derived-v0.5.15/src-ra-001-pages-4.json.gz",
+        "data/source-derived-v0.5.15/src-ra-001-pages-5.json.gz",
+        "data/source-derived-v0.5.15/src-ra-001-pages-6.json.gz",
+        "data/source-derived-v0.5.15/src-ra-001-pages-7.json.gz",
+        "data/source-derived-v0.5.15/src-ra-001-pages-8.json.gz",
+        "data/source-derived-v0.5.15/src-ra-001-pages-9.json.gz",
+        "data/source-derived-v0.5.15/src-ra-001-pages-10.json.gz"
+      ]
+    },
+    {
+      "id": "SRC-RA-002",
+      "group": "rate-analysis",
+      "label": "Users Rate Analysis — 2082/83",
+      "kind": "resource_rate_analysis_reference_users",
+      "source_scope": "User-oriented rate analysis",
+      "edition_claim": "82–83 appears in filename; edition to verify",
+      "parse_status": "RAW_EXTRACTED_CONTENT_REVIEW_PENDING",
+      "verified_pages": null,
+      "verified_observations": null,
+      "notes": "Complete page coverage with machine-derived numeric cells. Numbers may be coefficients, rates, quantities, totals or serial numbers; roles and units are unresolved. This evidence book does not calculate a unit rate.",
+      "page_count": 302,
+      "source_sha256": "f7900f369d3390a25ccd12481983482e198205bd49e041520c9ca87d204b664e",
+      "entry_count": 0,
+      "candidate_count": 8255,
+      "transcript_count": 302,
+      "entries": [],
+      "candidates": [
+        "data/source-derived-v0.5.15/src-ra-002-candidates-1.json.gz",
+        "data/source-derived-v0.5.15/src-ra-002-candidates-2.json.gz",
+        "data/source-derived-v0.5.15/src-ra-002-candidates-3.json.gz",
+        "data/source-derived-v0.5.15/src-ra-002-candidates-4.json.gz",
+        "data/source-derived-v0.5.15/src-ra-002-candidates-5.json.gz",
+        "data/source-derived-v0.5.15/src-ra-002-candidates-6.json.gz",
+        "data/source-derived-v0.5.15/src-ra-002-candidates-7.json.gz",
+        "data/source-derived-v0.5.15/src-ra-002-candidates-8.json.gz",
+        "data/source-derived-v0.5.15/src-ra-002-candidates-9.json.gz"
+      ],
+      "pages": [
+        "data/source-derived-v0.5.15/src-ra-002-pages-1.json.gz",
+        "data/source-derived-v0.5.15/src-ra-002-pages-2.json.gz",
+        "data/source-derived-v0.5.15/src-ra-002-pages-3.json.gz",
+        "data/source-derived-v0.5.15/src-ra-002-pages-4.json.gz",
+        "data/source-derived-v0.5.15/src-ra-002-pages-5.json.gz",
+        "data/source-derived-v0.5.15/src-ra-002-pages-6.json.gz",
+        "data/source-derived-v0.5.15/src-ra-002-pages-7.json.gz",
+        "data/source-derived-v0.5.15/src-ra-002-pages-8.json.gz",
+        "data/source-derived-v0.5.15/src-ra-002-pages-9.json.gz",
+        "data/source-derived-v0.5.15/src-ra-002-pages-10.json.gz",
+        "data/source-derived-v0.5.15/src-ra-002-pages-11.json.gz",
+        "data/source-derived-v0.5.15/src-ra-002-pages-12.json.gz",
+        "data/source-derived-v0.5.15/src-ra-002-pages-13.json.gz"
+      ]
+    },
+    {
+      "id": "SRC-RA-003",
+      "group": "rate-analysis",
+      "label": "DUDBC Rate Analysis PDF",
+      "kind": "resource_rate_analysis_reference_dudbc",
+      "source_scope": "DUDBC-titled rate analysis",
+      "edition_claim": "Exact edition, authorship and provenance unverified",
+      "parse_status": "RAW_EXTRACTED_CONTENT_REVIEW_PENDING",
+      "verified_pages": null,
+      "verified_observations": null,
+      "notes": "Complete page coverage with machine-derived numeric cells. Numbers may be coefficients, rates, quantities, totals or serial numbers; roles and units are unresolved. This evidence book does not calculate a unit rate.",
+      "page_count": 60,
+      "source_sha256": "729205fa14f53905cb8cf72eea3d09278b376d0aa986e734dd436a90f0c86b5b",
+      "entry_count": 0,
+      "candidate_count": 1205,
+      "transcript_count": 60,
+      "entries": [],
+      "candidates": [
+        "data/source-derived-v0.5.15/src-ra-003-candidates-1.json.gz",
+        "data/source-derived-v0.5.15/src-ra-003-candidates-2.json.gz"
+      ],
+      "pages": [
+        "data/source-derived-v0.5.15/src-ra-003-pages-1.json.gz",
+        "data/source-derived-v0.5.15/src-ra-003-pages-2.json.gz",
+        "data/source-derived-v0.5.15/src-ra-003-pages-3.json.gz"
+      ]
+    }
+  ],
+  "privacy": "Original Drive IDs, customer/party information and private quotation prices are excluded. Analysis transcripts are source-book evidence, not approved pricing.",
+  "notice": "M02 frozen raw extraction → source-specific derived views. Machine readings may be wrong; your visual feedback will drive new extraction and website versions.",
+  "semantic_verification_complete": false,
+  "baseline": "M02 / m02-raw-v1",
+  "baseline_commit": "80a3650e8de3be1488b742f79246620543d2cffc"
+}
