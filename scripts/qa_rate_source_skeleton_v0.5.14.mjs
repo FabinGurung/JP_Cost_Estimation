@@ -31,7 +31,7 @@ for(const [id,path] of Object.entries(docs)){
 const html=read(path);
 assert(html.includes('data-source-document="'+id+'"'),path+' source ID');
 assert(html.includes('sourcePreviewRows'),path+' blank table');
-assert(html.includes('rate-source-skeleton.js'),path+' loader');
+assert(html.includes(id==='SRC-RA-001'?'contractor-rate-analysis.js':'rate-source-skeleton.js'),path+' source-specific loader');
 const sourceLinks=[...html.matchAll(/href="(https:\/\/drive\.google\.com[^"]+)"/g)].map(m=>m[1]);
 if(id==='SRC-RA-001'){
  assert.deepEqual(sourceLinks,['https://drive.google.com/file/d/1f0mdMF5ibfi18zR5H0Hg0M3RgfxUgsL5/view'],'only the user-authorized contractor original PDF is linked');
@@ -59,3 +59,5 @@ for(const src of ['schemas/source-evidence.v0.1.schema.json','schemas/rate-obser
  const j=JSON.parse(read(src));assert(j['$schema'].includes('2020-12'));assert(j.properties.source_id);
 }
 console.log('PASS v0.5.14: four independent peer libraries, six source skeletons, no invented rate rows or private Drive IDs, existing 204 JP rates/MEP retained.');
+
+await import('./qa_contractor_work_items_v0.1.mjs');
