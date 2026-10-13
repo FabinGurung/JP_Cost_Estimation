@@ -1,0 +1,27 @@
+{
+  "release": "rate-labels-enumeration-iteration-003",
+  "source_commit": "fc68cd91fcf6487da1a176293fc0ee63b59fbb94",
+  "iteration_branch": "website/rate-labels-enumeration-20261013",
+  "previous_commit": "80863e5c8c2e4f161187abac5ea74bb6df6fd2d3",
+  "scope": [
+    "Personal rate-library table enumeration including inline MEP",
+    "158 contractor editorial short labels and table wrapping"
+  ],
+  "source_projection_unchanged": true,
+  "frozen_M02_unchanged": true,
+  "full_descriptions_unchanged": true,
+  "rates_and_source_evidence_unchanged": true,
+  "ci": "Both research preview and Estimation CI passed",
+  "changed_files": [
+    "contractor-rate-analysis.css",
+    "contractor-rate-analysis.html",
+    "contractor-rate-analysis.js",
+    "rate-library.html",
+    "scripts/qa_contractor_work_items_v0.1.mjs",
+    "scripts/qa_mep_site_v0.5.10.mjs",
+    "work-rate-library.js",
+    "data/contractor-short-labels.v0.1.json",
+    "docs/RATE_LABELS_ENUMERATION_ITERATION_003.md",
+    "personal-rate-enumeration.css"
+  ]
+}
