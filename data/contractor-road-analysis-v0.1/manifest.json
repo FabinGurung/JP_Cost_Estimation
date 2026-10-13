@@ -1,0 +1,311 @@
+{
+  "schema": "jp-cres.contractor_analysis_assets.v0.1",
+  "source_sha256": "c2c5123768311631ec0d7aa00d77697fca63b8d983d9927071b6a26610a3cd3c",
+  "source_page_range": [
+    29,
+    77
+  ],
+  "page_count": 49,
+  "analysis_blocks": 165,
+  "unresolved_per_unit_rates": 37,
+  "approved_ui_baseline": "v0.5.16",
+  "frozen_raw_baseline_commit": "80a3650e8de3be1488b742f79246620543d2cffc",
+  "derived_data_sha256": "bcd7dd9353a121809549f0bdab0ad2dc0ca6fa45ae5f5f6398a033b0d61849cf",
+  "files": [
+    {
+      "path": "data/contractor-road-analysis-v0.1/page-029.jpg",
+      "bytes": 193426,
+      "sha256": "80cc80e241168adafbadb43a55db018c2b907edefc942cd7d976f563e71dcdc4"
+    },
+    {
+      "path": "data/contractor-road-analysis-v0.1/page-030.jpg",
+      "bytes": 239318,
+      "sha256": "c2e6a049fbb72bcfb992d402c9bb33270fbb0457fdda996d42eddae6efb72355"
+    },
+    {
+      "path": "data/contractor-road-analysis-v0.1/page-031.jpg",
+      "bytes": 227921,
+      "sha256": "f0e3ce165b13248807c1faf3a3f71c74441e00e1dd075d87099313eb923faba7"
+    },
+    {
+      "path": "data/contractor-road-analysis-v0.1/page-032.jpg",
+      "bytes": 192312,
+      "sha256": "5c6d3c5518046b650e2274e35f581dd01a6b3e238f7925a7e81270e9cc1b4d04"
+    },
+    {
+      "path": "data/contractor-road-analysis-v0.1/page-033.jpg",
+      "bytes": 208195,
+      "sha256": "5f911a84047e8eaf5a670ef6ac0d9dce8a67a690763f248d22bcb85ed68c9d95"
+    },
+    {
+      "path": "data/contractor-road-analysis-v0.1/page-034.jpg",
+      "bytes": 205587,
+      "sha256": "6250e8ae02a7fd1795495bf20c647e88d29b4760a56ea13305878e74085e5771"
+    },
+    {
+      "path": "data/contractor-road-analysis-v0.1/page-035.jpg",
+      "bytes": 237465,
+      "sha256": "accb5d0890b4927a75376ed3f5d08fd13bcd019f910f84e27007ef0e602e9b88"
+    },
+    {
+      "path": "data/contractor-road-analysis-v0.1/page-036.jpg",
+      "bytes": 236597,
+      "sha256": "9113b54180eb2987f7205d514d9cef632f60f681985c0540cfcbd8f722b2d458"
+    },
+    {
+      "path": "data/contractor-road-analysis-v0.1/page-037.jpg",
+      "bytes": 235707,
+      "sha256": "2d398bebabd5bb7d9fc5f144b9c3aa84fd838613b4c3eecf1ea856fad6af3afb"
+    },
+    {
+      "path": "data/contractor-road-analysis-v0.1/page-038.jpg",
+      "bytes": 203503,
+      "sha256": "773c5bcb029912921cbb433ac5d8f096b2a40b1227de8ad5fccac3dc4c8f12f7"
+    },
+    {
+      "path": "data/contractor-road-analysis-v0.1/page-039.jpg",
+      "bytes": 201073,
+      "sha256": "ae046f6084d56600632024f8040cea6a5c696a5a40d7e828039492ef08927ed5"
+    },
+    {
+      "path": "data/contractor-road-analysis-v0.1/page-040.jpg",
+      "bytes": 200353,
+      "sha256": "be03b683ed51e20a83818d97b0c9eb5ccac6a32e3f6dcc235e53334de83d7941"
+    },
+    {
+      "path": "data/contractor-road-analysis-v0.1/page-041.jpg",
+      "bytes": 201107,
+      "sha256": "5a1c69845c052e5c1fd0335a905a3e298d2f6bf1eedd5f3b804714eb6536d10a"
+    },
+    {
+      "path": "data/contractor-road-analysis-v0.1/page-042.jpg",
+      "bytes": 232199,
+      "sha256": "50adcc856c321d8de69b42eee989586012b5a7d3592210b592c5820d6382ee46"
+    },
+    {
+      "path": "data/contractor-road-analysis-v0.1/page-043.jpg",
+      "bytes": 234958,
+      "sha256": "648423c9ee455e6e323b92655482fd70a8ae5f4d20e0f80585fd71657c8358d4"
+    },
+    {
+      "path": "data/contractor-road-analysis-v0.1/page-044.jpg",
+      "bytes": 210188,
+      "sha256": "a1b88558e175590b0d2caaaec523dbbd1352c332e4710bd4d34e45a4fa67393e"
+    },
+    {
+      "path": "data/contractor-road-analysis-v0.1/page-045.jpg",
+      "bytes": 209829,
+      "sha256": "cc3dda7c4f6c77ccb77415af58fc30b405c6a7a6808f41a689edc86be9d60371"
+    },
+    {
+      "path": "data/contractor-road-analysis-v0.1/page-046.jpg",
+      "bytes": 239760,
+      "sha256": "183ddc6c2e99745444ea8fac715ea55ca8657a4a55f3b9b34ce5db1de5f682df"
+    },
+    {
+      "path": "data/contractor-road-analysis-v0.1/page-047.jpg",
+      "bytes": 245587,
+      "sha256": "e8528dc0018a456d0d67cbe76229125d34e77cc2a7962b6567f1bd3bb6db102d"
+    },
+    {
+      "path": "data/contractor-road-analysis-v0.1/page-048.jpg",
+      "bytes": 244621,
+      "sha256": "428d8b66458bfd6e1cb36cf5eec1beca95dfd8d3b33238a2f404bd32262b5b24"
+    },
+    {
+      "path": "data/contractor-road-analysis-v0.1/page-049.jpg",
+      "bytes": 226426,
+      "sha256": "ed1013213024e6f1fbfeee8982e24086ebba2ca5907bb376998513f5966c0591"
+    },
+    {
+      "path": "data/contractor-road-analysis-v0.1/page-050.jpg",
+      "bytes": 196568,
+      "sha256": "ef5f6641edf0300498986084f07cbc67c67ad8bb0506adfa85a5ec49479b6c26"
+    },
+    {
+      "path": "data/contractor-road-analysis-v0.1/page-051.jpg",
+      "bytes": 204822,
+      "sha256": "8085e075e2b1e5d7e4256b1efe08101ef8ea52c20415a9965e7ec5f1d14217c5"
+    },
+    {
+      "path": "data/contractor-road-analysis-v0.1/page-052.jpg",
+      "bytes": 191335,
+      "sha256": "858669c2db750c4d4ba8f9b4fc2a306e7027a6985c1daba81e43008b05d9f36b"
+    },
+    {
+      "path": "data/contractor-road-analysis-v0.1/page-053.jpg",
+      "bytes": 216095,
+      "sha256": "d35e9b4ac2fcddf9d2359777d19cb154a44722522100399dd140aaba76e391a8"
+    },
+    {
+      "path": "data/contractor-road-analysis-v0.1/page-054.jpg",
+      "bytes": 224141,
+      "sha256": "fa69b95e3c17944cb8b254221052373c25088d6e8c699effb332a1fa230bd325"
+    },
+    {
+      "path": "data/contractor-road-analysis-v0.1/page-055.jpg",
+      "bytes": 197120,
+      "sha256": "7cff5c736228688e70016c3b5890462aae166d10730c9505270a66ef8b81a2ae"
+    },
+    {
+      "path": "data/contractor-road-analysis-v0.1/page-056.jpg",
+      "bytes": 223351,
+      "sha256": "6d50ef6f59e02c50fea1abc09c8712eeee1d75a1492213da1f9b7c1a0eb58b10"
+    },
+    {
+      "path": "data/contractor-road-analysis-v0.1/page-057.jpg",
+      "bytes": 173487,
+      "sha256": "ec049bd74026d9a76aad126c79c468ce2e41e7c6a0cbc24ac1b642a06bdd0374"
+    },
+    {
+      "path": "data/contractor-road-analysis-v0.1/page-058.jpg",
+      "bytes": 228548,
+      "sha256": "71186fc81db0944b5cd33e0b088366176ea26fe4eeef18021940a7edc1cc17a2"
+    },
+    {
+      "path": "data/contractor-road-analysis-v0.1/page-059.jpg",
+      "bytes": 178334,
+      "sha256": "6bbe646891ec62d61e6de20154a5075bd59e96c742059e40a542e2b3322b323b"
+    },
+    {
+      "path": "data/contractor-road-analysis-v0.1/page-060.jpg",
+      "bytes": 175079,
+      "sha256": "a07256442520e272db118a6ae5ac63d6a84c4980ae1c2992e92b3788c300f296"
+    },
+    {
+      "path": "data/contractor-road-analysis-v0.1/page-061.jpg",
+      "bytes": 183626,
+      "sha256": "404f01000502e36c21622095c5c451b18c98e7121876a9f0b70bd798cd0022b8"
+    },
+    {
+      "path": "data/contractor-road-analysis-v0.1/page-062.jpg",
+      "bytes": 187076,
+      "sha256": "f6a424b67ba198f91d5987ffda9b0defa34075248b632a8fd03d742b5e59b170"
+    },
+    {
+      "path": "data/contractor-road-analysis-v0.1/page-063.jpg",
+      "bytes": 187978,
+      "sha256": "a289c4e016cfa56a17b3a44484cb583f0eb2a68c48521809dd65a4ba3c69a0b1"
+    },
+    {
+      "path": "data/contractor-road-analysis-v0.1/page-064.jpg",
+      "bytes": 223057,
+      "sha256": "c3e1b9fb500ff6ff8f549c120017f6084b4e9307185285abfc8a378594ab73d2"
+    },
+    {
+      "path": "data/contractor-road-analysis-v0.1/page-065.jpg",
+      "bytes": 203451,
+      "sha256": "5c7ef042ca70e21262b94b340893b30339b018e75af2533a1faeb1fb85b0b7df"
+    },
+    {
+      "path": "data/contractor-road-analysis-v0.1/page-066.jpg",
+      "bytes": 237976,
+      "sha256": "461a93ec177a30643136803629a441776ce91cb8007ea067fe9a50f5c348a34c"
+    },
+    {
+      "path": "data/contractor-road-analysis-v0.1/page-067.jpg",
+      "bytes": 253300,
+      "sha256": "eb10dde0df6cade39fb1c7ec7fdcd27b9c48db73d6f28803bfbb030c273425a0"
+    },
+    {
+      "path": "data/contractor-road-analysis-v0.1/page-068.jpg",
+      "bytes": 225134,
+      "sha256": "b9c16be11c5d73a01b166a7051ca878d12fc1f06bffcab17068122981cdfed56"
+    },
+    {
+      "path": "data/contractor-road-analysis-v0.1/page-069.jpg",
+      "bytes": 203826,
+      "sha256": "31ed2c73a5f8dc8a1b96856b5bc63ac3e94d6212a66952345017b2dbae978afe"
+    },
+    {
+      "path": "data/contractor-road-analysis-v0.1/page-070.jpg",
+      "bytes": 236294,
+      "sha256": "e49f443e876c0b48bdc1899b1a716c2aaf2b52c115a72d5fe0610710271ed279"
+    },
+    {
+      "path": "data/contractor-road-analysis-v0.1/page-071.jpg",
+      "bytes": 220960,
+      "sha256": "663be5fda6c24377909aaf713d4bde9f45ab7aadb0a580fa47541e6a02177a77"
+    },
+    {
+      "path": "data/contractor-road-analysis-v0.1/page-072.jpg",
+      "bytes": 258320,
+      "sha256": "b650240c64dc41db30910bca4055c4fc304617c79657dabe3e3c696a1365c566"
+    },
+    {
+      "path": "data/contractor-road-analysis-v0.1/page-073.jpg",
+      "bytes": 232005,
+      "sha256": "4fc0fa48ed2bcc9a7835a00901ee21b18be03462efbd03ed4df03afd591e288a"
+    },
+    {
+      "path": "data/contractor-road-analysis-v0.1/page-074.jpg",
+      "bytes": 223920,
+      "sha256": "07aa2ca6c287dfe4e1113dbd37e31f4f4b39d249667982c8197de0a418d68afc"
+    },
+    {
+      "path": "data/contractor-road-analysis-v0.1/page-075.jpg",
+      "bytes": 232034,
+      "sha256": "016c8a65d41420412d92988b52e48cfae1e2c39f0c4dc4b39fcbf9d00bd1fb13"
+    },
+    {
+      "path": "data/contractor-road-analysis-v0.1/page-076.jpg",
+      "bytes": 243154,
+      "sha256": "49988dc77cb48e90f69a8668f62652ae0c43ded24707052a645dad2dc545c6e1"
+    },
+    {
+      "path": "data/contractor-road-analysis-v0.1/page-077.jpg",
+      "bytes": 215520,
+      "sha256": "9b3a35afa9dbdef401833f60dcdac2949ccdda1920b226b221df806ee237056c"
+    },
+    {
+      "path": "data/contractor-road-analysis-v0.1/source-pages-029-033.pdf",
+      "bytes": 2387858,
+      "sha256": "dc897d2330776f74469f0105da987dfaefe3e1a70030c32f4318058305a1b1a2"
+    },
+    {
+      "path": "data/contractor-road-analysis-v0.1/source-pages-034-038.pdf",
+      "bytes": 2420408,
+      "sha256": "306d923b72dc6c83b4635b965f2df1b5fe552d758eb2391581c6c65971be45bb"
+    },
+    {
+      "path": "data/contractor-road-analysis-v0.1/source-pages-039-043.pdf",
+      "bytes": 2298365,
+      "sha256": "7cd9849d1d1960d34447089bdb471c529aefb07897b2630e6a2006aed32971f2"
+    },
+    {
+      "path": "data/contractor-road-analysis-v0.1/source-pages-044-048.pdf",
+      "bytes": 2437387,
+      "sha256": "d8e6eae1e4d356f5e0de8440a93cf8cafc5460807258e2209ff1f24822dc8890"
+    },
+    {
+      "path": "data/contractor-road-analysis-v0.1/source-pages-049-053.pdf",
+      "bytes": 2181404,
+      "sha256": "8d51466ceb06c1a7bb2609f0657e770fc8e1843931a6bb2db7684bac07cec1eb"
+    },
+    {
+      "path": "data/contractor-road-analysis-v0.1/source-pages-054-058.pdf",
+      "bytes": 2175569,
+      "sha256": "b224710a6e34379f527e89f066783948d55de161be2a4a8ef968058c824baa0c"
+    },
+    {
+      "path": "data/contractor-road-analysis-v0.1/source-pages-059-063.pdf",
+      "bytes": 1891947,
+      "sha256": "c0238f78c061b6633d2ba96ff04e6f2509072e4be2a8d299ad89035fff3fa097"
+    },
+    {
+      "path": "data/contractor-road-analysis-v0.1/source-pages-064-068.pdf",
+      "bytes": 2541421,
+      "sha256": "ab99abffb5560df0270f3d3dc77849e92fa307a610688d4543ad2ccae3f78307"
+    },
+    {
+      "path": "data/contractor-road-analysis-v0.1/source-pages-069-073.pdf",
+      "bytes": 2512337,
+      "sha256": "23b97212b4666f5274e3faf99827439c3aea9165ade705413a2f3108f8a5395d"
+    },
+    {
+      "path": "data/contractor-road-analysis-v0.1/source-pages-074-077.pdf",
+      "bytes": 1926540,
+      "sha256": "75b448fd271cdbacae712d9eecb57e8cf189ec176551f65f96ab3ada81e0a4d6"
+    }
+  ]
+}

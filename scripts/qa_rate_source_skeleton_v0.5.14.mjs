@@ -24,7 +24,7 @@ for(const [id,path] of Object.entries(routes))assert.equal(data.groups.find(g=>g
 const docs={
 'SRC-GOV-001':'kaski-district-rates.html','SRC-VEN-001':'pipes-price-list.html',
 'SRC-VEN-002':'electrical-wire-quotation.html',
-'SRC-RA-001':'contractor-rate-analysis.html',
+'SRC-RA-001':'contractor-road-work-summary.html',
 'SRC-RA-002':'users-rate-analysis.html','SRC-RA-003':'dudbc-rate-analysis.html'
 };
 for(const [id,path] of Object.entries(docs)){
