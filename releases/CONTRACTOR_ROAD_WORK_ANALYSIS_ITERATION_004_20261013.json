@@ -1,0 +1,20 @@
+{
+  "release": "contractor-road-work-analysis-iteration-004",
+  "source_commit": "c788009d72fc3385f2e4e12226124a132ead0d80",
+  "iteration_branch": "website/contractor-road-analysis-20261013",
+  "approved_milestone_preserved": "v0.5.16",
+  "raw_milestone_preserved": "M02 / m02-raw-v1",
+  "summary_route": "contractor-road-work-summary.html",
+  "summary_rows": 158,
+  "analysis_route": "contractor-road-work-analysis.html",
+  "analysis_blocks": 165,
+  "analysis_pdf_pages": [
+    29,
+    77
+  ],
+  "page_count": 49,
+  "unresolved_per_unit_rates": 37,
+  "semantic_verification_complete": false,
+  "scope": "Contractor-only sections, source derivatives, evidence assets and associated tests/docs",
+  "checks": "Estimation CI and research preview passed; all unrelated existing blob identities unchanged"
+}
