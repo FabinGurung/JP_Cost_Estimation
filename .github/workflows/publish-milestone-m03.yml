@@ -1,0 +1,85 @@
+name: Release approved M03 rate views
+on:
+  push:
+    branches: [main]
+    paths: [".github/workflows/publish-milestone-m03.yml"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: jp-cres-milestone-m03
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      MILESTONE_SOURCE_SHA: 84f7595adaa5c187b88b75ac186576624212c8f4
+      MILESTONE_TAG: v0.5.16
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - name: Checkout release metadata and history
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Verify approved branch, pinned evidence and source snapshot
+        shell: bash
+        run: |
+          set -euo pipefail
+          approved="$(gh api "repos/$GITHUB_REPOSITORY/git/ref/heads/website/rate-labels-enumeration-20261013" --jq '.object.sha')"
+          test "$approved" = "$MILESTONE_SOURCE_SHA"
+          for evidence in "38336448230:$MILESTONE_SOURCE_SHA" "38336448304:$MILESTONE_SOURCE_SHA" "38336477275:b000d39c156ab3e9d7318804d3031d8050a5ef29"; do
+            run_id="${evidence%%:*}"
+            expected_sha="${evidence#*:}"
+            conclusion="$(gh api "repos/$GITHUB_REPOSITORY/actions/runs/$run_id" --jq '.conclusion')"
+            actual_sha="$(gh api "repos/$GITHUB_REPOSITORY/actions/runs/$run_id" --jq '.head_sha')"
+            test "$conclusion" = "success"
+            test "$actual_sha" = "$expected_sha"
+          done
+          node -e "const m=require('./releases/M03_APPROVED_RATE_VIEWS_v0.5.16.json');if(m.frozen_source_commit!==process.env.MILESTONE_SOURCE_SHA||m.git_tag!==process.env.MILESTONE_TAG||m.contractor_summary_items!==158)process.exit(1)"
+          mkdir -p "$RUNNER_TEMP/m03-product"
+          git archive "$MILESTONE_SOURCE_SHA" | tar -x -C "$RUNNER_TEMP/m03-product"
+          (
+            cd "$RUNNER_TEMP/m03-product"
+            node --check contractor-rate-analysis.js
+            node --check work-rate-library.js
+            node scripts/qa_mep_site_v0.5.10.mjs
+            node scripts/qa_rate_source_skeleton_v0.5.14.mjs
+            node scripts/qa_source_derivations_v0.5.15.mjs
+            node scripts/qa_kkg_finance_snapshot_v1.2.mjs
+          )
+      - name: Create immutable annotated tag
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git ls-remote --exit-code --tags origin "refs/tags/$MILESTONE_TAG" >/dev/null 2>&1; then
+            git fetch origin "refs/tags/$MILESTONE_TAG:refs/tags/$MILESTONE_TAG"
+            test "$(git rev-parse "$MILESTONE_TAG^{commit}")" = "$MILESTONE_SOURCE_SHA"
+            test "$(git cat-file -t "$MILESTONE_TAG")" = "tag"
+          else
+            git tag -a "$MILESTONE_TAG" "$MILESTONE_SOURCE_SHA" -m "JP-CRES M03: Approved rate views — $MILESTONE_TAG" -m "Frozen user-approved website commit: $MILESTONE_SOURCE_SHA. Source semantic review remains pending."
+            git push origin "refs/tags/$MILESTONE_TAG"
+          fi
+      - name: Publish milestone release and metadata assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          if gh release view "$MILESTONE_TAG" --json url,isPrerelease > "$RUNNER_TEMP/m03-existing-release.json" 2>/dev/null; then
+            node -e "const m=require(process.env.RUNNER_TEMP+'/m03-existing-release.json');if(!m.isPrerelease)process.exit(1)"
+          else
+            gh release create "$MILESTONE_TAG" \
+              releases/M03_APPROVED_RATE_VIEWS_v0.5.16.json \
+              releases/M03_APPROVED_RATE_VIEWS_v0.5.16.md \
+              --verify-tag --target "$MILESTONE_SOURCE_SHA" --prerelease \
+              --title "M03 · Approved Contractor Views & Numbered Personal Library (v0.5.16)" \
+              --notes-file releases/M03_APPROVED_RATE_VIEWS_v0.5.16.md
+          fi
+          gh release view "$MILESTONE_TAG" --json url,tagName,isPrerelease
+          echo "### Frozen milestone M03" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Tag: $MILESTONE_TAG" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Frozen product: $MILESTONE_SOURCE_SHA" >> "$GITHUB_STEP_SUMMARY"
