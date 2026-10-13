@@ -1,0 +1,10 @@
+{
+  "date": "2026-10-13",
+  "product_commit": "545cc15809496742d6812541f1bd819c169ceae8",
+  "parent_commit": "7efa3cf54d9e11f0d80d42c7f91d81cf54721f76",
+  "scope": "Contractor page: original Drive PDF link explicitly requested by user; all other source-link privacy rules preserved",
+  "route": "contractor-rate-analysis.html?view=candidates",
+  "iteration_branch": "website/contractor-source-link-20261013",
+  "validation": "Syntax and existing source-view regressions passed",
+  "drive_permissions_changed": false
+}
