@@ -81,7 +81,7 @@ for(const version of ['visible','hidden']){
  for(const row of mepRows)assert(mep.tradeOf(row,taxonomy[row.id]),'journey MEP must have trade drilldown');
 }
 assert(rateLibrary.includes('data-mep-trade="electrical"'),'Electrical inline filter present');
-assert(rateLibrary.includes('Description of Work</th>')&&rateLibrary.includes('Unit</th>')&&rateLibrary.includes('Rate (NPR)</th>'),'original three-column rate table preserved');
+assert(rateLibrary.includes('Description of Work</th>')&&rateLibrary.includes('Unit</th>')&&rateLibrary.includes('Rate (NPR)</th>'),'description, unit and rate columns retained alongside enumeration');
 const specific=read('rate-specifications.html');
 assert(specific.includes('id="specHeroBack"')&&specific.includes('id="specBackCrumb"'),'contextual breadcrumbs');
 const details=read('work-specifications.js');
@@ -131,3 +131,7 @@ assert(draftAssembly.status==='TEMPLATE_ONLY'&&draftAssembly.pricing_gate.ready_
 assert(draftAssembly.layers.length>=7&&draftAssembly.layers.every(layer=>layer.rate_source_ref===null&&layer.work_item_ref===null&&layer.rate_verified===false),'wall template has no invented prices or links');
 assert(wallSchema.properties?.layers?.items?.properties?.rate_source_ref,'wall JSON Schema supports source-linked rate members');
 console.log('PASS inline MEP switching regression: 204 immutable source rows, 62 unique trades per worksheet set (3/37/22), routing, source history, SI/Imperial, search, quality guide, protected modules.');
+
+assert(rateLibrary.includes('S.N.</th>')&&rateLibrary.includes('work-serial-col'),'personal enumeration column');
+assert(rateApp.includes('String(start+index+1)')&&rateApp.includes('tr.append(serial,work,u,amount)'),'numbering follows filtered order and continues across pages');
+assert(!rateApp.includes('colSpan=3'),'section, empty and error rows span four columns');

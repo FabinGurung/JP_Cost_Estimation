@@ -1,0 +1,8 @@
+/* Enumeration is scoped to the personal library, including its inline MEP views. */
+.personal-enumerated-table .work-serial-col{width:6%}.personal-enumerated-table .work-description-col{width:64%}.personal-enumerated-table .work-unit-col{width:12%}.personal-enumerated-table .work-rate-col{width:18%}
+.personal-enumerated-table td.work-serial-cell{color:#617967;text-align:left;font-size:12px;font-weight:500;font-variant-numeric:tabular-nums;white-space:nowrap!important;overflow-wrap:normal}
+.personal-enumerated-table td.work-description-cell{white-space:normal!important;text-align:left;color:var(--ink);font-size:13px;font-weight:650}
+.personal-enumerated-table td.work-unit-cell{color:#475d4c;font-size:13px;font-weight:720;text-align:left}
+.personal-enumerated-table td.work-price-cell{color:#226d46;font-size:15px;font-weight:850;text-align:right}
+html[data-theme="dark"] .personal-enumerated-table td.work-description-cell,html[data-theme="dark"] .personal-enumerated-table td.work-unit-cell{color:#b8e6c0}html[data-theme="dark"] .personal-enumerated-table td.work-price-cell{color:#9ce0ae}html[data-theme="dark"] .personal-enumerated-table td.work-serial-cell{color:#bad0bf}
+@media(max-width:650px){.personal-enumerated-table .work-serial-col{width:9%}.personal-enumerated-table .work-description-col{width:45%}.personal-enumerated-table .work-unit-col{width:16%}.personal-enumerated-table .work-rate-col{width:30%}.personal-enumerated-table td.work-description-cell{font-size:12px}.personal-enumerated-table td.work-unit-cell{font-size:11px}.personal-enumerated-table td.work-price-cell{font-size:12px}.personal-enumerated-table td.work-serial-cell{font-size:11px}}

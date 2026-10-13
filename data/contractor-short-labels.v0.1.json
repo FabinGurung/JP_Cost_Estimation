@@ -1,0 +1,641 @@
+{
+  "schema": "jp-cres.contractor_short_labels.v0.1",
+  "revision": "contractor-iteration-003",
+  "source_projection": "data/contractor-work-items.v0.1.json",
+  "source_projection_sha256": "7777a9c5aae4dc5e3045f2b384df3a1d37e4ee55719f228dc8bac113b35f57d1",
+  "method": "Editorial summaries of the existing full descriptions, retaining distinguishing scope, variants and qualifiers. Ambiguous OCR on pages 11, 17, 21 and 25 was read against the original scan. Full descriptions, source fields, rates and raw extraction are unchanged.",
+  "items": [
+    {
+      "item_id": "contractor-p005-r01",
+      "short_description": "Light-jungle clearing and grubbing — mechanical; 30 m lead; topsoil ≤150 mm"
+    },
+    {
+      "item_id": "contractor-p005-r02",
+      "short_description": "Thorny-jungle clearing and grubbing — mechanical; 30 m lead; topsoil ≤150 mm"
+    },
+    {
+      "item_id": "contractor-p005-r03",
+      "short_description": "Bamboo felling, uprooting and clearing — mechanical; 30 m lead; topsoil ≤150 mm"
+    },
+    {
+      "item_id": "contractor-p005-r04",
+      "short_description": "Light-jungle clearing and grubbing — mechanical; 1,000 m lead; topsoil ≤150 mm"
+    },
+    {
+      "item_id": "contractor-p005-r05",
+      "short_description": "Thorny-jungle clearing and grubbing — mechanical; 1,000 m lead; topsoil ≤150 mm"
+    },
+    {
+      "item_id": "contractor-p005-r06",
+      "short_description": "Bamboo felling, uprooting and clearing — mechanical; 1,000 m lead; topsoil ≤150 mm"
+    },
+    {
+      "item_id": "contractor-p007-r03",
+      "short_description": "Tree cutting and stump/root removal — girth 300–600 mm; 1,000 m lead"
+    },
+    {
+      "item_id": "contractor-p007-r04",
+      "short_description": "Tree cutting and stump/root removal — girth 600–900 mm; 1,000 m lead"
+    },
+    {
+      "item_id": "contractor-p007-r05",
+      "short_description": "Tree cutting and stump/root removal — girth 900–1,800 mm; 1,000 m lead"
+    },
+    {
+      "item_id": "contractor-p007-r06",
+      "short_description": "Tree cutting and stump/root removal — girth 1,800–2,500 mm; 1,000 m lead"
+    },
+    {
+      "item_id": "contractor-p007-r07",
+      "short_description": "Tree cutting and stump/root removal — girth above 2,500 mm; 1,000 m lead"
+    },
+    {
+      "item_id": "contractor-p007-r08",
+      "short_description": "Grass/topsoil clearing and surface levelling — manual; removal within 50 m"
+    },
+    {
+      "item_id": "contractor-p007-r09",
+      "short_description": "Rubble stone masonry dismantling — cement mortar; 1,000 m lead"
+    },
+    {
+      "item_id": "contractor-p007-r10",
+      "short_description": "Dismantle boulders in wire crates — open crates and stack materials"
+    },
+    {
+      "item_id": "contractor-p007-r11",
+      "short_description": "Remove Hume pipes up to 600 mm dia. — earthwork/masonry removal; 50 m lead"
+    },
+    {
+      "item_id": "contractor-p007-r12",
+      "short_description": "Remove Hume pipes above 600–900 mm dia. — earthwork/masonry removal; 50 m lead"
+    },
+    {
+      "item_id": "contractor-p007-r13",
+      "short_description": "Remove Hume pipes above 900 mm dia. — earthwork/masonry removal; 50 m lead"
+    },
+    {
+      "item_id": "contractor-p009-r03",
+      "short_description": "Dismantle bituminous pavement — mechanical; 1,000 m disposal lead"
+    },
+    {
+      "item_id": "contractor-p009-r04",
+      "short_description": "Dismantle concrete pavement — pneumatic tools; pieces ≤0.02 m³; 1,000 m lead"
+    },
+    {
+      "item_id": "contractor-p009-r05",
+      "short_description": "Remove telephone/electric poles, foundations and lines — 1,000 m lead"
+    },
+    {
+      "item_id": "contractor-p009-r06",
+      "short_description": "Supply, joint and lay HDPE pipe — 110/125 mm outside diameter"
+    },
+    {
+      "item_id": "contractor-p009-r08",
+      "short_description": "RCC NP3 flush-jointed culvert pipe — 300 mm internal dia.; 1:2 mortar"
+    },
+    {
+      "item_id": "contractor-p009-r09",
+      "short_description": "RCC NP3 flush-jointed culvert pipe — 450 mm internal dia.; 1:2 mortar"
+    },
+    {
+      "item_id": "contractor-p009-r10",
+      "short_description": "RCC NP3 flush-jointed culvert pipe — 600 mm internal dia.; 1:2 mortar"
+    },
+    {
+      "item_id": "contractor-p009-r11",
+      "short_description": "RCC NP3 flush-jointed culvert pipe — 900 mm internal dia.; 1:2 mortar"
+    },
+    {
+      "item_id": "contractor-p009-r13",
+      "short_description": "Roadway excavation — all soil types"
+    },
+    {
+      "item_id": "contractor-p009-r14",
+      "short_description": "Roadway excavation — ordinary rock"
+    },
+    {
+      "item_id": "contractor-p009-r15",
+      "short_description": "Roadway excavation — hard rock; cutting without blasting"
+    },
+    {
+      "item_id": "contractor-p009-r16",
+      "short_description": "Roadway excavation — hard rock without blasting; stone deduction"
+    },
+    {
+      "item_id": "contractor-p009-r17",
+      "short_description": "Roadway excavation — hard rock with blasting"
+    },
+    {
+      "item_id": "contractor-p009-r19",
+      "short_description": "Unserviceable soil excavation, loading and disposal — 1,000 m lead"
+    },
+    {
+      "item_id": "contractor-p009-r22",
+      "short_description": "Foundation excavation and backfill — ordinary soil; mechanical; depth up to 3 m"
+    },
+    {
+      "item_id": "contractor-p009-r23",
+      "short_description": "Foundation excavation and backfill — ordinary soil; mechanical; depth 3–6 m"
+    },
+    {
+      "item_id": "contractor-p009-r24",
+      "short_description": "Foundation excavation and backfill — ordinary soil; mechanical; depth above 6 m"
+    },
+    {
+      "item_id": "contractor-p011-r03",
+      "short_description": "Foundation excavation, shoring and backfill — ordinary rock"
+    },
+    {
+      "item_id": "contractor-p011-r04",
+      "short_description": "Foundation excavation, shoring and backfill — hard rock"
+    },
+    {
+      "item_id": "contractor-p011-r05",
+      "short_description": "Formation preparation — remove mud/slurry, water and compact"
+    },
+    {
+      "item_id": "contractor-p011-r06",
+      "short_description": "Embankment from borrow-pit material — spread and compact"
+    },
+    {
+      "item_id": "contractor-p011-r07",
+      "short_description": "Embankment from roadway-cut material — spread and compact"
+    },
+    {
+      "item_id": "contractor-p011-r08",
+      "short_description": "Granular backfill behind abutments, wing walls and return walls"
+    },
+    {
+      "item_id": "contractor-p011-r09",
+      "short_description": "Sandy backfill behind abutments, wing walls and return walls"
+    },
+    {
+      "item_id": "contractor-p011-r10",
+      "short_description": "Local-material backfill behind abutments/walls — tamped; no watering"
+    },
+    {
+      "item_id": "contractor-p011-r11",
+      "short_description": "Granular/crushed-stone filter behind abutments/walls — thickness ≥600 mm"
+    },
+    {
+      "item_id": "contractor-p011-r12",
+      "short_description": "Road-surface scarification — 50 mm depth; manual"
+    },
+    {
+      "item_id": "contractor-p011-r13",
+      "short_description": "Granular-road scarification — 50 mm depth; manual; up to 30 m lead"
+    },
+    {
+      "item_id": "contractor-p011-r14",
+      "short_description": "Road-surface scarification — 50 mm depth; mechanical; up to 30 m lead"
+    },
+    {
+      "item_id": "contractor-p011-r15",
+      "short_description": "Granular-road scarification — 50 mm depth; mechanical"
+    },
+    {
+      "item_id": "contractor-p011-r16",
+      "short_description": "Subgrade ground preparation — loosen to 500 mm, water and compact in layers"
+    },
+    {
+      "item_id": "contractor-p011-r17",
+      "short_description": "Embankment ground preparation — scarify to 150 mm, water at OMC and roll"
+    },
+    {
+      "item_id": "contractor-p013-r03",
+      "short_description": "Hand-packed stone soling — smaller-stone packing on prepared surface"
+    },
+    {
+      "item_id": "contractor-p013-r04",
+      "short_description": "M20 precast kerb — 38×20×25 cm; 12 mm 1:3 mortar bed; foundation concrete excluded"
+    },
+    {
+      "item_id": "contractor-p013-r05",
+      "short_description": "Concrete slab footpath — 50 mm thick; 12 mm 1:3 mortar bed"
+    },
+    {
+      "item_id": "contractor-p013-r06",
+      "short_description": "Natural-stone slab footpath — 50 mm thick; 12 mm 1:3 mortar bed"
+    },
+    {
+      "item_id": "contractor-p013-r07",
+      "short_description": "Brick-on-edge footpath — 60 mm sand bed; excavation included"
+    },
+    {
+      "item_id": "contractor-p013-r08",
+      "short_description": "Flat-brick footpath — 60 mm sand bed; excavation included"
+    },
+    {
+      "item_id": "contractor-p013-r09",
+      "short_description": "Foundation random-rubble masonry — 1:4 cement mortar; manually mixed"
+    },
+    {
+      "item_id": "contractor-p013-r10",
+      "short_description": "Foundation random-rubble masonry — 1:4 cement mortar; machine mixed"
+    },
+    {
+      "item_id": "contractor-p013-r11",
+      "short_description": "Foundation random-rubble masonry — 1:6 cement mortar"
+    },
+    {
+      "item_id": "contractor-p013-r12",
+      "short_description": "Structural random-rubble masonry — 1:4 cement mortar"
+    },
+    {
+      "item_id": "contractor-p013-r13",
+      "short_description": "Structural random-rubble masonry — 1:6 cement mortar"
+    },
+    {
+      "item_id": "contractor-p013-r15",
+      "short_description": "Foundation/footing formwork — softwood timber; Class F1 finish"
+    },
+    {
+      "item_id": "contractor-p013-r17",
+      "short_description": "Plain vertical formwork — Class F2 finish; height up to 3 m"
+    },
+    {
+      "item_id": "contractor-p013-r18",
+      "short_description": "Plain vertical formwork — Class F2 finish; height 3–6 m"
+    },
+    {
+      "item_id": "contractor-p013-r19",
+      "short_description": "Plain vertical formwork — Class F2 finish; height 6–9 m"
+    },
+    {
+      "item_id": "contractor-p013-r21",
+      "short_description": "Curved vertical formwork — Class F2 finish; height up to 3 m"
+    },
+    {
+      "item_id": "contractor-p013-r22",
+      "short_description": "Curved vertical formwork — Class F2 finish; height 3–6 m"
+    },
+    {
+      "item_id": "contractor-p013-r23",
+      "short_description": "Curved vertical formwork — Class F2 finish; height 6–9 m"
+    },
+    {
+      "item_id": "contractor-p013-r24",
+      "short_description": "Slab formwork — timber planks; Class F2 finish; falsework excluded"
+    },
+    {
+      "item_id": "contractor-p015-r03",
+      "short_description": "Slab-and-beam formwork — timber planks; Class F2 finish; falsework excluded"
+    },
+    {
+      "item_id": "contractor-p015-r04",
+      "short_description": "Timber falsework for slabs/box culverts — height 2–4 m; design and removal included"
+    },
+    {
+      "item_id": "contractor-p015-r05",
+      "short_description": "Timber falsework for RCC beam bridges — height 3–6 m; design and removal included"
+    },
+    {
+      "item_id": "contractor-p015-r06",
+      "short_description": "Plum concrete — 60% M15 concrete + 40% stone; mechanical; formwork included"
+    },
+    {
+      "item_id": "contractor-p015-r07",
+      "short_description": "Foundation/footing M10 concrete (1:3:6) — machine mixed; 30 m lead"
+    },
+    {
+      "item_id": "contractor-p015-r08",
+      "short_description": "Foundation/footing M10 concrete (1:3:6) — manual; 30 m lead"
+    },
+    {
+      "item_id": "contractor-p015-r09",
+      "short_description": "Foundation M15 concrete — manual; formwork included"
+    },
+    {
+      "item_id": "contractor-p015-r10",
+      "short_description": "Foundation M15 concrete — machine mixed; formwork included"
+    },
+    {
+      "item_id": "contractor-p015-r11",
+      "short_description": "Foundation PCC M20 — formwork included"
+    },
+    {
+      "item_id": "contractor-p015-r12",
+      "short_description": "Foundation RCC M20 — formwork included"
+    },
+    {
+      "item_id": "contractor-p015-r13",
+      "short_description": "Foundation PCC M25 — formwork included"
+    },
+    {
+      "item_id": "contractor-p015-r14",
+      "short_description": "Foundation RCC M25 — formwork included"
+    },
+    {
+      "item_id": "contractor-p015-r15",
+      "short_description": "Foundation PCC M30 — formwork included"
+    },
+    {
+      "item_id": "contractor-p015-r16",
+      "short_description": "Foundation RCC M30 — formwork included"
+    },
+    {
+      "item_id": "contractor-p015-r17",
+      "short_description": "Foundation RCC M35 — formwork included"
+    },
+    {
+      "item_id": "contractor-p017-r03",
+      "short_description": "Substructure RCC M20 — height up to 5 m; formwork included"
+    },
+    {
+      "item_id": "contractor-p017-r04",
+      "short_description": "Substructure RCC M20 — height above 5–10 m; formwork included"
+    },
+    {
+      "item_id": "contractor-p017-r05",
+      "short_description": "Substructure RCC M25 — height up to 5 m; formwork included"
+    },
+    {
+      "item_id": "contractor-p017-r06",
+      "short_description": "Substructure RCC M25 — height above 5–10 m; formwork included"
+    },
+    {
+      "item_id": "contractor-p017-r07",
+      "short_description": "Substructure RCC M30 — height up to 5 m; formwork included"
+    },
+    {
+      "item_id": "contractor-p017-r08",
+      "short_description": "Substructure RCC M30 — height above 5–10 m; formwork included"
+    },
+    {
+      "item_id": "contractor-p017-r09",
+      "short_description": "HYSD reinforcement — supply, fitting and placement in substructure"
+    },
+    {
+      "item_id": "contractor-p017-r10",
+      "short_description": "Solid-slab superstructure RCC M20 — height up to 5 m; formwork included"
+    },
+    {
+      "item_id": "contractor-p017-r11",
+      "short_description": "Solid-slab superstructure RCC M25 — height above 5–10 m; formwork included"
+    },
+    {
+      "item_id": "contractor-p017-r12",
+      "short_description": "Solid-slab superstructure RCC M25 — height above 10 m; formwork included"
+    },
+    {
+      "item_id": "contractor-p017-r13",
+      "short_description": "HYSD reinforcement — supply, fitting and placement in superstructure"
+    },
+    {
+      "item_id": "contractor-p017-r14",
+      "short_description": "Gabion boxes/mattresses — 100×120 mm mesh; assembly and stone/boulder filling"
+    },
+    {
+      "item_id": "contractor-p017-r15",
+      "short_description": "Geotextile filter fabric — supply, laying and fixing; 30 m lead"
+    },
+    {
+      "item_id": "contractor-p017-r16",
+      "short_description": "Structural random-rubble masonry — 1:4 cement mortar"
+    },
+    {
+      "item_id": "contractor-p017-r17",
+      "short_description": "Granular sub-base — mechanical laying, OMC mixing and compaction"
+    },
+    {
+      "item_id": "contractor-p019-r03",
+      "short_description": "Crusher-run macadam base/sub-base — maximum aggregate size 53 mm"
+    },
+    {
+      "item_id": "contractor-p019-r04",
+      "short_description": "Crusher-run macadam base/sub-base — maximum aggregate size 45 mm"
+    },
+    {
+      "item_id": "contractor-p019-r05",
+      "short_description": "Prime coat with hot bitumen/cutter MC 30/70 — mechanical spray"
+    },
+    {
+      "item_id": "contractor-p019-r06",
+      "short_description": "Prime coat with hot bitumen/cutter MC 30/70 — manual spray"
+    },
+    {
+      "item_id": "contractor-p019-r07",
+      "short_description": "Bitumen-emulsion prime coat — mechanical spray"
+    },
+    {
+      "item_id": "contractor-p019-r08",
+      "short_description": "Bitumen-emulsion prime coat — manual spray"
+    },
+    {
+      "item_id": "contractor-p019-r09",
+      "short_description": "Hot-bitumen tack coat on non-bituminous surface — mechanical"
+    },
+    {
+      "item_id": "contractor-p019-r10",
+      "short_description": "Hot-bitumen tack coat on non-bituminous surface — manual"
+    },
+    {
+      "item_id": "contractor-p019-r11",
+      "short_description": "Single-coat surface dressing — mechanical; 19 mm nominal chippings"
+    },
+    {
+      "item_id": "contractor-p019-r12",
+      "short_description": "Single-coat surface dressing — mechanical; 13 mm nominal chippings"
+    },
+    {
+      "item_id": "contractor-p019-r13",
+      "short_description": "Single-coat surface dressing — mechanical; 10 mm nominal chippings"
+    },
+    {
+      "item_id": "contractor-p019-r14",
+      "short_description": "Open-graded premix carpet — 20 mm thick; 13.2–5.6 mm aggregate; hot-mix plant"
+    },
+    {
+      "item_id": "contractor-p021-r03",
+      "short_description": "Open-graded premix carpet — 20 mm thick; 13.2–5.6 mm aggregate; manual"
+    },
+    {
+      "item_id": "contractor-p021-r04",
+      "short_description": "Close-graded bituminous surfacing — 20 mm thick; Type A/B aggregate grading"
+    },
+    {
+      "item_id": "contractor-p021-r05",
+      "short_description": "Bituminous/asphalt concrete — graded crushed aggregate, binder and filler"
+    },
+    {
+      "item_id": "contractor-p021-r06",
+      "short_description": "Bituminous seal coat — seal surface voids"
+    },
+    {
+      "item_id": "contractor-p021-r07",
+      "short_description": "Slurry seal — 3 mm thick; mobile-plant mixing, laying and compaction"
+    },
+    {
+      "item_id": "contractor-p021-r08",
+      "short_description": "Plum concrete — 60% M15 concrete + 40% stone; mechanical"
+    },
+    {
+      "item_id": "contractor-p021-r09",
+      "short_description": "Pothole/patch repair — 20 mm open-graded premix; tack coat and compaction"
+    },
+    {
+      "item_id": "contractor-p021-r11",
+      "short_description": "Plant rooted grass slips — slopes below 45°; planting depth up to 5 cm"
+    },
+    {
+      "item_id": "contractor-p021-r12",
+      "short_description": "Plant rooted grass slips — slopes 45–60°; planting depth up to 5 cm"
+    },
+    {
+      "item_id": "contractor-p021-r13",
+      "short_description": "Plant rooted grass slips — slopes above 60°; planting depth up to 5 cm"
+    },
+    {
+      "item_id": "contractor-p021-r14",
+      "short_description": "Collect hardwood planting cuttings — minimum length 30 cm and diameter 2 cm"
+    },
+    {
+      "item_id": "contractor-p021-r15",
+      "short_description": "Produce and stack vegetation mulch within 1 km of road — Norm 28.6 A"
+    },
+    {
+      "item_id": "contractor-p021-r16",
+      "short_description": "Produce and stack vegetation mulch within 1 km of road — Norm 28.6 B"
+    },
+    {
+      "item_id": "contractor-p023-r03",
+      "short_description": "Plant container-grown trees/shrubs — slopes below 30°; pitting, composting and mulch"
+    },
+    {
+      "item_id": "contractor-p023-r04",
+      "short_description": "Plant container-grown trees/shrubs — slopes 30–40°; pitting, composting and mulch"
+    },
+    {
+      "item_id": "contractor-p023-r06",
+      "short_description": "Non-reflective MS signboard — 60 cm equilateral triangle; supports and foundation"
+    },
+    {
+      "item_id": "contractor-p023-r07",
+      "short_description": "Non-reflective MS signboard — 60 cm circle; supports and foundation"
+    },
+    {
+      "item_id": "contractor-p023-r08",
+      "short_description": "Non-reflective MS signboard — 80×60 cm rectangle; supports and foundation"
+    },
+    {
+      "item_id": "contractor-p023-r09",
+      "short_description": "Road delineators/hazard markers — 150×150 mm section, 1.5 m long; black/white paint"
+    },
+    {
+      "item_id": "contractor-p023-r10",
+      "short_description": "M15 RCC five-kilometre post — supply/fix, paint and lettering"
+    },
+    {
+      "item_id": "contractor-p023-r11",
+      "short_description": "Precast M15 RCC one-kilometre post — supply/fix, paint and lettering"
+    },
+    {
+      "item_id": "contractor-p023-r12",
+      "short_description": "Thermoplastic road marking with glass beads — at least 2 mm; smooth surface"
+    },
+    {
+      "item_id": "contractor-p023-r13",
+      "short_description": "Thermoplastic road marking with glass beads — at least 2 mm; rough surface"
+    },
+    {
+      "item_id": "contractor-p023-r14",
+      "short_description": "W-beam crash barrier — 3 mm rail, 70 cm above ground; posts at 2 m centres"
+    },
+    {
+      "item_id": "contractor-p023-r15",
+      "short_description": "Subgrade/earthen shoulders — approved borrow-pit capping material"
+    },
+    {
+      "item_id": "contractor-p023-r16",
+      "short_description": "Anti-stripping agent — supply and mixing"
+    },
+    {
+      "item_id": "contractor-p023-r18",
+      "short_description": "Gabion stone/boulder filling — dressing, bedding and bonding included"
+    },
+    {
+      "item_id": "contractor-p025-r03",
+      "short_description": "Earth-shoulder maintenance — strip excess soil, level and compact"
+    },
+    {
+      "item_id": "contractor-p025-r04",
+      "short_description": "Landslide clearance — soil/ordinary rock; machine removal to valley side"
+    },
+    {
+      "item_id": "contractor-p025-r05",
+      "short_description": "Hill-side drain clearance — manual earth removal to valley side"
+    },
+    {
+      "item_id": "contractor-p025-r06",
+      "short_description": "Foundation M15 concrete — machine mixed; formwork excluded"
+    },
+    {
+      "item_id": "contractor-p025-r07",
+      "short_description": "Foundation M15 concrete — manual; formwork excluded"
+    },
+    {
+      "item_id": "contractor-p025-r08",
+      "short_description": "Foundation PCC M20 — formwork excluded"
+    },
+    {
+      "item_id": "contractor-p025-r09",
+      "short_description": "Foundation RCC M20 — formwork excluded"
+    },
+    {
+      "item_id": "contractor-p025-r10",
+      "short_description": "Hand-packed stone soling — collect local stone and pack with smaller stones"
+    },
+    {
+      "item_id": "contractor-p025-r11",
+      "short_description": "Foundation random-rubble masonry — local stone; 1:4 mortar; manually mixed"
+    },
+    {
+      "item_id": "contractor-p025-r12",
+      "short_description": "Foundation random-rubble masonry — local stone; 1:4 mortar; machine mixed"
+    },
+    {
+      "item_id": "contractor-p025-r13",
+      "short_description": "Foundation random-rubble masonry — local stone; 1:6 mortar"
+    },
+    {
+      "item_id": "contractor-p025-r14",
+      "short_description": "Structural random-rubble masonry — local stone; 1:4 mortar"
+    },
+    {
+      "item_id": "contractor-p025-r15",
+      "short_description": "Structural random-rubble masonry — local stone; 1:6 mortar"
+    },
+    {
+      "item_id": "contractor-p025-r16",
+      "short_description": "Plum concrete with local stone — 60% M15 concrete + 40% stone; mechanical"
+    },
+    {
+      "item_id": "contractor-p025-r19",
+      "short_description": "Gabion boxes/mattresses — assembly and local stone filling; 1.5×1×1"
+    },
+    {
+      "item_id": "contractor-p025-r20",
+      "short_description": "Gabion boxes/mattresses — assembly and local stone filling; 2×1×1"
+    },
+    {
+      "item_id": "contractor-p027-r03",
+      "short_description": "Gabion boxes/mattresses — assembly and local stone filling; 3×1×1"
+    },
+    {
+      "item_id": "contractor-p027-r04",
+      "short_description": "Gabion boxes/mattresses — assembly and local stone filling; Uses for estimation"
+    },
+    {
+      "item_id": "contractor-p027-r05",
+      "short_description": "Gabion stone/boulder filling — dressing, bedding and bonding included"
+    },
+    {
+      "item_id": "contractor-p027-r06",
+      "short_description": "Concrete/plaster painting — two coats of synthetic enamel after surface filling"
+    },
+    {
+      "item_id": "contractor-p027-r07",
+      "short_description": "Lettering and figures — synthetic enamel, black or approved colour"
+    }
+  ]
+}

@@ -101,11 +101,11 @@
     page=Math.min(Math.max(0,page),maxPage);
     const start=page*PAGE_SIZE,shown=matches.slice(start,start+PAGE_SIZE),fragment=document.createDocumentFragment();
     let lastStage=null;
-    for(const item of shown){
+    for(const [index,item] of shown.entries()){
       const seq=stageOf(item);
       if(sort.value==='construction'&&seq.stage_id!==lastStage){
         const hr=document.createElement('tr');hr.className='work-stage-row';
-        const heading=document.createElement('td');heading.colSpan=3;
+        const heading=document.createElement('td');heading.colSpan=4;
         const em=document.createElement('span');em.className='stage-heading-emoji';em.textContent=seq.stage.emoji;em.setAttribute('aria-hidden','true');
         const label=document.createElement('span');label.textContent=seq.stage.label;
         heading.append(em,label);
@@ -145,9 +145,10 @@
       const amount=document.createElement('td');amount.className='work-price-cell';
       const value=document.createElement('span');value.className='work-price-number';value.textContent=displayed.formatted;amount.appendChild(value);
       amount.title=displayed.derived?'Calculated from original NPR '+units.rateText(item.rate,item.unit,'si').formatted+'/'+item.unit:'Source workbook NPR per '+item.unit;
-      tr.append(work,u,amount);fragment.appendChild(tr);
+      const serial=document.createElement('td');serial.className='work-serial-cell';serial.textContent=String(start+index+1);
+      tr.append(serial,work,u,amount);fragment.appendChild(tr);
     }
-    if(!shown.length){const tr=document.createElement('tr'),td=document.createElement('td');td.className='work-empty';td.colSpan=3;td.textContent='No matching work items. Try a different category or search.';tr.appendChild(td);fragment.appendChild(tr);}
+    if(!shown.length){const tr=document.createElement('tr'),td=document.createElement('td');td.className='work-empty';td.colSpan=4;td.textContent='No matching work items. Try a different category or search.';tr.appendChild(td);fragment.appendChild(tr);}
     tbody.replaceChildren(fragment);
     const tradeLabel=activeStage==='mep'&&mep.trades[activeTrade]?mep.trades[activeTrade].name+' · ':'';
     status.textContent=tradeLabel+matches.length+' '+(version.value==='visible'?'visible-worksheet':'hidden-worksheet')+' rates found · '+(system.value==='imperial'?'Imperial equivalents':'Source SI rates')+' · Archived estimate / unverified year';
@@ -156,7 +157,7 @@
     previous.disabled=page===0;next.disabled=matches.length===0||page===maxPage;
   }
   function fail(message){
-    status.textContent=message;const tr=document.createElement('tr'),td=document.createElement('td');td.className='work-empty';td.colSpan=3;td.textContent=message;tr.appendChild(td);tbody.replaceChildren(tr);pageSummary.textContent='No rates available';previous.disabled=true;next.disabled=true;
+    status.textContent=message;const tr=document.createElement('tr'),td=document.createElement('td');td.className='work-empty';td.colSpan=4;td.textContent=message;tr.appendChild(td);tbody.replaceChildren(tr);pageSummary.textContent='No rates available';previous.disabled=true;next.disabled=true;
   }
   for(const button of mepTabs.querySelectorAll('[data-mep-trade]')){
     button.addEventListener('click',()=>{

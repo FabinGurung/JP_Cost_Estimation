@@ -20,3 +20,20 @@ const html=read('contractor-rate-analysis.html');assert(html.includes('<dialog')
 const js=read('contractor-rate-analysis.js');new Script(js);assert(!js.includes('innerHTML'));assert(js.includes('dialog.showModal()'));assert(js.includes('r.specification_clause_no'));assert(js.includes("'Open actual PDF page ↗'"));assert(js.includes('r.rate_npr===null'));
 assert(read('contractor-extracted-evidence.html').includes('src="rate-source-skeleton.js"'));
 console.log('PASS contractor iteration 002: 158 source-linked summary items, four-column index, six-field details, original PDF excerpt, preserved raw evidence and unresolved readings.');
+// Iteration 003 adds an editorial label overlay without rewriting source readings.
+const labels=JSON.parse(read('data/contractor-short-labels.v0.1.json'));
+const {createHash}=await import('node:crypto');
+assert.equal(labels.source_projection_sha256,createHash('sha256').update(read('data/contractor-work-items.v0.1.json')).digest('hex'),'labels anchor the unchanged full-detail projection');
+assert.equal(labels.items.length,m.items.length);assert.equal(new Set(labels.items.map(r=>r.item_id)).size,m.items.length);
+const byId=new Map(labels.items.map(r=>[r.item_id,r.short_description]));
+for(const r of m.items){assert(byId.has(r.id));assert(byId.get(r.id).length<=120);assert(byId.get(r.id).length<r.description.length,'editorial label is shorter than full source wording');}
+const title=sn=>byId.get(row(sn).id);
+assert(title('1').includes('30 m lead')&&title('4').includes('1,000 m lead'));
+assert(title('47').includes('manually mixed')&&title('48').includes('machine mixed'));
+assert(title('64').includes('formwork included')&&title('121').includes('formwork excluded'));
+assert(title('54a').includes('up to 3 m')&&title('54b').includes('3–6 m'));
+assert(title('110').includes('smooth surface')&&title('111').includes('rough surface'));
+assert(js.includes("'contractor-summary',r.short_description")&&js.includes("'contractor-full-description',r.description"),'list labels and full detail remain distinct');
+assert(js.includes('searchText:[shortLabels.get(r.id)'),'search includes both editorial and full source wording');
+assert(read('contractor-rate-analysis.css').includes('white-space:normal!important'),'source index overrides global nowrap');
+console.log('PASS iteration 003: all 158 shortened labels retain key variants; full descriptions and source readings remain byte-identical.');
