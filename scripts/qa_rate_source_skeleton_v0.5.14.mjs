@@ -32,7 +32,11 @@ const html=read(path);
 assert(html.includes('data-source-document="'+id+'"'),path+' source ID');
 assert(html.includes('sourcePreviewRows'),path+' blank table');
 assert(html.includes('rate-source-skeleton.js'),path+' loader');
-assert(!html.includes('href="https://drive.google.com'),path+' does not expose private links');
+const sourceLinks=[...html.matchAll(/href="(https:\/\/drive\.google\.com[^"]+)"/g)].map(m=>m[1]);
+if(id==='SRC-RA-001'){
+ assert.deepEqual(sourceLinks,['https://drive.google.com/file/d/1f0mdMF5ibfi18zR5H0Hg0M3RgfxUgsL5/view'],'only the user-authorized contractor original PDF is linked');
+ assert(html.includes('id="contractorOriginalPdf"'),'source PDF link has a stable locator');
+}else assert.equal(sourceLinks.length,0,path+' does not expose private links');
 }
 assert(read('rate-sources.html').includes('data-source-collection="hub"'));
 for(const id of ['government','vendors','rate-analysis']){
