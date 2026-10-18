@@ -1,0 +1,15 @@
+{
+  "task_id": "FBL-FIELD-EXPENSE-UNIFY-v0.2-20261018",
+  "purpose": "Deploy corrected public tutorial only; source is current audited research commit",
+  "source_sha": "8d5494b926edb0c32eb2168a94864d2e87870d34",
+  "main_before_sha": "31530de5a24f9f01355c4da0347919ffc2a713ae",
+  "source_ci": [
+    "39094886042",
+    "39094886049"
+  ],
+  "public_url": "https://fabingurung.github.io/JP_Cost_Estimation/field-expense-guide.html",
+  "private_files_not_included": true,
+  "previous_deploy": "ops/deploy-triggers/fbl-field-expense-guide-v0.1-20261018.json",
+  "rollback": "Revert guide v0.2 via source branch, do not change historical finance or attendance",
+  "release_status": "REQUESTED"
+}
