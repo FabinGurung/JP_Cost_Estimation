@@ -1,0 +1,15 @@
+{
+  "task_id": "FBL-FIELD-EXPENSE-ONBOARDING-20261018",
+  "release": "field-expense-guide-v0.1",
+  "source_branch": "research/open-estimation-engine-v0.1",
+  "verified_source_sha": "1349835d44b0f54d6ee164a22b65a00c391e453e",
+  "main_before_trigger": "d7b5b59e5b1d9e9d8ab7b78e43952bd0fb0ad70f",
+  "target": "https://fabingurung.github.io/JP_Cost_Estimation/field-expense-guide.html",
+  "reason": "GitHub Pages workflow on main checks out research source; commit intentionally triggers workflow without overwriting source code.",
+  "source_ci": [
+    "39088956662",
+    "39088956669"
+  ],
+  "private_sources": "Not stored in public repo.",
+  "state": "DEPLOY_TRIGGER_REQUESTED"
+}
