@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="A mobile-friendly, public-safe tutorial for recording project spending in a private site-engineer Google Sheet. No employee financial data is hosted here.">
+<meta name="robots" content="index,follow">
+<title>Site Engineer Expense Entry Guide — JP</title>
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="site-shell.css">
+<script src="theme.js" defer></script>
+<style>
+:root{--guide-ink:#15372c;--guide-leaf:#196a47;--guide-mist:#eef7f0;--guide-edge:#d1e4d6}
+.guide{width:min(1080px,calc(100% - 32px));margin:0 auto;padding:30px 0 80px}
+.guide-hero{background:linear-gradient(135deg,#124231,#1d7550 70%,#568d61);border-radius:23px;color:#fff;padding:clamp(24px,5vw,52px);margin-bottom:24px;box-shadow:0 13px 35px rgba(14,69,40,.14)}
+.guide .kicker{font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#c2f2d3}
+.guide-hero h1{font-size:clamp(30px,5vw,52px);letter-spacing:-.045em;line-height:1.1;margin:12px 0}
+.guide-hero p{line-height:1.7;max-width:660px;color:#e7f8ec;font-size:clamp(14px,2vw,17px)}
+.guide .chips{display:flex;flex-wrap:wrap;gap:9px;margin:22px 0 0}
+.guide .chip{border:1px solid #ffffff61;padding:7px 11px;border-radius:40px;font-size:12px;color:#f4fff8}
+.guide .helpnav{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px}
+.guide .helpnav a{display:inline-block;background:var(--panel,#fff);border:1px solid var(--guide-edge);color:var(--ink,var(--guide-ink));padding:10px 13px;border-radius:10px;text-decoration:none;font-size:13px;font-weight:700}
+.guide .helpnav a:focus-visible,.guide a:focus-visible,.guide summary:focus-visible{outline:3px solid #55c592;outline-offset:3px}
+.guide-section{padding:clamp(17px,3vw,28px);border:1px solid var(--guide-edge);background:var(--panel,#fff);border-radius:18px;margin-bottom:18px}
+.guide-section h2{font-size:clamp(20px,3vw,27px);margin:0 0 13px;color:var(--ink,var(--guide-ink))}
+.guide-section p,.guide-section li{line-height:1.6;font-size:14px;color:var(--ink,var(--guide-ink))}
+.guide .muted{color:var(--muted,#62756b);font-size:13px}
+.guide .stepgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px;margin:18px 0}
+.guide .step{background:var(--soft,var(--guide-mist));border:1px solid var(--guide-edge);border-radius:13px;padding:17px}
+.guide .step strong{font-size:15px;color:var(--ink,var(--guide-ink))}
+.guide .step p{margin:8px 0 0}
+.guide .num{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;background:#216c4c;color:white;border-radius:9px;font-weight:800;margin-right:8px}
+.guide .tablewrap{overflow-x:auto;border:1px solid var(--guide-edge);border-radius:12px;margin:16px 0}
+.guide table{width:100%;border-collapse:collapse;min-width:610px;font-size:13px}
+.guide th,.guide td{padding:12px 13px;text-align:left;border-bottom:1px solid var(--guide-edge);vertical-align:top}
+.guide th{background:#e3f2e8;color:#224533}
+.guide tr:last-child td{border-bottom:0}
+.guide .demo{border:1px dashed #6fbb87;border-radius:15px;padding:18px;background:var(--soft,var(--guide-mist));margin-top:14px}
+.guide .demo label{display:block;font-weight:750;font-size:12px;margin:11px 0 5px;color:var(--ink,var(--guide-ink))}
+.guide .demo input{max-width:100%;width:100%;box-sizing:border-box;padding:10px;border:1px solid #b1cfbd;border-radius:8px;color:#233e32;background:#fff}
+.guide .demo .demo-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:15px}
+.guide .read-only{padding:10px 12px;border-radius:9px;color:#176043;background:#e5f4e9;margin:13px 0;font-size:12px}
+.guide .warning{border-left:4px solid #d39d38;background:#fcf5e6;color:#72521e;padding:13px 17px;border-radius:7px;font-size:13px;line-height:1.7}
+.guide details{border-bottom:1px solid var(--guide-edge);padding:13px 0}
+.guide details:last-child{border-bottom:0}
+.guide summary{font-weight:800;font-size:14px;cursor:pointer;color:var(--ink,var(--guide-ink))}
+.guide code{padding:2px 5px;border-radius:4px;background:var(--soft,#eaf3ed)}
+.guide .privacy{font-size:12px;color:var(--muted,#62756b);margin-top:16px}
+.guide .version{font-size:12px;color:var(--muted,#62756b)}
+html[data-theme="dark"] .guide th{background:#294d3c;color:#d4ecdd}
+html[data-theme="dark"] .guide .read-only{background:#244836;color:#ccf7d9}
+html[data-theme="dark"] .guide .warning{background:#392e1c;color:#f2d39c}
+@media(max-width:650px){.guide .stepgrid,.guide .demo .demo-grid{grid-template-columns:1fr}.guide{width:calc(100% - 24px);padding-top:17px}.guide-section{border-radius:13px}.guide-hero{border-radius:15px}.guide .helpnav a{flex:1 1 145px;text-align:center}}
+</style>
+</head>
+<body>
+<aside class="sidebar">
+<div class="brand"><div class="logo">JP</div><div><strong>Site Operations Guide</strong><small>Fishtail expense entry · tutorial only</small></div></div>
+<nav aria-label="Site navigation">
+<a class="nav-item" href="index.html">Rate Intelligence</a>
+<a class="nav-item" href="finance.html">Finance</a>
+<a class="nav-item active" href="field-expense-guide.html" aria-current="page">Expense Tutorial</a>
+</nav>
+</aside>
+<main class="app-shell">
+<article class="guide">
+<header class="guide-hero">
+<div class="kicker">JP · Fishtail Builders · Site Engineers</div>
+<h1>Record a site expense<br>in about a minute.</h1>
+<p>Use your own private Google Sheet to record what was purchased, for which project, from which hardware shop, and where the bill photo is stored. No PDF or technical spreadsheet knowledge needed.</p>
+<div class="chips"><span class="chip">📱 Mobile friendly</span><span class="chip">🔒 Private employee workbook</span><span class="chip">🧾 Bill-photo link</span><span class="chip">🏗️ Project dropdown</span></div>
+</header>
+<nav class="helpnav" aria-label="Tutorial sections"><a href="#start">Start</a><a href="#fields">Eight columns</a><a href="#example">Example</a><a href="#receipt">Bill photos</a><a href="#questions">Help</a></nav>
+<section class="guide-section" id="start">
+<h2>1. Open your own expense workbook</h2>
+<p>Open the <strong>private Google Sheet link sent to you by management in Gmail or Slack DM</strong>. Sign in to the Google account that received the invitation. Open the <strong>Expenses</strong> tab (not Summary).</p>
+<div class="stepgrid">
+<div class="step"><strong><span class="num">1</span>Find the next unused row</strong><p>Each row already has an ID. Use the next row that has no Date/Item/Amount.</p></div>
+<div class="step"><strong><span class="num">2</span>Enter the date and item</strong><p>Type/select the payment date (AD), then what was purchased or paid for.</p></div>
+<div class="step"><strong><span class="num">3</span>Choose the project</strong><p>Select the correct Fishtail project from the Project Name dropdown. Do not type an unrelated company project.</p></div>
+<div class="step"><strong><span class="num">4</span>Enter the amount and shop</strong><p>Amount is in NPR and must be greater than zero. Hardware means the shop or supplier name, if applicable.</p></div>
+<div class="step"><strong><span class="num">5</span>Add bill photo + remarks</strong><p>Paste the receipt's Google Drive link into Bill Photo. Use Remarks for short factual notes.</p></div>
+<div class="step"><strong><span class="num">6</span>Check Summary</strong><p>Google Sheets saves edits automatically. Open Summary to see total entered expenses and incomplete rows.</p></div>
+</div>
+<div class="warning"><strong>Important:</strong> Enter a purchase or spending event only when it actually occurred. A planned purchase, supplier quote, or money advance is not automatically an incurred expense. Never enter an invented amount.</div>
+</section>
+<section class="guide-section" id="fields">
+<h2>2. What do the eight columns mean?</h2>
+<div class="tablewrap">
+<table><thead><tr><th>Column</th><th>What to enter</th><th>Example (illustration only)</th></tr></thead><tbody>
+<tr><td><strong>ID</strong></td><td>Already assigned. Leave unchanged.</td><td>EXP-FBL-…-000001</td></tr>
+<tr><td><strong>Date</strong></td><td>Actual expense date (AD).</td><td>18-Oct-2026</td></tr>
+<tr><td><strong>Item</strong></td><td>What was bought / spent.</td><td>Nails, 2-inch</td></tr>
+<tr><td><strong>Project Name</strong></td><td>Select from dropdown.</td><td>15 Narayani Parajuli</td></tr>
+<tr><td><strong>Amount</strong></td><td>NPR paid (positive number).</td><td>450</td></tr>
+<tr><td><strong>Hardware</strong></td><td>Supplier, hardware shop or store; leave blank if not applicable.</td><td>Example Hardware</td></tr>
+<tr><td><strong>Bill Photo</strong></td><td>Private Google Drive file URL for the receipt; link must be accessible to the authorized reviewer.</td><td>Paste Drive link</td></tr>
+<tr><td><strong>Remarks</strong></td><td>Short, factual details, if needed.</td><td>For site formwork</td></tr>
+</tbody></table></div>
+<p class="muted">Columns after H are hidden reference fields. They link person, company, project, receipt, and source-row identities. You don't need to fill or unhide them.</p>
+</section>
+<section class="guide-section" id="example">
+<h2>3. Example of a completed entry</h2>
+<p class="muted">The example below is only a display. It is <strong>not connected</strong> to your Google Sheet and does not create a payment.</p>
+<div class="demo" aria-label="Illustrative expense form">
+<div class="demo-grid">
+<div><label for="ex-date">Date</label><input id="ex-date" value="18-Oct-2026" readonly></div>
+<div><label for="ex-project">Project</label><input id="ex-project" value="15 Narayani Parajuli" readonly></div>
+<div><label for="ex-item">Item</label><input id="ex-item" value="Nails, 2-inch" readonly></div>
+<div><label for="ex-amount">Amount NPR</label><input id="ex-amount" value="450" readonly></div>
+<div><label for="ex-supplier">Hardware</label><input id="ex-supplier" value="Example Hardware" readonly></div>
+<div><label for="ex-bill">Bill Photo</label><input id="ex-bill" value="Private Google Drive photo link" readonly></div>
+</div>
+<label for="ex-remarks">Remarks</label><input id="ex-remarks" value="For site formwork" readonly>
+<div class="read-only">✓ Example only — no data is sent, stored or submitted by this page.</div>
+</div>
+</section>
+<section class="guide-section" id="receipt">
+<h2>4. How to attach a bill photo</h2>
+<div class="stepgrid">
+<div class="step"><strong>Take a clear photo</strong><p>Show the full receipt, date, shop name, line items and total if present. Don't crop important details.</p></div>
+<div class="step"><strong>Upload to private Drive</strong><p>Upload the photo in a management-approved, restricted evidence folder or your authorized Drive space. Do not use public “Anyone with link” sharing.</p></div>
+<div class="step"><strong>Copy the photo link</strong><p>Open the uploaded image in Drive → Share / Copy link. Ensure the authorized manager can open it.</p></div>
+<div class="step"><strong>Paste into Bill Photo</strong><p>Return to your expense row, tap the Bill Photo cell, and paste the link. The Sheet does not automatically grant access to the photo.</p></div>
+</div>
+<p class="warning"><strong>Photo status:</strong> This first release records receipt links; it does not upload images directly from a spreadsheet cell, nor verify whether a receipt is authentic. If you lack permission to upload or share, ask management to designate a private evidence folder.</p>
+</section>
+<section class="guide-section" id="questions">
+<h2>5. Common questions</h2>
+<details><summary>Where is the Save button?</summary><p>Google Sheets normally saves your edits automatically. After entering a value, tap the checkmark / Enter to finish editing, and check Summary.</p></details>
+<details><summary>What if the project isn't in the dropdown?</summary><p>Do not choose the wrong project. Tell management which Fishtail project is missing. The list has to be updated from the governed project registry.</p></details>
+<details><summary>What if I paid an advance instead of buying an item?</summary><p>Do not record it as an expense without clear accounting direction. Report the advance separately so it can be classified correctly.</p></details>
+<details><summary>What if I have two purchases on one day?</summary><p>Use one row for each distinct spending event, even when Date, Project Name or Hardware are identical.</p></details>
+<details><summary>Can I edit an old amount or delete a row?</summary><p>Don't delete or overwrite old records. Contact management with the original ID and requested correction. Automated append-only auditing is not installed in this initial workbook version.</p></details>
+<details><summary>Can my colleague open my expense workbook?</summary><p>The workbook is intended to be shared only with its assigned engineer and authorized owner. Access is controlled by the actual Google Drive file sharing settings, not hidden tabs. Never forward your private workbook link broadly.</p></details>
+<details><summary>Does the tutorial upload or publish any financial data?</summary><p>No. This is a public how-to page only. Actual spending amounts, receipt links and identity mappings remain in private Drive workbooks. Expense entries are not automatically synced to the public website.</p></details>
+</section>
+<p class="version">Tutorial version <strong>v0.1 · 18 October 2026</strong> · Workbooks: private Fishtail personal expense registers v0.1. Public website contains instructions only, not private links, payment amounts or supplier records.</p>
+<p class="privacy">System separation: this Fishtail field-expense guide does not migrate the Rohini/Krishna Kumar Gupta finance register, shared cement, daily progress, PDF rate sources or attendance records. Google Drive remains the operational data authority.</p>
+</article>
+</main>
+</body>
+</html>

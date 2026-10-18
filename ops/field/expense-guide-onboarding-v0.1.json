@@ -1,0 +1,39 @@
+{
+  "schema": "jp.site-field-expense-guide.control.v0.1",
+  "task_id": "FBL-FIELD-EXPENSE-ONBOARDING-20261018",
+  "status": "FEATURE_BRANCH_STAGED_NO_PUBLISHED_CLAIM",
+  "date_npt": "2026-10-18",
+  "owner_stream": "FBL / A9 / SITE_ENGINEER_PERSONAL_EXPENSES",
+  "repository": "FabinGurung/JP_Cost_Estimation",
+  "website_path": "/JP_Cost_Estimation/field-expense-guide.html",
+  "source_branch": "research/open-estimation-engine-v0.1",
+  "feature_branch": "feature/fbl-engineer-expense-guide-v0.1-20261018",
+  "source_parent_sha": "c788009d72fc3385f2e4e12226124a132ead0d80",
+  "deploy_workflow_on_main": ".github/workflows/deploy-estimation-product.yml",
+  "public_artifacts": [
+    "field-expense-guide.html",
+    "index.html",
+    "ops/field/expense-guide-onboarding-v0.1.json",
+    "docs/FBL_ENGINEER_EXPENSE_GUIDE_v0.1.md"
+  ],
+  "private_data_policy": "NO employee email, private spreadsheet URL or file ID, financial amount, receipt, Slack ID, Gmail message ID, or private source file included in public repository or Pages.",
+  "facts_authority": "Separate private Google Sheets: each engineer's workbook; no public API or live finance synchronization.",
+  "permission_boundary": "Each engineer has named writer permission on own workbook; owner retains control; no cross-sharing.",
+  "component_scope": "Public instructional web page only, no finance payment computation, no rate PDF extraction, no A9 attendance or material change.",
+  "excluded_owners": [
+    "REB Krishna Kumar Gupta ledger",
+    "Fishtail attendance ledger",
+    "Fishtail shared PPC/OPC materials",
+    "Rate-source PDF ingestion"
+  ],
+  "checklists": {
+    "public_page_link": "PENDING_DEPLOY",
+    "repo_branch_readback": "PENDING",
+    "CI": "PENDING",
+    "Gmail_two_recipients": "PENDING",
+    "Slack_two_DMs": "PENDING",
+    "Drive_private_delivery_log": "PENDING"
+  },
+  "request_de_duplication": "When another thread sees this task ID, inspect this manifest, branch and private Drive release evidence before attempting duplicate sends, file creation or publication. Release statuses update only after verified operations.",
+  "rollback": "Revert only the new HTML and index navigation from research source, then redeploy through main. Never delete private expense workbooks or legacy attendance data."
+}
