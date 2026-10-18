@@ -1,0 +1,52 @@
+{
+  "schema": "jp.field-expense-unification.release.v0.2",
+  "task_id": "FBL-FIELD-EXPENSE-UNIFY-v0.2-20261018",
+  "status": "STAGED_NOT_DEPLOYED",
+  "date_npt": "2026-10-18",
+  "owned_by": "Fishtail / A9 Site Operations",
+  "source_branch": "research/open-estimation-engine-v0.1",
+  "feature_branch": "feature/fbl-embedded-expenses-v0.2-20261018",
+  "source_parent_sha": "1349835d44b0f54d6ee164a22b65a00c391e453e",
+  "workflow_main": ".github/workflows/deploy-estimation-product.yml",
+  "frontend": "field-expense-guide.html",
+  "previous_release": "FBL-FIELD-EXPENSE-ONBOARDING-20261018",
+  "storage_model": {
+    "person_scope": "one existing attendance workbook per site engineer",
+    "new_human_tabs": [
+      "Expenses",
+      "Expense Summary"
+    ],
+    "retained_human_tabs": [
+      "Attendance",
+      "Calendar",
+      "Summary"
+    ],
+    "internal_refs": [
+      "existing person PK",
+      "ORG-FBL",
+      "existing canonical project options"
+    ],
+    "legacy_file_id_policy": "UNCHANGED",
+    "pre_snapshots": "PRIVATE_DRIVE_RESTRICTED",
+    "standalone_v0_1": "ARCHIVED_SUPERSEDED_OWNER_PROTECTED",
+    "obsolete_file_access_revocation": "MANUAL_GOOGLE_DRIVE_SHARE_REVOKE_REQUIRED"
+  },
+  "security": {
+    "public_page_no_employee_ids": true,
+    "private_workbooks_not_embedded": true,
+    "cannot_claim_old_access_revoked": true
+  },
+  "messages": {
+    "corrective_email_each": "PENDING",
+    "corrective_slack_each": "PENDING",
+    "private_delivery_log": "OWNER_ONLY_GOOGLE_DOC"
+  },
+  "bounded_ownership": [
+    "no REB finance writes",
+    "no site attendance rewrites",
+    "no cement progress writes",
+    "no rate PDF ingestion",
+    "no Apps Script installs"
+  ],
+  "checkpoint": "PUBLIC_GUIDE_V0.2_QA_DEPLOY_AND_CORRECTIVE_PRIVATE_MESSAGES"
+}
