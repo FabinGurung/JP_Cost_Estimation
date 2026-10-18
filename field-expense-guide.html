@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="A mobile-friendly, public-safe tutorial for recording project spending in a private site-engineer Google Sheet. No employee financial data is hosted here.">
 <meta name="robots" content="index,follow">
-<title>Site Engineer Expense Entry Guide — JP</title>
+<title>Site Engineer Attendance + Expense Guide — JP</title>
 <link rel="stylesheet" href="styles.css">
 <link rel="stylesheet" href="site-shell.css">
 <script src="theme.js" defer></script>
@@ -67,13 +67,13 @@ html[data-theme="dark"] .guide .warning{background:#392e1c;color:#f2d39c}
 <header class="guide-hero">
 <div class="kicker">JP · Fishtail Builders · Site Engineers</div>
 <h1>Record a site expense<br>in about a minute.</h1>
-<p>Use your own private Google Sheet to record what was purchased, for which project, from which hardware shop, and where the bill photo is stored. No PDF or technical spreadsheet knowledge needed.</p>
-<div class="chips"><span class="chip">📱 Mobile friendly</span><span class="chip">🔒 Private employee workbook</span><span class="chip">🧾 Bill-photo link</span><span class="chip">🏗️ Project dropdown</span></div>
+<p>Use your existing attendance Google Sheet, now with an Expenses tab, to record what was purchased, for which project, from which hardware shop, and where the bill photo is stored. No PDF or technical spreadsheet knowledge needed.</p>
+<div class="chips"><span class="chip">📱 Mobile friendly</span><span class="chip">🔒 Existing employee attendance workbook</span><span class="chip">🧾 Bill-photo link</span><span class="chip">🏗️ Project dropdown</span></div>
 </header>
 <nav class="helpnav" aria-label="Tutorial sections"><a href="#start">Start</a><a href="#fields">Eight columns</a><a href="#example">Example</a><a href="#receipt">Bill photos</a><a href="#questions">Help</a></nav>
 <section class="guide-section" id="start">
-<h2>1. Open your own expense workbook</h2>
-<p>Open the <strong>private Google Sheet link sent to you by management in Gmail or Slack DM</strong>. Sign in to the Google account that received the invitation. Open the <strong>Expenses</strong> tab (not Summary).</p>
+<h2>1. Open your existing attendance workbook</h2>
+<p>Open your <strong>existing private Attendance Google Sheet</strong> using the corrected link sent by management. Sign in with your assigned Google account. The SAME workbook now contains <strong>Attendance</strong> and <strong>Expenses</strong> entry tabs. Open <strong>Expenses</strong> for spending; keep using Attendance for site visits. Never use the superseded separate expense file shared previously.</p>
 <div class="stepgrid">
 <div class="step"><strong><span class="num">1</span>Find the next unused row</strong><p>Each row already has an ID. Use the next row that has no Date/Item/Amount.</p></div>
 <div class="step"><strong><span class="num">2</span>Enter the date and item</strong><p>Type/select the payment date (AD), then what was purchased or paid for.</p></div>
@@ -132,10 +132,11 @@ html[data-theme="dark"] .guide .warning{background:#392e1c;color:#f2d39c}
 <details><summary>What if I paid an advance instead of buying an item?</summary><p>Do not record it as an expense without clear accounting direction. Report the advance separately so it can be classified correctly.</p></details>
 <details><summary>What if I have two purchases on one day?</summary><p>Use one row for each distinct spending event, even when Date, Project Name or Hardware are identical.</p></details>
 <details><summary>Can I edit an old amount or delete a row?</summary><p>Don't delete or overwrite old records. Contact management with the original ID and requested correction. Automated append-only auditing is not installed in this initial workbook version.</p></details>
-<details><summary>Can my colleague open my expense workbook?</summary><p>The workbook is intended to be shared only with its assigned engineer and authorized owner. Access is controlled by the actual Google Drive file sharing settings, not hidden tabs. Never forward your private workbook link broadly.</p></details>
+<details><summary>Can my colleague open my expense workbook?</summary><p>The existing attendance workbook is shared with its assigned engineer and authorized administrative accounts. Other engineers should not be added. Additional private tabs do not create file-level confidentiality; do not forward private workbook links.</p></details>
+<details><summary>Do I still use the separately sent expense Sheet?</summary><p>No. That earlier standalone file is retired and owner-protected. Use only the Expenses tab inside your original attendance workbook, as shown in the corrected email/Slack DM. Management is handling final removal of the old direct sharing permission.</p></details>
 <details><summary>Does the tutorial upload or publish any financial data?</summary><p>No. This is a public how-to page only. Actual spending amounts, receipt links and identity mappings remain in private Drive workbooks. Expense entries are not automatically synced to the public website.</p></details>
 </section>
-<p class="version">Tutorial version <strong>v0.1 · 18 October 2026</strong> · Workbooks: private Fishtail personal expense registers v0.1. Public website contains instructions only, not private links, payment amounts or supplier records.</p>
+<p class="version">Tutorial version <strong>v0.2 · 18 October 2026</strong> · Workbooks: Shiv site visits + Expenses v1.17 and Paras Attendance + Expenses v1.8, both with their original Google Sheet IDs. Public website contains instructions only, not private links, payment amounts or supplier records.</p>
 <p class="privacy">System separation: this Fishtail field-expense guide does not migrate the Rohini/Krishna Kumar Gupta finance register, shared cement, daily progress, PDF rate sources or attendance records. Google Drive remains the operational data authority.</p>
 </article>
 </main>
