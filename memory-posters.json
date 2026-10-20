@@ -1,0 +1,140 @@
+{
+  "schema": "jp.site.memory-posters.v1",
+  "version": "0.8.0",
+  "updated": "2026-10-20",
+  "visibility": "public_reference_only",
+  "posters": [
+    {
+      "id": "source-of-truth",
+      "category": "Finance",
+      "title": "The Sheet is the working source",
+      "takeaway": "Edit the source. Publish a verified view.",
+      "detail": "Google Sheets remains the place for payment entry and correction. The website displays a versioned snapshot.",
+      "href": "finance.html",
+      "label": "Finance overview",
+      "tone": "mint",
+      "priority": "CORE"
+    },
+    {
+      "id": "separate-companies",
+      "category": "Finance",
+      "title": "Rohini is not Fishtail",
+      "takeaway": "Keep every company's records in its own lane.",
+      "detail": "Shared website design does not imply shared accounts, totals or ownership.",
+      "href": "finance.html",
+      "label": "Company finance",
+      "tone": "peach",
+      "priority": "BOUNDARY"
+    },
+    {
+      "id": "payment-columns",
+      "category": "Payments",
+      "title": "Three recorded columns",
+      "takeaway": "Amount · QR · Discount",
+      "detail": "These figures are displayed separately. No unapproved net amount is inferred from them.",
+      "href": "finance-dashboard.html",
+      "label": "Payment dashboard",
+      "tone": "cream",
+      "priority": "RULE"
+    },
+    {
+      "id": "date-systems",
+      "category": "Payments",
+      "title": "Respect the calendar",
+      "takeaway": "BS and AD dates remain distinct.",
+      "detail": "Nepali and Gregorian dates must not be mixed into a single timeline without a verified conversion.",
+      "href": "finance-dashboard.html",
+      "label": "Payment dashboard",
+      "tone": "sky",
+      "priority": "RULE"
+    },
+    {
+      "id": "vendor-sections",
+      "category": "Payments",
+      "title": "Follow the vendor trail",
+      "takeaway": "Summary → vendor → individual payments",
+      "detail": "The human-readable vendor sections and their payment rows stay traceable to the source register.",
+      "href": "finance-dashboard.html",
+      "label": "Explore vendors",
+      "tone": "mint",
+      "priority": "REFERENCE"
+    },
+    {
+      "id": "publish-after-checks",
+      "category": "Payments",
+      "title": "Reconcile before release",
+      "takeaway": "Counts and totals must agree.",
+      "detail": "A changed source becomes a new public snapshot only after checks pass. The last verified release stays available otherwise.",
+      "href": "finance-dashboard.html",
+      "label": "Published figures",
+      "tone": "cream",
+      "priority": "GATE"
+    },
+    {
+      "id": "rate-families",
+      "category": "Rates",
+      "title": "Four rate families",
+      "takeaway": "Personal · Government · Vendor · Analysis",
+      "detail": "Each rate collection retains its own provenance, date, scope and source documents.",
+      "href": "rate-sources.html",
+      "label": "Rate collections",
+      "tone": "sky",
+      "priority": "SOURCE"
+    },
+    {
+      "id": "compare-like-for-like",
+      "category": "Rates",
+      "title": "Units before comparison",
+      "takeaway": "Same unit. Same scope. Same basis.",
+      "detail": "A rate without a matching unit, location, time and inclusions is not automatically comparable.",
+      "href": "rate-comparison.html",
+      "label": "Rate comparison",
+      "tone": "peach",
+      "priority": "RULE"
+    },
+    {
+      "id": "field-capture",
+      "category": "Operations",
+      "title": "Capture is not payment",
+      "takeaway": "A field note needs review before finance use.",
+      "detail": "Unverified site submissions, attendance and material movements must not silently become expense records.",
+      "href": "field-expense-guide.html",
+      "label": "Field guide",
+      "tone": "mint",
+      "priority": "BOUNDARY"
+    },
+    {
+      "id": "attendance-distinction",
+      "category": "Operations",
+      "title": "Attendance is its own record",
+      "takeaway": "Presence does not equal an expense.",
+      "detail": "Attendance-only workbooks are separate from money and goods ledgers.",
+      "href": "field-expense-guide.html",
+      "label": "Field records",
+      "tone": "cream",
+      "priority": "RULE"
+    },
+    {
+      "id": "single-website",
+      "category": "System",
+      "title": "One site, distinct departments",
+      "takeaway": "One design system. Separate source domains.",
+      "detail": "Rates, payments and reference posters share navigation while keeping their own records and checks.",
+      "href": "system-map.html",
+      "label": "System map",
+      "tone": "sky",
+      "priority": "STRUCTURE"
+    },
+    {
+      "id": "manual-first",
+      "category": "System",
+      "title": "Improve the view first",
+      "takeaway": "Working Sheets now. Software later.",
+      "detail": "Readable public pages and repeatable release checks come before replacing the existing entry workflow.",
+      "href": "index.html",
+      "label": "Site overview",
+      "tone": "peach",
+      "priority": "DIRECTION"
+    }
+  ]
+}
