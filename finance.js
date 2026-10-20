@@ -40,14 +40,23 @@
     return data;
   }
   function loadSummary() {
-    if(!summaryPromise) summaryPromise = fetch('finance-summary.json',{cache:'no-cache'})
+    if(!summaryPromise) summaryPromise = fetch('finance-public-snapshot.json',{cache:'no-cache'})
       .then(r=>{if(!r.ok)throw new Error('Source snapshot unavailable');return r.json()})
+      .then(data=>({
+        snapshot_date:data.verified_on,
+        source:{source_sheet:data.source.register_tab,range:data.source.vendor_range},
+        rows:data.vendors.map(v=>({id:v.id,name:v.name,amount_npr:v.amount_npr,qr_npr:v.qr_npr,discount_npr:v.discount_npr})),
+        summary:{entry_count:data.totals.vendor_count,amount_npr:data.totals.amount_npr,
+          qr_npr:data.totals.qr_npr,discount_recorded_npr:data.totals.discount_npr}
+      }))
       .then(safeSummary);
     return summaryPromise;
   }
   function renderSummary(data) {
     const mount = document.getElementById('financeDashboard');
     if(!mount) return;
+    const stamp = document.getElementById('financeSnapshotDate');
+    if(stamp) stamp.textContent = 'Verified snapshot: ' + data.snapshot_date;
     mount.textContent = '';
     const head = el('div','finance-summary-header');
     const caption = el('div');
