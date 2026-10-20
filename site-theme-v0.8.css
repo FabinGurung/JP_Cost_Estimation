@@ -57,3 +57,58 @@ body .metric,body .panel,body .source-card,body .known-rate-card{border-color:va
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 html[data-theme="dark"] #jp-site-footer{background:#0d261f}
+
+/* Three equal-size department controls with an accessible More menu.
+   Colors, backgrounds, page-specific styles and typography family remain unchanged. */
+#jp-site-masthead .jp-global-nav{overflow:visible;flex-wrap:wrap;gap:7px}
+#jp-site-masthead .jp-global-nav > a,
+#jp-site-masthead .jp-global-nav .jp-more-toggle{
+  display:inline-flex;align-items:center;justify-content:center;
+  box-sizing:border-box;min-width:118px;min-height:42px;padding:9px 13px;
+  border:1px solid transparent;border-radius:10px;
+  color:#e3eee6;background:transparent;text-decoration:none;
+  font:700 13px/1.3 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  white-space:nowrap;cursor:pointer
+}
+#jp-site-masthead .jp-more{position:relative;flex:0 0 auto}
+#jp-site-masthead .jp-more-toggle{list-style:none;gap:7px}
+#jp-site-masthead .jp-more-toggle::-webkit-details-marker{display:none}
+#jp-site-masthead .jp-more-toggle::after{content:"▾";font-size:12px;opacity:.9}
+#jp-site-masthead .jp-more[open] .jp-more-toggle::after{transform:rotate(180deg)}
+#jp-site-masthead .jp-global-nav .jp-more-toggle:hover,
+#jp-site-masthead .jp-global-nav .jp-more-toggle:focus-visible{
+  background:#ffffff22;color:#fff;border-color:#ffffff55
+}
+#jp-site-masthead .jp-global-nav .jp-more-toggle[aria-current],
+#jp-site-masthead .jp-more[open] .jp-more-toggle{
+  background:#f3e5cc;color:#183c30;border-color:#e1c38b
+}
+#jp-site-masthead .jp-more-panel{
+  position:absolute;right:0;top:calc(100% + 8px);z-index:300;
+  display:grid;gap:3px;width:max-content;min-width:235px;max-width:calc(100vw - 28px);
+  padding:7px;border:1px solid #cbd8cb;border-radius:13px;
+  background:#fffdf9;box-shadow:0 16px 34px #102d283d
+}
+#jp-site-masthead .jp-more-panel a{
+  display:flex;justify-content:flex-start;min-height:42px;padding:11px 13px;
+  border:1px solid transparent;border-radius:8px;color:#173f35;
+  font-size:13px;line-height:1.4;text-align:left
+}
+#jp-site-masthead .jp-more-panel a:hover,
+#jp-site-masthead .jp-more-panel a:focus-visible{
+  background:#edf3e9;color:#173f35;border-color:#cbd8cb
+}
+#jp-site-masthead .jp-more-panel a[aria-current="page"]{
+  background:#f3e5cc;color:#183c30;border-color:#e1c38b
+}
+@media(max-width:960px){
+ #jp-site-masthead .jp-global-nav{overflow:visible;justify-content:flex-start}
+ #jp-site-masthead .jp-global-nav > a,
+ #jp-site-masthead .jp-global-nav .jp-more-toggle{min-height:42px;font-size:13px;padding:9px 13px}
+}
+@media(max-width:620px){
+ #jp-site-masthead .jp-global-nav > a,
+ #jp-site-masthead .jp-global-nav .jp-more{flex:1 1 calc(50% - 7px);min-width:0}
+ #jp-site-masthead .jp-global-nav .jp-more-toggle{width:100%;min-width:0}
+ #jp-site-masthead .jp-more-panel{right:0}
+}

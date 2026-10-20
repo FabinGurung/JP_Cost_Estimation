@@ -1,0 +1,56 @@
+name: Deploy research website to GitHub Pages
+
+on:
+  push:
+    branches:
+      - research/open-estimation-engine-v0.1
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout publishing branch
+        uses: actions/checkout@v4
+      - name: Check JavaScript and site integrity
+        shell: bash
+        run: |
+          set -euo pipefail
+          for file in app.js data.js site-navigation-v0.8.js finance.js finance-dashboard.js memory-posters.js; do
+            node --check "$file"
+          done
+          node scripts/qa_mep_site_v0.5.10.mjs
+          node scripts/qa_rate_source_skeleton_v0.5.14.mjs
+          node scripts/qa_source_derivations_v0.5.15.mjs
+          node scripts/qa_kkg_finance_snapshot_v1.2.mjs
+          node scripts/validate-finance-public.mjs
+          node scripts/validate-site-theme-v0.8.mjs
+          node scripts/validate-site-page-registry.mjs
+
+  deploy:
+    needs: verify
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout verified publishing branch
+        uses: actions/checkout@v4
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+      - name: Upload static website
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+      - name: Deploy static website
+        id: deployment
+        uses: actions/deploy-pages@v4

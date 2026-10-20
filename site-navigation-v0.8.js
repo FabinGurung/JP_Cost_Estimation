@@ -1,26 +1,35 @@
-/* Shared navigation; page-specific controls and data stay untouched. */
+/* Shared navigation. Three L1 departments; supporting pages stay available in More. */
 (() => {
   'use strict';
-  const sections = [
-    ['overview','Overview','index.html'],
+  const primarySections = [
     ['rates','Rates','rate-sources.html'],
     ['finance','Finance','finance.html'],
+    ['posters','Memory Posters','memory-posters.html']
+  ];
+  const moreSections = [
+    ['home','Home','index.html'],
     ['payments','Payment Dashboard','finance-dashboard.html'],
-    ['posters','Memory Posters','memory-posters.html'],
+    ['field','Field Expense Guide','field-expense-guide.html'],
     ['system','System Map','system-map.html']
   ];
-  function currentSection(file) {
+  function currentDepartment(file) {
     if (file === 'memory-posters.html') return 'posters';
-    if (file === 'finance-dashboard.html') return 'payments';
-    if (file === 'finance.html' || file === 'field-expense-guide.html') return 'finance';
-    if (file === 'system-map.html') return 'system';
-    if (!file || file === 'index.html') return 'overview';
+    if (file === 'finance.html' || file === 'finance-dashboard.html' || file === 'field-expense-guide.html') return 'finance';
+    if (!file || file === 'index.html' || file === 'system-map.html') return null;
     return 'rates';
+  }
+  function makeLink(id,label,href,file,department) {
+    const link = document.createElement('a');
+    link.href = href;
+    link.textContent = label;
+    if (file === href) link.setAttribute('aria-current','page');
+    else if (id === department) link.setAttribute('aria-current','location');
+    return link;
   }
   function install() {
     if (!document.body || document.getElementById('jp-site-masthead')) return;
     const file = location.pathname.split('/').pop() || 'index.html';
-    const current = currentSection(file);
+    const department = currentDepartment(file);
     const main = document.querySelector('main');
     if (main && !main.id) main.id = 'jp-main-content';
     const header = document.createElement('header');
@@ -41,14 +50,35 @@
     identity.append(seal,words);
     const links = document.createElement('nav');
     links.className = 'jp-global-nav';
-    links.setAttribute('aria-label','JP site sections');
-    for (const [id,label,href] of sections) {
-      const a = document.createElement('a');
-      a.href = href;
-      a.textContent = label;
-      if (id === current) a.setAttribute('aria-current',file === href ? 'page' : 'location');
-      links.appendChild(a);
+    links.setAttribute('aria-label','JP site departments and more');
+    for (const [id,label,href] of primarySections) {
+      links.appendChild(makeLink(id,label,href,file,department));
     }
+    const more = document.createElement('details');
+    more.className = 'jp-more';
+    const toggle = document.createElement('summary');
+    toggle.className = 'jp-more-toggle';
+    toggle.textContent = 'More';
+    toggle.setAttribute('aria-label','More site pages');
+    if (file === 'index.html' || file === 'system-map.html') toggle.setAttribute('aria-current','location');
+    const panel = document.createElement('div');
+    panel.className = 'jp-more-panel';
+    panel.setAttribute('role','group');
+    panel.setAttribute('aria-label','Additional site pages');
+    for (const [id,label,href] of moreSections) {
+      panel.appendChild(makeLink(id,label,href,file,null));
+    }
+    more.append(toggle,panel);
+    links.appendChild(more);
+    document.addEventListener('click',event => {
+      if (more.open && !more.contains(event.target)) more.open = false;
+    });
+    document.addEventListener('keydown',event => {
+      if (event.key === 'Escape' && more.open) {
+        more.open = false;
+        toggle.focus();
+      }
+    });
     header.append(identity,links);
     const skip = document.createElement('a');
     skip.className = 'jp-skip';
