@@ -45,6 +45,13 @@ jobs:
           node --check finance.js
           node scripts/qa_kkg_finance_snapshot_v1.2.mjs
 
+      - name: Validate shared presentation and reference wall
+        run: |
+          node --check site-navigation-v0.8.js
+          node --check memory-posters.js
+          node scripts/validate-site-theme-v0.8.mjs
+          node scripts/validate-finance-public.mjs
+
       - name: Confirm non-production boundary
         run: |
           echo "VALIDATION_ONLY=PASS"
