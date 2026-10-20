@@ -1,9 +1,7 @@
 name: Deploy Estimation Research Product
 
+# Manual recovery path only. Routine Pages deployment runs from the research branch.
 on:
-  push:
-    branches:
-      - main
   workflow_dispatch:
 
 permissions:
