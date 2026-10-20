@@ -8,28 +8,28 @@
     "repository": "FabinGurung/JP_Cost_Estimation",
     "publicBase": "https://fabingurung.github.io/JP_Cost_Estimation/",
     "contentBranch": "research/open-estimation-engine-v0.1",
-    "deploymentOwnerBranch": "main",
+    "deploymentOwnerBranch": "research/open-estimation-engine-v0.1",
     "contentCommit": "4c9928ed02d0c8a193df4e0e4f0d273994b192d3",
     "latestDeploymentOwnerCommit": "33939fec0fa5e51d1185e24325b295109fcf8080",
     "publishedMilestone": "v0.8.0",
-    "formalTagAtInventory": null,
-    "latestFormalRelease": "v0.5.16",
+    "formalTagAtInventory": "v0.8.0",
+    "latestFormalRelease": "v0.8.0",
     "sourceAuthority": "Google Sheets for finance, distinct source families for rates"
   },
   "levels": [
     {
       "id": "L0",
-      "type": "site",
+      "type": "whole website",
       "example": "JP"
     },
     {
       "id": "L1",
-      "type": "department",
-      "example": "FN"
+      "type": "one of three departments",
+      "example": "FN / RT / MP"
     },
     {
       "id": "L2",
-      "type": "page",
+      "type": "HTML page, including utility pages",
       "example": "FN-02"
     },
     {
@@ -39,12 +39,12 @@
     },
     {
       "id": "L4",
-      "type": "widget",
+      "type": "widget or control",
       "example": "FN-02.S07.W01"
     },
     {
       "id": "L5",
-      "type": "data or source",
+      "type": "data source or snapshot",
       "example": "DATA-FN-PAYMENTS"
     },
     {
@@ -55,29 +55,22 @@
   ],
   "departments": [
     {
-      "id": "OV",
-      "name": "Overview",
-      "parent": "JP"
-    },
-    {
       "id": "RT",
-      "name": "Rate Department",
-      "parent": "JP"
+      "name": "Rates",
+      "parent": "JP",
+      "primaryPage": "RT-01"
     },
     {
       "id": "FN",
-      "name": "Finance and Payments",
-      "parent": "JP"
+      "name": "Finance",
+      "parent": "JP",
+      "primaryPage": "FN-01"
     },
     {
       "id": "MP",
       "name": "Memory Posters",
-      "parent": "JP"
-    },
-    {
-      "id": "SY",
-      "name": "System and Branches",
-      "parent": "JP"
+      "parent": "JP",
+      "primaryPage": "MP-01"
     }
   ],
   "sharedAssets": [
@@ -91,13 +84,13 @@
   "pages": [
     {
       "id": "OV-01",
-      "department": "OV",
+      "department": null,
       "parent": null,
       "path": "index.html",
       "title": "Overview / rate workbench",
       "kind": "hub",
       "status": "published",
-      "navigation": "global",
+      "navigation": "more",
       "sections": [
         {
           "id": "OV-01.S01",
@@ -122,17 +115,18 @@
         "app.js",
         "data.js",
         "boq-template.json"
-      ]
+      ],
+      "utility": true
     },
     {
       "id": "RT-01",
       "department": "RT",
-      "parent": "OV-01",
+      "parent": null,
       "path": "rate-sources.html",
       "title": "Rate source collections",
       "kind": "hub",
       "status": "published",
-      "navigation": "global",
+      "navigation": "primary",
       "sections": [
         {
           "id": "RT-01.S01",
@@ -487,12 +481,12 @@
     {
       "id": "FN-01",
       "department": "FN",
-      "parent": "OV-01",
+      "parent": null,
       "path": "finance.html",
       "title": "Company finance",
       "kind": "hub",
       "status": "published",
-      "navigation": "global",
+      "navigation": "primary",
       "sections": [
         {
           "id": "FN-01.S01",
@@ -514,7 +508,7 @@
       "title": "Public payment dashboard",
       "kind": "application",
       "status": "published",
-      "navigation": "global",
+      "navigation": "more",
       "sections": [
         {
           "id": "FN-02.S01",
@@ -571,7 +565,7 @@
       "title": "Site expense guide",
       "kind": "guide",
       "status": "published",
-      "navigation": "secondary",
+      "navigation": "more",
       "sections": [
         {
           "id": "FN-03.S01",
@@ -607,12 +601,12 @@
     {
       "id": "MP-01",
       "department": "MP",
-      "parent": "OV-01",
+      "parent": null,
       "path": "memory-posters.html",
       "title": "Memory Posters",
       "kind": "application",
       "status": "published",
-      "navigation": "global",
+      "navigation": "primary",
       "sections": [
         {
           "id": "MP-01.S01",
@@ -638,13 +632,13 @@
     },
     {
       "id": "SY-01",
-      "department": "SY",
-      "parent": "OV-01",
+      "department": null,
+      "parent": null,
       "path": "system-map.html",
       "title": "System map",
       "kind": "application",
       "status": "published",
-      "navigation": "global",
+      "navigation": "more",
       "sections": [
         {
           "id": "SY-01.S01",
@@ -654,7 +648,8 @@
       ],
       "keyDependencies": [
         "branch-map.js"
-      ]
+      ],
+      "utility": true
     }
   ],
   "dataAssets": [
@@ -709,11 +704,45 @@
     "editContentBranch": "research/open-estimation-engine-v0.1",
     "validateWorkflow": ".github/workflows/estimation-ci.yml",
     "previewWorkflow": ".github/workflows/research-preview-pages.yml",
-    "deployWorkflowOnMain": ".github/workflows/deploy-estimation-product.yml",
     "sharedNav": "site-navigation-v0.8.js",
     "sharedTheme": "site-theme-v0.8.css",
     "siteValidation": "scripts/validate-site-theme-v0.8.mjs",
     "pageRegistryValidation": "scripts/validate-site-page-registry.mjs",
-    "publicDeploymentRequiresMainCommit": true
+    "publicDeploymentRequiresMainCommit": false,
+    "deployWorkflowOnResearch": ".github/workflows/deploy-research-pages.yml",
+    "legacyDeployWorkflowOnMain": ".github/workflows/deploy-estimation-product.yml",
+    "normalDeployTrigger": "push to research/open-estimation-engine-v0.1 after checks and merge",
+    "mainWorkflowState": "manual fallback after transition"
+  },
+  "utilities": [
+    {
+      "id": "OV",
+      "name": "Home",
+      "page": "OV-01",
+      "navigation": "more",
+      "level": "L2"
+    },
+    {
+      "id": "SY",
+      "name": "System Map",
+      "page": "SY-01",
+      "navigation": "more",
+      "level": "L2"
+    }
+  ],
+  "navigation": {
+    "primary": [
+      "RT-01",
+      "FN-01",
+      "MP-01"
+    ],
+    "more": [
+      "OV-01",
+      "FN-02",
+      "FN-03",
+      "SY-01"
+    ],
+    "moreIsDepartment": false,
+    "homeViaLogo": true
   }
 }
