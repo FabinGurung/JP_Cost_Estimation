@@ -4,9 +4,11 @@ on:
   push:
     branches:
       - "research/**"
+      - "feature/site-theme-*"
   pull_request:
     branches:
       - main
+      - "research/**"
   workflow_dispatch:
 
 permissions:
@@ -61,6 +63,13 @@ jobs:
           node --check finance.js
           node --check scripts/validate-finance-public.mjs
           node scripts/validate-finance-public.mjs
+
+      - name: Shared theme, reference wall and route integrity
+        run: |
+          node --check site-navigation-v0.8.js
+          node --check memory-posters.js
+          node --check scripts/validate-site-theme-v0.8.mjs
+          node scripts/validate-site-theme-v0.8.mjs
 
       - name: Public-site secret pattern check
         shell: bash
