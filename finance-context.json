@@ -1,0 +1,106 @@
+{
+  "schema": "jp.finance.context.v1",
+  "version": "0.7.0",
+  "scope": "REB / 14_bishal_paija / Krishna Kumar Gupta payments",
+  "read_first": "Google Sheet tab 00_SITE_CONTEXT",
+  "refresh_prompt": "Refresh the JP finance website from the current Google Sheet.",
+  "source": {
+    "workbook_url": "https://docs.google.com/spreadsheets/d/1S1fkWzo6XGzyD3p92_pTG32zZ9fF3YICAv3HPTomZsE/edit",
+    "register_tab": "14_bishal_paija",
+    "vendor_summary_tab": "KKG_VENDOR_SUMMARY_AUTO",
+    "site_context_tab": "00_SITE_CONTEXT",
+    "payment_section_pattern": [
+      "vendor name",
+      "Date | Amount | Paid Time | QR | Discount",
+      "payment entries",
+      "Total"
+    ],
+    "read_scope": "All active vendor sections; expand beyond historical A35:H190 when new entries appear"
+  },
+  "publication": {
+    "mode": "manual_on_request",
+    "repo": "FabinGurung/JP_Cost_Estimation",
+    "site": "https://fabingurung.github.io/JP_Cost_Estimation/finance.html",
+    "publication_branch": "research/open-estimation-engine-v0.1",
+    "workflow_owner_branch": "main",
+    "workflow_path": ".github/workflows/deploy-estimation-product.yml",
+    "public_snapshot": "finance-public-snapshot.json",
+    "website_page": "finance-dashboard.html",
+    "review_before_publication": true
+  },
+  "rules": {
+    "company_scope": "REB only; never merge another company's payments",
+    "preserve_original": true,
+    "no_trigger_install": true,
+    "no_live_sync_claim": true,
+    "do_not_modify_other_rate_or_pdf_workflows": true,
+    "unique_internal_payment_ids_required": true,
+    "do_not_publish_internal_payment_ids": true,
+    "do_not_publish_hidden_tabs": true,
+    "do_not_publish_contact_or_account_details": true,
+    "keep_blank_as_null": true,
+    "amount_qr_discount_separate": true,
+    "no_double_counting": true,
+    "keep_AD_and_BS_dates_distinct": true
+  },
+  "display_fields": [
+    "vendor",
+    "source_date",
+    "date_system",
+    "paid_time",
+    "amount_npr",
+    "qr_npr",
+    "discount_npr"
+  ],
+  "required_checks": [
+    "vendor names and sequential IDs",
+    "all active vendor sections found",
+    "all payment IDs unique internally",
+    "each vendor amount and QR equals section Total",
+    "each vendor amount, QR and discount equals summary row",
+    "grand amount and QR equal source Total",
+    "no test or archived records",
+    "public file contains no internal IDs"
+  ],
+  "fixed_views": [
+    {
+      "id": "vendor_ranking",
+      "type": "horizontal_bar",
+      "metric": "amount_npr"
+    },
+    {
+      "id": "vendor_share",
+      "type": "donut",
+      "metric": "amount_npr"
+    },
+    {
+      "id": "payment_activity",
+      "type": "date_bars",
+      "metric": "amount_npr",
+      "split_by": "date_system"
+    },
+    {
+      "id": "qr_by_vendor",
+      "type": "horizontal_bar",
+      "metric": "qr_npr"
+    },
+    {
+      "id": "discount_by_vendor",
+      "type": "horizontal_bar",
+      "metric": "discount_npr"
+    },
+    {
+      "id": "vendors",
+      "type": "searchable_table"
+    },
+    {
+      "id": "payments",
+      "type": "searchable_table"
+    },
+    {
+      "id": "source_status",
+      "type": "provenance"
+    }
+  ],
+  "next_refresh_output": "New validated static snapshot plus matching website code changes on a review branch; deploy only after validation and owner review."
+}
