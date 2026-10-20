@@ -1,0 +1,19 @@
+{
+  "release": "site-v0.8.0",
+  "approved_by": "project owner in conversation on 2026-10-20",
+  "source_branch": "research/open-estimation-engine-v0.1",
+  "source_commit": "4c9928ed02d0c8a193df4e0e4f0d273994b192d3",
+  "merged_pr": "https://github.com/FabinGurung/JP_Cost_Estimation/pull/7",
+  "checks": {
+    "feature_ci": "https://github.com/FabinGurung/JP_Cost_Estimation/actions/runs/39368352563",
+    "pr_ci": "https://github.com/FabinGurung/JP_Cost_Estimation/actions/runs/39368372865",
+    "research_ci": "https://github.com/FabinGurung/JP_Cost_Estimation/actions/runs/39368416437",
+    "research_preview": "https://github.com/FabinGurung/JP_Cost_Estimation/actions/runs/39368416492"
+  },
+  "site": {
+    "home": "https://fabingurung.github.io/JP_Cost_Estimation/",
+    "memory_posters": "https://fabingurung.github.io/JP_Cost_Estimation/memory-posters.html",
+    "finance": "https://fabingurung.github.io/JP_Cost_Estimation/finance-dashboard.html"
+  },
+  "scope": "Presentation assets and navigation across existing pages, 12 public memory posters; no source workbook or financial values changed."
+}
