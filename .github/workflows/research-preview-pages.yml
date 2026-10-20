@@ -52,6 +52,10 @@ jobs:
           node scripts/validate-site-theme-v0.8.mjs
           node scripts/validate-finance-public.mjs
 
+      - name: Site page registry integrity
+        run: |
+          node scripts/validate-site-page-registry.mjs
+
       - name: Confirm non-production boundary
         run: |
           echo "VALIDATION_ONLY=PASS"

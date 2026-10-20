@@ -1,0 +1,719 @@
+{
+  "schema": "jp.site.page-registry.v1",
+  "version": "0.8.0",
+  "recorded": "2026-10-20",
+  "site": {
+    "id": "JP",
+    "name": "JP Cost Estimation",
+    "repository": "FabinGurung/JP_Cost_Estimation",
+    "publicBase": "https://fabingurung.github.io/JP_Cost_Estimation/",
+    "contentBranch": "research/open-estimation-engine-v0.1",
+    "deploymentOwnerBranch": "main",
+    "contentCommit": "4c9928ed02d0c8a193df4e0e4f0d273994b192d3",
+    "latestDeploymentOwnerCommit": "33939fec0fa5e51d1185e24325b295109fcf8080",
+    "publishedMilestone": "v0.8.0",
+    "formalTagAtInventory": null,
+    "latestFormalRelease": "v0.5.16",
+    "sourceAuthority": "Google Sheets for finance, distinct source families for rates"
+  },
+  "levels": [
+    {
+      "id": "L0",
+      "type": "site",
+      "example": "JP"
+    },
+    {
+      "id": "L1",
+      "type": "department",
+      "example": "FN"
+    },
+    {
+      "id": "L2",
+      "type": "page",
+      "example": "FN-02"
+    },
+    {
+      "id": "L3",
+      "type": "section",
+      "example": "FN-02.S07"
+    },
+    {
+      "id": "L4",
+      "type": "widget",
+      "example": "FN-02.S07.W01"
+    },
+    {
+      "id": "L5",
+      "type": "data or source",
+      "example": "DATA-FN-PAYMENTS"
+    },
+    {
+      "id": "OPS",
+      "type": "build and deployment",
+      "example": "OPS-DEPLOY"
+    }
+  ],
+  "departments": [
+    {
+      "id": "OV",
+      "name": "Overview",
+      "parent": "JP"
+    },
+    {
+      "id": "RT",
+      "name": "Rate Department",
+      "parent": "JP"
+    },
+    {
+      "id": "FN",
+      "name": "Finance and Payments",
+      "parent": "JP"
+    },
+    {
+      "id": "MP",
+      "name": "Memory Posters",
+      "parent": "JP"
+    },
+    {
+      "id": "SY",
+      "name": "System and Branches",
+      "parent": "JP"
+    }
+  ],
+  "sharedAssets": [
+    "styles.css",
+    "site-shell.css",
+    "site-theme-v0.8.css",
+    "site-navigation-v0.8.js",
+    "theme.js",
+    "assets/green-landscape.svg"
+  ],
+  "pages": [
+    {
+      "id": "OV-01",
+      "department": "OV",
+      "parent": null,
+      "path": "index.html",
+      "title": "Overview / rate workbench",
+      "kind": "hub",
+      "status": "published",
+      "navigation": "global",
+      "sections": [
+        {
+          "id": "OV-01.S01",
+          "domId": "rateLibraryPanel",
+          "title": "Rate Library"
+        },
+        {
+          "id": "OV-01.S02",
+          "domId": "rateAnalysisPanel",
+          "title": "Rate Analysis"
+        },
+        {
+          "id": "OV-01.S03",
+          "domId": "rateSourcesPanel",
+          "title": "Source and provenance"
+        }
+      ],
+      "keyDependencies": [
+        "styles.css",
+        "site-shell.css",
+        "rate-intelligence.css",
+        "app.js",
+        "data.js",
+        "boq-template.json"
+      ]
+    },
+    {
+      "id": "RT-01",
+      "department": "RT",
+      "parent": "OV-01",
+      "path": "rate-sources.html",
+      "title": "Rate source collections",
+      "kind": "hub",
+      "status": "published",
+      "navigation": "global",
+      "sections": [
+        {
+          "id": "RT-01.S01",
+          "domId": "sourceLibraryCards",
+          "title": "Four rate collections"
+        }
+      ],
+      "keyDependencies": [
+        "rate-source-skeleton.css",
+        "rate-source-skeleton.js",
+        "data/source_registry.json"
+      ]
+    },
+    {
+      "id": "RT-02",
+      "department": "RT",
+      "parent": "RT-01",
+      "path": "rate-library.html",
+      "title": "Personal working rate library",
+      "kind": "application",
+      "status": "published",
+      "navigation": "secondary",
+      "sections": [
+        {
+          "id": "RT-02.S01",
+          "domId": "stageRibbon",
+          "title": "Construction stages"
+        },
+        {
+          "id": "RT-02.S02",
+          "domId": "mepStageDetails",
+          "title": "MEP stage"
+        },
+        {
+          "id": "RT-02.S03",
+          "domId": "rateTable",
+          "title": "Rate table"
+        }
+      ],
+      "keyDependencies": [
+        "work-rate-library.css",
+        "work-rate-library.js",
+        "work-construction-guide.js",
+        "mep-catalog.js",
+        "data/historical-work-rates-v0.5.3.json"
+      ]
+    },
+    {
+      "id": "RT-03",
+      "department": "RT",
+      "parent": "RT-02",
+      "path": "rate-comparison.html",
+      "title": "Rate comparison",
+      "kind": "application",
+      "status": "published",
+      "navigation": "secondary",
+      "sections": [
+        {
+          "id": "RT-03.S01",
+          "domId": "comparisonTable",
+          "title": "Rate comparison table"
+        }
+      ],
+      "keyDependencies": [
+        "work-rate-library.css",
+        "work-rate-comparison.js",
+        "work-rate-units.js"
+      ]
+    },
+    {
+      "id": "RT-04",
+      "department": "RT",
+      "parent": "RT-01",
+      "path": "known-rates.html",
+      "title": "Known rates",
+      "kind": "application",
+      "status": "published",
+      "navigation": "secondary",
+      "sections": [
+        {
+          "id": "RT-04.S01",
+          "domId": "knownRatesView",
+          "title": "Known rate lookup"
+        }
+      ],
+      "keyDependencies": [
+        "known-rates-data.js",
+        "known-rates.js"
+      ]
+    },
+    {
+      "id": "RT-05",
+      "department": "RT",
+      "parent": "RT-02",
+      "path": "rate-specifications.html",
+      "title": "Work specifications",
+      "kind": "detail",
+      "status": "published",
+      "navigation": "secondary",
+      "sections": [
+        {
+          "id": "RT-05.S01",
+          "domId": "specContent",
+          "title": "Work specifications"
+        }
+      ],
+      "keyDependencies": [
+        "work-specifications.js",
+        "work-construction-guide.js"
+      ]
+    },
+    {
+      "id": "RT-06",
+      "department": "RT",
+      "parent": "RT-01",
+      "path": "government-rates.html",
+      "title": "Government rate sources",
+      "kind": "hub",
+      "status": "published",
+      "navigation": "secondary",
+      "sections": [],
+      "keyDependencies": [
+        "rate-source-skeleton.js",
+        "data/source_registry.json"
+      ]
+    },
+    {
+      "id": "RT-07",
+      "department": "RT",
+      "parent": "RT-06",
+      "path": "kaski-district-rates.html",
+      "title": "Kaski district rates",
+      "kind": "source",
+      "status": "published",
+      "navigation": "secondary",
+      "sections": [],
+      "keyDependencies": [
+        "rate-source-skeleton.js",
+        "data/source_registry.json"
+      ]
+    },
+    {
+      "id": "RT-08",
+      "department": "RT",
+      "parent": "RT-01",
+      "path": "vendor-price-lists.html",
+      "title": "Vendor price collections",
+      "kind": "hub",
+      "status": "published",
+      "navigation": "secondary",
+      "sections": [],
+      "keyDependencies": [
+        "rate-source-skeleton.js",
+        "data/source_registry.json"
+      ]
+    },
+    {
+      "id": "RT-09",
+      "department": "RT",
+      "parent": "RT-08",
+      "path": "electrical-wire-quotation.html",
+      "title": "Electrical wire quotation",
+      "kind": "source",
+      "status": "published",
+      "navigation": "secondary",
+      "sections": [],
+      "keyDependencies": [
+        "rate-source-skeleton.js",
+        "data/source_registry.json"
+      ]
+    },
+    {
+      "id": "RT-10",
+      "department": "RT",
+      "parent": "RT-08",
+      "path": "pipes-price-list.html",
+      "title": "Pipes and fittings prices",
+      "kind": "source",
+      "status": "published",
+      "navigation": "secondary",
+      "sections": [],
+      "keyDependencies": [
+        "rate-source-skeleton.js",
+        "data/source_registry.json"
+      ]
+    },
+    {
+      "id": "RT-11",
+      "department": "RT",
+      "parent": "RT-01",
+      "path": "rate-analysis-references.html",
+      "title": "Rate analysis references",
+      "kind": "hub",
+      "status": "published",
+      "navigation": "secondary",
+      "sections": [],
+      "keyDependencies": [
+        "rate-source-skeleton.js",
+        "data/source_registry.json"
+      ]
+    },
+    {
+      "id": "RT-12",
+      "department": "RT",
+      "parent": "RT-11",
+      "path": "users-rate-analysis.html",
+      "title": "User rate analysis",
+      "kind": "source",
+      "status": "published",
+      "navigation": "secondary",
+      "sections": [],
+      "keyDependencies": [
+        "rate-source-skeleton.js",
+        "data/source_registry.json"
+      ]
+    },
+    {
+      "id": "RT-13",
+      "department": "RT",
+      "parent": "RT-11",
+      "path": "dudbc-rate-analysis.html",
+      "title": "DUDBC rate analysis",
+      "kind": "source",
+      "status": "published",
+      "navigation": "secondary",
+      "sections": [],
+      "keyDependencies": [
+        "rate-source-skeleton.js",
+        "data/source_registry.json"
+      ]
+    },
+    {
+      "id": "RT-14",
+      "department": "RT",
+      "parent": "RT-11",
+      "path": "contractor-rate-analysis.html",
+      "title": "Contractor rate analysis",
+      "kind": "hub",
+      "status": "published",
+      "navigation": "secondary",
+      "sections": [],
+      "keyDependencies": [
+        "contractor-document-hub.js",
+        "data/contractor-work-items.v0.1.json"
+      ]
+    },
+    {
+      "id": "RT-15",
+      "department": "RT",
+      "parent": "RT-14",
+      "path": "contractor-road-work-summary.html",
+      "title": "Contractor road work summary",
+      "kind": "detail",
+      "status": "published",
+      "navigation": "secondary",
+      "sections": [],
+      "keyDependencies": [
+        "contractor-rate-analysis.js",
+        "data/contractor-work-items.v0.1.json"
+      ]
+    },
+    {
+      "id": "RT-16",
+      "department": "RT",
+      "parent": "RT-14",
+      "path": "contractor-road-work-analysis.html",
+      "title": "Contractor road work detail",
+      "kind": "detail",
+      "status": "published",
+      "navigation": "secondary",
+      "sections": [],
+      "keyDependencies": [
+        "contractor-road-work-analysis.js",
+        "data/contractor-road-analysis.v0.1.json"
+      ]
+    },
+    {
+      "id": "RT-17",
+      "department": "RT",
+      "parent": "RT-14",
+      "path": "contractor-extracted-evidence.html",
+      "title": "Contractor extracted evidence",
+      "kind": "source",
+      "status": "published",
+      "navigation": "secondary",
+      "sections": [],
+      "keyDependencies": [
+        "rate-source-skeleton.js",
+        "data/source_registry.json"
+      ]
+    },
+    {
+      "id": "RT-18",
+      "department": "RT",
+      "parent": "RT-02",
+      "path": "mep.html",
+      "title": "MEP old address",
+      "kind": "redirect",
+      "status": "redirect",
+      "navigation": "legacy",
+      "sections": [],
+      "keyDependencies": [
+        "mep-legacy-redirect.js",
+        "rate-library.html"
+      ]
+    },
+    {
+      "id": "RT-19",
+      "department": "RT",
+      "parent": "RT-02",
+      "path": "mep-electrical.html",
+      "title": "Electrical MEP old address",
+      "kind": "redirect",
+      "status": "redirect",
+      "navigation": "legacy",
+      "sections": [],
+      "keyDependencies": [
+        "mep-legacy-redirect.js",
+        "rate-library.html"
+      ]
+    },
+    {
+      "id": "RT-20",
+      "department": "RT",
+      "parent": "RT-02",
+      "path": "mep-mechanical.html",
+      "title": "Mechanical MEP old address",
+      "kind": "redirect",
+      "status": "redirect",
+      "navigation": "legacy",
+      "sections": [],
+      "keyDependencies": [
+        "mep-legacy-redirect.js",
+        "rate-library.html"
+      ]
+    },
+    {
+      "id": "RT-21",
+      "department": "RT",
+      "parent": "RT-02",
+      "path": "mep-plumbing.html",
+      "title": "Plumbing MEP old address",
+      "kind": "redirect",
+      "status": "redirect",
+      "navigation": "legacy",
+      "sections": [],
+      "keyDependencies": [
+        "mep-legacy-redirect.js",
+        "rate-library.html"
+      ]
+    },
+    {
+      "id": "FN-01",
+      "department": "FN",
+      "parent": "OV-01",
+      "path": "finance.html",
+      "title": "Company finance",
+      "kind": "hub",
+      "status": "published",
+      "navigation": "global",
+      "sections": [
+        {
+          "id": "FN-01.S01",
+          "domId": "financeContent",
+          "title": "Company finance records"
+        }
+      ],
+      "keyDependencies": [
+        "finance.js",
+        "finance-public-snapshot.json",
+        "finance-context.json"
+      ]
+    },
+    {
+      "id": "FN-02",
+      "department": "FN",
+      "parent": "FN-01",
+      "path": "finance-dashboard.html",
+      "title": "Public payment dashboard",
+      "kind": "application",
+      "status": "published",
+      "navigation": "global",
+      "sections": [
+        {
+          "id": "FN-02.S01",
+          "domId": "vendor-ranking",
+          "title": "Vendor ranking"
+        },
+        {
+          "id": "FN-02.S02",
+          "domId": "vendor-share",
+          "title": "Vendor share"
+        },
+        {
+          "id": "FN-02.S03",
+          "domId": "date-activity",
+          "title": "Payment dates"
+        },
+        {
+          "id": "FN-02.S04",
+          "domId": "qr-chart",
+          "title": "QR by vendor"
+        },
+        {
+          "id": "FN-02.S05",
+          "domId": "discount-chart",
+          "title": "Discount by vendor"
+        },
+        {
+          "id": "FN-02.S06",
+          "domId": "vendor-table",
+          "title": "Vendor table"
+        },
+        {
+          "id": "FN-02.S07",
+          "domId": "payment-table",
+          "title": "Payment table"
+        },
+        {
+          "id": "FN-02.S08",
+          "domId": "source-status",
+          "title": "Source status"
+        }
+      ],
+      "keyDependencies": [
+        "finance-dashboard.css",
+        "finance-dashboard.js",
+        "finance-public-snapshot.json"
+      ]
+    },
+    {
+      "id": "FN-03",
+      "department": "FN",
+      "parent": "FN-01",
+      "path": "field-expense-guide.html",
+      "title": "Site expense guide",
+      "kind": "guide",
+      "status": "published",
+      "navigation": "secondary",
+      "sections": [
+        {
+          "id": "FN-03.S01",
+          "domId": "start",
+          "title": "Start"
+        },
+        {
+          "id": "FN-03.S02",
+          "domId": "fields",
+          "title": "Entry fields"
+        },
+        {
+          "id": "FN-03.S03",
+          "domId": "example",
+          "title": "Example"
+        },
+        {
+          "id": "FN-03.S04",
+          "domId": "receipt",
+          "title": "Receipt"
+        },
+        {
+          "id": "FN-03.S05",
+          "domId": "questions",
+          "title": "Questions"
+        }
+      ],
+      "keyDependencies": [
+        "styles.css",
+        "site-shell.css"
+      ]
+    },
+    {
+      "id": "MP-01",
+      "department": "MP",
+      "parent": "OV-01",
+      "path": "memory-posters.html",
+      "title": "Memory Posters",
+      "kind": "application",
+      "status": "published",
+      "navigation": "global",
+      "sections": [
+        {
+          "id": "MP-01.S01",
+          "domId": "poster-board",
+          "title": "Poster board"
+        },
+        {
+          "id": "MP-01.S02",
+          "domId": "poster-filters",
+          "title": "Category filters"
+        },
+        {
+          "id": "MP-01.S03",
+          "domId": "poster-search",
+          "title": "Poster search"
+        }
+      ],
+      "keyDependencies": [
+        "memory-posters.css",
+        "memory-posters.js",
+        "memory-posters.json"
+      ]
+    },
+    {
+      "id": "SY-01",
+      "department": "SY",
+      "parent": "OV-01",
+      "path": "system-map.html",
+      "title": "System map",
+      "kind": "application",
+      "status": "published",
+      "navigation": "global",
+      "sections": [
+        {
+          "id": "SY-01.S01",
+          "domId": "branch-table",
+          "title": "Branch table"
+        }
+      ],
+      "keyDependencies": [
+        "branch-map.js"
+      ]
+    }
+  ],
+  "dataAssets": [
+    {
+      "id": "DATA-FN-PAYMENTS",
+      "path": "finance-public-snapshot.json",
+      "usedBy": [
+        "FN-01",
+        "FN-02"
+      ],
+      "kind": "public verified snapshot",
+      "authority": "Krishna Kumar Gupta working payment register"
+    },
+    {
+      "id": "DATA-FN-CONTEXT",
+      "path": "finance-context.json",
+      "usedBy": [
+        "FN-01",
+        "FN-02"
+      ],
+      "kind": "publication rules"
+    },
+    {
+      "id": "DATA-MP-POSTERS",
+      "path": "memory-posters.json",
+      "usedBy": [
+        "MP-01"
+      ],
+      "kind": "public poster content"
+    },
+    {
+      "id": "DATA-RT-SOURCES",
+      "path": "data/source_registry.json",
+      "usedBy": [
+        "RT-01",
+        "RT-06",
+        "RT-08",
+        "RT-11"
+      ],
+      "kind": "rate source registry"
+    },
+    {
+      "id": "DATA-RT-WORK",
+      "path": "data/historical-work-rates-v0.5.3.json",
+      "usedBy": [
+        "RT-02"
+      ],
+      "kind": "rate observations"
+    }
+  ],
+  "operations": {
+    "editContentBranch": "research/open-estimation-engine-v0.1",
+    "validateWorkflow": ".github/workflows/estimation-ci.yml",
+    "previewWorkflow": ".github/workflows/research-preview-pages.yml",
+    "deployWorkflowOnMain": ".github/workflows/deploy-estimation-product.yml",
+    "sharedNav": "site-navigation-v0.8.js",
+    "sharedTheme": "site-theme-v0.8.css",
+    "siteValidation": "scripts/validate-site-theme-v0.8.mjs",
+    "pageRegistryValidation": "scripts/validate-site-page-registry.mjs",
+    "publicDeploymentRequiresMainCommit": true
+  }
+}
