@@ -1,0 +1,13 @@
+{
+  "deployment": "finance-public-dashboard-v0.7.0",
+  "approved_by": "project owner via chat 2026-10-20",
+  "source_branch": "research/open-estimation-engine-v0.1",
+  "source_commit": "abb1b40c656af71977996b787d2474e1a8fe7cf1",
+  "merged_pr": "https://github.com/FabinGurung/JP_Cost_Estimation/pull/6",
+  "ci": "https://github.com/FabinGurung/JP_Cost_Estimation/actions/runs/39354931777",
+  "ci_status": "success",
+  "preview": "https://github.com/FabinGurung/JP_Cost_Estimation/actions/runs/39354931677",
+  "preview_status": "success",
+  "target": "https://fabingurung.github.io/JP_Cost_Estimation/finance-dashboard.html",
+  "note": "Main branch contains only this deployment marker; GitHub Pages workflow checks out the verified research branch."
+}
