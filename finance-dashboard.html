@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Rohini project payments, vendors, date activity and source-linked finance records.">
+  <title>Project Payments · JP Finance</title>
+  <link rel="stylesheet" href="finance-dashboard.css">
+  <script src="finance-dashboard.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to dashboard</a>
+  <header class="site-header">
+    <a class="brand" href="index.html"><span class="mark">JP</span><span>JP Construction <small>Project finance</small></span></a>
+    <nav aria-label="Primary navigation"><a href="index.html">Rate Library</a><a href="finance.html">Company Finance</a><a class="active" href="finance-dashboard.html" aria-current="page">Payment Dashboard</a></nav>
+  </header>
+  <main id="main" class="layout">
+    <section class="hero">
+      <div class="hero-copy"><p class="eyebrow">ROHINI ENGINEERING & BUILDERS · 14 BISHAL PAIJA</p><h1>Every payment, <em>clearly understood.</em></h1>
+        <p>Explore vendor totals, individual payment entries, QR figures and recorded discounts in one consistent project view.</p>
+        <div class="hero-links"><a class="btn primary" href="#vendor-table">Explore vendors ↓</a><a class="btn" href="#payment-table">View payments ↓</a></div>
+      </div>
+      <div class="hero-art" aria-hidden="true"><div class="sun"></div><div class="hill far"></div><div class="hill near"></div><div class="hill front"></div></div>
+    </section>
+    <div class="source-line"><span class="dot"></span><strong>Source-linked snapshot</strong><span id="asOf">Loading source date…</span><a id="sourceLink" href="#" target="_blank" rel="noopener noreferrer">Open Google Sheet ↗</a></div>
+    <div id="status" role="status" aria-live="polite">Loading project records…</div>
+    <div id="dashboard" hidden>
+      <section class="metric-grid" aria-label="Project figures">
+        <article class="metric"><span>Recorded amount</span><strong id="amountTotal">—</strong><small>Amount column; not adjusted</small></article>
+        <article class="metric"><span>Payment entries</span><strong id="paymentCount">—</strong><small>Individual source rows</small></article>
+        <article class="metric"><span>Vendors & purposes</span><strong id="vendorCount">—</strong><small>Unique source sections</small></article>
+        <article class="metric"><span>Recorded QR</span><strong id="qrTotal">—</strong><small>Tracked separately</small></article>
+        <article class="metric"><span>Recorded discounts</span><strong id="discountTotal">—</strong><small>Tracked separately</small></article>
+      </section>
+      <section class="two-col">
+        <article class="panel" id="vendor-ranking"><div class="panel-head"><div><p class="eyebrow">01 · VENDOR COMPARISON</p><h2>Largest recorded amounts</h2></div><button id="rankToggle" class="subtle" type="button">Show all</button></div><div id="rankChart" class="bar-list"></div></article>
+        <article class="panel" id="vendor-share"><div class="panel-head"><div><p class="eyebrow">02 · DISTRIBUTION</p><h2>Where the total sits</h2></div></div><div class="donut-layout"><div id="shareDonut" class="donut" role="img" aria-label="Vendor shares of recorded amount"><div class="donut-hole"><span>Project total</span><strong id="donutTotal">—</strong></div></div><div id="shareLegend" class="legend"></div></div></article>
+      </section>
+      <section class="panel" id="date-activity"><div class="panel-head"><div><p class="eyebrow">03 · PAYMENT ACTIVITY</p><h2>Payments by source date</h2><p class="hint">Gregorian and Nepali BS dates are shown separately, without assumed conversion.</p></div><div class="control-group"><label for="dateSystem">Date system</label><select id="dateSystem"><option value="AD">Gregorian (AD)</option><option value="BS">Nepali (BS)</option></select></div></div><div id="dateChart" class="date-chart"></div><p id="dateNote" class="footnote"></p></section>
+      <section class="two-col">
+        <article class="panel" id="qr-chart"><div class="panel-head"><div><p class="eyebrow">04 · QR FIGURES</p><h2>QR by vendor</h2></div></div><div id="qrChart" class="bar-list"></div></article>
+        <article class="panel" id="discount-chart"><div class="panel-head"><div><p class="eyebrow">05 · RECORDED DISCOUNTS</p><h2>Discounts by vendor</h2></div></div><div id="discountChart" class="bar-list"></div></article>
+      </section>
+      <section class="panel" id="vendor-table"><div class="panel-head"><div><p class="eyebrow">06 · VENDOR REGISTER</p><h2>Every vendor at a glance</h2></div><label class="search-label">Search vendors<input id="vendorSearch" type="search" placeholder="Name or number…"></label></div><div class="table-scroll"><table><thead><tr><th>No.</th><th>Vendor / purpose</th><th class="num">Payments</th><th class="num">Amount (NPR)</th><th class="num">Share</th><th class="num">QR (NPR)</th><th class="num">Discount (NPR)</th></tr></thead><tbody id="vendorBody"></tbody></table></div><p id="vendorCountNote" class="footnote"></p></section>
+      <section class="panel" id="payment-table"><div class="panel-head"><div><p class="eyebrow">07 · PAYMENT DETAILS</p><h2>Individual payment entries</h2><p class="hint">Source dates and paid times are reproduced as recorded.</p></div></div><div class="filters"><label>Find an entry<input id="paymentSearch" type="search" placeholder="Vendor, date or amount…"></label><label>Vendor<select id="vendorFilter"><option value="">All vendors</option></select></label><label>Date system<select id="paymentDateFilter"><option value="">All source dates</option><option value="AD">Gregorian (AD)</option><option value="BS">Nepali (BS)</option></select></label></div><div class="table-scroll"><table><thead><tr><th>Vendor / purpose</th><th>Source date</th><th>Paid time</th><th class="num">Amount (NPR)</th><th class="num">QR (NPR)</th><th class="num">Discount (NPR)</th></tr></thead><tbody id="paymentBody"></tbody></table></div><p id="paymentCountNote" class="footnote"></p></section>
+      <section class="panel source-panel" id="source-status"><div><p class="eyebrow">08 · SOURCE STATUS</p><h2>Traceable to the working register</h2><p id="sourceDescription"></p><p class="hint">This is a dated publication, not a live connection. Source values remain editable only in Google Sheets.</p></div><a id="sourceButton" class="btn primary" href="#" target="_blank" rel="noopener noreferrer">View original register ↗</a></section>
+      <p class="bottom-note">Amounts, QR figures and discounts are separate columns. Blank cells mean not recorded; no net amount is inferred. Records for other companies are not included.</p>
+    </div>
+  </main>
+</body>
+</html>
