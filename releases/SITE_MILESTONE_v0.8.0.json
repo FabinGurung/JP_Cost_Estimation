@@ -1,0 +1,17 @@
+{
+  "schema": "jp.site.milestone.v1",
+  "version": "0.8.0",
+  "tag": "v0.8.0",
+  "kind": "testing-prerelease",
+  "sourceBranch": "research/open-estimation-engine-v0.1",
+  "sourceCommit": "4c9928ed02d0c8a193df4e0e4f0d273994b192d3",
+  "verification": {
+    "ciRun": 39368416437,
+    "previewRun": 39368416492,
+    "pagesRun": 39368463189,
+    "mainDeployCommit": "33939fec0fa5e51d1185e24325b295109fcf8080"
+  },
+  "releaseNotes": "releases/SITE_MILESTONE_v0.8.0.md",
+  "publishedBase": "https://fabingurung.github.io/JP_Cost_Estimation/",
+  "createdOn": "2026-10-20"
+}
