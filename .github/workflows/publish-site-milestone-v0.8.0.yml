@@ -1,0 +1,81 @@
+name: Publish site milestone v0.8.0
+on:
+  push:
+    branches:
+      - research/open-estimation-engine-v0.1
+    paths:
+      - ".github/workflows/publish-site-milestone-v0.8.0.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: jp-site-milestone-v0.8.0
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      SOURCE_SHA: 4c9928ed02d0c8a193df4e0e4f0d273994b192d3
+      MILESTONE_TAG: v0.8.0
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - name: Checkout milestone metadata and full history
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+      - name: Verify source and successful checks
+        shell: bash
+        run: |
+          set -euo pipefail
+          git cat-file -e "$SOURCE_SHA^{commit}"
+          for evidence in "39368416437:$SOURCE_SHA" "39368416492:$SOURCE_SHA" "39368463189:33939fec0fa5e51d1185e24325b295109fcf8080"; do
+            run_id="${evidence%%:*}"
+            expected="${evidence#*:}"
+            conclusion="$(gh api "repos/$GITHUB_REPOSITORY/actions/runs/$run_id" --jq '.conclusion')"
+            actual="$(gh api "repos/$GITHUB_REPOSITORY/actions/runs/$run_id" --jq '.head_sha')"
+            test "$conclusion" = "success" && test "$actual" = "$expected"
+          done
+          node -e "const x=require('./releases/SITE_MILESTONE_v0.8.0.json');if(x.sourceCommit!==process.env.SOURCE_SHA||x.tag!==process.env.MILESTONE_TAG)process.exit(1)"
+          mkdir -p "$RUNNER_TEMP/site-v0.8.0"
+          git archive "$SOURCE_SHA" | tar -x -C "$RUNNER_TEMP/site-v0.8.0"
+          (
+            cd "$RUNNER_TEMP/site-v0.8.0"
+            node scripts/validate-site-theme-v0.8.mjs
+            node scripts/validate-finance-public.mjs
+          )
+      - name: Create or verify immutable annotated tag
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git ls-remote --exit-code --tags origin "refs/tags/$MILESTONE_TAG" >/dev/null 2>&1; then
+            git fetch origin "refs/tags/$MILESTONE_TAG:refs/tags/$MILESTONE_TAG"
+            test "$(git rev-parse "$MILESTONE_TAG^{commit}")" = "$SOURCE_SHA"
+            test "$(git cat-file -t "$MILESTONE_TAG")" = "tag"
+          else
+            git tag -a "$MILESTONE_TAG" "$SOURCE_SHA" -m "JP Cost Estimation: site milestone v0.8.0" -m "Frozen deployed website source $SOURCE_SHA"
+            git push origin "refs/tags/$MILESTONE_TAG"
+          fi
+      - name: Publish prerelease with reference notes
+        shell: bash
+        run: |
+          set -euo pipefail
+          if gh release view "$MILESTONE_TAG" --json url,isPrerelease >/dev/null 2>&1; then
+            gh release view "$MILESTONE_TAG" --json url,tagName,isPrerelease
+          else
+            gh release create "$MILESTONE_TAG" \
+              releases/SITE_MILESTONE_v0.8.0.md \
+              releases/SITE_MILESTONE_v0.8.0.json \
+              --verify-tag --target "$SOURCE_SHA" --prerelease \
+              --title "Website milestone v0.8.0 — shared presentation and reference wall" \
+              --notes-file releases/SITE_MILESTONE_v0.8.0.md
+          fi
+          echo "### Website milestone" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Version: $MILESTONE_TAG" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Source: $SOURCE_SHA" >> "$GITHUB_STEP_SUMMARY"
