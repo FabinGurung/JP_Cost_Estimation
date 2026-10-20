@@ -71,6 +71,11 @@ jobs:
           node --check scripts/validate-site-theme-v0.8.mjs
           node scripts/validate-site-theme-v0.8.mjs
 
+      - name: Site page registry integrity
+        run: |
+          node --check scripts/validate-site-page-registry.mjs
+          node scripts/validate-site-page-registry.mjs
+
       - name: Public-site secret pattern check
         shell: bash
         run: |
