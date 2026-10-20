@@ -1,0 +1,992 @@
+{
+  "schema": "jp.finance.public.v1",
+  "version": "0.7.0",
+  "verified_on": "2026-10-20",
+  "publication_mode": "manual_refresh",
+  "company": "Rohini Engineering and Builders Pvt. Ltd.",
+  "company_id": "REB",
+  "project": "14 Bishal Paija",
+  "project_id": "14_bishal_paija",
+  "register": "Krishna Kumar Gupta — Payment to Project",
+  "currency": "NPR",
+  "source": {
+    "workbook_url": "https://docs.google.com/spreadsheets/d/1S1fkWzo6XGzyD3p92_pTG32zZ9fF3YICAv3HPTomZsE/edit",
+    "register_tab": "14_bishal_paija",
+    "vendor_range": "A7:E34",
+    "payment_range": "A35:H190",
+    "mixed_date_systems": true
+  },
+  "totals": {
+    "vendor_count": 27,
+    "payment_count": 74,
+    "amount_npr": 268798,
+    "qr_npr": 160,
+    "discount_npr": 2400
+  },
+  "checks": {
+    "all_payment_ids_unique": true,
+    "all_vendor_totals_match": true,
+    "source_grand_totals_match": true,
+    "internal_ids_excluded_from_public_data": true
+  },
+  "vendors": [
+    {
+      "id": 1,
+      "name": "Amrit hardware",
+      "amount_npr": 87415,
+      "qr_npr": 30,
+      "discount_npr": 2400,
+      "payment_count": 7
+    },
+    {
+      "id": 2,
+      "name": "Narayan",
+      "amount_npr": 1000,
+      "qr_npr": null,
+      "discount_npr": null,
+      "payment_count": 1
+    },
+    {
+      "id": 3,
+      "name": "Freight",
+      "amount_npr": 610,
+      "qr_npr": null,
+      "discount_npr": null,
+      "payment_count": 1
+    },
+    {
+      "id": 4,
+      "name": "Pradip paree hardware",
+      "amount_npr": 190,
+      "qr_npr": null,
+      "discount_npr": null,
+      "payment_count": 1
+    },
+    {
+      "id": 5,
+      "name": "Chauthee kabadi",
+      "amount_npr": 3800,
+      "qr_npr": 20,
+      "discount_npr": null,
+      "payment_count": 2
+    },
+    {
+      "id": 6,
+      "name": "Random hardware",
+      "amount_npr": 700,
+      "qr_npr": null,
+      "discount_npr": null,
+      "payment_count": 1
+    },
+    {
+      "id": 7,
+      "name": "Drinking water",
+      "amount_npr": 2580,
+      "qr_npr": null,
+      "discount_npr": null,
+      "payment_count": 8
+    },
+    {
+      "id": 8,
+      "name": "Rohini engineering and builders Pvt Ltd",
+      "amount_npr": 22018,
+      "qr_npr": 20,
+      "discount_npr": null,
+      "payment_count": 2
+    },
+    {
+      "id": 9,
+      "name": "Ration and tip",
+      "amount_npr": 2000,
+      "qr_npr": null,
+      "discount_npr": null,
+      "payment_count": 11
+    },
+    {
+      "id": 10,
+      "name": "Pradip hardware",
+      "amount_npr": 6730,
+      "qr_npr": null,
+      "discount_npr": null,
+      "payment_count": 5
+    },
+    {
+      "id": 11,
+      "name": "Gautam trading house",
+      "amount_npr": 1350,
+      "qr_npr": null,
+      "discount_npr": null,
+      "payment_count": 1
+    },
+    {
+      "id": 12,
+      "name": "NS suppliers",
+      "amount_npr": 40100,
+      "qr_npr": 40,
+      "discount_npr": null,
+      "payment_count": 5
+    },
+    {
+      "id": 13,
+      "name": "Fuel_Machinery",
+      "amount_npr": 2300,
+      "qr_npr": null,
+      "discount_npr": null,
+      "payment_count": 3
+    },
+    {
+      "id": 14,
+      "name": "Diner",
+      "amount_npr": 3650,
+      "qr_npr": null,
+      "discount_npr": null,
+      "payment_count": 8
+    },
+    {
+      "id": 15,
+      "name": "Contractor_Hari_Chaudhari",
+      "amount_npr": 34920,
+      "qr_npr": null,
+      "discount_npr": null,
+      "payment_count": 1
+    },
+    {
+      "id": 16,
+      "name": "Arjun acharaya_JCB",
+      "amount_npr": 17100,
+      "qr_npr": 10,
+      "discount_npr": null,
+      "payment_count": 1
+    },
+    {
+      "id": 17,
+      "name": "Subin suppliers_freight",
+      "amount_npr": 11000,
+      "qr_npr": null,
+      "discount_npr": null,
+      "payment_count": 1
+    },
+    {
+      "id": 18,
+      "name": "Gandaki petroleum company Pvt Ltd",
+      "amount_npr": 500,
+      "qr_npr": null,
+      "discount_npr": null,
+      "payment_count": 1
+    },
+    {
+      "id": 19,
+      "name": "r-lamichhane-plastic-store",
+      "amount_npr": 120,
+      "qr_npr": null,
+      "discount_npr": null,
+      "payment_count": 1
+    },
+    {
+      "id": 20,
+      "name": "Krishna machinery amarsingh",
+      "amount_npr": 2000,
+      "qr_npr": 10,
+      "discount_npr": null,
+      "payment_count": 2
+    },
+    {
+      "id": 21,
+      "name": "jute-bag-sirjana-chowk",
+      "amount_npr": 1625,
+      "qr_npr": null,
+      "discount_npr": null,
+      "payment_count": 2
+    },
+    {
+      "id": 22,
+      "name": "Subin suppliers",
+      "amount_npr": 2500,
+      "qr_npr": null,
+      "discount_npr": null,
+      "payment_count": 1
+    },
+    {
+      "id": 23,
+      "name": "Formwork_yem gurung",
+      "amount_npr": 23000,
+      "qr_npr": 30,
+      "discount_npr": null,
+      "payment_count": 4
+    },
+    {
+      "id": 24,
+      "name": "New sangam traders",
+      "amount_npr": 300,
+      "qr_npr": null,
+      "discount_npr": null,
+      "payment_count": 1
+    },
+    {
+      "id": 25,
+      "name": "pokhara-sahitya-pustak-pasal",
+      "amount_npr": 200,
+      "qr_npr": null,
+      "discount_npr": null,
+      "payment_count": 1
+    },
+    {
+      "id": 26,
+      "name": "Chauthe swashthya clinic Pvt Ltd",
+      "amount_npr": 300,
+      "qr_npr": null,
+      "discount_npr": null,
+      "payment_count": 1
+    },
+    {
+      "id": 27,
+      "name": "Thapasthali kitchen plastic and gift house",
+      "amount_npr": 790,
+      "qr_npr": 0,
+      "discount_npr": null,
+      "payment_count": 1
+    }
+  ],
+  "payments": [
+    {
+      "vendor_id": 1,
+      "vendor": "Amrit hardware",
+      "source_date": "2083_01_17",
+      "date_system": "BS",
+      "paid_time": "10:34:00 pm",
+      "amount_npr": 175,
+      "qr_npr": null,
+      "discount_npr": null
+    },
+    {
+      "vendor_id": 1,
+      "vendor": "Amrit hardware",
+      "source_date": "2083_01_17",
+      "date_system": "BS",
+      "paid_time": "10:34:00 pm",
+      "amount_npr": 30500,
+      "qr_npr": null,
+      "discount_npr": null
+    },
+    {
+      "vendor_id": 1,
+      "vendor": "Amrit hardware",
+      "source_date": "2083_01_17",
+      "date_system": "BS",
+      "paid_time": "10:34:00 pm",
+      "amount_npr": 5000,
+      "qr_npr": null,
+      "discount_npr": null
+    },
+    {
+      "vendor_id": 1,
+      "vendor": "Amrit hardware",
+      "source_date": "2026-05-27",
+      "date_system": "AD",
+      "paid_time": "5:48:00 pm",
+      "amount_npr": 750,
+      "qr_npr": 10,
+      "discount_npr": null
+    },
+    {
+      "vendor_id": 1,
+      "vendor": "Amrit hardware",
+      "source_date": "2026-06-15",
+      "date_system": "AD",
+      "paid_time": "9:14:00 am",
+      "amount_npr": 19200,
+      "qr_npr": 10,
+      "discount_npr": 2400
+    },
+    {
+      "vendor_id": 1,
+      "vendor": "Amrit hardware",
+      "source_date": "2026-06-16",
+      "date_system": "AD",
+      "paid_time": "1:36:00 pm",
+      "amount_npr": 29790,
+      "qr_npr": 10,
+      "discount_npr": null
+    },
+    {
+      "vendor_id": 1,
+      "vendor": "Amrit hardware",
+      "source_date": "2083_05_29",
+      "date_system": "BS",
+      "paid_time": "11:34",
+      "amount_npr": 2000,
+      "qr_npr": null,
+      "discount_npr": null
+    },
+    {
+      "vendor_id": 2,
+      "vendor": "Narayan",
+      "source_date": "2026-05-01",
+      "date_system": "AD",
+      "paid_time": "9:36:00 pm",
+      "amount_npr": 1000,
+      "qr_npr": null,
+      "discount_npr": null
+    },
+    {
+      "vendor_id": 3,
+      "vendor": "Freight",
+      "source_date": "2026-05-11",
+      "date_system": "AD",
+      "paid_time": "11:38:00 am",
+      "amount_npr": 610,
+      "qr_npr": null,
+      "discount_npr": null
+    },
+    {
+      "vendor_id": 4,
+      "vendor": "Pradip paree hardware",
+      "source_date": "2083_01_27",
+      "date_system": "BS",
+      "paid_time": null,
+      "amount_npr": 190,
+      "qr_npr": null,
+      "discount_npr": null
+    },
+    {
+      "vendor_id": 5,
+      "vendor": "Chauthee kabadi",
+      "source_date": "2026-05-03",
+      "date_system": "AD",
+      "paid_time": "11:39:00 am",
+      "amount_npr": 1100,
+      "qr_npr": 10,
+      "discount_npr": null
+    },
+    {
+      "vendor_id": 5,
+      "vendor": "Chauthee kabadi",
+      "source_date": "2026-05-03",
+      "date_system": "AD",
+      "paid_time": "10:52:00 am",
+      "amount_npr": 2700,
+      "qr_npr": 10,
+      "discount_npr": null
+    },
+    {
+      "vendor_id": 6,
+      "vendor": "Random hardware",
+      "source_date": "2083_01_27",
+      "date_system": "BS",
+      "paid_time": "12:40:00 pm",
+      "amount_npr": 700,
+      "qr_npr": null,
+      "discount_npr": null
+    },
+    {
+      "vendor_id": 7,
+      "vendor": "Drinking water",
+      "source_date": "2026-05-08",
+      "date_system": "AD",
+      "paid_time": "5:15:00 pm",
+      "amount_npr": 100,
+      "qr_npr": null,
+      "discount_npr": null
+    },
+    {
+      "vendor_id": 7,
+      "vendor": "Drinking water",
+      "source_date": "2026-05-02",
+      "date_system": "AD",
+      "paid_time": "2:19:00 pm",
+      "amount_npr": 100,
+      "qr_npr": null,
+      "discount_npr": null
+    },
+    {
+      "vendor_id": 7,
+      "vendor": "Drinking water",
+      "source_date": "2026-05-10",
+      "date_system": "AD",
+      "paid_time": "12:40:00 pm",
+      "amount_npr": 110,
+      "qr_npr": null,
+      "discount_npr": null
+    },
+    {
+      "vendor_id": 7,
+      "vendor": "Drinking water",
+      "source_date": "2026-05-10",
+      "date_system": "AD",
+      "paid_time": "6:09:00 pm",
+      "amount_npr": 100,
+      "qr_npr": null,
+      "discount_npr": null
+    },
+    {
+      "vendor_id": 7,
+      "vendor": "Drinking water",
+      "source_date": "2026-05-15",
+      "date_system": "AD",
+      "paid_time": "1:36:00 pm",
+      "amount_npr": 50,
+      "qr_npr": null,
+      "discount_npr": null
+    },
+    {
+      "vendor_id": 7,
+      "vendor": "Drinking water",
+      "source_date": "2026-06-15",
+      "date_system": "AD",
+      "paid_time": "7:40:00 am",
+      "amount_npr": 1650,
+      "qr_npr": null,
+      "discount_npr": null
+    },
+    {
+      "vendor_id": 7,
+      "vendor": "Drinking water",
+      "source_date": "2026-06-22",
+      "date_system": "AD",
+      "paid_time": "2:48:00 pm",
+      "amount_npr": 350,
+      "qr_npr": null,
+      "discount_npr": null
+    },
+    {
+      "vendor_id": 7,
+      "vendor": "Drinking water",
+      "source_date": "2026-06-23",
+      "date_system": "AD",
+      "paid_time": "12:38:00 pm",
+      "amount_npr": 120,
+      "qr_npr": null,
+      "discount_npr": null
+    },
+    {
+      "vendor_id": 8,
+      "vendor": "Rohini engineering and builders Pvt Ltd",
+      "source_date": "2026-05-13",
+      "date_system": "AD",
+      "paid_time": "7:37:00 am",
+      "amount_npr": 15700,
+      "qr_npr": 10,
+      "discount_npr": null
+    },
+    {
+      "vendor_id": 8,
+      "vendor": "Rohini engineering and builders Pvt Ltd",
+      "source_date": "2026-06-29",
+      "date_system": "AD",
+      "paid_time": "10:23:00 am",
+      "amount_npr": 6318,
+      "qr_npr": 10,
+      "discount_npr": null
+    },
+    {
+      "vendor_id": 9,
+      "vendor": "Ration and tip",
+      "source_date": "2026-04-30",
+      "date_system": "AD",
+      "paid_time": "7:56:00 pm",
+      "amount_npr": 175,
+      "qr_npr": null,
+      "discount_npr": null
+    },
+    {
+      "vendor_id": 9,
+      "vendor": "Ration and tip",
+      "source_date": "2026-04-30",
+      "date_system": "AD",
+      "paid_time": "7:56:00 pm",
+      "amount_npr": 175,
+      "qr_npr": null,
+      "discount_npr": null
+    },
+    {
+      "vendor_id": 9,
+      "vendor": "Ration and tip",
+      "source_date": "2026-04-30",
+      "date_system": "AD",
+      "paid_time": "7:56:00 pm",
+      "amount_npr": 180,
+      "qr_npr": null,
+      "discount_npr": null
+    },
+    {
+      "vendor_id": 9,
+      "vendor": "Ration and tip",
+      "source_date": "2026-05-01",
+      "date_system": "AD",
+      "paid_time": "7:06:00 pm",
+      "amount_npr": 100,
+      "qr_npr": null,
+      "discount_npr": null
+    },
+    {
+      "vendor_id": 9,
+      "vendor": "Ration and tip",
+      "source_date": "2026-05-01",
+      "date_system": "AD",
+      "paid_time": "7:06:00 pm",
+      "amount_npr": 100,
+      "qr_npr": null,
+      "discount_npr": null
+    },
+    {
+      "vendor_id": 9,
+      "vendor": "Ration and tip",
+      "source_date": "2026-05-09",
+      "date_system": "AD",
+      "paid_time": "10:53:00 am",
+      "amount_npr": 50,
+      "qr_npr": null,
+      "discount_npr": null
+    },
+    {
+      "vendor_id": 9,
+      "vendor": "Ration and tip",
+      "source_date": "2026-05-12",
+      "date_system": "AD",
+      "paid_time": "7:39:00 am",
+      "amount_npr": 50,
+      "qr_npr": null,
+      "discount_npr": null
+    },
+    {
+      "vendor_id": 9,
+      "vendor": "Ration and tip",
+      "source_date": "2026-06-21",
+      "date_system": "AD",
+      "paid_time": "7:26:00 pm",
+      "amount_npr": 600,
+      "qr_npr": null,
+      "discount_npr": null
+    },
+    {
+      "vendor_id": 9,
+      "vendor": "Ration and tip",
+      "source_date": "2026-06-22",
+      "date_system": "AD",
+      "paid_time": "4:35:00 pm",
+      "amount_npr": 150,
+      "qr_npr": null,
+      "discount_npr": null
+    },
+    {
+      "vendor_id": 9,
+      "vendor": "Ration and tip",
+      "source_date": "2026-06-24",
+      "date_system": "AD",
+      "paid_time": "9:21:00 am",
+      "amount_npr": 180,
+      "qr_npr": null,
+      "discount_npr": null
+    },
+    {
+      "vendor_id": 9,
+      "vendor": "Ration and tip",
+      "source_date": "2083_03_25",
+      "date_system": "BS",
+      "paid_time": "11:37:00 am",
+      "amount_npr": 240,
+      "qr_npr": null,
+      "discount_npr": null
+    },
+    {
+      "vendor_id": 10,
+      "vendor": "Pradip hardware",
+      "source_date": "2026-05-03",
+      "date_system": "AD",
+      "paid_time": "11:05:00 am",
+      "amount_npr": 900,
+      "qr_npr": null,
+      "discount_npr": null
+    },
+    {
+      "vendor_id": 10,
+      "vendor": "Pradip hardware",
+      "source_date": "2026-05-01",
+      "date_system": "AD",
+      "paid_time": "10:16:00 am",
+      "amount_npr": 480,
+      "qr_npr": null,
+      "discount_npr": null
+    },
+    {
+      "vendor_id": 10,
+      "vendor": "Pradip hardware",
+      "source_date": "2026-05-02",
+      "date_system": "AD",
+      "paid_time": "10:38:00 am",
+      "amount_npr": 900,
+      "qr_npr": null,
+      "discount_npr": null
+    },
+    {
+      "vendor_id": 10,
+      "vendor": "Pradip hardware",
+      "source_date": "2026-06-18",
+      "date_system": "AD",
+      "paid_time": "9:44:00 am",
+      "amount_npr": 50,
+      "qr_npr": null,
+      "discount_npr": null
+    },
+    {
+      "vendor_id": 10,
+      "vendor": "Pradip hardware",
+      "source_date": "2026-06-28",
+      "date_system": "AD",
+      "paid_time": "8:21:00 am",
+      "amount_npr": 4400,
+      "qr_npr": null,
+      "discount_npr": null
+    },
+    {
+      "vendor_id": 11,
+      "vendor": "Gautam trading house",
+      "source_date": "2026-05-03",
+      "date_system": "AD",
+      "paid_time": "1:08:00 pm",
+      "amount_npr": 1350,
+      "qr_npr": null,
+      "discount_npr": null
+    },
+    {
+      "vendor_id": 12,
+      "vendor": "NS suppliers",
+      "source_date": "2026-05-15",
+      "date_system": "AD",
+      "paid_time": "7:14:00 pm",
+      "amount_npr": 8000,
+      "qr_npr": 10,
+      "discount_npr": null
+    },
+    {
+      "vendor_id": 12,
+      "vendor": "NS suppliers",
+      "source_date": "2026-05-17",
+      "date_system": "AD",
+      "paid_time": "12:33:00 pm",
+      "amount_npr": 8000,
+      "qr_npr": 10,
+      "discount_npr": null
+    },
+    {
+      "vendor_id": 12,
+      "vendor": "NS suppliers",
+      "source_date": "2026-05-21",
+      "date_system": "AD",
+      "paid_time": "8:56:00 am",
+      "amount_npr": 8000,
+      "qr_npr": 10,
+      "discount_npr": null
+    },
+    {
+      "vendor_id": 12,
+      "vendor": "NS suppliers",
+      "source_date": "2026-05-22",
+      "date_system": "AD",
+      "paid_time": "2:39:00 pm",
+      "amount_npr": 8500,
+      "qr_npr": 10,
+      "discount_npr": null
+    },
+    {
+      "vendor_id": 12,
+      "vendor": "NS suppliers",
+      "source_date": "2026-06-29",
+      "date_system": "AD",
+      "paid_time": "9:09:00 am",
+      "amount_npr": 7600,
+      "qr_npr": null,
+      "discount_npr": null
+    },
+    {
+      "vendor_id": 13,
+      "vendor": "Fuel_Machinery",
+      "source_date": "2083_02_01",
+      "date_system": "BS",
+      "paid_time": "3:24:00 pm",
+      "amount_npr": 750,
+      "qr_npr": null,
+      "discount_npr": null
+    },
+    {
+      "vendor_id": 13,
+      "vendor": "Fuel_Machinery",
+      "source_date": "2083_02_08",
+      "date_system": "BS",
+      "paid_time": "10:34:00 am",
+      "amount_npr": 750,
+      "qr_npr": null,
+      "discount_npr": null
+    },
+    {
+      "vendor_id": 13,
+      "vendor": "Fuel_Machinery",
+      "source_date": "2083-06-19",
+      "date_system": "BS",
+      "paid_time": "10:22:00 am",
+      "amount_npr": 800,
+      "qr_npr": null,
+      "discount_npr": null
+    },
+    {
+      "vendor_id": 14,
+      "vendor": "Diner",
+      "source_date": "2026-05-23",
+      "date_system": "AD",
+      "paid_time": "12:10:00 pm",
+      "amount_npr": 1225,
+      "qr_npr": null,
+      "discount_npr": null
+    },
+    {
+      "vendor_id": 14,
+      "vendor": "Diner",
+      "source_date": "2026-05-25",
+      "date_system": "AD",
+      "paid_time": "12:06:00 pm",
+      "amount_npr": 1220,
+      "qr_npr": null,
+      "discount_npr": null
+    },
+    {
+      "vendor_id": 14,
+      "vendor": "Diner",
+      "source_date": "2026-05-25",
+      "date_system": "AD",
+      "paid_time": "5:01:00 pm",
+      "amount_npr": 125,
+      "qr_npr": null,
+      "discount_npr": null
+    },
+    {
+      "vendor_id": 14,
+      "vendor": "Diner",
+      "source_date": "2026-06-16",
+      "date_system": "AD",
+      "paid_time": "4:44:00 pm",
+      "amount_npr": 400,
+      "qr_npr": null,
+      "discount_npr": null
+    },
+    {
+      "vendor_id": 14,
+      "vendor": "Diner",
+      "source_date": "2026-06-21",
+      "date_system": "AD",
+      "paid_time": "12:44:00 pm",
+      "amount_npr": 90,
+      "qr_npr": null,
+      "discount_npr": null
+    },
+    {
+      "vendor_id": 14,
+      "vendor": "Diner",
+      "source_date": "2026-06-29",
+      "date_system": "AD",
+      "paid_time": "9:29:00 pm",
+      "amount_npr": 300,
+      "qr_npr": null,
+      "discount_npr": null
+    },
+    {
+      "vendor_id": 14,
+      "vendor": "Diner",
+      "source_date": "2026-07-03",
+      "date_system": "AD",
+      "paid_time": "3:22:00 pm",
+      "amount_npr": 220,
+      "qr_npr": null,
+      "discount_npr": null
+    },
+    {
+      "vendor_id": 14,
+      "vendor": "Diner",
+      "source_date": "2026-07-09",
+      "date_system": "AD",
+      "paid_time": "6:07:00 pm",
+      "amount_npr": 70,
+      "qr_npr": null,
+      "discount_npr": null
+    },
+    {
+      "vendor_id": 15,
+      "vendor": "Contractor_Hari_Chaudhari",
+      "source_date": "2026-06-06",
+      "date_system": "AD",
+      "paid_time": "1:11:00 pm",
+      "amount_npr": 34920,
+      "qr_npr": null,
+      "discount_npr": null
+    },
+    {
+      "vendor_id": 16,
+      "vendor": "Arjun acharaya_JCB",
+      "source_date": "2026-05-25",
+      "date_system": "AD",
+      "paid_time": "4:10:00 pm",
+      "amount_npr": 17100,
+      "qr_npr": 10,
+      "discount_npr": null
+    },
+    {
+      "vendor_id": 17,
+      "vendor": "Subin suppliers_freight",
+      "source_date": "2026-05-25",
+      "date_system": "AD",
+      "paid_time": "4:10:00 pm",
+      "amount_npr": 11000,
+      "qr_npr": null,
+      "discount_npr": null
+    },
+    {
+      "vendor_id": 18,
+      "vendor": "Gandaki petroleum company Pvt Ltd",
+      "source_date": "2026-06-21",
+      "date_system": "AD",
+      "paid_time": "1:33:00 pm",
+      "amount_npr": 500,
+      "qr_npr": null,
+      "discount_npr": null
+    },
+    {
+      "vendor_id": 19,
+      "vendor": "r-lamichhane-plastic-store",
+      "source_date": "2026-06-21",
+      "date_system": "AD",
+      "paid_time": "1:31:00 pm",
+      "amount_npr": 120,
+      "qr_npr": null,
+      "discount_npr": null
+    },
+    {
+      "vendor_id": 20,
+      "vendor": "Krishna machinery amarsingh",
+      "source_date": "2026-06-23",
+      "date_system": "AD",
+      "paid_time": "11:31:00 am",
+      "amount_npr": 1600,
+      "qr_npr": null,
+      "discount_npr": null
+    },
+    {
+      "vendor_id": 20,
+      "vendor": "Krishna machinery amarsingh",
+      "source_date": "2026-06-23",
+      "date_system": "AD",
+      "paid_time": "12:01:00 pm",
+      "amount_npr": 400,
+      "qr_npr": 10,
+      "discount_npr": null
+    },
+    {
+      "vendor_id": 21,
+      "vendor": "jute-bag-sirjana-chowk",
+      "source_date": "2026-06-21",
+      "date_system": "AD",
+      "paid_time": "1:20:00 pm",
+      "amount_npr": 1000,
+      "qr_npr": null,
+      "discount_npr": null
+    },
+    {
+      "vendor_id": 21,
+      "vendor": "jute-bag-sirjana-chowk",
+      "source_date": "2026-06-28",
+      "date_system": "AD",
+      "paid_time": "7:59:00 am",
+      "amount_npr": 625,
+      "qr_npr": null,
+      "discount_npr": null
+    },
+    {
+      "vendor_id": 22,
+      "vendor": "Subin suppliers",
+      "source_date": "2026-06-28",
+      "date_system": "AD",
+      "paid_time": "11:42:00 am",
+      "amount_npr": 2500,
+      "qr_npr": null,
+      "discount_npr": null
+    },
+    {
+      "vendor_id": 23,
+      "vendor": "Formwork_yem gurung",
+      "source_date": "2083_03_15",
+      "date_system": "BS",
+      "paid_time": "5:20:00 pm",
+      "amount_npr": 4000,
+      "qr_npr": null,
+      "discount_npr": null
+    },
+    {
+      "vendor_id": 23,
+      "vendor": "Formwork_yem gurung",
+      "source_date": "2026-08-15",
+      "date_system": "AD",
+      "paid_time": "8:22:00 am",
+      "amount_npr": 10000,
+      "qr_npr": 10,
+      "discount_npr": null
+    },
+    {
+      "vendor_id": 23,
+      "vendor": "Formwork_yem gurung",
+      "source_date": "2026-08-16",
+      "date_system": "AD",
+      "paid_time": "6:19:00 pm",
+      "amount_npr": 4000,
+      "qr_npr": 10,
+      "discount_npr": null
+    },
+    {
+      "vendor_id": 23,
+      "vendor": "Formwork_yem gurung",
+      "source_date": "2026-08-22",
+      "date_system": "AD",
+      "paid_time": "5:49:00 pm",
+      "amount_npr": 5000,
+      "qr_npr": 10,
+      "discount_npr": null
+    },
+    {
+      "vendor_id": 24,
+      "vendor": "New sangam traders",
+      "source_date": "2026-07-02",
+      "date_system": "AD",
+      "paid_time": "10:29:00 am",
+      "amount_npr": 300,
+      "qr_npr": null,
+      "discount_npr": null
+    },
+    {
+      "vendor_id": 25,
+      "vendor": "pokhara-sahitya-pustak-pasal",
+      "source_date": "2026-07-08",
+      "date_system": "AD",
+      "paid_time": "4:16:00 pm",
+      "amount_npr": 200,
+      "qr_npr": null,
+      "discount_npr": null
+    },
+    {
+      "vendor_id": 26,
+      "vendor": "Chauthe swashthya clinic Pvt Ltd",
+      "source_date": "2026-07-10",
+      "date_system": "AD",
+      "paid_time": "6:02:00 pm",
+      "amount_npr": 300,
+      "qr_npr": null,
+      "discount_npr": null
+    },
+    {
+      "vendor_id": 27,
+      "vendor": "Thapasthali kitchen plastic and gift house",
+      "source_date": "2026-08-12",
+      "date_system": "AD",
+      "paid_time": "9:59:00 am",
+      "amount_npr": 790,
+      "qr_npr": null,
+      "discount_npr": null
+    }
+  ]
+}

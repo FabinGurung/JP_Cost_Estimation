@@ -55,6 +55,13 @@ jobs:
           node --check finance.js
           node scripts/qa_kkg_finance_snapshot_v1.2.mjs
 
+      - name: Finance public dashboard validation
+        run: |
+          node --check finance-dashboard.js
+          node --check finance.js
+          node --check scripts/validate-finance-public.mjs
+          node scripts/validate-finance-public.mjs
+
       - name: Public-site secret pattern check
         shell: bash
         run: |
