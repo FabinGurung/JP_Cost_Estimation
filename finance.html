@@ -9,8 +9,10 @@
   <link rel="stylesheet" href="site-shell.css">
   <script src="theme.js" defer></script>
   <script src="finance.js" defer></script>
+  <script src="finance-source-panels-v0.9.js" defer></script>
 
 <link rel="stylesheet" href="site-theme-v0.8.css">
+<link rel="stylesheet" href="finance-panels-v0.9.css">
 <script src="site-navigation-v0.8.js" defer></script>
 </head>
 <body>
@@ -40,7 +42,7 @@
     <p>Explore actual project payment summaries in a peaceful green workspace, with direct links to the underlying editable evidence.</p>
     <div class="hero-actions"><a class="hero-cta primary" href="#financeContent">View source summary ↓</a>
 <a class="hero-cta secondary" href="index.html">Rate Library ↗</a>
-<a class="hero-cta secondary" href="finance-dashboard.html">Explore all payments ↗</a></div>
+<a class="hero-cta secondary" href="finance-dashboard.html">Payment Dashboard ↗</a></div>
   </div>
 </section>
 
@@ -92,6 +94,83 @@
           <span class="badge pending">DRIVE OWNS PAYMENT FACTS</span>
         </div>
         <div id="financeContent"></div>
+      </section>
+
+      <section class="panel jp-finance-sources" id="finance-dashboard-entry">
+        <span class="jp-finance-code">FN-02 · FINANCE CHILD PAGE</span>
+        <div class="section-head">
+          <div><h2>Payment Dashboard</h2><p class="sub">Explore the approved Rohini project snapshot: vendor comparisons, individual payments, AD/BS dates, QR and discounts.</p></div>
+          <a class="finance-source-link" href="finance-dashboard.html">Open Payment Dashboard →</a>
+        </div>
+        <p>Dashboard URL and existing payment figures are unchanged. Source workbooks remain in Google Drive.</p>
+      </section>
+
+      <section class="panel jp-finance-sources" id="finance-sources" aria-labelledby="financeSourcesTitle">
+        <span class="jp-finance-code">FN-01.S02 · SOURCE DIRECTORY</span>
+        <h2 id="financeSourcesTitle">Company finance source panels</h2>
+        <p>Three separate working Google Sheets are indexed here. Only the previously approved Krishna Kumar Gupta source link is included on this public website. Other source URLs require your authorized Google account and are not published in this page.</p>
+        <div class="jp-finance-source-grid">
+          <article class="jp-finance-source-card">
+            <span class="jp-finance-code">FN-S01 · ROHINI · APPROVED PUBLIC SOURCE</span>
+            <h3>Krishna Kumar Gupta — Payment to Project</h3>
+            <p>Project 14 Bishal Paija. The existing payment dashboard uses a verified dated snapshot, not a live workbook connection.</p>
+            <div class="jp-finance-actions"><a href="https://docs.google.com/spreadsheets/d/1S1fkWzo6XGzyD3p92_pTG32zZ9fF3YICAv3HPTomZsE/edit" target="_blank" rel="noopener noreferrer">Open Google Sheet ↗</a><button type="button" data-finance-source="FN-S01">Preview Sheet</button></div>
+          </article>
+          <article class="jp-finance-source-card">
+            <span class="jp-finance-code">FN-S02 · ROHINI · ACCESS RESTRICTED</span>
+            <h3>KKG Site Operations v1.4</h3>
+            <p>Separate operations workbook. Ownership, latest entries and financial authority await source-by-source verification.</p>
+            <div class="jp-finance-actions"><button type="button" data-finance-source="FN-S02">Select private Sheet</button></div>
+          </article>
+          <article class="jp-finance-source-card">
+            <span class="jp-finance-code">FN-S03 · FISHTAIL · ACCESS RESTRICTED</span>
+            <h3>Daily &amp; Monthly Spending Ledger</h3>
+            <p>Fishtail records remain separate from Rohini. No cross-company totals or automatic posting.</p>
+            <div class="jp-finance-actions"><button type="button" data-finance-source="FN-S03">Select private Sheet</button></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="panel jp-finance-sources" id="worker-records" aria-labelledby="workerSourcesTitle">
+        <span class="jp-finance-code">FN-01.S03 · WORKER MONEY &amp; GOODS</span>
+        <h2 id="workerSourcesTitle">21 original worker workbooks</h2>
+        <p>Original workbooks W01–W21 are indexed individually. Personal names, workbook links and transactions stay outside the public site while their authority, access and completeness are reviewed. Select a code to use the private preview panel. The separate W01 v2 prototype is not treated as production.</p>
+        <div class="jp-finance-worker-grid" id="workerSourceList" aria-label="Original worker workbook codes"></div>
+        <div class="jp-finance-source-grid">
+          <article class="jp-finance-source-card">
+            <span class="jp-finance-code">W01-V2 · SEPARATE PROTOTYPE</span>
+            <h3>Worker W01 · v2 reference</h3>
+            <p>Compare against the original W01 before any promotion or replacement. No migration is authorized.</p>
+            <div class="jp-finance-actions"><button type="button" data-finance-source="W01-V2">Select prototype</button></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="panel jp-finance-sources" id="site-capture" aria-labelledby="captureSourcesTitle">
+        <span class="jp-finance-code">FN-01.S04 · SITE CAPTURE / INTAKE</span>
+        <h2 id="captureSourcesTitle">Site evidence and capture candidates</h2>
+        <p>Capture submissions are provisional evidence, not verified finance transactions. Review project mapping, source keys and human approval before any finance use.</p>
+        <div class="jp-finance-source-grid">
+          <article class="jp-finance-source-card"><span class="jp-finance-code">FN-C01 · GOOGLE SHEET · RESTRICTED</span><h3>FBL Site Engineer Capture Hub v0.1</h3><p>QA candidate; no automatic promotion to the spending ledger.</p><div class="jp-finance-actions"><button type="button" data-finance-source="FN-C01">Select private Sheet</button></div></article>
+          <article class="jp-finance-source-card"><span class="jp-finance-code">FN-C02 · GOOGLE SHEET · RESTRICTED</span><h3>Historical handwritten site log intake</h3><p>Historical evidence staging; preserve the original records.</p><div class="jp-finance-actions"><button type="button" data-finance-source="FN-C02">Select private Sheet</button></div></article>
+          <article class="jp-finance-source-card"><span class="jp-finance-code">FN-C03 · GOOGLE FORM · RESTRICTED</span><h3>Site evidence capture form</h3><p>Form intake, not a Google Sheet and not an approved payment source. Use the separately authorized form link.</p></article>
+        </div>
+      </section>
+
+      <section class="panel jp-finance-sources jp-finance-preview" id="sheet-viewer" aria-labelledby="sheetViewerTitle">
+        <span class="jp-finance-code">FN-01.S05 · PERMISSION-AWARE PREVIEW</span>
+        <h2 id="sheetViewerTitle">Google Sheet preview</h2>
+        <p>Choose a source code. For private workbooks, paste the Google Sheets link from your authorized Drive account. The link is used only in this browser session and is not saved in the repository, a form response or site storage. Google receives the preview request and enforces its own access permissions.</p>
+        <form id="financeSheetForm">
+          <label for="financeSheetCode">Source code<select id="financeSheetCode" required></select></label>
+          <label for="financeSheetUrl">Authorized Google Sheet URL<input id="financeSheetUrl" type="url" inputmode="url" autocomplete="off" placeholder="Paste authorized Google Sheet link"></label>
+          <div class="jp-finance-preview-actions"><button type="submit">Preview selected Sheet</button><button id="financeSheetClear" type="button">Clear preview</button></div>
+        </form>
+        <p class="jp-finance-preview-status" id="financeSheetStatus" role="status" aria-live="polite"></p>
+        <div class="jp-finance-preview-frame" id="financeSheetFrame" hidden>
+          <div class="jp-finance-frame-head"><strong>Google Sheets · access controlled</strong><a id="financeSheetOpen" href="#" target="_blank" rel="noopener noreferrer">Open in Google Sheets ↗</a></div>
+          <iframe id="financeSheetIframe" title="Google Sheets preview" loading="lazy" referrerpolicy="no-referrer" src="about:blank"></iframe>
+        </div>
       </section>
 
       <section class="panel">

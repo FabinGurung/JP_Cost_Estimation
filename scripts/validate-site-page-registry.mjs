@@ -15,7 +15,7 @@ assert.equal(pages.length,27,'Current milestone page count changed; update basel
 const departmentIds=new Set(manifest.departments.map(d=>d.id));
 assert.deepEqual([...departmentIds].sort(),['FN','MP','RT'],'Exactly three L1 departments');
 assert.deepEqual(manifest.navigation.primary,['RT-01','FN-01','MP-01']);
-assert.deepEqual(manifest.navigation.more,['OV-01','FN-02','FN-03','SY-01']);
+assert.deepEqual(manifest.navigation.more,['OV-01','FN-03','SY-01']);
 for(const p of pages){
   assert(departmentIds.has(p.department)||((p.id==='OV-01'||p.id==='SY-01')&&p.department===null),p.id+' unknown department');
   assert(/^[A-Z]{2}-\d\d$/.test(p.id),p.id+' invalid ID');
@@ -34,7 +34,7 @@ const nav=read('site-navigation-v0.8.js');
 for(const p of pages.filter(p=>p.navigation==='primary'||p.navigation==='more'))assert(nav.includes("'"+p.path+"'"),p.id+' missing shared navigation');
 assert(nav.includes('primarySections')&&nav.includes('moreSections'),'Missing primary/More split');
 assert.equal(pages.filter(p=>p.navigation==='primary').length,3,'Only three primary navigation pages');
-assert.equal(pages.filter(p=>p.navigation==='more').length,4,'Unexpected More menu');
+assert.equal(pages.filter(p=>p.navigation==='more').length,3,'Unexpected More menu');
 for(const p of pages){const seen=new Set();let node=p;while(node.parent){assert(!seen.has(node.id),'Parent cycle '+p.id);seen.add(node.id);node=pages.find(q=>q.id===node.parent);assert(node,'Broken parent '+p.id)}}
 for(const p of manifest.sharedAssets)assert(existsSync(new URL(p,root)),'Missing shared asset '+p);
 for(const d of manifest.dataAssets)assert(existsSync(new URL(d.path,root)),'Missing data '+d.path);

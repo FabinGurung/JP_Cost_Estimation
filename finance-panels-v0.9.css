@@ -1,0 +1,35 @@
+/* Finance department v0.9: child-page tabs and source review panels. */
+.jp-finance-tabs{display:flex;align-items:center;gap:8px;overflow-x:auto;scrollbar-width:thin;padding:11px max(18px,calc((100vw - 1440px)/2));background:#edf3ea;border-bottom:1px solid #cadbd0;font:700 13px/1.4 Inter,ui-sans-serif,system-ui,sans-serif}
+.jp-finance-tabs a{display:inline-flex;align-items:center;justify-content:center;min-height:38px;padding:9px 15px;border:1px solid #c9d9cd;border-radius:999px;background:#fffdf9;color:#23513e;text-decoration:none;white-space:nowrap}
+.jp-finance-tabs a:hover,.jp-finance-tabs a:focus-visible{outline:2px solid #a98146;outline-offset:2px}
+.jp-finance-tabs a[aria-current="page"],.jp-finance-tabs a[aria-current="location"]{background:#173f35;color:#fff;border-color:#173f35}
+.jp-finance-sources{margin-top:22px}
+.jp-finance-sources h2{margin:0 0 10px}
+.jp-finance-sources p{line-height:1.65}
+.jp-finance-sources .jp-finance-code{display:inline-block;font-size:11px;letter-spacing:.09em;text-transform:uppercase;font-weight:800;color:#567163;margin-bottom:6px}
+.jp-finance-source-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,270px),1fr));gap:13px;margin-top:18px}
+.jp-finance-source-card{padding:18px;border:1px solid #cbdcd0;background:#f9fcf8;border-radius:15px;min-width:0}
+.jp-finance-source-card h3{font-size:17px;line-height:1.4;margin:4px 0 8px;color:#173f35}
+.jp-finance-source-card p{font-size:13px;margin:7px 0;color:#496457}
+.jp-finance-source-card .jp-finance-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:13px}
+.jp-finance-source-card a,.jp-finance-source-card button,.jp-finance-worker button,.jp-finance-preview button,.jp-finance-preview a{display:inline-flex;align-items:center;justify-content:center;min-height:40px;padding:8px 13px;border:1px solid #a7c3b2;border-radius:10px;background:#fff;color:#205b41;text-decoration:none;font:700 13px/1.3 Inter,ui-sans-serif,system-ui,sans-serif;cursor:pointer}
+.jp-finance-source-card button:hover,.jp-finance-worker button:hover,.jp-finance-preview button:hover,.jp-finance-source-card a:hover,.jp-finance-preview a:hover{background:#e6f3e9}
+.jp-finance-worker-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:9px;margin:16px 0}
+.jp-finance-worker{display:flex;flex-direction:column;gap:7px;padding:11px;border:1px solid #cbdcd0;border-radius:12px;background:#f9fcf8}
+.jp-finance-worker strong{font-size:13px;color:#254938}
+.jp-finance-worker small{font-size:11px;color:#66786d}
+.jp-finance-preview form{display:grid;grid-template-columns:minmax(170px,1fr) minmax(220px,2fr);gap:12px;margin-top:16px}
+.jp-finance-preview label{display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:750;color:#254938}
+.jp-finance-preview input,.jp-finance-preview select{width:100%;min-height:44px;box-sizing:border-box;border:1px solid #a7bdb0;border-radius:10px;background:#fff;color:#173f35;padding:9px 11px;font:inherit}
+.jp-finance-preview .jp-finance-preview-actions{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:10px}
+.jp-finance-preview button[type="submit"]{background:#173f35;color:#fff}
+.jp-finance-preview-status{min-height:1.5em;font-size:13px;margin:12px 0;color:#355c49}
+.jp-finance-preview-frame{margin-top:14px;border:1px solid #b9cebd;border-radius:14px;overflow:hidden;background:#fff}
+.jp-finance-preview-frame iframe{display:block;width:100%;height:min(65vh,620px);min-height:340px;border:0;background:#fff}
+.jp-finance-preview-frame .jp-finance-frame-head{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px;background:#edf5ee}
+.jp-finance-preview [hidden]{display:none!important}
+@media(max-width:650px){.jp-finance-tabs{padding:10px 12px}.jp-finance-tabs a{font-size:12px;padding:8px 11px}.jp-finance-preview form{grid-template-columns:1fr}.jp-finance-source-card{padding:15px}}
+html[data-theme="dark"] .jp-finance-tabs{background:#1a362b;border-color:#40664f}
+html[data-theme="dark"] .jp-finance-source-card,html[data-theme="dark"] .jp-finance-worker{background:#233c31;border-color:#44654f}
+html[data-theme="dark"] .jp-finance-source-card h3,html[data-theme="dark"] .jp-finance-worker strong,html[data-theme="dark"] .jp-finance-preview label{color:#e3f4e6}
+html[data-theme="dark"] .jp-finance-source-card p,html[data-theme="dark"] .jp-finance-worker small{color:#c5d5ca}

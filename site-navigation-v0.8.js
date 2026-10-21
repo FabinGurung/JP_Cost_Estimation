@@ -8,7 +8,6 @@
   ];
   const moreSections = [
     ['home','Home','index.html'],
-    ['payments','Payment Dashboard','finance-dashboard.html'],
     ['field','Field Expense Guide','field-expense-guide.html'],
     ['system','System Map','system-map.html']
   ];
@@ -86,6 +85,26 @@
     skip.textContent = 'Skip to content';
     document.body.insertBefore(header,document.body.firstChild);
     document.body.insertBefore(skip,header);
+    if(department==='finance') {
+      const childNav=document.createElement('nav');
+      childNav.className='jp-finance-tabs';
+      childNav.setAttribute('aria-label','Finance pages');
+      const financePages=[
+        ['Overview','finance.html'],
+        ['Payment Dashboard','finance-dashboard.html'],
+        ['Source Panels','finance.html#finance-sources'],
+        ['Field Expense Guide','field-expense-guide.html']
+      ];
+      for(const [label,href] of financePages) {
+        const a=document.createElement('a');
+        a.href=href;
+        a.textContent=label;
+        if(href===file) a.setAttribute('aria-current','page');
+        else if(href==='finance.html#finance-sources' && file==='finance.html' && location.hash==='#finance-sources') a.setAttribute('aria-current','location');
+        childNav.appendChild(a);
+      }
+      document.body.insertBefore(childNav,header.nextSibling);
+    }
     const footer = document.createElement('footer');
     footer.id = 'jp-site-footer';
     const left = document.createElement('strong');
