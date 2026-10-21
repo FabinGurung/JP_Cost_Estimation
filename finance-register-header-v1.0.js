@@ -8,11 +8,11 @@
   const fmtCount = new Intl.NumberFormat('en-IN', { maximumFractionDigits: 0 });
   const money = value => value === null || value === undefined ? '—' : fmt.format(value);
   const views = [
-    { id: 'payments', title: '14_bishal_paija', note: 'All approved payment entries, in their original vendor-section order. The row number is a display index, not an internal entry ID.' },
-    { id: 'vendors', title: 'KKG_VENDOR_SUMMARY_AUTO', note: 'The same 27 vendor totals linked to the register. This is a derived view, not another set of payments.' },
-    { id: 'guide', title: '00_ENTRY_GUIDE', note: 'Public-safe operating guidance selected from the source guide. Internal setup links and restricted instructions are not published.' },
-    { id: 'context', title: '00_SITE_CONTEXT', note: 'Approved source identity, refresh status and public display rules. Internal system settings are omitted.' },
-    { id: 'enum', title: '_SYSTEM_ENUM', note: 'Public date and amount definitions only. Historical artifact identifiers and internal system references are omitted.' }
+    { id: 'payments', title: '14_bishal_paija', sheetId: 594059714, note: 'All approved payment entries, in their original vendor-section order. The row number is a display index, not an internal entry ID.' },
+    { id: 'vendors', title: 'KKG_VENDOR_SUMMARY_AUTO', sheetId: 770000027, note: 'The same 27 vendor totals linked to the register. This is a derived view, not another set of payments.' },
+    { id: 'guide', title: '00_ENTRY_GUIDE', sheetId: 1487204034, note: 'Public-safe operating guidance selected from the source guide. Internal setup links and restricted instructions are not published.' },
+    { id: 'context', title: '00_SITE_CONTEXT', sheetId: 1785179762, note: 'Approved source identity, refresh status and public display rules. Internal system settings are omitted.' },
+    { id: 'enum', title: '_SYSTEM_ENUM', sheetId: 1064748325, note: 'Public date and amount definitions only. Historical artifact identifiers and internal system references are omitted.' }
   ];
   const guide = [
     ['Live register', '14_bishal_paija is the editable payment register. This website is a read-only display.'],
@@ -132,6 +132,7 @@
     const search = $('fnS01Search'), vendor = $('fnS01Vendor'), calendar = $('fnS01Calendar');
     const limit = $('fnS01Limit'), vendorLabel = $('fnS01VendorLabel'), calendarLabel = $('fnS01CalendarLabel');
     const status = $('fnS01Status'), stats = $('fnS01Stats'), description = $('fnS01Description');
+    const tabTitle = $('fnS01TabTitle'), tabId = $('fnS01ActiveSheetId');
     const previous = $('fnS01Previous'), next = $('fnS01Next'), pager = $('fnS01Pager');
     const buttons = Array.from(root.querySelectorAll('[data-fn-s01-tab]'));
     if (!tableWrap || !panel || !search || !vendor || !calendar || !limit || !status || !buttons.length) return;
@@ -157,6 +158,8 @@
       const first = page * size;
       const visible = filtered.slice(first, first + size);
       description.textContent = view.note;
+      if (tabTitle) tabTitle.textContent = view.title;
+      if (tabId) tabId.textContent = String(view.sheetId);
       vendorLabel.hidden = !['payments', 'vendors'].includes(active);
       calendarLabel.hidden = active !== 'payments';
       for (const button of buttons) {
@@ -235,6 +238,17 @@
     }
     previous.addEventListener('click', () => { page--; render(); tableWrap.focus(); });
     next.addEventListener('click', () => { page++; render(); tableWrap.focus(); });
+    $('fnS01CopyTabId')?.addEventListener('click', async () => {
+      const view = views.find(item => item.id === active);
+      if (!view) return;
+      try {
+        if (!navigator.clipboard?.writeText) throw new Error('Clipboard unavailable');
+        await navigator.clipboard.writeText(String(view.sheetId));
+        setStatus('Worksheet ID copied: ' + view.title + '.');
+      } catch {
+        setStatus('Select the worksheet ID shown above to copy it.');
+      }
+    });
     $('fnS01CopyId')?.addEventListener('click', async () => {
       try {
         if (!navigator.clipboard?.writeText) throw new Error('Clipboard unavailable');

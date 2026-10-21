@@ -1,0 +1,51 @@
+{
+  "schema": "jp.finance.source-tab-metadata.v1",
+  "version": "1.1.0",
+  "sourceCode": "FN-S01",
+  "spreadsheetId": "1S1fkWzo6XGzyD3p92_pTG32zZ9fF3YICAv3HPTomZsE",
+  "sourceTitle": "KRISHNA_KUMAR_GUPTA__Payment_to_Project__HUMAN_WORKING__TEMPLATE_v1.1__20261009",
+  "observedOn": "2026-10-21",
+  "presentation": "Native Finance header, read-only",
+  "sourceTabCount": 9,
+  "visibleTabCount": 5,
+  "excludedHiddenTabCount": 4,
+  "excludedHiddenTabNamesPublished": false,
+  "tabs": [
+    {
+      "viewId": "payments",
+      "title": "14_bishal_paija",
+      "sheetId": 594059714,
+      "mode": "verified-payment-snapshot"
+    },
+    {
+      "viewId": "vendors",
+      "title": "KKG_VENDOR_SUMMARY_AUTO",
+      "sheetId": 770000027,
+      "mode": "derived-vendor-summary"
+    },
+    {
+      "viewId": "guide",
+      "title": "00_ENTRY_GUIDE",
+      "sheetId": 1487204034,
+      "mode": "approved-public-guidance"
+    },
+    {
+      "viewId": "context",
+      "title": "00_SITE_CONTEXT",
+      "sheetId": 1785179762,
+      "mode": "approved-public-context"
+    },
+    {
+      "viewId": "enum",
+      "title": "_SYSTEM_ENUM",
+      "sheetId": 1064748325,
+      "mode": "approved-public-definitions"
+    }
+  ],
+  "limitations": [
+    "No live Google Sheets synchronization",
+    "The guide, context and definitions are approved summaries, not verbatim worksheet mirrors",
+    "Four hidden operational worksheets and private metadata are excluded",
+    "The payment and vendor rows reuse the verified public snapshot; no Google Sheets edits"
+  ]
+}

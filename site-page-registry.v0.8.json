@@ -526,7 +526,8 @@
         "finance-panels-v0.9.css",
         "finance-source-panels-v0.9.js",
         "finance-register-header-v1.0.css",
-        "finance-register-header-v1.0.js"
+        "finance-register-header-v1.0.js",
+        "finance-sheet-meta-v1.1.json"
       ]
     },
     {

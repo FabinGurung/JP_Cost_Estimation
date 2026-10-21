@@ -58,3 +58,7 @@ The approved Google Sheet ID `1S1fkWzo6XGzyD3p92_pTG32zZ9fF3YICAv3HPTomZsE` is d
 The four hidden operational tabs and private fields are **not published** because the source workbook's `00_SITE_CONTEXT` explicitly excludes them. The last verified source snapshot is dated 2026-10-20; this is **not** a live Sheet connection. Existing `finance-public-snapshot.json` is reused without changing the underlying 27 vendors, 74 payment rows or amounts. No Google Sheet or Apps Script changes were made.
 
 Recovery point for this change: `snapshot/pre-fn-s01-native-header-20261021` at commit `9c87642068a7594d73f829716a4a2bafc86f2e83`.
+
+## FN-S01 worksheet IDs in the native header — 2026-10-21
+
+The Finance header now displays the selected visible source worksheet's immutable numeric `sheetId`, with a copy button. This supplements the approved payment data and vendor totals; it does not replace the native tables or load an external Sheet frame. The machine-readable `finance-sheet-meta-v1.1.json` records the five visible source tabs and their IDs. The source contains nine tabs in total, of which four hidden operational tabs are deliberately omitted from public metadata. The existing Finance header validator checks that the source IDs, visible tab names, clipboard action, and privacy exclusions agree. Recovery branch: `snapshot/pre-fn-s01-tab-metadata-20261021`.
