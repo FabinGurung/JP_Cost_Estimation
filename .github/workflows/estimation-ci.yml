@@ -76,6 +76,11 @@ jobs:
           node --check finance-source-panels-v0.9.js
           node scripts/validate-finance-panels-v0.9.mjs
 
+      - name: FN-S01 native Finance header and public source views
+        run: |
+          node --check finance-register-header-v1.0.js
+          node scripts/validate-finance-register-header-v1.0.mjs
+
       - name: Site page registry integrity
         run: |
           node --check scripts/validate-site-page-registry.mjs

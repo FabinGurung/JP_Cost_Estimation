@@ -1,0 +1,60 @@
+/* FN-S01 native read-only Sheet presentation, fully inside the Finance page header. */
+.topbar.jp-fn-s01-topbar{flex-wrap:wrap;align-items:flex-start}
+.jp-fn-s01{flex:1 0 100%;grid-column:1/-1;width:100%;min-width:0;box-sizing:border-box}
+.jp-fn-s01 details{border:1px solid #b8d1bd;border-radius:18px;overflow:hidden;background:#f7fbf6;color:#193c2e;box-shadow:0 10px 28px rgba(24,59,38,.06)}
+.jp-fn-s01 details>summary{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;cursor:pointer;padding:16px 18px;background:#e5f0e6;list-style:none}
+.jp-fn-s01 details>summary::-webkit-details-marker{display:none}
+.jp-fn-s01 .jp-fn-s01-headline{display:flex;align-items:center;flex-wrap:wrap;gap:8px;min-width:0}
+.jp-fn-s01 .jp-fn-s01-headline strong{font-size:15px;color:#163e30}
+.jp-fn-s01 .jp-fn-s01-kicker{font:800 11px/1.5 Inter,system-ui,sans-serif;letter-spacing:.08em;color:#4d6956}
+.jp-fn-s01 .jp-fn-s01-toggle{font:750 12px/1.4 Inter,system-ui,sans-serif;color:#245e40;white-space:nowrap}
+.jp-fn-s01 details[open] .jp-fn-s01-toggle::before{content:'− ';font-weight:900}
+.jp-fn-s01 details:not([open]) .jp-fn-s01-toggle::before{content:'+ ';font-weight:900}
+.jp-fn-s01 .jp-fn-s01-body{padding:16px 18px 19px}
+.jp-fn-s01 .jp-fn-s01-meta{display:flex;align-items:center;flex-wrap:wrap;gap:8px 14px;margin-bottom:14px}
+.jp-fn-s01 .jp-fn-s01-meta p{margin:0;color:#355848;font-size:12px;line-height:1.5}
+.jp-fn-s01 .jp-fn-s01-meta code{font-size:11px;overflow-wrap:anywhere;color:#164c37}
+.jp-fn-s01 button,.jp-fn-s01 select,.jp-fn-s01 input{font:inherit}
+.jp-fn-s01 .jp-fn-s01-small-button{min-height:36px;padding:7px 11px;border:1px solid #9ebca7;border-radius:9px;background:#fff;color:#245e40;cursor:pointer;font-size:12px;font-weight:750}
+.jp-fn-s01 .jp-fn-s01-small-button:hover,.jp-fn-s01 .jp-fn-s01-small-button:focus-visible{background:#e3f3e6;outline:2px solid #b68b52;outline-offset:2px}
+.jp-fn-s01 .jp-fn-s01-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin:0 0 16px}
+.jp-fn-s01 .jp-fn-s01-stat{border:1px solid #d0e1d2;background:#fff;border-radius:11px;padding:10px 12px}
+.jp-fn-s01 .jp-fn-s01-stat span{display:block;font-size:10px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:#567264}
+.jp-fn-s01 .jp-fn-s01-stat strong{display:block;margin-top:4px;font-size:clamp(14px,1.4vw,20px);font-variant-numeric:tabular-nums;color:#173e30}
+.jp-fn-s01 .jp-fn-s01-tabs{display:flex;gap:7px;overflow-x:auto;padding:0 0 11px;scrollbar-width:thin}
+.jp-fn-s01 .jp-fn-s01-tabs button{flex:0 0 auto;min-height:42px;padding:8px 13px;border:1px solid #b5cfba;border-radius:11px;background:#fff;color:#25503a;cursor:pointer;font-size:12px;font-weight:750}
+.jp-fn-s01 .jp-fn-s01-tabs button[aria-selected="true"]{background:#174e38;color:#fff;border-color:#174e38}
+.jp-fn-s01 .jp-fn-s01-tabs button:focus-visible{outline:3px solid #b68b52;outline-offset:2px}
+.jp-fn-s01 .jp-fn-s01-description{margin:2px 0 14px;font-size:12px;line-height:1.6;color:#526e5c}
+.jp-fn-s01 .jp-fn-s01-controls{display:flex;align-items:flex-end;flex-wrap:wrap;gap:10px;margin:12px 0}
+.jp-fn-s01 .jp-fn-s01-controls label{display:flex;flex-direction:column;gap:5px;flex:1 1 150px;min-width:0;color:#355745;font-size:11px;font-weight:800}
+.jp-fn-s01 .jp-fn-s01-controls label:first-child{flex:2 1 230px}
+.jp-fn-s01 .jp-fn-s01-controls input,.jp-fn-s01 .jp-fn-s01-controls select{width:100%;box-sizing:border-box;min-height:42px;padding:8px 10px;border:1px solid #a8c2ae;border-radius:9px;background:#fff;color:#1d4230;font-size:13px}
+.jp-fn-s01 .jp-fn-s01-table-wrap{max-width:100%;overflow-x:auto;overscroll-behavior-inline:contain;border:1px solid #cbdccd;border-radius:12px;background:#fff}
+.jp-fn-s01 .jp-fn-s01-table{width:100%;border-collapse:separate;border-spacing:0;min-width:680px;font-size:12px;line-height:1.5}
+.jp-fn-s01 .jp-fn-s01-table th,.jp-fn-s01 .jp-fn-s01-table td{padding:10px 11px;text-align:left;vertical-align:top;border-bottom:1px solid #e2eae3;white-space:normal;overflow-wrap:anywhere}
+.jp-fn-s01 .jp-fn-s01-table thead th{position:sticky;top:0;z-index:1;background:#dfeee1;color:#244936;font-size:11px;font-weight:800;white-space:nowrap}
+.jp-fn-s01 .jp-fn-s01-table tbody tr:nth-child(even){background:#f6faf6}
+.jp-fn-s01 .jp-fn-s01-table tbody tr:hover{background:#eaf4eb}
+.jp-fn-s01 .jp-fn-s01-table td.jp-fn-s01-numeric,.jp-fn-s01 .jp-fn-s01-table th.jp-fn-s01-numeric{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+.jp-fn-s01 .jp-fn-s01-table tfoot th,.jp-fn-s01 .jp-fn-s01-table tfoot td{background:#e4f0e5;color:#193f2d;font-weight:850;border-bottom:0}
+.jp-fn-s01 .jp-fn-s01-table.jp-fn-s01-text-table{min-width:530px}
+.jp-fn-s01 .jp-fn-s01-pager{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-top:12px}
+.jp-fn-s01 .jp-fn-s01-pager span{font-size:12px;color:#43634d}
+.jp-fn-s01 .jp-fn-s01-pager-actions{display:flex;gap:8px}
+.jp-fn-s01 button:disabled{opacity:.48;cursor:not-allowed}
+.jp-fn-s01 .jp-fn-s01-note{margin:14px 0 0;color:#506a59;font-size:12px;line-height:1.6}
+.jp-fn-s01 .jp-fn-s01-error{color:#9d3a29}
+.jp-fn-s01 [hidden]{display:none!important}
+@media(max-width:760px){.topbar.jp-fn-s01-topbar{gap:12px}.jp-fn-s01 .jp-fn-s01-stats{grid-template-columns:repeat(2,minmax(0,1fr))}.jp-fn-s01 .jp-fn-s01-body{padding:12px}.jp-fn-s01 details>summary{padding:13px}.jp-fn-s01 .jp-fn-s01-table{font-size:12px}.jp-fn-s01 .jp-fn-s01-table th,.jp-fn-s01 .jp-fn-s01-table td{padding:9px}}
+@media(max-width:430px){.jp-fn-s01 .jp-fn-s01-meta code{font-size:10px}.jp-fn-s01 .jp-fn-s01-stat strong{font-size:14px}.jp-fn-s01 .jp-fn-s01-controls label{flex-basis:100%}}
+html[data-theme="dark"] .jp-fn-s01 details{background:#18382b;color:#e9f3eb;border-color:#4c735a}
+html[data-theme="dark"] .jp-fn-s01 details>summary{background:#244b37}
+html[data-theme="dark"] .jp-fn-s01 .jp-fn-s01-headline strong,html[data-theme="dark"] .jp-fn-s01 .jp-fn-s01-meta code{color:#e5f4e7}
+html[data-theme="dark"] .jp-fn-s01 .jp-fn-s01-meta p,html[data-theme="dark"] .jp-fn-s01 .jp-fn-s01-description,html[data-theme="dark"] .jp-fn-s01 .jp-fn-s01-note,html[data-theme="dark"] .jp-fn-s01 .jp-fn-s01-pager span{color:#c5d9c8}
+html[data-theme="dark"] .jp-fn-s01 .jp-fn-s01-stat,html[data-theme="dark"] .jp-fn-s01 .jp-fn-s01-table-wrap{background:#1d3b2d;border-color:#496b51}
+html[data-theme="dark"] .jp-fn-s01 .jp-fn-s01-stat strong{color:#e7f4e7}
+html[data-theme="dark"] .jp-fn-s01 .jp-fn-s01-table th,html[data-theme="dark"] .jp-fn-s01 .jp-fn-s01-table td{border-color:#42614a}
+html[data-theme="dark"] .jp-fn-s01 .jp-fn-s01-table thead th,html[data-theme="dark"] .jp-fn-s01 .jp-fn-s01-table tfoot th,html[data-theme="dark"] .jp-fn-s01 .jp-fn-s01-table tfoot td{background:#315c42;color:#f1f9f0}
+html[data-theme="dark"] .jp-fn-s01 .jp-fn-s01-table tbody tr:nth-child(even){background:#234633}
+html[data-theme="dark"] .jp-fn-s01 .jp-fn-s01-table tbody tr:hover{background:#315d40}

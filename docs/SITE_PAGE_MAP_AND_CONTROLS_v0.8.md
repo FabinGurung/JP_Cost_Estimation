@@ -69,7 +69,7 @@ L3 references are assigned only where a stable DOM ID already exists. L4 codes a
 - **RT-03**: `RT-03.S01` = `#comparisonTable` (Rate comparison table)
 - **RT-04**: `RT-04.S01` = `#knownRatesView` (Known rate lookup)
 - **RT-05**: `RT-05.S01` = `#specContent` (Work specifications)
-- **FN-01**: `FN-01.S01` = `#financeContent` (Company finance records); `FN-01.S02` = `#finance-sources` (Company source panels); `FN-01.S03` = `#worker-records` (21 worker workbook codes); `FN-01.S04` = `#site-capture` (Capture candidates); `FN-01.S05` = `#sheet-viewer` (Permission-aware Google Sheet preview)
+- **FN-01**: `FN-01.S01` = `#financeContent` (Company finance records); `FN-01.S02` = `#finance-sources` (Company source panels); `FN-01.S03` = `#worker-records` (21 worker workbook codes); `FN-01.S04` = `#site-capture` (Capture candidates); `FN-01.S05` = `#sheet-viewer` (Permission-aware Google Sheet preview); `FN-01.S06` = `#fnS01Native` (Native FN-S01 register inside Finance header)
 - **FN-02**: `FN-02.S01` = `#vendor-ranking` (Vendor ranking); `FN-02.S02` = `#vendor-share` (Vendor share); `FN-02.S03` = `#date-activity` (Payment dates); `FN-02.S04` = `#qr-chart` (QR by vendor); `FN-02.S05` = `#discount-chart` (Discount by vendor); `FN-02.S06` = `#vendor-table` (Vendor table); `FN-02.S07` = `#payment-table` (Payment table); `FN-02.S08` = `#source-status` (Source status)
 - **FN-03**: `FN-03.S01` = `#start` (Start); `FN-03.S02` = `#fields` (Entry fields); `FN-03.S03` = `#example` (Example); `FN-03.S04` = `#receipt` (Receipt); `FN-03.S05` = `#questions` (Questions)
 - **MP-01**: `MP-01.S01` = `#poster-board` (Poster board); `MP-01.S02` = `#poster-filters` (Category filters); `MP-01.S03` = `#poster-search` (Poster search)
@@ -117,3 +117,7 @@ feature/* (many independent work branches)
 The Finance hub now groups 27 known Google Sheets into separate panels: three company workbooks, 21 original worker workbooks, one separate W01 v2 prototype and two capture/intake workbooks. A site capture Google Form is listed separately, not counted as a Sheet. Only the previously approved KKG working-register URL is stored in public website code. Private workbook links are entered temporarily by an authorized viewer, sent directly to Google and never stored by the website. Google Sheets permissions still govern previews. The rate source collections are kept distinct from Finance; no new rate Google Sheet is claimed without source verification.
 
 A recovery branch `snapshot/pre-finance-panels-20261021` preserves the pre-change publishing commit. See `docs/ARCHIVE_AND_RECOVERY_v0.9.md` and `docs/FINANCE_SOURCE_PANELS_v0.9.md`. Existing routes, data files and legacy redirects remain intact.
+
+## Finance native register header — 2026-10-21
+
+`FN-01.S06` is an expandable, default-open native table workspace **inside the `finance.html` topbar header**. The header visibly contains the FN-S01 source Sheet ID and five public-safe source views. It reuses the already verified `finance-public-snapshot.json`; it does not add a page, create a new data authority, change payment values or embed a live Google Sheet frame. Four hidden system tabs are excluded under the source workbook's own publication rules. Recovery branch: `snapshot/pre-fn-s01-native-header-20261021`.

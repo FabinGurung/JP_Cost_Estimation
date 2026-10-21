@@ -52,6 +52,11 @@ jobs:
           node scripts/validate-site-theme-v0.8.mjs
           node scripts/validate-finance-public.mjs
 
+      - name: FN-S01 native Finance header
+        run: |
+          node --check finance-register-header-v1.0.js
+          node scripts/validate-finance-register-header-v1.0.mjs
+
       - name: Site page registry integrity
         run: |
           node scripts/validate-site-page-registry.mjs

@@ -512,6 +512,11 @@
           "id": "FN-01.S05",
           "domId": "sheet-viewer",
           "title": "Permission-aware Sheet preview"
+        },
+        {
+          "id": "FN-01.S06",
+          "domId": "fnS01Native",
+          "title": "Native FN-S01 source workbook header"
         }
       ],
       "keyDependencies": [
@@ -519,7 +524,9 @@
         "finance-public-snapshot.json",
         "finance-context.json",
         "finance-panels-v0.9.css",
-        "finance-source-panels-v0.9.js"
+        "finance-source-panels-v0.9.js",
+        "finance-register-header-v1.0.css",
+        "finance-register-header-v1.0.js"
       ]
     },
     {
