@@ -492,12 +492,34 @@
           "id": "FN-01.S01",
           "domId": "financeContent",
           "title": "Company finance records"
+        },
+        {
+          "id": "FN-01.S02",
+          "domId": "finance-sources",
+          "title": "Company finance source panels"
+        },
+        {
+          "id": "FN-01.S03",
+          "domId": "worker-records",
+          "title": "Worker workbook directory"
+        },
+        {
+          "id": "FN-01.S04",
+          "domId": "site-capture",
+          "title": "Site evidence and capture"
+        },
+        {
+          "id": "FN-01.S05",
+          "domId": "sheet-viewer",
+          "title": "Permission-aware Sheet preview"
         }
       ],
       "keyDependencies": [
         "finance.js",
         "finance-public-snapshot.json",
-        "finance-context.json"
+        "finance-context.json",
+        "finance-panels-v0.9.css",
+        "finance-source-panels-v0.9.js"
       ]
     },
     {
@@ -508,7 +530,7 @@
       "title": "Public payment dashboard",
       "kind": "application",
       "status": "published",
-      "navigation": "more",
+      "navigation": "secondary",
       "sections": [
         {
           "id": "FN-02.S01",
@@ -738,7 +760,6 @@
     ],
     "more": [
       "OV-01",
-      "FN-02",
       "FN-03",
       "SY-01"
     ],
