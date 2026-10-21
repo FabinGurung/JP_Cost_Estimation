@@ -13,6 +13,8 @@
 
 <link rel="stylesheet" href="site-theme-v0.8.css">
 <link rel="stylesheet" href="finance-panels-v0.9.css">
+<link rel="stylesheet" href="finance-register-header-v1.0.css">
+<script src="finance-register-header-v1.0.js" defer></script>
 <script src="site-navigation-v0.8.js" defer></script>
 </head>
 <body>
@@ -46,7 +48,7 @@
   </div>
 </section>
 
-    <header class="topbar">
+    <header class="topbar jp-fn-s01-topbar">
       <div>
         <p class="eyebrow">JP CONSTRUCTION ESTIMATION / COMPANY WORKSPACES</p>
         <h1>Finance &amp; Project Payments</h1>
@@ -55,6 +57,48 @@
         <span class="status good">SOURCE-VERIFIED SUMMARY</span>
         <button id="themeToggle" type="button" class="btn theme-toggle" aria-label="Change appearance">Dark mode</button>
       </div>
+      <section class="jp-fn-s01" id="fnS01Native" aria-label="FN-S01 Google Sheet inside Finance header">
+        <details open>
+          <summary>
+            <span class="jp-fn-s01-headline"><span class="jp-fn-s01-kicker">FN-S01 · NATIVE SHEET VIEW</span><strong>Krishna Kumar Gupta — Payment to Project</strong></span>
+            <span class="jp-fn-s01-toggle">Show / hide register</span>
+          </summary>
+          <div class="jp-fn-s01-body">
+            <div class="jp-fn-s01-meta">
+              <p><strong>Google Sheet ID:</strong> <code id="fnS01SheetId">1S1fkWzo6XGzyD3p92_pTG32zZ9fF3YICAv3HPTomZsE</code></p>
+              <button class="jp-fn-s01-small-button" id="fnS01CopyId" type="button">Copy ID</button>
+              <p><strong>Snapshot verified:</strong> <time id="fnS01Verified">Loading…</time></p>
+              <p><a href="https://docs.google.com/spreadsheets/d/1S1fkWzo6XGzyD3p92_pTG32zZ9fF3YICAv3HPTomZsE/edit" target="_blank" rel="noopener noreferrer">Original editable Google Sheet ↗</a></p>
+            </div>
+            <div class="jp-fn-s01-stats" id="fnS01Stats" aria-label="Verified payment totals">
+              <div class="jp-fn-s01-stat"><span>Source data</span><strong>Loading…</strong></div>
+            </div>
+            <div class="jp-fn-s01-tabs" role="tablist" aria-label="FN-S01 visible source tabs">
+              <button type="button" role="tab" id="fnS01TabPayments" data-fn-s01-tab="payments" aria-controls="fnS01TablePanel" aria-selected="true">14_bishal_paija</button>
+              <button type="button" role="tab" id="fnS01TabVendors" data-fn-s01-tab="vendors" aria-controls="fnS01TablePanel" aria-selected="false" tabindex="-1">KKG_VENDOR_SUMMARY_AUTO</button>
+              <button type="button" role="tab" id="fnS01TabGuide" data-fn-s01-tab="guide" aria-controls="fnS01TablePanel" aria-selected="false" tabindex="-1">00_ENTRY_GUIDE</button>
+              <button type="button" role="tab" id="fnS01TabContext" data-fn-s01-tab="context" aria-controls="fnS01TablePanel" aria-selected="false" tabindex="-1">00_SITE_CONTEXT</button>
+              <button type="button" role="tab" id="fnS01TabEnum" data-fn-s01-tab="enum" aria-controls="fnS01TablePanel" aria-selected="false" tabindex="-1">_SYSTEM_ENUM</button>
+            </div>
+            <p class="jp-fn-s01-description" id="fnS01Description">Loading the approved payment rows from the existing verified website snapshot…</p>
+            <div class="jp-fn-s01-controls">
+              <label for="fnS01Search">Search within selected tab<input type="search" id="fnS01Search" autocomplete="off" placeholder="Vendor, date, payment, guidance…"></label>
+              <label id="fnS01VendorLabel" for="fnS01Vendor">Vendor / Purpose<select id="fnS01Vendor"><option value="">All vendors</option></select></label>
+              <label id="fnS01CalendarLabel" for="fnS01Calendar">Calendar<select id="fnS01Calendar"><option value="">AD and BS</option><option value="AD">AD only</option><option value="BS">BS only</option></select></label>
+              <label for="fnS01Limit">Rows per page<select id="fnS01Limit"><option value="15">15 rows</option><option value="30">30 rows</option><option value="all">Show all rows</option></select></label>
+            </div>
+            <div class="jp-fn-s01-table-wrap" id="fnS01TableScroll" tabindex="0" role="region" aria-label="Horizontally scrollable Sheet table">
+              <div id="fnS01TablePanel" role="tabpanel" aria-labelledby="fnS01TabPayments">Loading source snapshot…</div>
+            </div>
+            <div class="jp-fn-s01-pager">
+              <span id="fnS01Pager">Waiting for source data…</span>
+              <div class="jp-fn-s01-pager-actions"><button class="jp-fn-s01-small-button" id="fnS01Previous" type="button" disabled>← Previous</button><button class="jp-fn-s01-small-button" id="fnS01Next" type="button" disabled>Next →</button></div>
+            </div>
+            <p class="jp-fn-s01-note">Read-only website view inside Finance. All 74 approved payment rows and 27 vendor totals are available; the guide, context and definitions show approved public information. Four hidden workbook tabs and private operational fields are excluded. Updates require a verified manual refresh, not an automatic live connection.</p>
+            <p class="jp-fn-s01-note" id="fnS01Status" role="status" aria-live="polite">Loading the verified source snapshot…</p>
+          </div>
+        </details>
+      </section>
     </header>
 
     <section class="finance-main">
@@ -114,7 +158,7 @@
             <span class="jp-finance-code">FN-S01 · ROHINI · APPROVED PUBLIC SOURCE</span>
             <h3>Krishna Kumar Gupta — Payment to Project</h3>
             <p>Project 14 Bishal Paija. The existing payment dashboard uses a verified dated snapshot, not a live workbook connection.</p>
-            <div class="jp-finance-actions"><a href="https://docs.google.com/spreadsheets/d/1S1fkWzo6XGzyD3p92_pTG32zZ9fF3YICAv3HPTomZsE/edit" target="_blank" rel="noopener noreferrer">Open Google Sheet ↗</a><button type="button" data-finance-source="FN-S01">Preview Sheet</button></div>
+            <div class="jp-finance-actions"><a href="https://docs.google.com/spreadsheets/d/1S1fkWzo6XGzyD3p92_pTG32zZ9fF3YICAv3HPTomZsE/edit" target="_blank" rel="noopener noreferrer">Open Google Sheet ↗</a><a href="#fnS01Native">View inside Finance header ↑</a></div>
           </article>
           <article class="jp-finance-source-card">
             <span class="jp-finance-code">FN-S02 · ROHINI · ACCESS RESTRICTED</span>
