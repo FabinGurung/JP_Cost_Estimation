@@ -1,7 +1,6 @@
 /* Public-safe Finance source selector. Private workbook links are entered locally, never stored here. */
 (() => {
   'use strict';
-  const approved = 'https://docs.google.com/spreadsheets/d/1S1fkWzo6XGzyD3p92_pTG32zZ9fF3YICAv3HPTomZsE/edit';
   const pad = n => String(n).padStart(2,'0');
   const catalog = [
     {id:'FN-S01',label:'Rohini · Krishna Kumar Gupta payment register',public:true},
@@ -57,15 +56,15 @@
       card.append(name,note,button);
       workers.appendChild(card);
     }
-    function selectSource(code) {
+    function selectSource(code, focus = true) {
       if(!catalog.some(s=>s.id===code)) return;
       selector.value=code;
       entry.value='';
-      entry.placeholder=code==='FN-S01'?'Approved source link available':'Paste authorized Google Sheet link';
-      status.textContent=code+' selected. '+(code==='FN-S01'?'Use Preview to load the approved register.':'Paste the private Sheet URL from your authorized Drive account.');
+      entry.placeholder=code==='FN-S01'?'Use the native Finance header view':'Paste authorized Google Sheet link';
+      status.textContent=code+' selected. '+(code==='FN-S01'?'The approved register is available inside the Finance header above.':'Paste the private Sheet URL from your authorized Drive account.');
       frame.src='about:blank';
       frameWrap.hidden=true;
-      entry.focus();
+      if(focus) entry.focus();
     }
     for(const button of document.querySelectorAll('[data-finance-source]')) {
       button.addEventListener('click',()=>selectSource(button.getAttribute('data-finance-source')));
@@ -75,7 +74,18 @@
       event.preventDefault();
       const source=catalog.find(s=>s.id===selector.value);
       if(!source)return;
-      const input=entry.value.trim()||(source.public?approved:'');
+      if(source.id==='FN-S01') {
+        const native=document.getElementById('fnS01Native');
+        if(!native){status.textContent='Native FN-S01 register view is unavailable.';return;}
+        const details=native.querySelector('details');
+        if(details) details.open=true;
+        native.scrollIntoView({behavior:'smooth',block:'start'});
+        status.textContent='FN-S01 is shown natively in the Finance header, with no Google Sheets frame.';
+        frame.src='about:blank';
+        frameWrap.hidden=true;
+        return;
+      }
+      const input=entry.value.trim();
       if(!input){status.textContent='A private source URL is required. Nothing has been loaded.';frameWrap.hidden=true;return;}
       const target=safePreview(input);
       if(!target){status.textContent='Enter a valid https://docs.google.com/spreadsheets/d/... link.';frameWrap.hidden=true;return;}
@@ -91,7 +101,7 @@
       entry.value='';
       status.textContent='Preview cleared. No private source link is retained by this page.';
     });
-    selectSource('FN-S01');
+    selectSource('FN-S01', false);
   }
   if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',init,{once:true});
   else init();
