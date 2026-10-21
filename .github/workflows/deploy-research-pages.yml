@@ -37,6 +37,8 @@ jobs:
           node scripts/validate-site-page-registry.mjs
           node --check finance-source-panels-v0.9.js
           node scripts/validate-finance-panels-v0.9.mjs
+          node --check finance-register-header-v1.0.js
+          node scripts/validate-finance-register-header-v1.0.mjs
 
   deploy:
     needs: verify
