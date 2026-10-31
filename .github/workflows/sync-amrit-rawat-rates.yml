@@ -1,0 +1,68 @@
+name: Amrit Rawat rate Sheet to public Pages snapshot
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 0 * * *" # 06:02 Nepal Standard Time, UTC+5:45
+
+permissions:
+  contents: write
+
+concurrency:
+  group: amrit-rawat-rate-sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    # Read and write only the publishing research branch; never update main or A7.
+    if: github.ref == 'refs/heads/research/open-estimation-engine-v0.1'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout current publishing branch
+        uses: actions/checkout@v4
+        with:
+          ref: research/open-estimation-engine-v0.1
+          persist-credentials: true
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Validate current source-derived snapshot without credentials
+        run: node scripts/sync-amrit-rawat-rates.mjs --validate-current
+
+      - name: Validate private connector configuration without exposing it
+        id: config
+        env:
+          SOURCE_SHEET_ID: ${{ secrets.AMRIT_RAWAT_SHEET_ID }}
+          SA_JSON: ${{ secrets.GOOGLE_SHEETS_SERVICE_ACCOUNT_JSON }}
+        shell: bash
+        run: |
+          if [[ -n "$SOURCE_SHEET_ID" && -n "$SA_JSON" ]]; then
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+            echo "Google Sheets sync NOT CONFIGURED. Set AMRIT_RAWAT_SHEET_ID and GOOGLE_SHEETS_SERVICE_ACCOUNT_JSON secrets, and grant the service-account email Viewer permission to the source Sheet. Existing static snapshot preserved." >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Read authorized live Sheet and derive public-only snapshot
+        if: steps.config.outputs.ready == 'true'
+        env:
+          AMRIT_RAWAT_SHEET_ID: ${{ secrets.AMRIT_RAWAT_SHEET_ID }}
+          GOOGLE_SHEETS_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SHEETS_SERVICE_ACCOUNT_JSON }}
+        run: node scripts/sync-amrit-rawat-rates.mjs
+
+      - name: Commit validated derived snapshot and append-only publication history
+        if: steps.config.outputs.ready == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/sync-amrit-rawat-rates.mjs --validate-current
+          git add -- projects/rohini/ward-14/amrit-rawat/rates.public.json projects/rohini/ward-14/amrit-rawat/publication-history.jsonl
+          if git diff --cached --quiet; then
+            echo "Sheet parity: no change to the published snapshot" >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+          git -c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" commit -m "data(amrit-rawat): source-validated rate snapshot and lineage"
+          git push origin HEAD:research/open-estimation-engine-v0.1
+          echo "New governed derived snapshot committed. Existing research Pages deployment runs on branch push." >> "$GITHUB_STEP_SUMMARY"
