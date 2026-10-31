@@ -57,6 +57,9 @@ jobs:
           node --check finance.js
           node scripts/qa_kkg_finance_snapshot_v1.2.mjs
 
+      - name: Test direct source-to-Pages finance derivation offline
+        run: python3 scripts/build_finance_from_google_sheets.py --self-test
+
       - name: Finance public dashboard validation
         run: |
           node --check finance-dashboard.js
