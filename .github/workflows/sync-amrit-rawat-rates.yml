@@ -1,67 +1,76 @@
-name: Amrit Rawat rate Sheet to public Pages snapshot
-# Reusable source-synchronization job. The default branch's scheduled workflow calls it.
+name: Project assumptions · Amrit Rawat Sheet to Pages snapshot
+# Reusable job called by the default-branch scheduler; research branch is the
+# sole website source. Google service account obtains SHORT-LIVED tokens via WIF.
 on:
   workflow_call:
   workflow_dispatch:
 
 permissions:
   contents: write
+  id-token: write
 
 concurrency:
-  group: amrit-rawat-rate-sync
+  group: amrit-rawat-source-assumptions
   cancel-in-progress: false
 
 jobs:
-  sync:
-    # Called from default-branch scheduler; writes only research, never main or A7.
+  refresh-project-assumptions:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout current publishing branch
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           ref: research/open-estimation-engine-v0.1
-          persist-credentials: true
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: '20'
 
-      - name: Validate current source-derived snapshot without credentials
+      - name: Validate last published public-only project assumptions
         run: node scripts/sync-amrit-rawat-rates.mjs --validate-current
 
-      - name: Validate private connector configuration without exposing it
-        id: config
+      - name: Inspect authorized source connection without revealing IDs
+        id: access
         env:
-          SOURCE_SHEET_ID: ${{ secrets.AMRIT_RAWAT_SHEET_ID }}
-          SA_JSON: ${{ secrets.GOOGLE_SHEETS_SERVICE_ACCOUNT_JSON }}
+          SOURCE_ID: ${{ secrets.AMRIT_RAWAT_SHEET_ID }}
+          WIF_PROVIDER: ${{ vars.JP_GOOGLE_WORKLOAD_IDENTITY_PROVIDER }}
+          SERVICE_ACCOUNT: ${{ vars.JP_GOOGLE_SERVICE_ACCOUNT }}
         shell: bash
         run: |
-          if [[ -n "$SOURCE_SHEET_ID" && -n "$SA_JSON" ]]; then
-            echo "ready=true" >> "$GITHUB_OUTPUT"
+          if [[ -n "$SOURCE_ID" && -n "$WIF_PROVIDER" && -n "$SERVICE_ACCOUNT" ]]; then
+            echo 'connected=true' >> "$GITHUB_OUTPUT"
           else
-            echo "ready=false" >> "$GITHUB_OUTPUT"
-            echo "Google Sheets sync NOT CONFIGURED. Set AMRIT_RAWAT_SHEET_ID and GOOGLE_SHEETS_SERVICE_ACCOUNT_JSON secrets, and grant the service-account email Viewer permission to the source Sheet. Existing static snapshot preserved." >> "$GITHUB_STEP_SUMMARY"
+            echo 'connected=false' >> "$GITHUB_OUTPUT"
+            echo 'AMRIT RAWAT: NOT AUTHENTICATED / NOT REFRESHED. Existing dated static snapshot retained. Missing source ID secret or authorized keyless Workload Identity configuration.' >> "$GITHUB_STEP_SUMMARY"
           fi
 
-      - name: Read authorized live Sheet and derive public-only snapshot
-        if: steps.config.outputs.ready == 'true'
+      - name: Authenticate through existing keyless Google identity
+        if: steps.access.outputs.connected == 'true'
+        uses: google-github-actions/auth@v3
+        with:
+          workload_identity_provider: ${{ vars.JP_GOOGLE_WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ vars.JP_GOOGLE_SERVICE_ACCOUNT }}
+          create_credentials_file: true
+          export_environment_variables: true
+
+      - name: Derive from original one-ID Google Sheet read-only
+        if: steps.access.outputs.connected == 'true'
         env:
           AMRIT_RAWAT_SHEET_ID: ${{ secrets.AMRIT_RAWAT_SHEET_ID }}
-          GOOGLE_SHEETS_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SHEETS_SERVICE_ACCOUNT_JSON }}
-        run: node scripts/sync-amrit-rawat-rates.mjs
+        run: |
+          python3 -m pip install 'google-auth>=2,<3' 'requests>=2,<3'
+          node scripts/sync-amrit-rawat-rates.mjs
 
-      - name: Commit validated derived snapshot and append-only publication history
-        if: steps.config.outputs.ready == 'true'
+      - name: Verify and commit only version-approved derived data
+        if: steps.access.outputs.connected == 'true'
         shell: bash
         run: |
           set -euo pipefail
           node scripts/sync-amrit-rawat-rates.mjs --validate-current
           git add -- projects/rohini/ward-14/amrit-rawat/rates.public.json projects/rohini/ward-14/amrit-rawat/publication-history.jsonl
           if git diff --cached --quiet; then
-            echo "Sheet parity: no change to the published snapshot" >> "$GITHUB_STEP_SUMMARY"
+            echo 'AMRIT RAWAT: source authenticated; public snapshot unchanged, no publish commit.' >> "$GITHUB_STEP_SUMMARY"
             exit 0
           fi
-          git -c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" commit -m "data(amrit-rawat): source-validated rate snapshot and lineage"
+          git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m 'data(project/rohini/amrit-rawat): verified source version'
           git push origin HEAD:research/open-estimation-engine-v0.1
-          echo "New governed derived snapshot committed. Existing research Pages deployment runs on branch push." >> "$GITHUB_STEP_SUMMARY"
+          echo 'AMRIT RAWAT: authenticated source version checked, changes committed; Pages push deploy triggered.' >> "$GITHUB_STEP_SUMMARY"
