@@ -18,7 +18,7 @@ SOURCE_URL = "https://docs.google.com/spreadsheets/d/" + SOURCE_ID + "/edit"
 SOURCE_TAB = "14_bishal_paija"
 SUMMARY_TAB = "KKG_VENDOR_SUMMARY_AUTO"
 OUTPUT = Path(__file__).resolve().parents[1] / "finance-public-snapshot.json"
-DATE = re.compile(r"^\\d{4}(?:_\\d{2}_\\d{2}|-\\d{2}-\\d{2})$")
+DATE = re.compile(r"^\d{4}(?:_\d{2}_\d{2}|-\d{2}-\d{2})$")
 ERRORS = {"#REF!", "#N/A", "#VALUE!", "#ERROR!", "#DIV/0!", "#NAME?", "#NUM!"}
 
 
