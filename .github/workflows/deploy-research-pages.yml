@@ -42,6 +42,9 @@ jobs:
           node scripts/validate-site-page-registry.mjs
           node scripts/sync-amrit-rawat-rates.mjs --validate-current
           node scripts/validate-functional-domains.mjs
+          node --check templates/project-costing/v1/costing-pipeline.mjs
+          node --check templates/project-costing/v1/project-view.mjs
+          node scripts/qa-unified-costing.mjs
           node --check finance-source-panels-v0.9.js
           node scripts/validate-finance-panels-v0.9.mjs
           python3 scripts/build_finance_from_google_sheets.py --self-test
