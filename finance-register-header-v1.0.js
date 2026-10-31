@@ -107,7 +107,7 @@
             ['Identity', 'Google Sheet ID', SOURCE_ID],
             ['Source', 'Payment tab', data.source.register_tab],
             ['Source', 'Vendor summary tab', 'KKG_VENDOR_SUMMARY_AUTO'],
-            ['Publication', 'Website display', (data.publication_mode === 'github_actions_google_sheets' ? 'Read-only, GitHub Actions Sheets refresh verified' : 'Read-only, historical snapshot')],
+            ['Publication', 'Website display', (data.publication_mode === 'github_actions_google_sheets' ? 'Read-only, GitHub Actions Sheets refresh verified' : data.publication_mode === 'connected_google_sheet_verified_20261031' ? 'Read-only, source Sheet verified 2026-10-31' : 'Read-only, historical snapshot')],
             ['Publication', 'Last verified', data.verified_on],
             ['Publication', 'Approved fields', 'Company, project, vendor, source date, paid time, amount, QR and discount'],
             ['Publication', 'Not displayed', 'Hidden system tabs, internal entry IDs, edit timestamps, private account details and test entries'],
