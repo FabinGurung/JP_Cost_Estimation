@@ -1,7 +1,7 @@
 {
   "schema": "jp.site.page-registry.v1",
-  "version": "0.8.0",
-  "recorded": "2026-10-20",
+  "version": "0.8.1",
+  "recorded": "2026-10-31",
   "site": {
     "id": "JP",
     "name": "JP Cost Estimation",
@@ -680,6 +680,26 @@
         "branch-map.js"
       ],
       "utility": true
+    },
+    {
+      "id": "RT-22",
+      "department": "RT",
+      "parent": "RT-01",
+      "path": "projects/rohini/ward-14/amrit-rawat/index.html",
+      "title": "Amrit Rawat — Ward 14 construction rates",
+      "kind": "detail",
+      "status": "published",
+      "navigation": "secondary",
+      "sections": [
+        {
+          "id": "RT-22.S01",
+          "domId": "amritRateView",
+          "title": "Amrit Rawat rate register"
+        }
+      ],
+      "keyDependencies": [
+        "projects/rohini/ward-14/amrit-rawat/rates.public.json"
+      ]
     }
   ],
   "dataAssets": [

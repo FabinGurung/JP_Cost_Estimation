@@ -35,6 +35,7 @@ jobs:
           node scripts/validate-finance-public.mjs
           node scripts/validate-site-theme-v0.8.mjs
           node scripts/validate-site-page-registry.mjs
+          node scripts/sync-amrit-rawat-rates.mjs --validate-current
           node --check finance-source-panels-v0.9.js
           node scripts/validate-finance-panels-v0.9.mjs
           node --check finance-register-header-v1.0.js
