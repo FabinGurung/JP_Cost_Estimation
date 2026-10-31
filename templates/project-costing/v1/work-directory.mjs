@@ -1,10 +1,11 @@
 /** Client-side filter; work category names are shared with the fixed work catalog. */
-const query=document.getElementById('workQuery');
-const group=document.getElementById('workGroup');
-const count=document.getElementById('workCount');
-const none=document.getElementById('workNone');
-const cards=[...document.querySelectorAll('[data-work-card]')];
-const sections=[...document.querySelectorAll('[data-work-section]')];
+const doc=typeof document==='undefined'?null:document;
+const query=doc?.getElementById('workQuery');
+const group=doc?.getElementById('workGroup');
+const count=doc?.getElementById('workCount');
+const none=doc?.getElementById('workNone');
+const cards=[...(doc?.querySelectorAll('[data-work-card]')||[])];
+const sections=[...(doc?.querySelectorAll('[data-work-section]')||[])];
 export const matchesWork=(workName,workGroup,search,selectedGroup)=>(
  (selectedGroup==='all'||selectedGroup===workGroup)&&
  workName.toLocaleLowerCase().includes(search.trim().toLocaleLowerCase())
