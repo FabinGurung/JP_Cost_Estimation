@@ -15,6 +15,7 @@ const links=[
 ];
 const extras=[
 ['reference','References & Docs','reference.html'],
+['literature','Research & Standards','literature-review.html'],
 ['system','System & Governance','governance.html'],
 ['posters','Memory Posters','memory-posters.html'],
 ['field','Site Expense Guide','field-expense-guide.html']
@@ -23,9 +24,9 @@ const url=href=>new URL(href,root).href;
 function department(){
 if(path==='index.html')return 'home';
 if(path.startsWith('projects/')||path==='projects.html')return 'projects';
-if(path==='measurements-boq.html')return 'measurements';
+if(path==='measurements-boq.html'||path==='calculation-workspace.html')return 'measurements';
 if(path==='finance.html'||path==='finance-dashboard.html'||path==='field-expense-guide.html')return 'finance';
-if(path==='reference.html'||path==='memory-posters.html')return 'reference';
+if(path==='reference.html'||path==='memory-posters.html'||path==='literature-review.html')return 'reference';
 if(path==='governance.html'||path==='system-map.html'||path.startsWith('custody/'))return 'system';
 return 'rates';
 }
