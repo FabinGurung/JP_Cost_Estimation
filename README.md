@@ -1,3 +1,44 @@
+# JP Cost Estimation · Functional Architecture v1.0 (2026-10-31)
+
+**Current authority:** A9 source-preserving architecture. **Public website:** https://fabingurung.github.io/JP_Cost_Estimation/ . **Publishing branch:** `research/open-estimation-engine-v0.1`. Original `main` homeowner estimator and historical releases are retained.
+
+## Functional site departments
+
+| Department | Owner subject | Public route |
+| --- | --- | --- |
+| Home | Overview, navigation, legacy rate-analysis workbench | `index.html` |
+| Rates | Reusable rates, market observations, government sources, specifications and rate analysis | `rate-sources.html` |
+| Projects | Organization and client-specific scope, rate assumptions, QTO readiness, BOQ, AOC and comparisons | `projects.html` |
+| Measurements & BOQ | Measurement methods, blocked CAD/FID handoff template and BOQ/AOC directory | `measurements-boq.html` |
+| Finance | Recorded source-Sheet payments, site expense and finance dashboards | `finance.html` |
+| References | Technical references, provenance and memory posters | `reference.html` |
+| System | Source directory, GitHub Actions, release, routes and custody | `governance.html` |
+
+The `site-page-registry.v0.8.json` **filename remains for backward-compatible machine consumers**; its schema is `jp.site.page-registry.v1` and its current functional map version is `1.0.0`.
+
+### Client example: Amrit Rawat / Pokhara Ward 14
+
+`projects/rohini/ward-14/amrit-rawat/index.html` is now the **project overview**. The old rate display is preserved verbatim in functional terms under `cost-planning.html`, still referencing the original 32 rate alternatives (14 plinth, 12 site trade, 6 wage) in `rates.public.json`. The old registry identity `RT-22` is a historic alias to `PJ-02`, never reallocated. No public route was deleted.
+
+The original Rohini Google Sheet has one permanent LIVE ID. Source prices remain `USER_SUPPLIED_UNVERIFIED`. The site reports missing measured quantities as `NOT_MEASURED_PENDING`, BOQ as blocked, AOC as blocked and actual-finance crosswalk as not verified. No speculative cost totals are generated.
+
+### Calculation and source safety
+
+- CAD repository or verified measurement source owns geometry, drawing revision, source FIDs and quantities. `boq-template.json` stays `BLOCKED_PENDING_VERIFIED_CAD_FID_DATA`.
+- This repository owns unit-cost calculation rules, schema validation, domain restrictions and derived public snapshots.
+- `project-cost-engine.mjs` rejects missing/unverified quantities, unapproved rate selection, mismatched units, incompatible package overlap, labour-only vs material-and-labour combinations and missing approved allowances.
+- Project rate assumptions are NOT reusable government or district rate standards, measured BOQ, or actual financial transactions.
+- Finance retains separately authorized original Google Sheets (Rohini/Fishtail are not merged); the current Pages deployment can perform a finance source refresh if Google authentication is available. A Pages success alone does not prove an authenticated Sheets refresh.
+- A separate reusable Amrit source sync, invoked from `main` on schedule, uses keyless Workload Identity and short-lived Google read-only credentials. Without private source ID secret/WIF permissions, it holds the previous dated snapshot. No service-account key must be committed or exposed.
+
+### Restoration, QA and status
+
+Pre-change restoration ref: `snapshot/pre-functional-ia-a9-20261031`. Run `node scripts/validate-site-page-registry.mjs` and `node scripts/validate-functional-domains.mjs` in addition to existing finance and rates regressions. `research-preview-pages.yml` is now a **manual-only historical QA** workflow (automatic duplication retired). Only `deploy-research-pages.yml` owns active Pages deployment.
+
+## Historical preserved documentation follows
+
+---
+
 # JP Cost & Rate Intelligence — v0.5.0-alpha (scoped research)
 
 **Current scope:** a transparent Nepal-oriented **Rate Library** and **Rate Analysis** engine.
