@@ -1,0 +1,99 @@
+{
+  "schema": "jp.project-costing.master-template.v1",
+  "version": "V000001",
+  "templateId": "JP-COSTING-MEAS-BOQ-AOC-V1",
+  "status": "APPROVED_FOR_SCHEMA_REUSE_NOT_FOR_BILL_APPROVAL",
+  "owner": "JP_Cost_Estimation",
+  "sourceRule": "One original Sheet ID per project/subject if maintained as Sheet; CAD/verified measurement export owns geometry",
+  "sections": [
+    {
+      "id": "measurements",
+      "title": "Measurement Book / QTO",
+      "grain": "one measured instance or line per evidence-backed element/location and revision",
+      "required": [
+        "measurementId",
+        "projectId",
+        "organizationId",
+        "workId",
+        "workItemId",
+        "locationOrGrid",
+        "quantity",
+        "unit",
+        "measurementMethod",
+        "sourceEvidenceId",
+        "sourceRevision",
+        "verificationStatus"
+      ],
+      "status": "NOT_MEASURED_PENDING"
+    },
+    {
+      "id": "boq",
+      "title": "Bill of Quantities",
+      "grain": "group measured rows by work-item + unit + approved rate selection + scope",
+      "required": [
+        "projectId",
+        "workItemId",
+        "quantity",
+        "unit",
+        "rateId",
+        "rateVersion",
+        "amountNpr",
+        "measurementIds",
+        "approvalStatus"
+      ],
+      "formula": "SUM(verified eligible measured quantities) × approved unit rate",
+      "status": "BLOCKED_PENDING_MEASUREMENTS"
+    },
+    {
+      "id": "aoc",
+      "title": "Abstract of Cost",
+      "grain": "summarize approved BOQ groups, with distinct allowances, contingency, taxes and exclusions",
+      "required": [
+        "projectId",
+        "boqVersion",
+        "groupSubtotals",
+        "allowances",
+        "taxTreatment",
+        "contingency",
+        "grandTotalNpr",
+        "approvalStatus"
+      ],
+      "formula": "SUM(approved BOQ group amounts) + authorized allowances + contingency + applicable taxes",
+      "status": "BLOCKED_PENDING_BOQ"
+    }
+  ],
+  "billingExtensions": [
+    {
+      "id": "contractor-running-bills",
+      "title": "Contractor Running Account Bills",
+      "grain": "one contractor/project/contract period and cumulative certified quantity per line",
+      "status": "NO_CERTIFIED_CLAIMS",
+      "authority": "Certified measurement book + signed contract + previous certificates"
+    },
+    {
+      "id": "vendor-invoices",
+      "title": "Vendor Invoices",
+      "grain": "one invoice with separate item/receipt/PO matching",
+      "status": "NO_VERIFIED_INVOICES",
+      "authority": "Original vendor invoice + purchase order + delivery receipt"
+    },
+    {
+      "id": "payment-reconciliation",
+      "title": "Actual Payments",
+      "grain": "one payment transaction allocated to verified invoice or contractor certificate",
+      "status": "NO_VERIFIED_PAYMENT_MAPPINGS",
+      "authority": "Original finance Google Sheet"
+    }
+  ],
+  "rules": [
+    "A rate alternative is not a measured quantity",
+    "Do not use zero for missing quantities, bills or money",
+    "Do not combine turnkey with covered trade components",
+    "Do not combine labour-only and inclusive alternatives",
+    "Previous certified cumulative quantities must not exceed current cumulative",
+    "Claimed is not certified; certified is not paid",
+    "Vendor invoice is not payment",
+    "Every derived row must preserve source IDs, method, revision and approval state",
+    "Public Pages contains only approved sanitized projections, never credentials or private attachments"
+  ]
+}
