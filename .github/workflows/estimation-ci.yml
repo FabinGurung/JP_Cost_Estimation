@@ -89,6 +89,7 @@ jobs:
           node --check scripts/validate-site-page-registry.mjs
           node scripts/validate-site-page-registry.mjs
           node scripts/sync-amrit-rawat-rates.mjs --validate-current
+          node scripts/validate-functional-domains.mjs
 
       - name: Public-site secret pattern check
         shell: bash
