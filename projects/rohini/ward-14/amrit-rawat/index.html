@@ -92,7 +92,7 @@ td.rate{font-weight:750;white-space:nowrap;color:#143f2f}
 (()=>{
 'use strict';
 const prefix='../../../../';
-document.addEventListener('DOMContentLoaded',()=>{
+window.addEventListener('load',()=>{
   document.querySelectorAll('#jp-site-masthead a,#jp-site-footer a').forEach(a=>{
     const h=a.getAttribute('href');
     if(h && !h.startsWith('#') && !/^(?:https?:|\/)/i.test(h)) a.setAttribute('href',prefix+h);
