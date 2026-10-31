@@ -52,7 +52,9 @@ for (const excluded of ['Archive_14_bishal_paija', '_TABLE_INDEX', '_AUDIT_LOG',
   assert(!JSON.stringify(sheetMeta).includes(excluded), 'Restricted tab metadata published');
 }
 
-assert(header.includes('live workbook tab inventory has since changed'), 'Historical-vs-live tab inventory disclaimer missing');\nassert.equal(sheetMeta.inventoryStatus,'HISTORICAL_APPROVED_SUBSET_NOT_CURRENT_LIVE_TAB_INVENTORY','Missing live inventory drift hold');\nassert.equal(sheetMeta.lastObservedLiveTabCount,12,'Latest live workbook tab inventory not recorded');
+assert(header.includes('live workbook tab inventory has since changed'), 'Historical-vs-live tab inventory disclaimer missing');
+assert.equal(sheetMeta.inventoryStatus,'HISTORICAL_APPROVED_SUBSET_NOT_CURRENT_LIVE_TAB_INVENTORY','Missing live inventory drift hold');
+assert.equal(sheetMeta.lastObservedLiveTabCount,12,'Latest live workbook tab inventory not recorded');
 assert(header.includes('read-only') || header.includes('Read-only'), 'Source must be read-only');
 assert(html.includes('finance-register-header-v1.0.css') && html.includes('finance-register-header-v1.0.js'), 'Native header assets missing');
 assert(css.includes('overflow-x:auto') && css.includes('@media(max-width:760px)'), 'Tablet-friendly scrolling missing');
