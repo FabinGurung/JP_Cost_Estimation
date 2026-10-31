@@ -61,7 +61,7 @@ assert.ok(companyScript.includes("fetch('finance-public-snapshot.json'"));
 assert.ok(script.includes("fetch('finance-public-snapshot.json'"));
 assert.equal(context.publication.public_snapshot, 'finance-public-snapshot.json');
 assert.equal(context.publication.website_page, 'finance-dashboard.html');
-assert.equal(context.publication.mode, 'manual_on_request');
-assert.equal(context.rules.no_trigger_install, true);
+assert.equal(context.publication.mode, 'actions_deployment_refresh');
+assert.equal(context.rules.no_trigger_install, false);
 console.log('Finance publication checks passed:', snapshot.vendors.length, 'vendors,',
   snapshot.payments.length, 'payments, NPR', snapshot.totals.amount_npr);
