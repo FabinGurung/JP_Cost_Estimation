@@ -97,7 +97,7 @@ const status=document.getElementById('rateStatus');
 const family=document.getElementById('rateFamily');
 const search=document.getElementById('rateSearch');
 const npr=n=>new Intl.NumberFormat('en-NP',{maximumFractionDigits:0}).format(n);
-let all=[];
+let all=[];let sourceDate=null;
 const cell=(tr,s,klass)=>{
   const td=document.createElement('td');
   td.textContent=String(s??'');
@@ -120,7 +120,7 @@ function display(){
     cell(tr,r.notes||r.scope||'');
     tbody.appendChild(tr);
   }
-  status.textContent=filtered.length+' of '+all.length+' assumptions · Source snapshot V000001; indicative, not independently verified';
+  status.textContent=filtered.length+' of '+all.length+' assumptions · Source-snapshot date '+(sourceDate||'unverified')+' · Not a live Sheet read';
 }
 async function load(){
   try{
@@ -128,11 +128,12 @@ async function load(){
     if(!response.ok)throw Error('HTTP '+response.status);
     const doc=await response.json();
     if(doc.schema!=='jp.client-rate-snapshot.v1'||!Array.isArray(doc.rates)||doc.rates.length!==32||doc.rates.some(r=>!Number.isFinite(r.minNpr)||!Number.isFinite(r.maxNpr)||r.maxNpr<r.minNpr))throw Error('Snapshot validation failed');
-    all=doc.rates;
+    all=doc.rates;sourceDate=doc.recordedDateNpt||null;
     document.getElementById('plinthCount').textContent=String(all.filter(r=>r.category==='plinth').length);
     document.getElementById('tradeCount').textContent=String(all.filter(r=>r.category==='trade').length);
     document.getElementById('wageCount').textContent=String(all.filter(r=>r.category==='daily_wage').length);
-    document.getElementById('rateVersion').textContent=doc.version;\n    status.textContent='Snapshot '+(doc.recordedDateNpt||'undated')+' · not a live browser Sheet connection';
+    document.getElementById('rateVersion').textContent=doc.version;
+    status.textContent='Snapshot '+(doc.recordedDateNpt||'undated')+' · not a live browser Sheet connection';
     display();
   }catch(err){status.textContent='Rates temporarily unavailable: '+err.message+' · No fallback or invented values shown.';}
 }
