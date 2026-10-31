@@ -1,9 +1,6 @@
-name: Validate Research Estimator Preview
+name: Historical manual research preview tests (retired auto-trigger)
 
 on:
-  push:
-    branches:
-      - research/open-estimation-engine-v0.1
   workflow_dispatch:
 
 permissions:

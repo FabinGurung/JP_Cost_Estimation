@@ -1,0 +1,84 @@
+{
+  "schema": "jp.project-estimation-state.v1",
+  "projectId": "RE-AMRIT-RAWAT-W14",
+  "projectKey": "rohini/pokhara/ward-14/amrit-rawat",
+  "organization": "Rohini Engineering and Builders Pvt. Ltd.",
+  "client": "Amrit Rawat",
+  "location": "Pokhara Ward 14",
+  "stage": "COST_PLANNING_ONLY",
+  "sourceRecords": [
+    {
+      "kind": "client_rate_assumptions",
+      "authority": "One existing live Google Sheet in original Rohini Ward 14 Drive folder",
+      "status": "SOURCE_READBACK_VERIFIED_RATES_UNVERIFIED",
+      "count": 32,
+      "sourceReference": "RE-RATE-AMRIT-RAWAT-001",
+      "publicSnapshot": "rates.public.json",
+      "sourceVersion": "V000001"
+    },
+    {
+      "kind": "architectural_structural_drawings",
+      "authority": "Original CAD repository / approved drawing",
+      "status": "NOT_LINKED_OR_VERIFIED",
+      "sourceReference": null
+    },
+    {
+      "kind": "measurement_qto",
+      "authority": "Verified CAD/FID export or source-backed measurement register",
+      "status": "NOT_MEASURED_PENDING",
+      "sourceReference": null
+    },
+    {
+      "kind": "boq",
+      "authority": "Project BOQ derived from verified QTO and approved compatible unit rates",
+      "status": "BLOCKED_PENDING_VERIFIED_QTO",
+      "sourceReference": null
+    },
+    {
+      "kind": "cost_abstract",
+      "authority": "Sum eligible verified BOQ groups plus approved allowances",
+      "status": "BLOCKED_PENDING_VERIFIED_BOQ",
+      "sourceReference": null
+    },
+    {
+      "kind": "actual_finance",
+      "authority": "Rohini original payment/expense Google Sheets, mapped to this project",
+      "status": "NO_VERIFIED_PROJECT_WORK_MAPPING",
+      "sourceReference": null
+    }
+  ],
+  "measurement": {
+    "status": "NOT_MEASURED_PENDING",
+    "sourceCadCommit": null,
+    "sourceDrawingRevision": null,
+    "exportSha256": null,
+    "items": [],
+    "quantityTotal": null
+  },
+  "boq": {
+    "status": "BLOCKED_PENDING_VERIFIED_QTO_AND_RATE_SELECTION",
+    "items": [],
+    "amountNpr": null
+  },
+  "aoc": {
+    "status": "BLOCKED_PENDING_VERIFIED_BOQ",
+    "subtotalNpr": null,
+    "contingencyNpr": null,
+    "totalNpr": null,
+    "allowances": [],
+    "exclusions": []
+  },
+  "estimateVsActual": {
+    "status": "NOT_AVAILABLE_PENDING_MATCHED_BOQ_AND_FINANCE",
+    "estimatedNpr": null,
+    "actualNpr": null,
+    "varianceNpr": null
+  },
+  "riskFlags": [
+    "Client-supplied price ranges are indicative and not approved tender rates.",
+    "Turnkey and grey civil rate packages cannot be stacked with overlapping trades.",
+    "Labour-only and material-plus-labour values are alternatives.",
+    "Paint wall area 3.5x plinth is an approximation, not site measurement."
+  ],
+  "publicPrivacy": "No private Sheet identifier or payment detail is included."
+}

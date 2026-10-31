@@ -1,6 +1,6 @@
 {
   "schema": "jp.site.page-registry.v1",
-  "version": "0.8.1",
+  "version": "1.0.0",
   "recorded": "2026-10-31",
   "site": {
     "id": "JP",
@@ -14,7 +14,9 @@
     "publishedMilestone": "v0.8.0",
     "formalTagAtInventory": "v0.8.0",
     "latestFormalRelease": "v0.8.0",
-    "sourceAuthority": "Google Sheets for finance, distinct source families for rates"
+    "sourceAuthority": "Google Sheets for finance, distinct source families for rates",
+    "version": "1.0.0",
+    "description": "Functional construction costing: Rates | Projects | QTO/BOQ | Finance | Reference | System"
   },
   "levels": [
     {
@@ -56,21 +58,39 @@
   "departments": [
     {
       "id": "RT",
-      "name": "Rates",
+      "name": "Rate Intelligence",
       "parent": "JP",
       "primaryPage": "RT-01"
     },
     {
+      "id": "PJ",
+      "name": "Client Projects",
+      "parent": "JP",
+      "primaryPage": "PJ-01"
+    },
+    {
+      "id": "BQ",
+      "name": "Measurement & BOQ",
+      "parent": "JP",
+      "primaryPage": "BQ-01"
+    },
+    {
       "id": "FN",
-      "name": "Finance",
+      "name": "Recorded Finance",
       "parent": "JP",
       "primaryPage": "FN-01"
     },
     {
-      "id": "MP",
-      "name": "Memory Posters",
+      "id": "RF",
+      "name": "Reference & Documentation",
       "parent": "JP",
-      "primaryPage": "MP-01"
+      "primaryPage": "RF-01"
+    },
+    {
+      "id": "SY",
+      "name": "System & Governance",
+      "parent": "JP",
+      "primaryPage": "SY-02"
     }
   ],
   "sharedAssets": [
@@ -90,7 +110,7 @@
       "title": "Overview / rate workbench",
       "kind": "hub",
       "status": "published",
-      "navigation": "more",
+      "navigation": "primary",
       "sections": [
         {
           "id": "OV-01.S01",
@@ -630,13 +650,13 @@
     },
     {
       "id": "MP-01",
-      "department": "MP",
-      "parent": null,
+      "department": "RF",
+      "parent": "RF-01",
       "path": "memory-posters.html",
       "title": "Memory Posters",
       "kind": "application",
       "status": "published",
-      "navigation": "primary",
+      "navigation": "more",
       "sections": [
         {
           "id": "MP-01.S01",
@@ -662,13 +682,13 @@
     },
     {
       "id": "SY-01",
-      "department": null,
-      "parent": null,
+      "department": "SY",
+      "parent": "SY-02",
       "path": "system-map.html",
       "title": "System map",
       "kind": "application",
       "status": "published",
-      "navigation": "more",
+      "navigation": "secondary",
       "sections": [
         {
           "id": "SY-01.S01",
@@ -682,23 +702,167 @@
       "utility": true
     },
     {
-      "id": "RT-22",
-      "department": "RT",
-      "parent": "RT-01",
+      "id": "PJ-02",
+      "department": "PJ",
+      "parent": "PJ-01",
       "path": "projects/rohini/ward-14/amrit-rawat/index.html",
-      "title": "Amrit Rawat — Ward 14 construction rates",
-      "kind": "detail",
+      "title": "Amrit Rawat — project overview",
+      "kind": "project_hub",
       "status": "published",
       "navigation": "secondary",
       "sections": [
         {
-          "id": "RT-22.S01",
+          "id": "PJ-02.S01",
+          "domId": "amritProject",
+          "title": "Project cost planning overview"
+        }
+      ],
+      "keyDependencies": [
+        "projects/rohini/ward-14/amrit-rawat/project-state.json"
+      ],
+      "legacyId": "RT-22"
+    },
+    {
+      "id": "PJ-01",
+      "department": "PJ",
+      "parent": null,
+      "path": "projects.html",
+      "title": "Projects",
+      "kind": "hub",
+      "status": "published",
+      "navigation": "primary",
+      "sections": [
+        {
+          "id": "PJ-01.S01",
+          "domId": "projectsDirectory",
+          "title": "Projects"
+        }
+      ],
+      "keyDependencies": [
+        "department-pages.css"
+      ]
+    },
+    {
+      "id": "PJ-03",
+      "department": "PJ",
+      "parent": "PJ-02",
+      "path": "projects/rohini/ward-14/amrit-rawat/cost-planning.html",
+      "title": "Cost Planning / Rate Assumptions",
+      "kind": "project_detail",
+      "status": "published",
+      "navigation": "secondary",
+      "sections": [
+        {
+          "id": "PJ-03.S01",
           "domId": "amritRateView",
-          "title": "Amrit Rawat rate register"
+          "title": "Cost Planning / Rate Assumptions"
         }
       ],
       "keyDependencies": [
         "projects/rohini/ward-14/amrit-rawat/rates.public.json"
+      ]
+    },
+    {
+      "id": "PJ-04",
+      "department": "PJ",
+      "parent": "PJ-02",
+      "path": "projects/rohini/ward-14/amrit-rawat/boq.html",
+      "title": "Project BOQ",
+      "kind": "project_detail",
+      "status": "published",
+      "navigation": "secondary",
+      "sections": [
+        {
+          "id": "PJ-04.S01",
+          "domId": "amritBoq",
+          "title": "Project BOQ"
+        }
+      ],
+      "keyDependencies": [
+        "projects/rohini/ward-14/amrit-rawat/project-state.json",
+        "project-cost-engine.mjs"
+      ]
+    },
+    {
+      "id": "PJ-05",
+      "department": "PJ",
+      "parent": "PJ-02",
+      "path": "projects/rohini/ward-14/amrit-rawat/aoc.html",
+      "title": "Project AOC",
+      "kind": "project_detail",
+      "status": "published",
+      "navigation": "secondary",
+      "sections": [
+        {
+          "id": "PJ-05.S01",
+          "domId": "amritAoc",
+          "title": "Project AOC"
+        }
+      ],
+      "keyDependencies": [
+        "projects/rohini/ward-14/amrit-rawat/project-state.json",
+        "project-cost-engine.mjs"
+      ]
+    },
+    {
+      "id": "BQ-01",
+      "department": "BQ",
+      "parent": null,
+      "path": "measurements-boq.html",
+      "title": "Measurements & BOQ",
+      "kind": "hub",
+      "status": "published",
+      "navigation": "primary",
+      "sections": [
+        {
+          "id": "BQ-01.S01",
+          "domId": "measurementDirectory",
+          "title": "Measurements & BOQ"
+        }
+      ],
+      "keyDependencies": [
+        "boq-template.json",
+        "department-pages.css"
+      ]
+    },
+    {
+      "id": "RF-01",
+      "department": "RF",
+      "parent": null,
+      "path": "reference.html",
+      "title": "References",
+      "kind": "hub",
+      "status": "published",
+      "navigation": "more",
+      "sections": [
+        {
+          "id": "RF-01.S01",
+          "domId": "referenceDirectory",
+          "title": "References"
+        }
+      ],
+      "keyDependencies": [
+        "department-pages.css"
+      ]
+    },
+    {
+      "id": "SY-02",
+      "department": "SY",
+      "parent": null,
+      "path": "governance.html",
+      "title": "System & Governance",
+      "kind": "hub",
+      "status": "published",
+      "navigation": "more",
+      "sections": [
+        {
+          "id": "SY-02.S01",
+          "domId": "governanceDirectory",
+          "title": "System & Governance"
+        }
+      ],
+      "keyDependencies": [
+        "department-pages.css"
       ]
     }
   ],
@@ -748,6 +912,26 @@
         "RT-02"
       ],
       "kind": "rate observations"
+    },
+    {
+      "id": "DATA-PJ-AMRIT-ASSUMPTIONS",
+      "path": "projects/rohini/ward-14/amrit-rawat/rates.public.json",
+      "usedBy": [
+        "PJ-03"
+      ],
+      "kind": "public client rate assumptions",
+      "authority": "Rohini live Google Sheet; USER_SUPPLIED_UNVERIFIED"
+    },
+    {
+      "id": "DATA-PJ-AMRIT-STATUS",
+      "path": "projects/rohini/ward-14/amrit-rawat/project-state.json",
+      "usedBy": [
+        "PJ-02",
+        "PJ-04",
+        "PJ-05"
+      ],
+      "kind": "pending QTO/BOQ/AOC statuses; no invented totals",
+      "authority": "Project identity only; verified CAD/finance evidence pending"
     }
   ],
   "operations": {
@@ -782,16 +966,27 @@
   ],
   "navigation": {
     "primary": [
+      "OV-01",
       "RT-01",
-      "FN-01",
-      "MP-01"
+      "PJ-01",
+      "BQ-01",
+      "FN-01"
     ],
     "more": [
-      "OV-01",
-      "FN-03",
-      "SY-01"
+      "RF-01",
+      "SY-02",
+      "MP-01",
+      "FN-03"
     ],
     "moreIsDepartment": false,
     "homeViaLogo": true
-  }
+  },
+  "legacyAliases": [
+    {
+      "legacyPageId": "RT-22",
+      "currentPageId": "PJ-02",
+      "originalUrl": "projects/rohini/ward-14/amrit-rawat/index.html",
+      "policy": "Existing URL retains project overview; rate view preserved at cost-planning.html; old ID never reused."
+    }
+  ]
 }

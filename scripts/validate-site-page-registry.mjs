@@ -1,45 +1,40 @@
 import {readdirSync,readFileSync,existsSync} from 'node:fs';
 import assert from 'node:assert/strict';
-const root=new URL('../',import.meta.url);
-const read=p=>readFileSync(new URL(p,root),'utf8');
-const manifest=JSON.parse(read('site-page-registry.v0.8.json'));
-assert.equal(manifest.schema,'jp.site.page-registry.v1');
-assert.equal(manifest.version,'0.8.1');
-const pages=manifest.pages;
-// Existing 27 root pages remain registered; new client pages can be nested below projects/.
-const rootHtml=readdirSync(root).filter(x=>x.endsWith('.html'));
-const nestedRegistered=pages.filter(p=>p.path.startsWith('projects/')&&p.path.endsWith('.html')).map(p=>p.path);
-for(const p of nestedRegistered)assert(existsSync(new URL(p,root)),p+' nested page missing');
-const actual=[...rootHtml,...nestedRegistered].sort();
-const declared=pages.map(p=>p.path).sort();
-assert.deepEqual(declared,actual,'Registry must enumerate all published root and registered nested HTML pages exactly once');
-const ids=new Set(pages.map(p=>p.id));
-assert.equal(ids.size,pages.length,'Duplicate page ID');
-assert.equal(pages.length,28,'Current v0.8.1 page count changed; update baseline deliberately');
-const departmentIds=new Set(manifest.departments.map(d=>d.id));
-assert.deepEqual([...departmentIds].sort(),['FN','MP','RT'],'Exactly three L1 departments');
-assert.deepEqual(manifest.navigation.primary,['RT-01','FN-01','MP-01']);
-assert.deepEqual(manifest.navigation.more,['OV-01','FN-03','SY-01']);
+const root=new URL('../',import.meta.url),read=p=>readFileSync(new URL(p,root),'utf8');
+const registry=JSON.parse(read('site-page-registry.v0.8.json'));
+assert.equal(registry.schema,'jp.site.page-registry.v1');
+assert.equal(registry.version,'1.0.0');
+const pages=registry.pages,ids=new Set(pages.map(p=>p.id));
+assert.equal(ids.size,pages.length,'Duplicate stable page ID');
+assert.equal(pages.length,35,'Functional navigation baseline changed; update intentionally');
+assert.deepEqual(registry.departments.map(d=>d.id).sort(),['BQ','FN','PJ','RF','RT','SY']);
+assert.deepEqual(registry.navigation.primary,['OV-01','RT-01','PJ-01','BQ-01','FN-01']);
+assert.deepEqual(registry.navigation.more,['RF-01','SY-02','MP-01','FN-03']);
+const top=readdirSync(root).filter(x=>x.endsWith('.html'));
+const nested=pages.filter(p=>p.path.includes('/')&&p.path.endsWith('.html')).map(p=>p.path);
+assert.deepEqual(pages.map(p=>p.path).sort(),[...top,...nested].sort(),'Every root and registered nested HTML page must be included once');
+const departments=new Set(registry.departments.map(d=>d.id));
 for(const p of pages){
-  assert(departmentIds.has(p.department)||((p.id==='OV-01'||p.id==='SY-01')&&p.department===null),p.id+' unknown department');
-  assert(/^[A-Z]{2}-\d\d$/.test(p.id),p.id+' invalid ID');
-  assert(p.parent===null||ids.has(p.parent),p.id+' unknown parent');
-  assert(['published','redirect'].includes(p.status),p.id+' unknown status');
-  const source=read(p.path);
-  assert(source.includes('site-theme-v0.8.css')&&source.includes('site-navigation-v0.8.js'),p.id+' shared shell missing');
-  if(p.status==='redirect')assert(source.includes('mep-legacy-redirect.js'),p.id+' redirect handler missing');
-  for(const s of p.sections){
-    assert(s.id.startsWith(p.id+'.S'),s.id+' section prefix mismatch');
-    assert(source.includes('id="'+s.domId+'"')||source.includes("id='"+s.domId+"'"),s.id+' anchor missing');
-  }
-  for(const dependency of p.keyDependencies)assert(existsSync(new URL(dependency,root)),p.id+' missing dependency '+dependency);
+ assert(departments.has(p.department)||(p.id==='OV-01'&&p.department===null),'Unknown department '+p.id);
+ assert(/^[A-Z]{2}-\d\d$/.test(p.id),'Invalid stable page ID '+p.id);
+ assert(p.parent===null||ids.has(p.parent),'Broken page parent '+p.id);
+ assert(['published','redirect'].includes(p.status),'Unknown lifecycle state '+p.id);
+ const html=read(p.path);
+ assert(html.includes('site-theme-v0.8.css')&&html.includes('site-navigation-v0.8.js'),'Missing shared shell '+p.path);
+ assert(html.includes('<main'),'Missing accessible main '+p.path);
+ for(const s of p.sections){
+  assert(s.id.startsWith(p.id+'.S'),'Section ID mismatch '+s.id);
+  assert(html.includes('id="'+s.domId+'"')||html.includes("id='"+s.domId+"'"),'Missing section anchor '+s.domId+' in '+p.path);
+ }
+ for(const f of p.keyDependencies)assert(existsSync(new URL(f,root)),'Missing data/asset '+f);
+ const seen=new Set();let cur=p;
+ while(cur.parent){assert(!seen.has(cur.id),'Parent cycle');seen.add(cur.id);cur=pages.find(x=>x.id===cur.parent);assert(cur,'Broken hierarchy');}
 }
+for(const asset of registry.dataAssets)assert(existsSync(new URL(asset.path,root)),'Missing data '+asset.id);
+assert.equal(registry.pages.find(p=>p.id==='PJ-02').path,'projects/rohini/ward-14/amrit-rawat/index.html');
+assert(!ids.has('RT-22'),'Client rate page cannot remain in generic Rates');
+assert(registry.legacyAliases.some(x=>x.legacyPageId==='RT-22'&&x.currentPageId==='PJ-02'),'Missing historical alias');
 const nav=read('site-navigation-v0.8.js');
-for(const p of pages.filter(p=>p.navigation==='primary'||p.navigation==='more'))assert(nav.includes("'"+p.path+"'"),p.id+' missing shared navigation');
-assert(nav.includes('primarySections')&&nav.includes('moreSections'),'Missing primary/More split');
-assert.equal(pages.filter(p=>p.navigation==='primary').length,3,'Only three primary navigation pages');
-assert.equal(pages.filter(p=>p.navigation==='more').length,3,'Unexpected More menu');
-for(const p of pages){const seen=new Set();let node=p;while(node.parent){assert(!seen.has(node.id),'Parent cycle '+p.id);seen.add(node.id);node=pages.find(q=>q.id===node.parent);assert(node,'Broken parent '+p.id)}}
-for(const p of manifest.sharedAssets)assert(existsSync(new URL(p,root)),'Missing shared asset '+p);
-for(const d of manifest.dataAssets)assert(existsSync(new URL(d.path,root)),'Missing data '+d.path);
-console.log('SITE REGISTRY PASS: '+pages.length+' pages, '+pages.filter(p=>p.status==='redirect').length+' redirects, '+manifest.departments.length+' departments');
+for(const dest of ['index.html','rate-sources.html','projects.html','measurements-boq.html','finance.html','governance.html'])assert(nav.includes("'"+dest+"'"),'Missing global route '+dest);
+for(const f of ['site-theme-v0.8.css','site-navigation-v0.8.js','department-pages.css'])assert(existsSync(new URL(f,root)));
+console.log('FUNCTIONAL PAGE REGISTRY PASS: '+pages.length+' routes, 6 departments, legacy RT-22 retained as alias.');

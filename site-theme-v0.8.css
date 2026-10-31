@@ -112,3 +112,25 @@ html[data-theme="dark"] #jp-site-footer{background:#0d261f}
  #jp-site-masthead .jp-global-nav .jp-more-toggle{width:100%;min-width:0}
  #jp-site-masthead .jp-more-panel{right:0}
 }
+
+
+/* A9 functional navigation — compact responsive six-control menu. */
+#jp-site-masthead{gap:12px}
+#jp-site-masthead .jp-global-nav{flex-wrap:wrap;justify-content:flex-end;gap:5px}
+#jp-site-masthead .jp-global-nav>a,#jp-site-masthead .jp-global-nav .jp-more-toggle{
+  min-width:0;min-height:42px;padding:10px 12px;font-size:12px;white-space:nowrap;
+}
+.jp-functional-tabs{display:flex;gap:8px;flex-wrap:wrap;padding:10px max(15px,calc((100vw - 1440px)/2));background:#e8f0e6;border-bottom:1px solid #c8dacd;font:700 13px/1.4 Inter,system-ui,sans-serif}
+.jp-functional-tabs a{color:#1d4f38;padding:8px 12px;text-decoration:none;border-radius:9px}
+.jp-functional-tabs a[aria-current]{background:#174936;color:white}
+@media(max-width:880px){
+#jp-site-masthead .jp-global-nav{justify-content:flex-start;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));width:100%}
+#jp-site-masthead .jp-global-nav>a,#jp-site-masthead .jp-global-nav .jp-more-toggle{width:100%;font-size:12px;min-width:0;min-height:42px;padding:8px 5px;white-space:normal;text-align:center}
+#jp-site-masthead .jp-more{min-width:0}
+#jp-site-masthead .jp-more-panel{right:0}
+}
+@media(max-width:440px){
+#jp-site-masthead .jp-global-nav{grid-template-columns:repeat(2,minmax(0,1fr));gap:5px}
+#jp-site-masthead .jp-global-nav>a,#jp-site-masthead .jp-global-nav .jp-more-toggle{font-size:11px}
+.jp-functional-tabs{gap:4px}.jp-functional-tabs a{font-size:12px;padding:7px 9px}
+}
