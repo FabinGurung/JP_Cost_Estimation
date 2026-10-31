@@ -13,7 +13,7 @@
     "workbook_url": "https://docs.google.com/spreadsheets/d/1S1fkWzo6XGzyD3p92_pTG32zZ9fF3YICAv3HPTomZsE/edit",
     "register_tab": "14_bishal_paija",
     "vendor_range": "A7:E34",
-    "payment_range": "A36:H190",
+    "payment_range": "A35:H190",
     "mixed_date_systems": true
   },
   "totals": {
