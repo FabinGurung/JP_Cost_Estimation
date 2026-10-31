@@ -7,13 +7,13 @@ const page=manifest.pages.find(p=>p.id==='FN-01');
 const dashboard=manifest.pages.find(p=>p.id==='FN-02');
 assert.equal(dashboard.parent,'FN-01');
 assert.equal(dashboard.navigation,'secondary');
-assert.deepEqual(manifest.navigation.more,['OV-01','FN-03','SY-01']);
+assert.deepEqual(manifest.navigation.more,['RF-01','SY-02','MP-01','FN-03']);
 for(const id of ['finance-sources','worker-records','site-capture','sheet-viewer']){
   assert(read('finance.html').includes('id="'+id+'"'),'Missing Finance panel '+id);
   assert(page.sections.some(s=>s.domId===id),'Missing registry entry '+id);
 }
 const nav=read('site-navigation-v0.8.js');
-const more=nav.split('const moreSections = [')[1].split('];')[0];
+const more=nav.split('const extras=[')[1].split('];')[0];
 assert(!more.includes('finance-dashboard.html'),'Dashboard must be a Finance child, not in More');
 for(const href of ['finance.html','finance-dashboard.html','finance.html#finance-sources','field-expense-guide.html'])assert(nav.includes("'"+href+"'"),'Missing Finance child tab '+href);
 for(const name of ['finance.html','finance-dashboard.html','field-expense-guide.html']){
