@@ -120,7 +120,7 @@ function display(){
     cell(tr,r.notes||r.scope||'');
     tbody.appendChild(tr);
   }
-  status.textContent=filtered.length+' of '+all.length+' rate rows · Indicative, not quote-approved';
+  status.textContent=filtered.length+' of '+all.length+' assumptions · Source snapshot V000001; indicative, not independently verified';
 }
 async function load(){
   try{
@@ -132,7 +132,7 @@ async function load(){
     document.getElementById('plinthCount').textContent=String(all.filter(r=>r.category==='plinth').length);
     document.getElementById('tradeCount').textContent=String(all.filter(r=>r.category==='trade').length);
     document.getElementById('wageCount').textContent=String(all.filter(r=>r.category==='daily_wage').length);
-    document.getElementById('rateVersion').textContent=doc.version;
+    document.getElementById('rateVersion').textContent=doc.version;\n    status.textContent='Snapshot '+(doc.recordedDateNpt||'undated')+' · not a live browser Sheet connection';
     display();
   }catch(err){status.textContent='Rates temporarily unavailable: '+err.message+' · No fallback or invented values shown.';}
 }
