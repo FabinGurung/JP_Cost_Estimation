@@ -1,23 +1,23 @@
-name: Amrit Rawat · Daily Google Sheet rate sync
-# GitHub schedules only work from the repository default branch (main).
-# This calls the reusable research-branch workflow, which checks out research,
-# reads the private Sheet using secrets, and commits validated public JSON to research.
-# No private Sheet ID, Google Drive URL or service-account key is stored in code.
+name: Rohini / Amrit Rawat · Project cost assumptions sync
+# GitHub scheduled workflows live on default main; the reusable research
+# workflow owns the source-to-public-data derivation. No separate Pages deploy.
 on:
   workflow_dispatch:
   schedule:
-    - cron: '17 0 * * *' # 06:02 Nepal Standard Time
+    - cron: '17 0 * * *' # 06:02 Nepal local time
 
 permissions:
   contents: write
+  id-token: write
 
 concurrency:
   group: amrit-rawat-default-scheduler
   cancel-in-progress: false
 
 jobs:
-  update-governed-snapshot:
+  refresh-project-rate-assumptions:
     uses: FabinGurung/JP_Cost_Estimation/.github/workflows/sync-amrit-rawat-rates.yml@research/open-estimation-engine-v0.1
     permissions:
       contents: write
+      id-token: write
     secrets: inherit
