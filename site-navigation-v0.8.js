@@ -62,7 +62,7 @@ if(dep==='finance'||(dep==='projects'&&path.startsWith('projects/'))){
  const subnav=document.createElement('nav');subnav.className='jp-functional-tabs';subnav.setAttribute('aria-label',dep==='finance'?'Finance pages':'Amrit Rawat project pages');
  const rows=dep==='finance'?
  [['Overview','finance.html'],['Payments','finance-dashboard.html'],['Source Panels','finance.html#finance-sources'],['Site Expenses','field-expense-guide.html']]:
- [['Overview','projects/rohini/ward-14/amrit-rawat/index.html'],['Rate Assumptions','projects/rohini/ward-14/amrit-rawat/cost-planning.html'],['QTO / BOQ','projects/rohini/ward-14/amrit-rawat/boq.html'],['AOC','projects/rohini/ward-14/amrit-rawat/aoc.html']];
+ [['Overview','projects/rohini/ward-14/amrit-rawat/index.html'],['Rate Assumptions','projects/rohini/ward-14/amrit-rawat/cost-planning.html'],['Measurements','projects/rohini/ward-14/amrit-rawat/measurements/index.html'],['BOQ','projects/rohini/ward-14/amrit-rawat/boq.html'],['AOC','projects/rohini/ward-14/amrit-rawat/aoc.html'],['Bills / Invoices','projects/rohini/ward-14/amrit-rawat/bills/index.html']];
  for(const [label,href]of rows){const a=document.createElement('a');a.href=url(href);a.textContent=label;if(path===href)a.setAttribute('aria-current','page');subnav.append(a)}
  document.body.insertBefore(subnav,header.nextSibling);
 }
