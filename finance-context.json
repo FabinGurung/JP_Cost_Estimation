@@ -18,7 +18,7 @@
     "read_scope": "All active vendor sections; expand beyond historical A35:H190 when new entries appear"
   },
   "publication": {
-    "mode": "manual_on_request",
+    "mode": "actions_deployment_refresh",
     "repo": "FabinGurung/JP_Cost_Estimation",
     "site": "https://fabingurung.github.io/JP_Cost_Estimation/finance.html",
     "publication_branch": "research/open-estimation-engine-v0.1",
@@ -26,13 +26,15 @@
     "workflow_path": ".github/workflows/deploy-estimation-product.yml",
     "public_snapshot": "finance-public-snapshot.json",
     "website_page": "finance-dashboard.html",
-    "review_before_publication": true
+    "review_before_publication": false,
+    "credential_source": "GitHub Actions repository variables for WIF or dedicated Actions secret; no credentials in repo",
+    "fallback": "Previous date-stamped committed JSON is clearly labeled historical when Google credentials are missing"
   },
   "rules": {
     "company_scope": "REB only; never merge another company's payments",
     "preserve_original": true,
-    "no_trigger_install": true,
-    "no_live_sync_claim": true,
+    "no_trigger_install": false,
+    "no_live_sync_claim": false,
     "do_not_modify_other_rate_or_pdf_workflows": true,
     "unique_internal_payment_ids_required": true,
     "do_not_publish_internal_payment_ids": true,
@@ -102,5 +104,5 @@
       "type": "provenance"
     }
   ],
-  "next_refresh_output": "New validated static snapshot plus matching website code changes on a review branch; deploy only after validation and owner review."
+  "next_refresh_output": "Validated authenticated Google Sheets build to transient Pages JSON; do not write to source Sheet or claim live fetch on unavailable credentials."
 }

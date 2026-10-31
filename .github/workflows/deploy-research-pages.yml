@@ -5,6 +5,11 @@ on:
     branches:
       - research/open-estimation-engine-v0.1
   workflow_dispatch:
+    inputs:
+      require_live_sheets:
+        description: Fail if authenticated Sheets refresh cannot run
+        type: boolean
+        default: true
 
 permissions:
   contents: read
@@ -38,6 +43,7 @@ jobs:
           node scripts/sync-amrit-rawat-rates.mjs --validate-current
           node --check finance-source-panels-v0.9.js
           node scripts/validate-finance-panels-v0.9.mjs
+          python3 scripts/build_finance_from_google_sheets.py --self-test
           node --check finance-register-header-v1.0.js
           node scripts/validate-finance-register-header-v1.0.mjs
 
@@ -50,12 +56,62 @@ jobs:
     steps:
       - name: Checkout verified publishing branch
         uses: actions/checkout@v4
+      - name: Detect configured Google Sheets connection
+        id: google_connection
+        env:
+          GOOGLE_PROVIDER: ${{ vars.JP_GOOGLE_WORKLOAD_IDENTITY_PROVIDER }}
+          GOOGLE_ACCOUNT: ${{ vars.JP_GOOGLE_SERVICE_ACCOUNT }}
+          GOOGLE_KEY: ${{ secrets.JP_GOOGLE_CREDENTIALS }}
+          REQUIRE_LIVE: ${{ inputs.require_live_sheets || false }}
+        run: |
+          if [[ -n "$GOOGLE_PROVIDER" && -n "$GOOGLE_ACCOUNT" ]]; then
+            echo 'configured=true' >> "$GITHUB_OUTPUT"
+            echo 'federation=true' >> "$GITHUB_OUTPUT"
+          elif [[ -n "$GOOGLE_KEY" ]]; then
+            echo 'configured=true' >> "$GITHUB_OUTPUT"
+            echo 'federation=false' >> "$GITHUB_OUTPUT"
+          else
+            echo 'configured=false' >> "$GITHUB_OUTPUT"
+            echo 'federation=false' >> "$GITHUB_OUTPUT"
+            echo '::warning::Google connection unavailable: reviewed historic JSON remains in Pages, NOT a live refresh.'
+            echo 'Finance Google Sheets: NOT CONNECTED; historical snapshot only.' >> "$GITHUB_STEP_SUMMARY"
+            if [[ "$REQUIRE_LIVE" == 'true' ]]; then exit 1; fi
+          fi
+
+      - name: Authenticate using keyless Google identity
+        if: steps.google_connection.outputs.configured == 'true' && steps.google_connection.outputs.federation == 'true'
+        uses: google-github-actions/auth@v3
+        with:
+          workload_identity_provider: ${{ vars.JP_GOOGLE_WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ vars.JP_GOOGLE_SERVICE_ACCOUNT }}
+
+      - name: Authenticate using configured repository secret
+        if: steps.google_connection.outputs.configured == 'true' && steps.google_connection.outputs.federation != 'true'
+        uses: google-github-actions/auth@v3
+        with:
+          credentials_json: ${{ secrets.JP_GOOGLE_CREDENTIALS }}
+
+      - name: Refresh public finance data directly from the LIVE Sheet
+        if: steps.google_connection.outputs.configured == 'true'
+        run: |
+          python3 -m pip install 'google-auth>=2,<3' 'requests>=2,<3'
+          python3 scripts/build_finance_from_google_sheets.py
+          node scripts/validate-finance-public.mjs
+          echo 'Finance Google Sheets: AUTHENTICATED LIVE FETCH; totals validated.' >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Stage static Pages files excluding Google credentials
+        run: |
+          mkdir -p _site
+          rsync -a --exclude='.git' --exclude='.github' --exclude='_site' \
+            --exclude='gha-creds-*.json' --exclude='*.pem' --exclude='*.key' \
+            --exclude='.env*' --exclude='__pycache__' --exclude='node_modules' \
+            --exclude='scripts' ./ _site/
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
       - name: Upload static website
         uses: actions/upload-pages-artifact@v3
         with:
-          path: .
+          path: _site
       - name: Deploy static website
         id: deployment
         uses: actions/deploy-pages@v4
