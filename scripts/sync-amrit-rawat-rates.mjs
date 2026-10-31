@@ -6,8 +6,8 @@
  * Read-only credentials MUST be GitHub Actions secrets, never repository data.
  * The source Google Sheet, including 90_VERSION_HISTORY, owns rate changes.
  */
-import {createHash,createSign} from 'node:crypto';
-import {readFileSync,writeFileSync,appendFileSync,existsSync} from 'node:fs';
+import {createHash} from 'node:crypto';
+import {readFileSync,writeFileSync,appendFileSync} from 'node:fs';
 import {fileURLToPath} from 'node:url';
 import path from 'node:path';
 import assert from 'node:assert/strict';
@@ -17,7 +17,6 @@ const relative='projects/rohini/ward-14/amrit-rawat';
 const output=path.join(repo,relative,'rates.public.json');
 const historyFile=path.join(repo,relative,'publication-history.jsonl');
 const sha=x=>createHash('sha256').update(x).digest('hex');
-const b64url=o=>Buffer.from(typeof o==='string'?o:JSON.stringify(o)).toString('base64url');
 
 function verify(doc){
   assert.equal(doc.schema,'jp.client-rate-snapshot.v1');
@@ -47,21 +46,20 @@ if(process.argv.includes('--validate-current')){
   process.exit(0);
 }
 const sheetId=process.env.AMRIT_RAWAT_SHEET_ID;
-const secret=process.env.GOOGLE_SHEETS_SERVICE_ACCOUNT_JSON;
-if(!sheetId||!secret)throw Error('GitHub Actions secrets are not configured; no source fetch or publication claimed.');
-const service=JSON.parse(secret);
-assert(service.client_email&&service.private_key,'Invalid service-account secret');
-const endpoint=service.token_uri||'https://oauth2.googleapis.com/token';
-const now=Math.floor(Date.now()/1000);
-const jwtHeader=b64url({alg:'RS256',typ:'JWT'});
-const jwtPayload=b64url({iss:service.client_email,scope:'https://www.googleapis.com/auth/spreadsheets.readonly',aud:endpoint,iat:now,exp:now+3000});
-const signer=createSign('RSA-SHA256');
-signer.update(jwtHeader+'.'+jwtPayload);
-const assertion=jwtHeader+'.'+jwtPayload+'.'+signer.sign(service.private_key,'base64url');
-const auth=await fetch(endpoint,{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams({grant_type:'urn:ietf:params:oauth:grant-type:jwt-bearer',assertion})});
-if(!auth.ok)throw Error('Google service-account token request failed ('+auth.status+'); no changes made.');
-const token=(await auth.json()).access_token;
-if(!token)throw Error('Google token unavailable');
+if(!sheetId)throw Error('MISSING_PRIVATE_SOURCE_ID: no authenticated source fetch performed.');
+// Keyless default: google-github-actions/auth establishes ADC using the authorized
+// repository workload identity provider. Python google-auth exchanges the identity.
+const {execFileSync}=await import('node:child_process');
+const python=`import google.auth
+from google.auth.transport.requests import Request
+creds, _ = google.auth.default(scopes=["https://www.googleapis.com/auth/spreadsheets.readonly"])
+creds.refresh(Request())
+assert creds.token, "Missing Google access token"
+print(creds.token)`;
+let token;
+try{token=execFileSync('python3',['-c',python],{encoding:'utf8',stdio:['ignore','pipe','pipe'],timeout:30000}).trim();}
+catch(e){throw Error('KEYLESS_GOOGLE_AUTH_FAILED: no source snapshot changed. Check workload identity and Viewer access.');}
+if(!token)throw Error('Missing source read-only access token');
 async function read(tab,range){
   const full="'"+tab+"'!"+range;
   const url='https://sheets.googleapis.com/v4/spreadsheets/'+encodeURIComponent(sheetId)+'/values/'+encodeURIComponent(full)+'?valueRenderOption=UNFORMATTED_VALUE';
@@ -86,7 +84,8 @@ const events=h.slice(1).filter(row=>/^V\d{6}$/.test(String(row[0]||'')));
 if(!events.length)throw Error('No numbered history version in live Sheet');
 const latest=events.at(-1);
 const version=String(latest[0]);
-const proposed={...existing,version,rates};
+const publicationDate=new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Kathmandu',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());
+const proposed={...existing,version,recordedDateNpt:publicationDate,rates};
 verify(proposed);
 if(JSON.stringify(proposed)===JSON.stringify(existing)){
   console.log('SOURCE_PARITY: no change; keeping the existing Git commit and page snapshot.');
