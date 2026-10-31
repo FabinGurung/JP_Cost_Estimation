@@ -1,0 +1,109 @@
+{
+  "schema": "jp.methods.literature-review.v1",
+  "reviewId": "JP-LIT-20261031",
+  "reviewedAt": "2026-10-31",
+  "method": "Targeted technical literature review: ten primary standards and original open documentation; ranked by relevance to measurements, costing, provenance, workflow. Not an exhaustive systematic search.",
+  "status": "CURATED_NON_CERTIFYING",
+  "references": [
+    {
+      "id": "LR-01",
+      "rank": 1,
+      "title": "NRM 2 — Detailed measurement for building works",
+      "publisher": "Royal Institution of Chartered Surveyors (RICS)",
+      "edition": "October 2021; reissued as practice information October 2022",
+      "url": "https://www.rics.org/profession-standards/rics-standards-and-guidance/sector-standards/construction-standards/nrm",
+      "appliesTo": "Trade-specific measurement conventions, quantity rules, description and unit discipline",
+      "boundary": "Not a Nepal statutory standard; project contract measurement rules and local codes prevail."
+    },
+    {
+      "id": "LR-02",
+      "rank": 2,
+      "title": "NRM 1 — Order of cost estimating and cost planning",
+      "publisher": "Royal Institution of Chartered Surveyors (RICS)",
+      "edition": "October 2021; reissued October 2022",
+      "url": "https://www.rics.org/profession-standards/rics-standards-and-guidance/sector-standards/construction-standards/nrm",
+      "appliesTo": "Separate early cost plans, element/group summaries, allowances, exclusions and AOC-like presentation",
+      "boundary": "NRM grouping does not prescribe this project's approved tax or contingency amounts."
+    },
+    {
+      "id": "LR-03",
+      "rank": 3,
+      "title": "Guide to Cost Estimate Classification Systems",
+      "publisher": "AACE International",
+      "edition": "Professional Guidance Document No. 01; revision August 29, 2022",
+      "url": "https://library.aacei.org/pgd01/pgd01.shtml",
+      "appliesTo": "Classify maturity of a price/estimate rather than presenting tentative assumptions as tender-ready",
+      "boundary": "The exact AACE estimate class requires definition-maturity evidence, not arbitrary labels."
+    },
+    {
+      "id": "LR-04",
+      "rank": 4,
+      "title": "Industry Foundation Classes (IFC), version 4.3",
+      "publisher": "buildingSMART International",
+      "edition": "IFC 4.3.2.0; ISO 16739-1:2024",
+      "url": "https://www.buildingsmart.org/standards/bsi-standards/industry-foundation-classes/?lang=en",
+      "appliesTo": "Vendor-neutral model identifiers, geometry lineage and model-backed quantity evidence",
+      "boundary": "IFC quantities require independent quantity/method validation before financial admission."
+    },
+    {
+      "id": "LR-05",
+      "rank": 5,
+      "title": "IfcOpenShell cost and quantity schedule API",
+      "publisher": "IfcOpenShell open-source documentation",
+      "edition": "API documentation; accessed 2026-10-31",
+      "url": "https://docs.ifcopenshell.org/autoapi/ifcopenshell/api/cost/index.html",
+      "appliesTo": "Interoperable BIM cost items, quantities, cost schedules and formulas; coordinate with JP CAD",
+      "boundary": "Implementation reference, not itself an approved construction rate or design certification."
+    },
+    {
+      "id": "LR-06",
+      "rank": 6,
+      "title": "Quarto — reproducible scientific and technical publishing",
+      "publisher": "Quarto / Posit open-source project",
+      "edition": "Current online documentation; accessed 2026-10-31",
+      "url": "https://quarto.org/",
+      "appliesTo": "Preferred flexible .qmd format for irregular calculations, formulas, methods, illustrations and HTML/PDF outputs",
+      "boundary": "Executable cells must be run only inside controlled workflows; never treat private notebooks as public site inputs."
+    },
+    {
+      "id": "LR-07",
+      "rank": 7,
+      "title": "The Jupyter Notebook Format (nbformat)",
+      "publisher": "Project Jupyter",
+      "edition": "nbformat 5.11 documentation; accessed 2026-10-31",
+      "url": "https://nbformat.readthedocs.io/en/latest/",
+      "appliesTo": "Alternative .ipynb format when exploratory calculations need narrative plus code and rich outputs",
+      "boundary": "Notebook execution is not proof of source validity; clear sensitive outputs before publication."
+    },
+    {
+      "id": "LR-08",
+      "rank": 8,
+      "title": "PROV-O: The PROV Ontology",
+      "publisher": "World Wide Web Consortium (W3C)",
+      "edition": "W3C Recommendation, April 30, 2013",
+      "url": "https://www.w3.org/TR/prov-o/",
+      "appliesTo": "Record source → calculation → validation → reviewer → publication provenance links",
+      "boundary": "Use a small compatible provenance model; avoid adding unnecessary semantic-web infrastructure."
+    },
+    {
+      "id": "LR-09",
+      "rank": 9,
+      "title": "Open Contracting Data Standard (OCDS)",
+      "publisher": "Open Contracting Partnership",
+      "edition": "OCDS 1.1.5 documentation (reviewed 2026-10-31)",
+      "url": "https://standard.open-contracting.org/latest/en/",
+      "appliesTo": "Distinguish procurement, supplier/contractor award, contract changes, implementation and actual payments",
+      "boundary": "Public-sector publication schema as a reference; does not authorize exposing private commercial transactions."
+    },
+    {
+      "id": "LR-10",
+      "rank": 10,
+      "title": "Configuring GitHub Pages publishing with Actions",
+      "publisher": "GitHub Documentation",
+      "edition": "Current online documentation; accessed 2026-10-31",
+      "url": "https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site",
+      "appliesTo": "One validated static publication workflow and explicit visibility boundaries",
+      "boundary": "Pages is static/public; not a secure edit interface or private source-data store."
+    }
+  ]
+}

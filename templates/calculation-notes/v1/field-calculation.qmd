@@ -1,0 +1,44 @@
+---
+title: "FIELD CALCULATION — REUSABLE BLANK TEMPLATE"
+format:
+  html:
+    toc: true
+    code-fold: true
+execute:
+  enabled: false
+---
+
+# Scope and source identity
+
+**Template only. No measured values or approvals.** Save a *project-specific copy* in appropriately restricted source custody.
+
+| Field | Enter from verified source |
+|---|---|
+| Organization and Project ID | PENDING |
+| Work type and Work Item ID | PENDING |
+| Element / grid / location | PENDING |
+| Drawing or file evidence ID | PENDING |
+| Drawing revision and measured date | PENDING |
+| Contract measurement rule and unit | PENDING |
+| Recorder / checker | PENDING |
+| Status | WORKING_DRAFT — NOT VERIFIED |
+
+## Field notes / sketch
+
+Insert written observations, deductions, exceptions, photos or sketches as references to original Drive documents. Keep original images/PDFs in Drive; do not embed sensitive media in the public code repository.
+
+## Calculation steps
+
+Write the derivation in ordinary text and LaTeX first, e.g. (Q=sum_i L_i B_i H_i-sum_j V_{mathrm{deduction},j}). Specify the source and units of each term. This is only a generic illustration.
+
+## Quantity and rate boundary
+
+- Derived quantity: **PENDING**
+- Selected billable quantity: **PENDING VERIFICATION**
+- Selected rate: **PENDING CONTRACT/APPROVAL**
+- BOQ admission: **BLOCKED**
+- RA bill/invoice/payment admission: **NOT APPLICABLE UNTIL VERIFIED**
+
+## Review history
+
+Append observations and linked PRE/POST versions. Do not erase raw evidence or overwrite source document IDs.
