@@ -29,7 +29,7 @@ assert.equal(registry.pages.find(p=>p.id==='RF-02').path,'literature-review.html
 assert.equal(registry.pages.find(p=>p.id==='BQ-02').path,'calculation-workspace.html');
 assert(registry.dataAssets.some(a=>a.path==='data/methodology-literature-v1.json'));
 assert(nav.includes("'literature-review.html'") && nav.includes("'calculation-workspace.html'"));
-assert(notes.includes('Controlled Google Drive')&&notes.includes('Quarto / Jupyter')&&notes.includes('Pages'));
+assert(notes.includes('Controlled Google Drive')&&notes.includes('Quarto or Jupyter')&&notes.includes('Pages'));
 assert(notes.includes('Missing quantity remains')&&notes.includes('null'));
 assert.equal(template.properties.status.enum.length,6);
 assert.deepEqual(template.properties.review.properties.decision.enum,['PENDING','ACCEPTED','REJECTED']);
