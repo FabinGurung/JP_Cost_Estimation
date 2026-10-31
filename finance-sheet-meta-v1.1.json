@@ -47,5 +47,10 @@
     "The guide, context and definitions are approved summaries, not verbatim worksheet mirrors",
     "Four hidden operational worksheets and private metadata are excluded",
     "The payment and vendor rows reuse the verified public snapshot; no Google Sheets edits"
-  ]
+  ],
+  "inventoryStatus": "HISTORICAL_APPROVED_SUBSET_NOT_CURRENT_LIVE_TAB_INVENTORY",
+  "lastObservedLiveTabCount": 12,
+  "lastObservedLiveHiddenTabCount": 5,
+  "lastObservedLiveDateNpt": "2026-10-31",
+  "note": "The original five-source-view published subset belongs to an earlier approved inventory of nine tabs. Current live workbook inventory is twelve tabs (five hidden). Do not interpret the historical sourceTabCount as a live tab count; re-review tab visibility before any new public subset is approved."
 }
