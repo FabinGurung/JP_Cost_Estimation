@@ -20,7 +20,8 @@
         "sourceEvidenceId",
         "verificationStatus"
       ],
-      "status": "TEMPLATE_ONLY_NO_PROJECT_QUANTITY"
+      "status": "TEMPLATE_ONLY_NO_PROJECT_QUANTITY",
+      "workGroup": "masonry"
     },
     {
       "workId": "WORK-STONE_MASONRY",
@@ -39,7 +40,8 @@
         "sourceEvidenceId",
         "verificationStatus"
       ],
-      "status": "TEMPLATE_ONLY_NO_PROJECT_QUANTITY"
+      "status": "TEMPLATE_ONLY_NO_PROJECT_QUANTITY",
+      "workGroup": "masonry"
     },
     {
       "workId": "WORK-RCC_FOOTING",
@@ -58,7 +60,8 @@
         "sourceEvidenceId",
         "verificationStatus"
       ],
-      "status": "TEMPLATE_ONLY_NO_PROJECT_QUANTITY"
+      "status": "TEMPLATE_ONLY_NO_PROJECT_QUANTITY",
+      "workGroup": "foundation"
     },
     {
       "workId": "WORK-RCC_COLUMN",
@@ -77,7 +80,8 @@
         "sourceEvidenceId",
         "verificationStatus"
       ],
-      "status": "TEMPLATE_ONLY_NO_PROJECT_QUANTITY"
+      "status": "TEMPLATE_ONLY_NO_PROJECT_QUANTITY",
+      "workGroup": "foundation"
     },
     {
       "workId": "WORK-RCC_BEAM",
@@ -96,7 +100,8 @@
         "sourceEvidenceId",
         "verificationStatus"
       ],
-      "status": "TEMPLATE_ONLY_NO_PROJECT_QUANTITY"
+      "status": "TEMPLATE_ONLY_NO_PROJECT_QUANTITY",
+      "workGroup": "foundation"
     },
     {
       "workId": "WORK-RCC_SLAB",
@@ -115,7 +120,8 @@
         "sourceEvidenceId",
         "verificationStatus"
       ],
-      "status": "TEMPLATE_ONLY_NO_PROJECT_QUANTITY"
+      "status": "TEMPLATE_ONLY_NO_PROJECT_QUANTITY",
+      "workGroup": "foundation"
     },
     {
       "workId": "WORK-REBAR_BBS_FOOTING",
@@ -134,7 +140,8 @@
         "sourceEvidenceId",
         "verificationStatus"
       ],
-      "status": "TEMPLATE_ONLY_NO_PROJECT_QUANTITY"
+      "status": "TEMPLATE_ONLY_NO_PROJECT_QUANTITY",
+      "workGroup": "reinforcement"
     },
     {
       "workId": "WORK-REBAR_BBS_COLUMN",
@@ -153,7 +160,8 @@
         "sourceEvidenceId",
         "verificationStatus"
       ],
-      "status": "TEMPLATE_ONLY_NO_PROJECT_QUANTITY"
+      "status": "TEMPLATE_ONLY_NO_PROJECT_QUANTITY",
+      "workGroup": "reinforcement"
     },
     {
       "workId": "WORK-REBAR_BBS_BEAM",
@@ -172,7 +180,8 @@
         "sourceEvidenceId",
         "verificationStatus"
       ],
-      "status": "TEMPLATE_ONLY_NO_PROJECT_QUANTITY"
+      "status": "TEMPLATE_ONLY_NO_PROJECT_QUANTITY",
+      "workGroup": "reinforcement"
     },
     {
       "workId": "WORK-REBAR_BBS_SLAB",
@@ -191,7 +200,8 @@
         "sourceEvidenceId",
         "verificationStatus"
       ],
-      "status": "TEMPLATE_ONLY_NO_PROJECT_QUANTITY"
+      "status": "TEMPLATE_ONLY_NO_PROJECT_QUANTITY",
+      "workGroup": "reinforcement"
     },
     {
       "workId": "WORK-FORMWORK_FOOTING",
@@ -210,7 +220,8 @@
         "sourceEvidenceId",
         "verificationStatus"
       ],
-      "status": "TEMPLATE_ONLY_NO_PROJECT_QUANTITY"
+      "status": "TEMPLATE_ONLY_NO_PROJECT_QUANTITY",
+      "workGroup": "formwork"
     },
     {
       "workId": "WORK-FORMWORK_COLUMN",
@@ -229,7 +240,8 @@
         "sourceEvidenceId",
         "verificationStatus"
       ],
-      "status": "TEMPLATE_ONLY_NO_PROJECT_QUANTITY"
+      "status": "TEMPLATE_ONLY_NO_PROJECT_QUANTITY",
+      "workGroup": "formwork"
     },
     {
       "workId": "WORK-FORMWORK_SLAB",
@@ -248,7 +260,8 @@
         "sourceEvidenceId",
         "verificationStatus"
       ],
-      "status": "TEMPLATE_ONLY_NO_PROJECT_QUANTITY"
+      "status": "TEMPLATE_ONLY_NO_PROJECT_QUANTITY",
+      "workGroup": "formwork"
     },
     {
       "workId": "WORK-SOLING",
@@ -267,7 +280,8 @@
         "sourceEvidenceId",
         "verificationStatus"
       ],
-      "status": "TEMPLATE_ONLY_NO_PROJECT_QUANTITY"
+      "status": "TEMPLATE_ONLY_NO_PROJECT_QUANTITY",
+      "workGroup": "foundation"
     },
     {
       "workId": "WORK-PCC_BASE",
@@ -286,7 +300,8 @@
         "sourceEvidenceId",
         "verificationStatus"
       ],
-      "status": "TEMPLATE_ONLY_NO_PROJECT_QUANTITY"
+      "status": "TEMPLATE_ONLY_NO_PROJECT_QUANTITY",
+      "workGroup": "foundation"
     },
     {
       "workId": "WORK-TILE",
@@ -305,7 +320,8 @@
         "sourceEvidenceId",
         "verificationStatus"
       ],
-      "status": "TEMPLATE_ONLY_NO_PROJECT_QUANTITY"
+      "status": "TEMPLATE_ONLY_NO_PROJECT_QUANTITY",
+      "workGroup": "finishes"
     },
     {
       "workId": "WORK-GRANITE",
@@ -324,7 +340,8 @@
         "sourceEvidenceId",
         "verificationStatus"
       ],
-      "status": "TEMPLATE_ONLY_NO_PROJECT_QUANTITY"
+      "status": "TEMPLATE_ONLY_NO_PROJECT_QUANTITY",
+      "workGroup": "finishes"
     },
     {
       "workId": "WORK-PAINT_INTERNAL",
@@ -343,7 +360,8 @@
         "sourceEvidenceId",
         "verificationStatus"
       ],
-      "status": "TEMPLATE_ONLY_NO_PROJECT_QUANTITY"
+      "status": "TEMPLATE_ONLY_NO_PROJECT_QUANTITY",
+      "workGroup": "finishes"
     },
     {
       "workId": "WORK-PAINT_EXTERNAL",
@@ -362,7 +380,8 @@
         "sourceEvidenceId",
         "verificationStatus"
       ],
-      "status": "TEMPLATE_ONLY_NO_PROJECT_QUANTITY"
+      "status": "TEMPLATE_ONLY_NO_PROJECT_QUANTITY",
+      "workGroup": "finishes"
     },
     {
       "workId": "WORK-ELECTRICAL_WORKS",
@@ -381,7 +400,8 @@
         "sourceEvidenceId",
         "verificationStatus"
       ],
-      "status": "TEMPLATE_ONLY_NO_PROJECT_QUANTITY"
+      "status": "TEMPLATE_ONLY_NO_PROJECT_QUANTITY",
+      "workGroup": "services"
     },
     {
       "workId": "WORK-WATER_PROOFING",
@@ -400,7 +420,8 @@
         "sourceEvidenceId",
         "verificationStatus"
       ],
-      "status": "TEMPLATE_ONLY_NO_PROJECT_QUANTITY"
+      "status": "TEMPLATE_ONLY_NO_PROJECT_QUANTITY",
+      "workGroup": "services"
     },
     {
       "workId": "WORK-WINDOW_UPVC",
@@ -419,7 +440,8 @@
         "sourceEvidenceId",
         "verificationStatus"
       ],
-      "status": "TEMPLATE_ONLY_NO_PROJECT_QUANTITY"
+      "status": "TEMPLATE_ONLY_NO_PROJECT_QUANTITY",
+      "workGroup": "services"
     },
     {
       "workId": "WORK-FALSE_CEILING",
@@ -438,7 +460,8 @@
         "sourceEvidenceId",
         "verificationStatus"
       ],
-      "status": "TEMPLATE_ONLY_NO_PROJECT_QUANTITY"
+      "status": "TEMPLATE_ONLY_NO_PROJECT_QUANTITY",
+      "workGroup": "finishes"
     },
     {
       "workId": "WORK-METAL_RAILING",
@@ -457,7 +480,8 @@
         "sourceEvidenceId",
         "verificationStatus"
       ],
-      "status": "TEMPLATE_ONLY_NO_PROJECT_QUANTITY"
+      "status": "TEMPLATE_ONLY_NO_PROJECT_QUANTITY",
+      "workGroup": "services"
     },
     {
       "workId": "WORK-SCREEDING",
@@ -476,7 +500,8 @@
         "sourceEvidenceId",
         "verificationStatus"
       ],
-      "status": "TEMPLATE_ONLY_NO_PROJECT_QUANTITY"
+      "status": "TEMPLATE_ONLY_NO_PROJECT_QUANTITY",
+      "workGroup": "finishes"
     },
     {
       "workId": "WORK-PUNNING_FLOOR",
@@ -495,7 +520,40 @@
         "sourceEvidenceId",
         "verificationStatus"
       ],
-      "status": "TEMPLATE_ONLY_NO_PROJECT_QUANTITY"
+      "status": "TEMPLATE_ONLY_NO_PROJECT_QUANTITY",
+      "workGroup": "finishes"
+    }
+  ],
+  "workGroups": [
+    {
+      "id": "foundation",
+      "name": "Groundwork & concrete",
+      "summary": "Soling, PCC, and RCC structural pours"
+    },
+    {
+      "id": "reinforcement",
+      "name": "Rebar / bending schedules",
+      "summary": "Count, length, bend and bar-weight lineage"
+    },
+    {
+      "id": "formwork",
+      "name": "Formwork & shuttering",
+      "summary": "Contact faces, deductions and reuse rules"
+    },
+    {
+      "id": "masonry",
+      "name": "Masonry",
+      "summary": "Wall runs, openings and deductions"
+    },
+    {
+      "id": "finishes",
+      "name": "Finishes & flooring",
+      "summary": "Net finish areas, surface types and scope"
+    },
+    {
+      "id": "services",
+      "name": "Services & envelope",
+      "summary": "Points, runs, openings, treated faces and metalwork"
     }
   ]
 }

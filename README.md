@@ -1,3 +1,11 @@
+## Evidence-first Calculation Workspace / Research v1.2 (2026-10-31)
+
+The public [Calculation Workspace](calculation-workspace.html) distinguishes raw Drive/PDF/CAD/Discord evidence; Quarto (`.qmd`) / Jupyter (`.ipynb`) **restricted, versioned working notes**; approved measurement/BOQ/AOC Sheet registers; and sanitized GitHub Actions/Pages projections. Public repo stores **only generic calculation templates** at `templates/calculation-notes/v1/`, and NEVER raw private site notebooks.
+
+The [Ten-Reference Literature Review](literature-review.html) is based on RICS NRM 1/2, AACE estimate class guidance, buildingSMART IFC, IfcOpenShell, Quarto, Jupyter nbformat, W3C PROV-O, OCDS and GitHub Pages. Sources and limitations are stored in `data/methodology-literature-v1.json`. International methods do not supersede Nepal-specific rules or contract measurements.
+
+The 26 project trade pages remain stable but are now grouped and searchable from the Amrit measurement directory. Original source IDs, historic URLs, approved rates, finance records and old project artifacts remain intact. Deployment excludes executable/draft `.qmd` and `.ipynb` files; source HTML and public JSON still require explicit publication review.
+
 ## v1.1 — Unified project costing template and commercial billing (2026-10-31)
 
 The single template at `templates/project-costing/v1/master-template.json` governs **Detailed Measurements → Bill of Quantities → Abstract of Cost** across every project. `work-catalog.json` provides 26 work measurement methods; each project provides its own source-linked projection, *not* a second master schema. The Amrit Rawat project has 26 distinct trade work pages under `measurements/`, an aggregate BOQ, and AOC pages.

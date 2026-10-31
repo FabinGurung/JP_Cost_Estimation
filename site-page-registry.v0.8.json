@@ -1,6 +1,6 @@
 {
   "schema": "jp.site.page-registry.v1",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "recorded": "2026-10-31",
   "site": {
     "id": "JP",
@@ -15,8 +15,8 @@
     "formalTagAtInventory": "v0.8.0",
     "latestFormalRelease": "v0.8.0",
     "sourceAuthority": "Google Sheets for finance, distinct source families for rates",
-    "version": "1.1.0",
-    "description": "One Measurement→BOQ→AOC project template, detailed work pages and distinct procurement/billing stages"
+    "version": "1.2.0",
+    "description": "Evidence-first measurement/BOQ/AOC, 10 cited technical references, Quarto working notes and searchable work types."
   },
   "levels": [
     {
@@ -1511,6 +1511,57 @@
       "keyDependencies": [
         "templates/project-costing/v1/project-view.mjs"
       ]
+    },
+    {
+      "id": "BQ-02",
+      "department": "BQ",
+      "parent": "BQ-01",
+      "path": "calculation-workspace.html",
+      "title": "Unstructured calculations / evidence workspace",
+      "kind": "method",
+      "status": "published",
+      "navigation": "secondary",
+      "sections": [
+        {
+          "id": "BQ-02.S01",
+          "domId": "calculationWorkspace",
+          "title": "Evidence-first calculation source selection"
+        },
+        {
+          "id": "BQ-02.S02",
+          "domId": "calculationWorkflow",
+          "title": "Capture, work, verify, publish"
+        }
+      ],
+      "keyDependencies": [
+        "department-pages.css",
+        "templates/calculation-notes/v1/manifest.schema.json"
+      ]
+    },
+    {
+      "id": "RF-02",
+      "department": "RF",
+      "parent": "RF-01",
+      "path": "literature-review.html",
+      "title": "Ten-reference methods review",
+      "kind": "source",
+      "status": "published",
+      "navigation": "secondary",
+      "sections": [
+        {
+          "id": "RF-02.S01",
+          "domId": "literatureReview",
+          "title": "10 authoritative references"
+        },
+        {
+          "id": "RF-02.S02",
+          "domId": "literatureMethod",
+          "title": "Selection and local limits"
+        }
+      ],
+      "keyDependencies": [
+        "data/methodology-literature-v1.json"
+      ]
     }
   ],
   "dataAssets": [
@@ -1600,6 +1651,24 @@
       ],
       "kind": "single reusable measurement-BOQ-AOC schema",
       "authority": "GitHub governed machine schema"
+    },
+    {
+      "id": "DATA-RF-LITERATURE",
+      "path": "data/methodology-literature-v1.json",
+      "usedBy": [
+        "RF-02"
+      ],
+      "kind": "reviewed external authoritative references, not project evidence",
+      "authority": "Original publishers; access as of 2026-10-31"
+    },
+    {
+      "id": "DATA-BQ-CALC-NOTE-SCHEMA",
+      "path": "templates/calculation-notes/v1/manifest.schema.json",
+      "usedBy": [
+        "BQ-02"
+      ],
+      "kind": "public template schema for private notebook source lineage",
+      "authority": "JP governed code, no private calculation files"
     }
   ],
   "operations": {

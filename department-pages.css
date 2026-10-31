@@ -22,3 +22,21 @@
 .jp-domain .inline-link{display:inline-flex;margin-top:8px;font-weight:700}
 .jp-domain .status{font-size:13px;color:#705117;font-weight:700}
 @media(max-width:630px){.jp-domain{padding:14px}.jp-domain .grid{grid-template-columns:1fr}.jp-domain .tile{padding:16px}}
+
+/* A9 evidence-first information architecture */
+.jp-evidence-grid{list-style:none;counter-reset:review;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:16px;padding:0;margin:20px 0}
+.jp-evidence-card{min-width:0;counter-increment:review;border:1px solid #cfdbcb;border-radius:16px;background:#fffdf9;padding:20px;overflow-wrap:anywhere}
+.jp-evidence-card h2{font-size:20px;line-height:1.35}
+.jp-evidence-card .jp-evidence-kicker{font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:#9d6237;font-weight:800}
+.jp-evidence-card a{font-weight:750}
+.jp-evidence-limitation{border-left:3px solid #b47d45;background:#fbf2e4;padding:9px 13px}
+.jp-method-strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:12px}
+.jp-method-strip>div{background:#f9f7ee;border:1px solid #d9decf;border-radius:12px;padding:16px}
+.jp-method-strip p{margin-bottom:0}
+.jp-method-steps{padding-left:24px}.jp-method-steps li{padding:7px 0}
+.jp-work-filter{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:14px;align-items:end}
+.jp-work-filter label{display:flex;flex-direction:column;gap:6px;font-weight:700}
+.jp-work-filter input,.jp-work-filter select{width:100%;padding:12px;border:1px solid #aebfaa;border-radius:10px;min-height:44px;background:white;color:#173f35;font:inherit}
+.jp-work-filter output{font-weight:750;color:#2f664e}
+.jp-domain [hidden]{display:none!important}
+@media(max-width:620px){.jp-evidence-grid{grid-template-columns:1fr}.jp-evidence-card{padding:15px}.jp-method-strip{grid-template-columns:1fr}}

@@ -42,6 +42,8 @@ jobs:
           node scripts/validate-site-page-registry.mjs
           node scripts/sync-amrit-rawat-rates.mjs --validate-current
           node scripts/validate-functional-domains.mjs
+          node --check templates/project-costing/v1/work-directory.mjs
+          node scripts/qa-methodology-site.mjs
           node --check templates/project-costing/v1/costing-pipeline.mjs
           node --check templates/project-costing/v1/project-view.mjs
           node scripts/qa-unified-costing.mjs
@@ -108,8 +110,12 @@ jobs:
           mkdir -p _site
           rsync -a --exclude='.git' --exclude='.github' --exclude='_site' \
             --exclude='gha-creds-*.json' --exclude='*.pem' --exclude='*.key' \
-            --exclude='.env*' --exclude='__pycache__' --exclude='node_modules' \
+            --exclude='.env*' --exclude='*.qmd' --exclude='*.ipynb' \
+            --exclude='private-source' --exclude='draft-notes' \
+            --exclude='__pycache__' --exclude='node_modules' \
             --exclude='scripts' ./ _site/
+      - name: Validate staged Pages against notebook privacy and public route boundaries
+        run: node scripts/qa-methodology-site.mjs --staged _site
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
       - name: Upload static website
