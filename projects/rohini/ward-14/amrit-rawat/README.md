@@ -37,3 +37,12 @@ Repository-level Actions secrets:
 ## Pricing safeguards
 
 All supplied ranges remain `USER_SUPPLIED_UNVERIFIED`. Rates per sq.ft built-up plinth are NOT rates per sq.ft actual painted or tiled surface. Daily wages are per worker-day. Material-plus-labour is an alternative to labour-only. Turnkey and grey construction packages may overlap with other trades; require a specific scope matrix before any summation. Painting area factor of 3.5 is approximate only; bathroom fixtures are extra in the user-supplied schedule.
+
+
+## Unified costing LIVE workbook (V000001, 2026-10-31)
+
+- Reusable native master: https://docs.google.com/spreadsheets/d/1TSBHMSjOGuWcVkEnKsjFHpEYi191RMwdp5bfCqBkzCY/edit . Held under A9 03_JP_Cost_Estimation / 02_HUMAN_WORKING_SHEETS.
+- Project source LIVE (PERMANENT ID): https://docs.google.com/spreadsheets/d/1QfVM08Zvd_mv7EXcTxT9WMYPHzTAUHOTmL10ULo4oIA/edit . Held in original Rohini / Ward 14 / 14_Amrit_Rawat.
+- New project-only archive folder: `90_VERSION_HISTORY__AMRIT_RAWAT_COSTING`; V000001 POST saved after native sheet / parent / header readback.
+- Project worksheet IDs link the same single LIVE workbook for measurement, selected rates, derived BOQ, AOC, RA and vendor bills. **No verified measurements, bills, invoices or actual project payments were found/admitted.**
+- The published JSON is currently still an empty projection; there has been no source-authenticated GitHub Action read from this new Sheet. Do not infer live freshness from Pages deployment.

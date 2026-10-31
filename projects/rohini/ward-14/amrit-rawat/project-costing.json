@@ -5,13 +5,13 @@
   "projectId": "RE-AMRIT-RAWAT-W14",
   "organizationId": "ROHINI",
   "title": "Amrit Rawat — Pokhara Ward 14",
-  "sourceVersion": null,
+  "sourceVersion": "V000001",
   "sourceAuthorities": {
-    "measurementBookSheetId": null,
-    "boqSheetId": null,
-    "aocSheetId": null,
-    "contractorBillingSheetId": null,
-    "vendorInvoiceSheetId": null,
+    "measurementBookSheetId": "1QfVM08Zvd_mv7EXcTxT9WMYPHzTAUHOTmL10ULo4oIA",
+    "boqSheetId": "1QfVM08Zvd_mv7EXcTxT9WMYPHzTAUHOTmL10ULo4oIA",
+    "aocSheetId": "1QfVM08Zvd_mv7EXcTxT9WMYPHzTAUHOTmL10ULo4oIA",
+    "contractorBillingSheetId": "1QfVM08Zvd_mv7EXcTxT9WMYPHzTAUHOTmL10ULo4oIA",
+    "vendorInvoiceSheetId": "1QfVM08Zvd_mv7EXcTxT9WMYPHzTAUHOTmL10ULo4oIA",
     "paymentSheetId": null,
     "cadExportReference": null,
     "rateRegisterReference": "RE-RATE-AMRIT-RAWAT-001"
@@ -19,7 +19,7 @@
   "publicSnapshot": {
     "generatedAtUtc": null,
     "authenticatedSourceFetch": false,
-    "sourceAdmission": "NOT_ADMITTED",
+    "sourceAdmission": "EMPTY_NATIVE_LIVE_SHEET_STRUCTURE_VERIFIED_NO_MEASUREMENTS_OR_BILLS",
     "scope": "TEMPLATE_ONLY"
   },
   "measurementRows": [],
@@ -37,8 +37,10 @@
   "vendorInvoices": [],
   "paymentAllocations": [],
   "notes": [
+    "Amrit's distinct native LIVE cost/billing register was created from the global nine-tab master, with no project measurements or paid records populated.",
+    "Authenticated GitHub Actions intake from this new LIVE Sheet has NOT run; current project public JSON remains an empty governance projection.",
+    "Payment allocation tab is not a transaction authority: original Finance Sheets still own bank/cash payments.",
     "No measurement quantities sourced or verified for Amrit Rawat",
-    "Fishtail Builders Discord Measurement Of Works archive is a taxonomy reference only, NOT Amrit project evidence",
-    "No live billing register connected; no invoice or payment assertion"
+    "Fishtail Builders Discord Measurement Of Works archive is a taxonomy reference only, NOT Amrit project evidence"
   ]
 }
