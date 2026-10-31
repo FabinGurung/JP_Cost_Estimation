@@ -181,7 +181,7 @@
     $('vendorCount').textContent = fmt(data.totals.vendor_count);
     $('qrTotal').textContent = money(data.totals.qr_npr);
     $('discountTotal').textContent = money(data.totals.discount_npr);
-    $('asOf').textContent = 'Verified ' + data.verified_on + ' · Manual publication';
+    $('asOf').textContent = 'Verified ' + data.verified_on + (data.publication_mode === 'github_actions_google_sheets' ? ' · Google Sheets via GitHub Actions' : ' · Historical snapshot');
     $('sourceLink').href = data.source.workbook_url;
     $('sourceButton').href = data.source.workbook_url;
     $('sourceDescription').textContent = data.register + ' · ' + data.project +
