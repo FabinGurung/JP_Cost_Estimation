@@ -1,0 +1,15 @@
+
+/* Shared project costing pages: reusable mobile-first responsive cards and ledgers */
+.jp-domain .cost-nav{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}
+.jp-domain .cost-nav a{border:1px solid #cbd9c7;background:#f6f9f3;border-radius:11px;padding:8px 11px;text-decoration:none;font-weight:650}
+.jp-domain .stage-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:13px;margin:19px 0}
+.jp-domain .stage-grid a{display:flex;flex-direction:column;justify-content:space-between;gap:10px;background:#fffdf8;border:1px solid #cbd9ce;border-radius:13px;padding:15px;color:#174d37;text-decoration:none}
+.jp-domain .stage-grid a:hover,.jp-domain .cost-nav a:hover{box-shadow:0 3px 0 #a86f45}
+.jp-domain .method-callout{border-left:4px solid #ba885b;background:#fcf4e8;border-radius:8px;padding:11px 15px;margin:14px 0}
+.jp-domain .ledger{width:100%;overflow-x:auto;border:1px solid #d9e4d8;border-radius:12px}
+.jp-domain .ledger table{min-width:760px;border-collapse:collapse;width:100%}
+.jp-domain .ledger th{background:#e5efdf;white-space:nowrap}
+.jp-domain .ledger td,.jp-domain .ledger th{text-align:left;border-bottom:1px solid #dfebdf;padding:12px}
+.jp-domain .status-line{margin:16px 0;padding:13px;background:#fff1d9;border:1px solid #edd9b1;border-radius:10px;color:#6b4a19;font-weight:700;overflow-wrap:anywhere}
+@media(max-width:620px){.jp-domain .stage-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.jp-domain .stage-grid a{padding:11px;font-size:13px}.jp-domain .ledger{font-size:12px}}
+@media(max-width:380px){.jp-domain .stage-grid{grid-template-columns:1fr}}
