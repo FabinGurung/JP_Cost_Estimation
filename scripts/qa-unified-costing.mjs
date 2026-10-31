@@ -25,7 +25,7 @@ assert.equal(p.publicSnapshot.sourceAdmission,'EMPTY_NATIVE_LIVE_SHEET_STRUCTURE
 assert.equal(cat.projectEvidenceImported,false);
 assert.equal(cat.works.length,26);
 assert.equal(new Set(cat.works.map(w=>w.slug)).size,26);
-assert.equal(registry.pages.length,66);
+assert.equal(registry.pages.length,68);
 assert.equal(registry.templates[0].id,master.templateId);
 for(const w of cat.works){
  const page=b+'measurements/'+w.slug+'.html';
