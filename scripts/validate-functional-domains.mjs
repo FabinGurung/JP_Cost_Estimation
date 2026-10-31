@@ -1,0 +1,58 @@
+import {readFileSync,existsSync} from 'node:fs';
+import assert from 'node:assert/strict';
+import path from 'node:path';
+import {fileURLToPath} from 'node:url';
+import {validateMeasurement,priceBOQLine,costAbstract} from '../project-cost-engine.mjs';
+const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
+const file=p=>readFileSync(path.join(root,p),'utf8');
+const json=p=>JSON.parse(file(p));
+const b='projects/rohini/ward-14/amrit-rawat/';
+const r=json(b+'rates.public.json'),p=json(b+'project-state.json');
+const nav=file('site-navigation-v0.8.js'),registry=json('site-page-registry.v0.8.json');
+assert.equal(r.schema,'jp.client-rate-snapshot.v1');
+assert.equal(r.recordId,'RE-RATE-AMRIT-RAWAT-001');
+assert.equal(r.effectiveStatus,'USER_SUPPLIED_INDICATIVE_NOT_APPROVED');
+assert.deepEqual(['plinth','trade','daily_wage'].map(c=>r.rates.filter(x=>x.category===c).length),[14,12,6]);
+assert.equal(new Set(r.rates.map(x=>x.id)).size,32);
+assert(r.rates.every(x=>x.status==='USER_SUPPLIED_UNVERIFIED'&&x.minNpr>0&&x.maxNpr>=x.minNpr));
+assert(!JSON.stringify(r).includes('13uIoX0_urXfSEMLYRK01Pt9FWwYj5SfiLOxHhbr9HPE'),'Private operational Sheet ID must not leak');
+assert.equal(p.projectId,'RE-AMRIT-RAWAT-W14');
+assert.equal(p.measurement.status,'NOT_MEASURED_PENDING');
+assert.equal(p.measurement.items.length,0);
+assert.equal(p.measurement.quantityTotal,null);
+assert.equal(p.boq.amountNpr,null);
+assert.equal(p.aoc.totalNpr,null);
+assert.equal(p.estimateVsActual.actualNpr,null);
+const template=json('boq-template.json');
+assert.equal(template.ready_for_population,false);
+assert.equal(template.status,'BLOCKED_PENDING_VERIFIED_CAD_FID_DATA');
+assert.equal(template.measurement_items.length,0);
+assert(!registry.pages.some(x=>x.id==='RT-22'||(x.department==='RT'&&x.path.includes('amrit-rawat'))));
+assert.equal(registry.pages.find(x=>x.id==='PJ-03').path,b+'cost-planning.html');
+assert(!file('rate-sources.html').includes('rohiniAmritRateEntry'));
+assert(nav.includes("'Projects'")&&nav.includes("'Measurements & BOQ'"));
+const pending=priceBOQLine(null,{});
+assert.equal(pending.amountNpr,null);
+assert.equal(validateMeasurement({quantity:0,unit:'sq.ft',verificationStatus:'VERIFIED'}).ok,false);
+const verified={workItemId:'TEST-ONLY',quantity:14,unit:'sq.ft',measurementMethod:'site survey',sourceRevision:'TEST-REV',sourceEvidenceId:'TEST-EVIDENCE',verificationStatus:'VERIFIED'};
+assert.equal(priceBOQLine(verified,{rateId:'TEST',sourceId:'SRC',unit:'sq.ft',unitRateNpr:50,approvalStatus:'UNVERIFIED'}).amountNpr,null);
+assert.equal(priceBOQLine(verified,{rateId:'TEST',sourceId:'SRC',unit:'m3',unitRateNpr:50,approvalStatus:'APPROVED'}).amountNpr,null);
+assert.equal(priceBOQLine(verified,{rateId:'TEST',sourceId:'SRC',unit:'sq.ft',unitRateNpr:50,approvalStatus:'APPROVED'}).amountNpr,700);
+assert.equal(costAbstract([]).totalNpr,null);
+assert.equal(costAbstract([{status:'APPROVED',amountNpr:700,scopeFamily:'GF',pricingOption:'LABOUR_ONLY'},{status:'APPROVED',amountNpr:800,scopeFamily:'GF',pricingOption:'MATERIAL_LABOUR'}],{contingencyNpr:0}).totalNpr,null);
+assert.equal(costAbstract([{status:'APPROVED',amountNpr:700,scopeFamily:'BLDG',pricingOption:'TURNKEY'},{status:'APPROVED',amountNpr:800,scopeFamily:'BLDG',pricingOption:'CIVIL_TRADE'}],{contingencyNpr:0}).totalNpr,null);
+assert.equal(costAbstract([{status:'APPROVED',amountNpr:700,scopeFamily:'GF',pricingOption:'MATERIAL_LABOUR'}],{allowances:[],contingencyNpr:50}).totalNpr,750);
+const pages=['projects.html','measurements-boq.html','reference.html','governance.html',b+'index.html',b+'cost-planning.html',b+'boq.html',b+'aoc.html'];
+for(const h of pages){
+ const source=file(h);assert(/<meta name="viewport"/.test(source),'Mobile viewport '+h);
+ assert(source.includes('site-navigation-v0.8.js')&&source.includes('site-theme-v0.8.css'),'Shared shell '+h);
+ const re=/(?:href|src)="([^"]+)"/g;let match;
+ while((match=re.exec(source))){
+ const link=match[1].split(/[?#]/)[0];
+ if(!link||/^(?:https?:|mailto:|javascript:|data:)/i.test(link))continue;
+ const resolved=path.resolve(path.dirname(path.join(root,h)),link);
+ assert(resolved.startsWith(root+path.sep),'Path escapes web root '+h+': '+link);
+ assert(existsSync(resolved),'Broken authored link '+h+': '+link);
+ }
+}
+console.log('A9 COST DOMAINS PASS: 32 rates retained; project classifications, blocked QTO/BOQ/AOC, finance separation, unit guards and 8 responsive page contracts.');
