@@ -1,8 +1,8 @@
 {
   "schema": "jp.finance.public.v1",
   "version": "0.7.0",
-  "verified_on": "2026-10-20",
-  "publication_mode": "manual_refresh",
+  "verified_on": "2026-10-31",
+  "publication_mode": "connected_google_sheet_verified_20261031",
   "company": "Rohini Engineering and Builders Pvt. Ltd.",
   "company_id": "REB",
   "project": "14 Bishal Paija",
@@ -13,7 +13,7 @@
     "workbook_url": "https://docs.google.com/spreadsheets/d/1S1fkWzo6XGzyD3p92_pTG32zZ9fF3YICAv3HPTomZsE/edit",
     "register_tab": "14_bishal_paija",
     "vendor_range": "A7:E34",
-    "payment_range": "A35:H190",
+    "payment_range": "A36:H190",
     "mixed_date_systems": true
   },
   "totals": {
@@ -722,7 +722,7 @@
       "vendor_id": 13,
       "vendor": "Fuel_Machinery",
       "source_date": "2083-06-19",
-      "date_system": "BS",
+      "date_system": "AD",
       "paid_time": "10:22:00 am",
       "amount_npr": 800,
       "qr_npr": null,
