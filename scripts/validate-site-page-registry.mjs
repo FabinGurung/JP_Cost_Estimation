@@ -3,10 +3,10 @@ import assert from 'node:assert/strict';
 const root=new URL('../',import.meta.url),read=p=>readFileSync(new URL(p,root),'utf8');
 const registry=JSON.parse(read('site-page-registry.v0.8.json'));
 assert.equal(registry.schema,'jp.site.page-registry.v1');
-assert.equal(registry.version,'1.0.0');
+assert.equal(registry.version,'1.1.0');
 const pages=registry.pages,ids=new Set(pages.map(p=>p.id));
 assert.equal(ids.size,pages.length,'Duplicate stable page ID');
-assert.equal(pages.length,35,'Functional navigation baseline changed; update intentionally');
+assert.equal(pages.length,66,'Functional navigation baseline changed; update intentionally');
 assert.deepEqual(registry.departments.map(d=>d.id).sort(),['BQ','FN','PJ','RF','RT','SY']);
 assert.deepEqual(registry.navigation.primary,['OV-01','RT-01','PJ-01','BQ-01','FN-01']);
 assert.deepEqual(registry.navigation.more,['RF-01','SY-02','MP-01','FN-03']);
@@ -37,4 +37,4 @@ assert(registry.legacyAliases.some(x=>x.legacyPageId==='RT-22'&&x.currentPageId=
 const nav=read('site-navigation-v0.8.js');
 for(const dest of ['index.html','rate-sources.html','projects.html','measurements-boq.html','finance.html','governance.html'])assert(nav.includes("'"+dest+"'"),'Missing global route '+dest);
 for(const f of ['site-theme-v0.8.css','site-navigation-v0.8.js','department-pages.css'])assert(existsSync(new URL(f,root)));
-console.log('FUNCTIONAL PAGE REGISTRY PASS: '+pages.length+' routes, 6 departments, legacy RT-22 retained as alias.');
+console.log('FUNCTIONAL PAGE REGISTRY PASS: '+pages.length+' routes, 6 departments, 26 work-specific measurement pages, legacy RT-22 retained as alias.');

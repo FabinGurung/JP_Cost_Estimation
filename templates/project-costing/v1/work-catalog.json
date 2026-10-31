@@ -1,0 +1,501 @@
+{
+  "schema": "jp.work-method-catalog.v1",
+  "source": "A9 fixed Discord Measurement Of Works category: archived work-type labels, used as taxonomy only",
+  "projectEvidenceImported": false,
+  "works": [
+    {
+      "workId": "WORK-BRICK_WALL",
+      "slug": "brick-wall",
+      "label": "Brick masonry",
+      "suggestedUnit": "m³",
+      "measurementMethodGuide": "Wall runs × height × thickness; deduct openings by adopted contract rule",
+      "discordArchiveChannel": "brick-wall",
+      "evidenceRequired": [
+        "projectId",
+        "workItemId",
+        "locationOrGrid",
+        "method",
+        "quantityUnit",
+        "drawingRevision",
+        "sourceEvidenceId",
+        "verificationStatus"
+      ],
+      "status": "TEMPLATE_ONLY_NO_PROJECT_QUANTITY"
+    },
+    {
+      "workId": "WORK-STONE_MASONRY",
+      "slug": "stone-masonry",
+      "label": "Stone masonry",
+      "suggestedUnit": "m³",
+      "measurementMethodGuide": "Verified wall and foundation dimensions, openings deducted",
+      "discordArchiveChannel": "stone-masnory-wall",
+      "evidenceRequired": [
+        "projectId",
+        "workItemId",
+        "locationOrGrid",
+        "method",
+        "quantityUnit",
+        "drawingRevision",
+        "sourceEvidenceId",
+        "verificationStatus"
+      ],
+      "status": "TEMPLATE_ONLY_NO_PROJECT_QUANTITY"
+    },
+    {
+      "workId": "WORK-RCC_FOOTING",
+      "slug": "rcc-footing",
+      "label": "RCC footing",
+      "suggestedUnit": "m³",
+      "measurementMethodGuide": "Individual footing geometric volume; PCC and reinforcement separate",
+      "discordArchiveChannel": "pcc-rcc-footing",
+      "evidenceRequired": [
+        "projectId",
+        "workItemId",
+        "locationOrGrid",
+        "method",
+        "quantityUnit",
+        "drawingRevision",
+        "sourceEvidenceId",
+        "verificationStatus"
+      ],
+      "status": "TEMPLATE_ONLY_NO_PROJECT_QUANTITY"
+    },
+    {
+      "workId": "WORK-RCC_COLUMN",
+      "slug": "rcc-column",
+      "label": "RCC column",
+      "suggestedUnit": "m³",
+      "measurementMethodGuide": "Column section × verified clear height; revisions and overlaps resolved",
+      "discordArchiveChannel": "pcc-rcc-column",
+      "evidenceRequired": [
+        "projectId",
+        "workItemId",
+        "locationOrGrid",
+        "method",
+        "quantityUnit",
+        "drawingRevision",
+        "sourceEvidenceId",
+        "verificationStatus"
+      ],
+      "status": "TEMPLATE_ONLY_NO_PROJECT_QUANTITY"
+    },
+    {
+      "workId": "WORK-RCC_BEAM",
+      "slug": "rcc-beam",
+      "label": "RCC beam",
+      "suggestedUnit": "m³",
+      "measurementMethodGuide": "Beam cross-section × net billed length; slab overlap per measurement rules",
+      "discordArchiveChannel": "pcc-rcc-beam",
+      "evidenceRequired": [
+        "projectId",
+        "workItemId",
+        "locationOrGrid",
+        "method",
+        "quantityUnit",
+        "drawingRevision",
+        "sourceEvidenceId",
+        "verificationStatus"
+      ],
+      "status": "TEMPLATE_ONLY_NO_PROJECT_QUANTITY"
+    },
+    {
+      "workId": "WORK-RCC_SLAB",
+      "slug": "rcc-slab",
+      "label": "RCC slab",
+      "suggestedUnit": "m³",
+      "measurementMethodGuide": "Slab net area × thickness, openings/deductions per contract",
+      "discordArchiveChannel": "pcc-rcc-slab",
+      "evidenceRequired": [
+        "projectId",
+        "workItemId",
+        "locationOrGrid",
+        "method",
+        "quantityUnit",
+        "drawingRevision",
+        "sourceEvidenceId",
+        "verificationStatus"
+      ],
+      "status": "TEMPLATE_ONLY_NO_PROJECT_QUANTITY"
+    },
+    {
+      "workId": "WORK-REBAR_BBS_FOOTING",
+      "slug": "rebar-bbs-footing",
+      "label": "Rebar BBS — footing",
+      "suggestedUnit": "kg",
+      "measurementMethodGuide": "Bar cutting lengths × number × unit mass; bend and hook schedules",
+      "discordArchiveChannel": "rebar-bbs-footing",
+      "evidenceRequired": [
+        "projectId",
+        "workItemId",
+        "locationOrGrid",
+        "method",
+        "quantityUnit",
+        "drawingRevision",
+        "sourceEvidenceId",
+        "verificationStatus"
+      ],
+      "status": "TEMPLATE_ONLY_NO_PROJECT_QUANTITY"
+    },
+    {
+      "workId": "WORK-REBAR_BBS_COLUMN",
+      "slug": "rebar-bbs-column",
+      "label": "Rebar BBS — column",
+      "suggestedUnit": "kg",
+      "measurementMethodGuide": "Longitudinal/stirrup bar mark, shape, count, cutting length, diameter",
+      "discordArchiveChannel": "rebar-bbs-column",
+      "evidenceRequired": [
+        "projectId",
+        "workItemId",
+        "locationOrGrid",
+        "method",
+        "quantityUnit",
+        "drawingRevision",
+        "sourceEvidenceId",
+        "verificationStatus"
+      ],
+      "status": "TEMPLATE_ONLY_NO_PROJECT_QUANTITY"
+    },
+    {
+      "workId": "WORK-REBAR_BBS_BEAM",
+      "slug": "rebar-bbs-beam",
+      "label": "Rebar BBS — beam",
+      "suggestedUnit": "kg",
+      "measurementMethodGuide": "Bar marks, laps, bends, anchorage and revision traced",
+      "discordArchiveChannel": "rebar-bbs-beam",
+      "evidenceRequired": [
+        "projectId",
+        "workItemId",
+        "locationOrGrid",
+        "method",
+        "quantityUnit",
+        "drawingRevision",
+        "sourceEvidenceId",
+        "verificationStatus"
+      ],
+      "status": "TEMPLATE_ONLY_NO_PROJECT_QUANTITY"
+    },
+    {
+      "workId": "WORK-REBAR_BBS_SLAB",
+      "slug": "rebar-bbs-slab",
+      "label": "Rebar BBS — slab",
+      "suggestedUnit": "kg",
+      "measurementMethodGuide": "Spacing, laps, bar count, diameter and bending schedules",
+      "discordArchiveChannel": "rebar-bbs-slab",
+      "evidenceRequired": [
+        "projectId",
+        "workItemId",
+        "locationOrGrid",
+        "method",
+        "quantityUnit",
+        "drawingRevision",
+        "sourceEvidenceId",
+        "verificationStatus"
+      ],
+      "status": "TEMPLATE_ONLY_NO_PROJECT_QUANTITY"
+    },
+    {
+      "workId": "WORK-FORMWORK_FOOTING",
+      "slug": "formwork-footing",
+      "label": "Formwork — footing",
+      "suggestedUnit": "m²",
+      "measurementMethodGuide": "Contact area of concrete formwork; exposed faces only",
+      "discordArchiveChannel": "formwork-footing-below-plinth-level",
+      "evidenceRequired": [
+        "projectId",
+        "workItemId",
+        "locationOrGrid",
+        "method",
+        "quantityUnit",
+        "drawingRevision",
+        "sourceEvidenceId",
+        "verificationStatus"
+      ],
+      "status": "TEMPLATE_ONLY_NO_PROJECT_QUANTITY"
+    },
+    {
+      "workId": "WORK-FORMWORK_COLUMN",
+      "slug": "formwork-column",
+      "label": "Formwork — column",
+      "suggestedUnit": "m²",
+      "measurementMethodGuide": "Perimeter × height of contact surfaces",
+      "discordArchiveChannel": "formwork-column",
+      "evidenceRequired": [
+        "projectId",
+        "workItemId",
+        "locationOrGrid",
+        "method",
+        "quantityUnit",
+        "drawingRevision",
+        "sourceEvidenceId",
+        "verificationStatus"
+      ],
+      "status": "TEMPLATE_ONLY_NO_PROJECT_QUANTITY"
+    },
+    {
+      "workId": "WORK-FORMWORK_SLAB",
+      "slug": "formwork-slab",
+      "label": "Formwork — slab",
+      "suggestedUnit": "m²",
+      "measurementMethodGuide": "Soffit and applicable edge faces separated",
+      "discordArchiveChannel": "formwork-slab",
+      "evidenceRequired": [
+        "projectId",
+        "workItemId",
+        "locationOrGrid",
+        "method",
+        "quantityUnit",
+        "drawingRevision",
+        "sourceEvidenceId",
+        "verificationStatus"
+      ],
+      "status": "TEMPLATE_ONLY_NO_PROJECT_QUANTITY"
+    },
+    {
+      "workId": "WORK-SOLING",
+      "slug": "soling",
+      "label": "Soling",
+      "suggestedUnit": "m²",
+      "measurementMethodGuide": "Prepared plan area × approved layer/type, or m³ if contract specifies",
+      "discordArchiveChannel": "soling",
+      "evidenceRequired": [
+        "projectId",
+        "workItemId",
+        "locationOrGrid",
+        "method",
+        "quantityUnit",
+        "drawingRevision",
+        "sourceEvidenceId",
+        "verificationStatus"
+      ],
+      "status": "TEMPLATE_ONLY_NO_PROJECT_QUANTITY"
+    },
+    {
+      "workId": "WORK-PCC_BASE",
+      "slug": "pcc-base",
+      "label": "Plain cement concrete / PCC base",
+      "suggestedUnit": "m³",
+      "measurementMethodGuide": "Section or plan area × verified thickness",
+      "discordArchiveChannel": "pcc-base-of-footing",
+      "evidenceRequired": [
+        "projectId",
+        "workItemId",
+        "locationOrGrid",
+        "method",
+        "quantityUnit",
+        "drawingRevision",
+        "sourceEvidenceId",
+        "verificationStatus"
+      ],
+      "status": "TEMPLATE_ONLY_NO_PROJECT_QUANTITY"
+    },
+    {
+      "workId": "WORK-TILE",
+      "slug": "tile",
+      "label": "Tile works",
+      "suggestedUnit": "m²",
+      "measurementMethodGuide": "Net installed face area, pattern/wastage separately stated",
+      "discordArchiveChannel": "tile",
+      "evidenceRequired": [
+        "projectId",
+        "workItemId",
+        "locationOrGrid",
+        "method",
+        "quantityUnit",
+        "drawingRevision",
+        "sourceEvidenceId",
+        "verificationStatus"
+      ],
+      "status": "TEMPLATE_ONLY_NO_PROJECT_QUANTITY"
+    },
+    {
+      "workId": "WORK-GRANITE",
+      "slug": "granite",
+      "label": "Granite works",
+      "suggestedUnit": "m²",
+      "measurementMethodGuide": "Installed surface area and edges/steps separately when priced",
+      "discordArchiveChannel": "granite-works",
+      "evidenceRequired": [
+        "projectId",
+        "workItemId",
+        "locationOrGrid",
+        "method",
+        "quantityUnit",
+        "drawingRevision",
+        "sourceEvidenceId",
+        "verificationStatus"
+      ],
+      "status": "TEMPLATE_ONLY_NO_PROJECT_QUANTITY"
+    },
+    {
+      "workId": "WORK-PAINT_INTERNAL",
+      "slug": "paint-internal",
+      "label": "Internal painting",
+      "suggestedUnit": "m²",
+      "measurementMethodGuide": "Measured internal wall/ceiling finished surface; deductions documented",
+      "discordArchiveChannel": "paint-internal",
+      "evidenceRequired": [
+        "projectId",
+        "workItemId",
+        "locationOrGrid",
+        "method",
+        "quantityUnit",
+        "drawingRevision",
+        "sourceEvidenceId",
+        "verificationStatus"
+      ],
+      "status": "TEMPLATE_ONLY_NO_PROJECT_QUANTITY"
+    },
+    {
+      "workId": "WORK-PAINT_EXTERNAL",
+      "slug": "paint-external",
+      "label": "External painting",
+      "suggestedUnit": "m²",
+      "measurementMethodGuide": "Measured external façade net area; openings per rules",
+      "discordArchiveChannel": "paint-external",
+      "evidenceRequired": [
+        "projectId",
+        "workItemId",
+        "locationOrGrid",
+        "method",
+        "quantityUnit",
+        "drawingRevision",
+        "sourceEvidenceId",
+        "verificationStatus"
+      ],
+      "status": "TEMPLATE_ONLY_NO_PROJECT_QUANTITY"
+    },
+    {
+      "workId": "WORK-ELECTRICAL_WORKS",
+      "slug": "electrical-works",
+      "label": "Electrical works",
+      "suggestedUnit": "point",
+      "measurementMethodGuide": "Approved point type and verified installed endpoints; lengths separately",
+      "discordArchiveChannel": "electrical-works",
+      "evidenceRequired": [
+        "projectId",
+        "workItemId",
+        "locationOrGrid",
+        "method",
+        "quantityUnit",
+        "drawingRevision",
+        "sourceEvidenceId",
+        "verificationStatus"
+      ],
+      "status": "TEMPLATE_ONLY_NO_PROJECT_QUANTITY"
+    },
+    {
+      "workId": "WORK-WATER_PROOFING",
+      "slug": "water-proofing",
+      "label": "Waterproofing",
+      "suggestedUnit": "m²",
+      "measurementMethodGuide": "Treated surface including upstands/returns by agreed measurement method",
+      "discordArchiveChannel": "water-proofing",
+      "evidenceRequired": [
+        "projectId",
+        "workItemId",
+        "locationOrGrid",
+        "method",
+        "quantityUnit",
+        "drawingRevision",
+        "sourceEvidenceId",
+        "verificationStatus"
+      ],
+      "status": "TEMPLATE_ONLY_NO_PROJECT_QUANTITY"
+    },
+    {
+      "workId": "WORK-WINDOW_UPVC",
+      "slug": "window-upvc",
+      "label": "uPVC windows",
+      "suggestedUnit": "m²",
+      "measurementMethodGuide": "Frame opening or supplied frame dimension per contract; count indexed",
+      "discordArchiveChannel": "window-upvc",
+      "evidenceRequired": [
+        "projectId",
+        "workItemId",
+        "locationOrGrid",
+        "method",
+        "quantityUnit",
+        "drawingRevision",
+        "sourceEvidenceId",
+        "verificationStatus"
+      ],
+      "status": "TEMPLATE_ONLY_NO_PROJECT_QUANTITY"
+    },
+    {
+      "workId": "WORK-FALSE_CEILING",
+      "slug": "false-ceiling",
+      "label": "False ceiling",
+      "suggestedUnit": "m²",
+      "measurementMethodGuide": "Net horizontal soffit area, steps/bulkheads separately",
+      "discordArchiveChannel": "false-ceiling",
+      "evidenceRequired": [
+        "projectId",
+        "workItemId",
+        "locationOrGrid",
+        "method",
+        "quantityUnit",
+        "drawingRevision",
+        "sourceEvidenceId",
+        "verificationStatus"
+      ],
+      "status": "TEMPLATE_ONLY_NO_PROJECT_QUANTITY"
+    },
+    {
+      "workId": "WORK-METAL_RAILING",
+      "slug": "metal-railing",
+      "label": "Metal railing",
+      "suggestedUnit": "running m",
+      "measurementMethodGuide": "Centreline/installed run length or kg as contracted",
+      "discordArchiveChannel": "metal-railing",
+      "evidenceRequired": [
+        "projectId",
+        "workItemId",
+        "locationOrGrid",
+        "method",
+        "quantityUnit",
+        "drawingRevision",
+        "sourceEvidenceId",
+        "verificationStatus"
+      ],
+      "status": "TEMPLATE_ONLY_NO_PROJECT_QUANTITY"
+    },
+    {
+      "workId": "WORK-SCREEDING",
+      "slug": "screeding",
+      "label": "Floor screeding",
+      "suggestedUnit": "m²",
+      "measurementMethodGuide": "Net area at specified thickness; m³ if contract requires",
+      "discordArchiveChannel": "screeding",
+      "evidenceRequired": [
+        "projectId",
+        "workItemId",
+        "locationOrGrid",
+        "method",
+        "quantityUnit",
+        "drawingRevision",
+        "sourceEvidenceId",
+        "verificationStatus"
+      ],
+      "status": "TEMPLATE_ONLY_NO_PROJECT_QUANTITY"
+    },
+    {
+      "workId": "WORK-PUNNING_FLOOR",
+      "slug": "punning-floor",
+      "label": "Floor punning",
+      "suggestedUnit": "m²",
+      "measurementMethodGuide": "Net treated floor area and finish specification",
+      "discordArchiveChannel": "punning-floor",
+      "evidenceRequired": [
+        "projectId",
+        "workItemId",
+        "locationOrGrid",
+        "method",
+        "quantityUnit",
+        "drawingRevision",
+        "sourceEvidenceId",
+        "verificationStatus"
+      ],
+      "status": "TEMPLATE_ONLY_NO_PROJECT_QUANTITY"
+    }
+  ]
+}

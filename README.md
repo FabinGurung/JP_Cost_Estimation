@@ -1,3 +1,17 @@
+## v1.1 — Unified project costing template and commercial billing (2026-10-31)
+
+The single template at `templates/project-costing/v1/master-template.json` governs **Detailed Measurements → Bill of Quantities → Abstract of Cost** across every project. `work-catalog.json` provides 26 work measurement methods; each project provides its own source-linked projection, *not* a second master schema. The Amrit Rawat project has 26 distinct trade work pages under `measurements/`, an aggregate BOQ, and AOC pages.
+
+- Detailed measurements are per site location/element/evidence/revision, with dimensional/cutting-length method and physical unit. The CAD drawing/model/FID or verified measurement book is upstream. Missing measurements remain pending.
+- BOQ groups independently verified rows by work item + measurement unit + approved rate choice, with source measurement IDs and rate version. Draft is not certified.
+- AOC groups **approved** BOQ lines; nonoverlapping scopes, allowances, tax and contingency are separately approved.
+- Contractor running bills retain cumulative certified quantities, previous certificates, deductions, and cutoff dates. Final bill closes contract; vendor invoices require PO and goods receipt; payment allocations match Finance Sheet transactions. *Claimed ≠ certified ≠ paid*.
+- The linked Fishtail Discord Measurement Of Works fixed archive was surveyed **only for work taxonomy**. No Fishtail quantity, private attachment, bill or project thread is imported into Amrit.
+- Source operational Sheets remain the **single permanent LIVE IDs when admitted**. The Amrit rate Sheet is unchanged. Measurement/BOQ/AOC/bill source Sheet IDs remain null until actually created/verified; the public pages are read-only, not data-entry surfaces.
+- The legacy `boq-template.json` remains blocked; no measurements were invented.
+
+Read `docs/UNIFIED_PROJECT_COSTING_AND_BILLING_V1.md` for source/evidence requirements and rollback policy.
+
 # JP Cost Estimation · Functional Architecture v1.0 (2026-10-31)
 
 **Current authority:** A9 source-preserving architecture. **Public website:** https://fabingurung.github.io/JP_Cost_Estimation/ . **Publishing branch:** `research/open-estimation-engine-v0.1`. Original `main` homeowner estimator and historical releases are retained.

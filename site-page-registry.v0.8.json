@@ -1,6 +1,6 @@
 {
   "schema": "jp.site.page-registry.v1",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "recorded": "2026-10-31",
   "site": {
     "id": "JP",
@@ -15,8 +15,8 @@
     "formalTagAtInventory": "v0.8.0",
     "latestFormalRelease": "v0.8.0",
     "sourceAuthority": "Google Sheets for finance, distinct source families for rates",
-    "version": "1.0.0",
-    "description": "Functional construction costing: Rates | Projects | QTO/BOQ | Finance | Reference | System"
+    "version": "1.1.0",
+    "description": "One Measurement→BOQ→AOC project template, detailed work pages and distinct procurement/billing stages"
   },
   "levels": [
     {
@@ -779,8 +779,8 @@
         }
       ],
       "keyDependencies": [
-        "projects/rohini/ward-14/amrit-rawat/project-state.json",
-        "project-cost-engine.mjs"
+        "projects/rohini/ward-14/amrit-rawat/project-costing.json",
+        "templates/project-costing/v1/project-view.mjs"
       ]
     },
     {
@@ -800,8 +800,8 @@
         }
       ],
       "keyDependencies": [
-        "projects/rohini/ward-14/amrit-rawat/project-state.json",
-        "project-cost-engine.mjs"
+        "projects/rohini/ward-14/amrit-rawat/project-costing.json",
+        "templates/project-costing/v1/project-view.mjs"
       ]
     },
     {
@@ -863,6 +863,653 @@
       ],
       "keyDependencies": [
         "department-pages.css"
+      ]
+    },
+    {
+      "id": "PJ-06",
+      "department": "PJ",
+      "parent": "PJ-02",
+      "path": "projects/rohini/ward-14/amrit-rawat/measurements/index.html",
+      "title": "Amrit Rawat — detailed measurements directory",
+      "kind": "project_detail",
+      "status": "published",
+      "navigation": "secondary",
+      "sections": [
+        {
+          "id": "PJ-06.S01",
+          "domId": "amritMeasurementDirectory",
+          "title": "Amrit Rawat — detailed measurements directory"
+        }
+      ],
+      "keyDependencies": [
+        "templates/project-costing/v1/master-template.json",
+        "templates/project-costing/v1/work-catalog.json"
+      ]
+    },
+    {
+      "id": "PJ-07",
+      "department": "PJ",
+      "parent": "PJ-02",
+      "path": "projects/rohini/ward-14/amrit-rawat/bills/index.html",
+      "title": "Amrit Rawat — bills / invoices directory",
+      "kind": "project_detail",
+      "status": "published",
+      "navigation": "secondary",
+      "sections": [
+        {
+          "id": "PJ-07.S01",
+          "domId": "amritBillingDirectory",
+          "title": "Amrit Rawat — bills / invoices directory"
+        }
+      ],
+      "keyDependencies": [
+        "templates/project-costing/v1/master-template.json"
+      ]
+    },
+    {
+      "id": "PJ-08",
+      "department": "PJ",
+      "parent": "PJ-07",
+      "path": "projects/rohini/ward-14/amrit-rawat/bills/contractor-running.html",
+      "title": "Amrit Rawat — contractor running bills",
+      "kind": "project_detail",
+      "status": "published",
+      "navigation": "secondary",
+      "sections": [
+        {
+          "id": "PJ-08.S01",
+          "domId": "amritContractorRunning",
+          "title": "Amrit Rawat — contractor running bills"
+        }
+      ],
+      "keyDependencies": [
+        "templates/project-costing/v1/project-view.mjs"
+      ]
+    },
+    {
+      "id": "PJ-09",
+      "department": "PJ",
+      "parent": "PJ-07",
+      "path": "projects/rohini/ward-14/amrit-rawat/bills/vendor-invoices.html",
+      "title": "Amrit Rawat — vendor invoices",
+      "kind": "project_detail",
+      "status": "published",
+      "navigation": "secondary",
+      "sections": [
+        {
+          "id": "PJ-09.S01",
+          "domId": "amritVendorInvoices",
+          "title": "Amrit Rawat — vendor invoices"
+        }
+      ],
+      "keyDependencies": [
+        "templates/project-costing/v1/project-view.mjs"
+      ]
+    },
+    {
+      "id": "PJ-10",
+      "department": "PJ",
+      "parent": "PJ-06",
+      "path": "projects/rohini/ward-14/amrit-rawat/measurements/brick-wall.html",
+      "title": "Amrit Rawat — Brick masonry measurement",
+      "kind": "project_detail",
+      "status": "published",
+      "navigation": "secondary",
+      "sections": [
+        {
+          "id": "PJ-10.S01",
+          "domId": "amritMeasureBrickWall",
+          "title": "Amrit Rawat — Brick masonry measurement"
+        }
+      ],
+      "keyDependencies": [
+        "templates/project-costing/v1/project-view.mjs",
+        "projects/rohini/ward-14/amrit-rawat/project-costing.json"
+      ]
+    },
+    {
+      "id": "PJ-11",
+      "department": "PJ",
+      "parent": "PJ-06",
+      "path": "projects/rohini/ward-14/amrit-rawat/measurements/stone-masonry.html",
+      "title": "Amrit Rawat — Stone masonry measurement",
+      "kind": "project_detail",
+      "status": "published",
+      "navigation": "secondary",
+      "sections": [
+        {
+          "id": "PJ-11.S01",
+          "domId": "amritMeasureStoneMasonry",
+          "title": "Amrit Rawat — Stone masonry measurement"
+        }
+      ],
+      "keyDependencies": [
+        "templates/project-costing/v1/project-view.mjs",
+        "projects/rohini/ward-14/amrit-rawat/project-costing.json"
+      ]
+    },
+    {
+      "id": "PJ-12",
+      "department": "PJ",
+      "parent": "PJ-06",
+      "path": "projects/rohini/ward-14/amrit-rawat/measurements/rcc-footing.html",
+      "title": "Amrit Rawat — RCC footing measurement",
+      "kind": "project_detail",
+      "status": "published",
+      "navigation": "secondary",
+      "sections": [
+        {
+          "id": "PJ-12.S01",
+          "domId": "amritMeasureRccFooting",
+          "title": "Amrit Rawat — RCC footing measurement"
+        }
+      ],
+      "keyDependencies": [
+        "templates/project-costing/v1/project-view.mjs",
+        "projects/rohini/ward-14/amrit-rawat/project-costing.json"
+      ]
+    },
+    {
+      "id": "PJ-13",
+      "department": "PJ",
+      "parent": "PJ-06",
+      "path": "projects/rohini/ward-14/amrit-rawat/measurements/rcc-column.html",
+      "title": "Amrit Rawat — RCC column measurement",
+      "kind": "project_detail",
+      "status": "published",
+      "navigation": "secondary",
+      "sections": [
+        {
+          "id": "PJ-13.S01",
+          "domId": "amritMeasureRccColumn",
+          "title": "Amrit Rawat — RCC column measurement"
+        }
+      ],
+      "keyDependencies": [
+        "templates/project-costing/v1/project-view.mjs",
+        "projects/rohini/ward-14/amrit-rawat/project-costing.json"
+      ]
+    },
+    {
+      "id": "PJ-14",
+      "department": "PJ",
+      "parent": "PJ-06",
+      "path": "projects/rohini/ward-14/amrit-rawat/measurements/rcc-beam.html",
+      "title": "Amrit Rawat — RCC beam measurement",
+      "kind": "project_detail",
+      "status": "published",
+      "navigation": "secondary",
+      "sections": [
+        {
+          "id": "PJ-14.S01",
+          "domId": "amritMeasureRccBeam",
+          "title": "Amrit Rawat — RCC beam measurement"
+        }
+      ],
+      "keyDependencies": [
+        "templates/project-costing/v1/project-view.mjs",
+        "projects/rohini/ward-14/amrit-rawat/project-costing.json"
+      ]
+    },
+    {
+      "id": "PJ-15",
+      "department": "PJ",
+      "parent": "PJ-06",
+      "path": "projects/rohini/ward-14/amrit-rawat/measurements/rcc-slab.html",
+      "title": "Amrit Rawat — RCC slab measurement",
+      "kind": "project_detail",
+      "status": "published",
+      "navigation": "secondary",
+      "sections": [
+        {
+          "id": "PJ-15.S01",
+          "domId": "amritMeasureRccSlab",
+          "title": "Amrit Rawat — RCC slab measurement"
+        }
+      ],
+      "keyDependencies": [
+        "templates/project-costing/v1/project-view.mjs",
+        "projects/rohini/ward-14/amrit-rawat/project-costing.json"
+      ]
+    },
+    {
+      "id": "PJ-16",
+      "department": "PJ",
+      "parent": "PJ-06",
+      "path": "projects/rohini/ward-14/amrit-rawat/measurements/rebar-bbs-footing.html",
+      "title": "Amrit Rawat — Rebar BBS — footing measurement",
+      "kind": "project_detail",
+      "status": "published",
+      "navigation": "secondary",
+      "sections": [
+        {
+          "id": "PJ-16.S01",
+          "domId": "amritMeasureRebarBbsFooting",
+          "title": "Amrit Rawat — Rebar BBS — footing measurement"
+        }
+      ],
+      "keyDependencies": [
+        "templates/project-costing/v1/project-view.mjs",
+        "projects/rohini/ward-14/amrit-rawat/project-costing.json"
+      ]
+    },
+    {
+      "id": "PJ-17",
+      "department": "PJ",
+      "parent": "PJ-06",
+      "path": "projects/rohini/ward-14/amrit-rawat/measurements/rebar-bbs-column.html",
+      "title": "Amrit Rawat — Rebar BBS — column measurement",
+      "kind": "project_detail",
+      "status": "published",
+      "navigation": "secondary",
+      "sections": [
+        {
+          "id": "PJ-17.S01",
+          "domId": "amritMeasureRebarBbsColumn",
+          "title": "Amrit Rawat — Rebar BBS — column measurement"
+        }
+      ],
+      "keyDependencies": [
+        "templates/project-costing/v1/project-view.mjs",
+        "projects/rohini/ward-14/amrit-rawat/project-costing.json"
+      ]
+    },
+    {
+      "id": "PJ-18",
+      "department": "PJ",
+      "parent": "PJ-06",
+      "path": "projects/rohini/ward-14/amrit-rawat/measurements/rebar-bbs-beam.html",
+      "title": "Amrit Rawat — Rebar BBS — beam measurement",
+      "kind": "project_detail",
+      "status": "published",
+      "navigation": "secondary",
+      "sections": [
+        {
+          "id": "PJ-18.S01",
+          "domId": "amritMeasureRebarBbsBeam",
+          "title": "Amrit Rawat — Rebar BBS — beam measurement"
+        }
+      ],
+      "keyDependencies": [
+        "templates/project-costing/v1/project-view.mjs",
+        "projects/rohini/ward-14/amrit-rawat/project-costing.json"
+      ]
+    },
+    {
+      "id": "PJ-19",
+      "department": "PJ",
+      "parent": "PJ-06",
+      "path": "projects/rohini/ward-14/amrit-rawat/measurements/rebar-bbs-slab.html",
+      "title": "Amrit Rawat — Rebar BBS — slab measurement",
+      "kind": "project_detail",
+      "status": "published",
+      "navigation": "secondary",
+      "sections": [
+        {
+          "id": "PJ-19.S01",
+          "domId": "amritMeasureRebarBbsSlab",
+          "title": "Amrit Rawat — Rebar BBS — slab measurement"
+        }
+      ],
+      "keyDependencies": [
+        "templates/project-costing/v1/project-view.mjs",
+        "projects/rohini/ward-14/amrit-rawat/project-costing.json"
+      ]
+    },
+    {
+      "id": "PJ-20",
+      "department": "PJ",
+      "parent": "PJ-06",
+      "path": "projects/rohini/ward-14/amrit-rawat/measurements/formwork-footing.html",
+      "title": "Amrit Rawat — Formwork — footing measurement",
+      "kind": "project_detail",
+      "status": "published",
+      "navigation": "secondary",
+      "sections": [
+        {
+          "id": "PJ-20.S01",
+          "domId": "amritMeasureFormworkFooting",
+          "title": "Amrit Rawat — Formwork — footing measurement"
+        }
+      ],
+      "keyDependencies": [
+        "templates/project-costing/v1/project-view.mjs",
+        "projects/rohini/ward-14/amrit-rawat/project-costing.json"
+      ]
+    },
+    {
+      "id": "PJ-21",
+      "department": "PJ",
+      "parent": "PJ-06",
+      "path": "projects/rohini/ward-14/amrit-rawat/measurements/formwork-column.html",
+      "title": "Amrit Rawat — Formwork — column measurement",
+      "kind": "project_detail",
+      "status": "published",
+      "navigation": "secondary",
+      "sections": [
+        {
+          "id": "PJ-21.S01",
+          "domId": "amritMeasureFormworkColumn",
+          "title": "Amrit Rawat — Formwork — column measurement"
+        }
+      ],
+      "keyDependencies": [
+        "templates/project-costing/v1/project-view.mjs",
+        "projects/rohini/ward-14/amrit-rawat/project-costing.json"
+      ]
+    },
+    {
+      "id": "PJ-22",
+      "department": "PJ",
+      "parent": "PJ-06",
+      "path": "projects/rohini/ward-14/amrit-rawat/measurements/formwork-slab.html",
+      "title": "Amrit Rawat — Formwork — slab measurement",
+      "kind": "project_detail",
+      "status": "published",
+      "navigation": "secondary",
+      "sections": [
+        {
+          "id": "PJ-22.S01",
+          "domId": "amritMeasureFormworkSlab",
+          "title": "Amrit Rawat — Formwork — slab measurement"
+        }
+      ],
+      "keyDependencies": [
+        "templates/project-costing/v1/project-view.mjs",
+        "projects/rohini/ward-14/amrit-rawat/project-costing.json"
+      ]
+    },
+    {
+      "id": "PJ-23",
+      "department": "PJ",
+      "parent": "PJ-06",
+      "path": "projects/rohini/ward-14/amrit-rawat/measurements/soling.html",
+      "title": "Amrit Rawat — Soling measurement",
+      "kind": "project_detail",
+      "status": "published",
+      "navigation": "secondary",
+      "sections": [
+        {
+          "id": "PJ-23.S01",
+          "domId": "amritMeasureSoling",
+          "title": "Amrit Rawat — Soling measurement"
+        }
+      ],
+      "keyDependencies": [
+        "templates/project-costing/v1/project-view.mjs",
+        "projects/rohini/ward-14/amrit-rawat/project-costing.json"
+      ]
+    },
+    {
+      "id": "PJ-24",
+      "department": "PJ",
+      "parent": "PJ-06",
+      "path": "projects/rohini/ward-14/amrit-rawat/measurements/pcc-base.html",
+      "title": "Amrit Rawat — Plain cement concrete / PCC base measurement",
+      "kind": "project_detail",
+      "status": "published",
+      "navigation": "secondary",
+      "sections": [
+        {
+          "id": "PJ-24.S01",
+          "domId": "amritMeasurePccBase",
+          "title": "Amrit Rawat — Plain cement concrete / PCC base measurement"
+        }
+      ],
+      "keyDependencies": [
+        "templates/project-costing/v1/project-view.mjs",
+        "projects/rohini/ward-14/amrit-rawat/project-costing.json"
+      ]
+    },
+    {
+      "id": "PJ-25",
+      "department": "PJ",
+      "parent": "PJ-06",
+      "path": "projects/rohini/ward-14/amrit-rawat/measurements/tile.html",
+      "title": "Amrit Rawat — Tile works measurement",
+      "kind": "project_detail",
+      "status": "published",
+      "navigation": "secondary",
+      "sections": [
+        {
+          "id": "PJ-25.S01",
+          "domId": "amritMeasureTile",
+          "title": "Amrit Rawat — Tile works measurement"
+        }
+      ],
+      "keyDependencies": [
+        "templates/project-costing/v1/project-view.mjs",
+        "projects/rohini/ward-14/amrit-rawat/project-costing.json"
+      ]
+    },
+    {
+      "id": "PJ-26",
+      "department": "PJ",
+      "parent": "PJ-06",
+      "path": "projects/rohini/ward-14/amrit-rawat/measurements/granite.html",
+      "title": "Amrit Rawat — Granite works measurement",
+      "kind": "project_detail",
+      "status": "published",
+      "navigation": "secondary",
+      "sections": [
+        {
+          "id": "PJ-26.S01",
+          "domId": "amritMeasureGranite",
+          "title": "Amrit Rawat — Granite works measurement"
+        }
+      ],
+      "keyDependencies": [
+        "templates/project-costing/v1/project-view.mjs",
+        "projects/rohini/ward-14/amrit-rawat/project-costing.json"
+      ]
+    },
+    {
+      "id": "PJ-27",
+      "department": "PJ",
+      "parent": "PJ-06",
+      "path": "projects/rohini/ward-14/amrit-rawat/measurements/paint-internal.html",
+      "title": "Amrit Rawat — Internal painting measurement",
+      "kind": "project_detail",
+      "status": "published",
+      "navigation": "secondary",
+      "sections": [
+        {
+          "id": "PJ-27.S01",
+          "domId": "amritMeasurePaintInternal",
+          "title": "Amrit Rawat — Internal painting measurement"
+        }
+      ],
+      "keyDependencies": [
+        "templates/project-costing/v1/project-view.mjs",
+        "projects/rohini/ward-14/amrit-rawat/project-costing.json"
+      ]
+    },
+    {
+      "id": "PJ-28",
+      "department": "PJ",
+      "parent": "PJ-06",
+      "path": "projects/rohini/ward-14/amrit-rawat/measurements/paint-external.html",
+      "title": "Amrit Rawat — External painting measurement",
+      "kind": "project_detail",
+      "status": "published",
+      "navigation": "secondary",
+      "sections": [
+        {
+          "id": "PJ-28.S01",
+          "domId": "amritMeasurePaintExternal",
+          "title": "Amrit Rawat — External painting measurement"
+        }
+      ],
+      "keyDependencies": [
+        "templates/project-costing/v1/project-view.mjs",
+        "projects/rohini/ward-14/amrit-rawat/project-costing.json"
+      ]
+    },
+    {
+      "id": "PJ-29",
+      "department": "PJ",
+      "parent": "PJ-06",
+      "path": "projects/rohini/ward-14/amrit-rawat/measurements/electrical-works.html",
+      "title": "Amrit Rawat — Electrical works measurement",
+      "kind": "project_detail",
+      "status": "published",
+      "navigation": "secondary",
+      "sections": [
+        {
+          "id": "PJ-29.S01",
+          "domId": "amritMeasureElectricalWorks",
+          "title": "Amrit Rawat — Electrical works measurement"
+        }
+      ],
+      "keyDependencies": [
+        "templates/project-costing/v1/project-view.mjs",
+        "projects/rohini/ward-14/amrit-rawat/project-costing.json"
+      ]
+    },
+    {
+      "id": "PJ-30",
+      "department": "PJ",
+      "parent": "PJ-06",
+      "path": "projects/rohini/ward-14/amrit-rawat/measurements/water-proofing.html",
+      "title": "Amrit Rawat — Waterproofing measurement",
+      "kind": "project_detail",
+      "status": "published",
+      "navigation": "secondary",
+      "sections": [
+        {
+          "id": "PJ-30.S01",
+          "domId": "amritMeasureWaterProofing",
+          "title": "Amrit Rawat — Waterproofing measurement"
+        }
+      ],
+      "keyDependencies": [
+        "templates/project-costing/v1/project-view.mjs",
+        "projects/rohini/ward-14/amrit-rawat/project-costing.json"
+      ]
+    },
+    {
+      "id": "PJ-31",
+      "department": "PJ",
+      "parent": "PJ-06",
+      "path": "projects/rohini/ward-14/amrit-rawat/measurements/window-upvc.html",
+      "title": "Amrit Rawat — uPVC windows measurement",
+      "kind": "project_detail",
+      "status": "published",
+      "navigation": "secondary",
+      "sections": [
+        {
+          "id": "PJ-31.S01",
+          "domId": "amritMeasureWindowUpvc",
+          "title": "Amrit Rawat — uPVC windows measurement"
+        }
+      ],
+      "keyDependencies": [
+        "templates/project-costing/v1/project-view.mjs",
+        "projects/rohini/ward-14/amrit-rawat/project-costing.json"
+      ]
+    },
+    {
+      "id": "PJ-32",
+      "department": "PJ",
+      "parent": "PJ-06",
+      "path": "projects/rohini/ward-14/amrit-rawat/measurements/false-ceiling.html",
+      "title": "Amrit Rawat — False ceiling measurement",
+      "kind": "project_detail",
+      "status": "published",
+      "navigation": "secondary",
+      "sections": [
+        {
+          "id": "PJ-32.S01",
+          "domId": "amritMeasureFalseCeiling",
+          "title": "Amrit Rawat — False ceiling measurement"
+        }
+      ],
+      "keyDependencies": [
+        "templates/project-costing/v1/project-view.mjs",
+        "projects/rohini/ward-14/amrit-rawat/project-costing.json"
+      ]
+    },
+    {
+      "id": "PJ-33",
+      "department": "PJ",
+      "parent": "PJ-06",
+      "path": "projects/rohini/ward-14/amrit-rawat/measurements/metal-railing.html",
+      "title": "Amrit Rawat — Metal railing measurement",
+      "kind": "project_detail",
+      "status": "published",
+      "navigation": "secondary",
+      "sections": [
+        {
+          "id": "PJ-33.S01",
+          "domId": "amritMeasureMetalRailing",
+          "title": "Amrit Rawat — Metal railing measurement"
+        }
+      ],
+      "keyDependencies": [
+        "templates/project-costing/v1/project-view.mjs",
+        "projects/rohini/ward-14/amrit-rawat/project-costing.json"
+      ]
+    },
+    {
+      "id": "PJ-34",
+      "department": "PJ",
+      "parent": "PJ-06",
+      "path": "projects/rohini/ward-14/amrit-rawat/measurements/screeding.html",
+      "title": "Amrit Rawat — Floor screeding measurement",
+      "kind": "project_detail",
+      "status": "published",
+      "navigation": "secondary",
+      "sections": [
+        {
+          "id": "PJ-34.S01",
+          "domId": "amritMeasureScreeding",
+          "title": "Amrit Rawat — Floor screeding measurement"
+        }
+      ],
+      "keyDependencies": [
+        "templates/project-costing/v1/project-view.mjs",
+        "projects/rohini/ward-14/amrit-rawat/project-costing.json"
+      ]
+    },
+    {
+      "id": "PJ-35",
+      "department": "PJ",
+      "parent": "PJ-06",
+      "path": "projects/rohini/ward-14/amrit-rawat/measurements/punning-floor.html",
+      "title": "Amrit Rawat — Floor punning measurement",
+      "kind": "project_detail",
+      "status": "published",
+      "navigation": "secondary",
+      "sections": [
+        {
+          "id": "PJ-35.S01",
+          "domId": "amritMeasurePunningFloor",
+          "title": "Amrit Rawat — Floor punning measurement"
+        }
+      ],
+      "keyDependencies": [
+        "templates/project-costing/v1/project-view.mjs",
+        "projects/rohini/ward-14/amrit-rawat/project-costing.json"
+      ]
+    },
+    {
+      "id": "PJ-36",
+      "department": "PJ",
+      "parent": "PJ-07",
+      "path": "projects/rohini/ward-14/amrit-rawat/bills/payments.html",
+      "title": "Amrit Rawat — actual payment allocations",
+      "kind": "project_detail",
+      "status": "published",
+      "navigation": "secondary",
+      "sections": [
+        {
+          "id": "PJ-36.S01",
+          "domId": "amritPaymentReconciliation",
+          "title": "Amrit Rawat — actual payment allocations"
+        }
+      ],
+      "keyDependencies": [
+        "templates/project-costing/v1/project-view.mjs"
       ]
     }
   ],
@@ -932,6 +1579,27 @@
       ],
       "kind": "pending QTO/BOQ/AOC statuses; no invented totals",
       "authority": "Project identity only; verified CAD/finance evidence pending"
+    },
+    {
+      "id": "DATA-PJ-AMRIT-COSTING",
+      "path": "projects/rohini/ward-14/amrit-rawat/project-costing.json",
+      "usedBy": [
+        "PJ-04",
+        "PJ-05",
+        "PJ-06",
+        "PJ-07"
+      ],
+      "kind": "public pending project costing projection; no accepted measurements",
+      "authority": "Template-only unadmitted source; original Google Sheet and CAD evidence pending"
+    },
+    {
+      "id": "DATA-SY-COST-TEMPLATE",
+      "path": "templates/project-costing/v1/master-template.json",
+      "usedBy": [
+        "BQ-01"
+      ],
+      "kind": "single reusable measurement-BOQ-AOC schema",
+      "authority": "GitHub governed machine schema"
     }
   ],
   "operations": {
@@ -987,6 +1655,19 @@
       "currentPageId": "PJ-02",
       "originalUrl": "projects/rohini/ward-14/amrit-rawat/index.html",
       "policy": "Existing URL retains project overview; rate view preserved at cost-planning.html; old ID never reused."
+    }
+  ],
+  "templates": [
+    {
+      "id": "JP-COSTING-MEAS-BOQ-AOC-V1",
+      "version": "V000001",
+      "master": "templates/project-costing/v1/master-template.json",
+      "works": "templates/project-costing/v1/work-catalog.json",
+      "renderer": "templates/project-costing/v1/project-view.mjs",
+      "appliesTo": [
+        "PJ-02"
+      ],
+      "sourceRule": "Stable original LIVE Google Sheet per operational subject; CAD evidence upstream"
     }
   ]
 }
