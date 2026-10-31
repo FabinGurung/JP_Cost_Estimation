@@ -1,8 +1,8 @@
 name: Amrit Rawat rate Sheet to public Pages snapshot
+# Reusable source-synchronization job. The default branch's scheduled workflow calls it.
 on:
+  workflow_call:
   workflow_dispatch:
-  schedule:
-    - cron: "17 0 * * *" # 06:02 Nepal Standard Time, UTC+5:45
 
 permissions:
   contents: write
@@ -13,8 +13,7 @@ concurrency:
 
 jobs:
   sync:
-    # Read and write only the publishing research branch; never update main or A7.
-    if: github.ref == 'refs/heads/research/open-estimation-engine-v0.1'
+    # Called from default-branch scheduler; writes only research, never main or A7.
     runs-on: ubuntu-latest
     steps:
       - name: Checkout current publishing branch
