@@ -12,7 +12,7 @@ for(const p of registry.pages){
  assert(abs.startsWith(root+path.sep)&&existsSync(abs),'Unregistered/missing HTML route '+p.path);
  const html=readFileSync(abs,'utf8');
  assert(/<main\b/i.test(html),'Missing main on '+p.path);
- assert(/<meta\s+name="viewport"/i.test(html),'Missing mobile viewport on '+p.path);
+ assert(/<meta\b[^>]*\bname\s*=\s*["']viewport["'][^>]*>/i.test(html),'Missing mobile viewport on '+p.path);
  assert(html.includes('site-theme-v0.8.css')&&html.includes('site-navigation-v0.8.js'),'Missing global shell '+p.path);
  for(const match of html.matchAll(/\b(?:href|src)=(["'])(.*?)\1/g)){
   const raw=match[2].trim().replaceAll('&amp;','&');
