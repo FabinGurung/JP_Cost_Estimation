@@ -17,7 +17,7 @@ for(const p of registry.pages){
  for(const match of html.matchAll(/\b(?:href|src)=(["'])(.*?)\1/g)){
   const raw=match[2].trim().replaceAll('&amp;','&');
   if(!raw||raw.startsWith('#')||raw.startsWith('?'))continue;
-  if(/^(?:https?:|mailto:|tel:|data:|blob:|javascript:|\/\/)/i.test(raw))continue;
+  if(/^(?:[a-z][a-z0-9+.-]*:|\/\/)/i.test(raw))continue; // includes about:blank and other non-local schemes
   const rel=raw.split(/[?#]/)[0];
   if(!rel)continue;
   // Relative Paths only: absolute Paths may be external to GitHub Pages project root.
