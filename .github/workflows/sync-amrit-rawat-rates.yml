@@ -33,9 +33,9 @@ jobs:
       - name: Inspect authorized source connection without revealing IDs
         id: access
         env:
-          SOURCE_ID: ${{ secrets.AMRIT_RAWAT_SHEET_ID }}
-          WIF_PROVIDER: ${{ vars.JP_GOOGLE_WORKLOAD_IDENTITY_PROVIDER }}
-          SERVICE_ACCOUNT: ${{ vars.JP_GOOGLE_SERVICE_ACCOUNT }}
+          SOURCE_ID: ${{ secrets.AMRIT_RAWAT_SHEET_ID || '13uIoX0_urXfSEMLYRK01Pt9FWwYj5SfiLOxHhbr9HPE' }}
+          WIF_PROVIDER: ${{ vars.JP_GOOGLE_WORKLOAD_IDENTITY_PROVIDER || 'projects/247425973072/locations/global/workloadIdentityPools/jp-pages-github/providers/github' }}
+          SERVICE_ACCOUNT: ${{ vars.JP_GOOGLE_SERVICE_ACCOUNT || 'jp-pages-publisher@just-a-project-5007.iam.gserviceaccount.com' }}
         shell: bash
         run: |
           if [[ -n "$SOURCE_ID" && -n "$WIF_PROVIDER" && -n "$SERVICE_ACCOUNT" ]]; then
@@ -50,15 +50,15 @@ jobs:
         if: steps.access.outputs.connected == 'true'
         uses: google-github-actions/auth@v3
         with:
-          workload_identity_provider: ${{ vars.JP_GOOGLE_WORKLOAD_IDENTITY_PROVIDER }}
-          service_account: ${{ vars.JP_GOOGLE_SERVICE_ACCOUNT }}
+          workload_identity_provider: ${{ vars.JP_GOOGLE_WORKLOAD_IDENTITY_PROVIDER || 'projects/247425973072/locations/global/workloadIdentityPools/jp-pages-github/providers/github' }}
+          service_account: ${{ vars.JP_GOOGLE_SERVICE_ACCOUNT || 'jp-pages-publisher@just-a-project-5007.iam.gserviceaccount.com' }}
           create_credentials_file: true
           export_environment_variables: true
 
       - name: Derive from original one-ID Google Sheet read-only
         if: steps.access.outputs.connected == 'true'
         env:
-          AMRIT_RAWAT_SHEET_ID: ${{ secrets.AMRIT_RAWAT_SHEET_ID }}
+          AMRIT_RAWAT_SHEET_ID: ${{ secrets.AMRIT_RAWAT_SHEET_ID || '13uIoX0_urXfSEMLYRK01Pt9FWwYj5SfiLOxHhbr9HPE' }}
         run: |
           python3 -m pip install 'google-auth>=2,<3' 'requests>=2,<3'
           node scripts/sync-amrit-rawat-rates.mjs
