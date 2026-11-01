@@ -1,0 +1,29 @@
+name: Verify existing JP Google keyless identity for Cost Estimation
+on:
+  push:
+    branches:
+      - feature/a9-reuse-shared-google-identity-20261101
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  verify-shared-identity:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Authenticate using already verified Communication & Web Google identity
+        uses: google-github-actions/auth@v3
+        with:
+          workload_identity_provider: projects/247425973072/locations/global/workloadIdentityPools/jp-pages-github/providers/github
+          service_account: jp-pages-publisher@just-a-project-5007.iam.gserviceaccount.com
+          create_credentials_file: true
+          export_environment_variables: true
+      - name: Verify read-only access to original LIVE source IDs
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m pip install -q 'google-auth>=2,<3' 'requests>=2,<3'
+          python3 scripts/probe_shared_google_identity.py
