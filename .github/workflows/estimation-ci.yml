@@ -97,6 +97,7 @@ jobs:
           node --check templates/project-costing/v1/project-view.mjs
           node scripts/qa-unified-costing.mjs
           node scripts/qa-home-navigation.mjs
+          node scripts/qa-connected-sheets.mjs
           node scripts/qa-all-site-routes.mjs
           node scripts/qa-amrit-source-version.mjs
 

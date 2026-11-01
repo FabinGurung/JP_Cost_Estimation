@@ -1,3 +1,7 @@
+## Connected original website Google Sheets · 2026-11-01
+
+Five original Google Sheets that are connected, linked or used as templates for this website now share **one editable-source folder**: [A9 / Cost Estimation / Website Source Sheets — Edit Here](https://drive.google.com/drive/folders/1v0yTowZ8mbTtT7euPgrPeEndFKPPH0IU). The same permanent LIVE IDs remain authoritative; archives stayed in their original custody. The [website source directory](source-sheets.html) and `data/connected-website-sheets.v1.json` distinguish active source dependencies, historical snapshot status and templates. No live Google auth refresh was demonstrated by this folder move.
+
 ## Full public route index / QA v1.4 · 2026-11-01
 
 The human site directory is `site-map.html`. Its exact 70 registered routes, stable page IDs, functional departments and historical aliases come directly from `site-page-registry.v0.8.json`; do not maintain parallel manual URL lists.
