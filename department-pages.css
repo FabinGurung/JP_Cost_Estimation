@@ -59,3 +59,9 @@
 .jp-finance-page>.sidebar,.jp-finance-dashboard-page>.site-header{display:none!important}
 @media(max-width:860px){.jp-home-page .jp-home-summary{grid-template-columns:1fr}}
 @media(max-width:620px){.jp-home-page .jp-home-actions a{width:100%;text-align:center}.jp-home-page .jp-home-summary article{padding:15px}}
+
+.jp-sitemap-group{margin:18px 0;padding-top:8px;border-top:1px solid #d6e1d4}
+.jp-sitemap-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:8px 16px;list-style:none;padding:0}
+.jp-sitemap-list li{display:flex;flex-direction:column;gap:4px;overflow-wrap:anywhere;padding:11px 12px;background:#fcfbf4;border:1px solid #d8e0d3;border-radius:10px}
+.jp-sitemap-list li code{font-size:11px;color:#61786a;overflow-wrap:anywhere}
+@media(max-width:620px){.jp-sitemap-list{grid-template-columns:1fr}}

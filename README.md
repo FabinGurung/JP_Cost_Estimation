@@ -1,3 +1,7 @@
+## Full public route index / QA v1.4 · 2026-11-01
+
+The human site directory is `site-map.html`. Its exact 70 registered routes, stable page IDs, functional departments and historical aliases come directly from `site-page-registry.v0.8.json`; do not maintain parallel manual URL lists.
+
 ## A9 navigation correction · 2026-11-01
 
 The root `index.html` is a **project-first dashboard** with six departments and source readiness states. The **previous, fully preserved rate-analysis calculator** now lives at `rate-workbench.html` (RT-23). Old `index.html?view=rates|analysis|sources` and calculator hash bookmarks redirect to the preserved calculator, without deleting its code or changing rate data. Amrit remains exclusively under Projects; RT-22 is historical-only.
