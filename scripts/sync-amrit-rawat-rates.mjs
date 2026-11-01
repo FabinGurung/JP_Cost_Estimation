@@ -11,6 +11,7 @@ import {readFileSync,writeFileSync,appendFileSync} from 'node:fs';
 import {fileURLToPath} from 'node:url';
 import path from 'node:path';
 import assert from 'node:assert/strict';
+import {decideAmritSnapshot} from './amrit-snapshot-decision.mjs';
 
 const repo=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const relative='projects/rohini/ward-14/amrit-rawat';
@@ -87,15 +88,11 @@ const version=String(latest[0]);
 const publicationDate=new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Kathmandu',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());
 const proposed={...existing,version,recordedDateNpt:publicationDate,rates};
 verify(proposed);
-if(JSON.stringify(proposed)===JSON.stringify(existing)){
-  console.log('SOURCE_PARITY: no change; keeping the existing Git commit and page snapshot.');
+const decision=decideAmritSnapshot(existing,proposed,latest);
+if(decision.action==='KEEP_CURRENT_SNAPSHOT'){
+  console.log('SOURCE_PARITY: authenticated read unchanged in rates and source version; keeping original dated published snapshot.');
   process.exit(0);
 }
-if(version===existing.version)throw Error('Rates changed without a NEW source version; requires PRE/POST and append-only history.');
-if(!(/^POST_VALIDATED$/.test(String(latest[2]))&&String(latest[7]||'').trim().length>5)){
-  throw Error('New source version lacks POST_VALIDATED operation or PRE/POST restoration evidence; publication held.');
-}
-if(Number(version.slice(1))!==Number(existing.version.slice(1))+1)throw Error('Nonsequential Sheet version update; publication held.');
 const beforeHash=sha(JSON.stringify(existing.rates));
 const afterHash=sha(JSON.stringify(proposed.rates));
 writeFileSync(output,JSON.stringify(proposed,null,2)+'\n');

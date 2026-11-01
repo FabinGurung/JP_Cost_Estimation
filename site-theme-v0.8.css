@@ -134,3 +134,8 @@ html[data-theme="dark"] #jp-site-footer{background:#0d261f}
 #jp-site-masthead .jp-global-nav>a,#jp-site-masthead .jp-global-nav .jp-more-toggle{font-size:11px}
 .jp-functional-tabs{gap:4px}.jp-functional-tabs a{font-size:12px;padding:7px 9px}
 }
+
+/* Shared global navigation supersedes duplicated legacy finance headers.
+   The underlying historic markup remains retained for restoration. */
+.jp-finance-page > .sidebar,
+.jp-finance-dashboard-page > .site-header{display:none!important}
