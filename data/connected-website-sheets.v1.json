@@ -1,0 +1,81 @@
+{
+  "schema": "jp.website.connected-source-sheets.v1",
+  "version": "V000001",
+  "auditedAtNpt": "2026-11-01",
+  "repository": "FabinGurung/JP_Cost_Estimation",
+  "folderName": "01_WEBSITE_SOURCE_SHEETS__EDIT_HERE",
+  "folderUrl": "https://drive.google.com/drive/folders/1v0yTowZ8mbTtT7euPgrPeEndFKPPH0IU",
+  "owner": "A9 / 03_JP_Cost_Estimation / 02_HUMAN_WORKING_SHEETS",
+  "policy": "Five original Google Sheets MOVED INTO this folder, same permanent LIVE IDs; source-level permissions and archives preserved. No copies and no public credentials.",
+  "records": [
+    {
+      "ref": "JP-AEC-RATE-MASTER",
+      "title": "AEC Cost/Rate Master",
+      "authority": "Original generic cost/rate master Sheet",
+      "usedFor": "Rate source/reference for the existing analysis workbench",
+      "usagePage": "rate-workbench.html",
+      "publicationStatus": "LINKED_REFERENCE_NOT_AUTHENTICATED_ACTIONS_REFRESH",
+      "originalFolder": "04_COST_RATE_REFERENCES / 01_AEC_COST_RATE_MASTER__LIVE_REGISTER",
+      "kind": "working_reference",
+      "doesNotImply": "Current approved district/standard rates"
+    },
+    {
+      "ref": "RE-AMRIT-RATE-LIVE",
+      "title": "Amrit Rawat — Site Construction Rates (LIVE)",
+      "authority": "One permanent LIVE client-specific 32-row indicative rate Sheet",
+      "usedFor": "Project rate assumptions (14 plinth + 12 trade + 6 daily wages)",
+      "usagePage": "projects/rohini/ward-14/amrit-rawat/cost-planning.html",
+      "publicationStatus": "PUBLIC_SNAPSHOT_V000001_SOURCE_READBACK_VERIFIED_BUT_UNVERIFIED_RATES; ACTIONS_AUTH_NOT_CONFIGURED",
+      "originalFolder": "Rohini / Ward 14 / 14_Amrit_Rawat",
+      "kind": "client_live_source",
+      "doesNotImply": "Measured quantities, approved contract rates or a successful current Actions refresh"
+    },
+    {
+      "ref": "RE-AMRIT-QTO-BOQ-LIVE",
+      "title": "Amrit Rawat — Measurements, BOQ, AOC & Bills (LIVE)",
+      "authority": "One permanent LIVE project measurement and billing workbook",
+      "usedFor": "Project entry register, future verified QTO/BOQ/AOC and contractor/vendor invoices",
+      "usagePage": "projects/rohini/ward-14/amrit-rawat/measurements/index.html",
+      "publicationStatus": "SOURCE_WORKBOOK_EXISTS; MEASUREMENTS_NOT_ADMITTED; NO_ACTIONS_REFRESH_CONFIGURED",
+      "originalFolder": "Rohini / Ward 14 / 14_Amrit_Rawat",
+      "kind": "client_live_source",
+      "doesNotImply": "Completed measured work, payable certificate or money paid"
+    },
+    {
+      "ref": "JP-COSTING-MASTER-TEMPLATE",
+      "title": "JP Master — Measurement / BOQ / AOC / Bills Template",
+      "authority": "Reusable blank template, NOT a project LIVE input",
+      "usedFor": "New project workbook schema and training (no live project facts)",
+      "usagePage": "measurements-boq.html",
+      "publicationStatus": "REFERENCE_TEMPLATE_NOT_AUTOMATICALLY_REFRESHED",
+      "originalFolder": "03_JP_Cost_Estimation / 02_HUMAN_WORKING_SHEETS",
+      "kind": "template_only",
+      "doesNotImply": "A sixth project source or a payable BOQ"
+    },
+    {
+      "ref": "RE-KKG-FINANCE-LIVE",
+      "title": "Krishna Kumar Gupta — Project Payments (LIVE)",
+      "authority": "Original Rohini actual payment register",
+      "usedFor": "Previously verified finance snapshot and payment dashboard",
+      "usagePage": "finance-dashboard.html",
+      "publicationStatus": "HISTORICAL_VERIFIED_SNAPSHOT_2026-10-31; CURRENT_ACTIONS_AUTH_SKIPPED",
+      "originalFolder": "03_PROJECT_PAYMENT_REGISTERS / 01_KRISHNA_KUMAR_GUPTA__LIVE_REGISTER",
+      "kind": "finance_live_source",
+      "doesNotImply": "Current live Google refresh, Amrit payment mapping or project estimate"
+    }
+  ],
+  "exclusions": [
+    "PRE/POST version archives",
+    "Unadmitted intake copies",
+    "Superseded workbooks",
+    "PDF/CAD originals",
+    "GitHub JSON publication snapshots",
+    "Communication & Web repository's source Sheets"
+  ],
+  "notes": [
+    "Google Sheets file IDs, original names and contents retained; only Drive parent folder changed.",
+    "Amrit's former inherited reader role was restored explicitly to the two original LIVE workbooks and verified.",
+    "The website does not enumerate private individual Sheet IDs in this public machine index; open controlled Drive folder with approved access.",
+    "The five-source inventory is a point-in-time verified Drive listing, not proof of authenticated source-fetching."
+  ]
+}

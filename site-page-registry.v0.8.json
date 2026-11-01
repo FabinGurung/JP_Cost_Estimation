@@ -1,6 +1,6 @@
 {
   "schema": "jp.site.page-registry.v1",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "recorded": "2026-11-01",
   "site": {
     "id": "JP",
@@ -15,7 +15,7 @@
     "formalTagAtInventory": "v0.8.0",
     "latestFormalRelease": "v0.8.0",
     "sourceAuthority": "Google Sheets for finance, distinct source families for rates",
-    "version": "1.4.0",
+    "version": "1.5.0",
     "description": "Evidence-first measurement/BOQ/AOC, 10 cited technical references, Quarto working notes and searchable work types."
   },
   "levels": [
@@ -1631,6 +1631,42 @@
         "site-map.mjs",
         "site-page-registry.v0.8.json"
       ]
+    },
+    {
+      "id": "SY-04",
+      "department": "SY",
+      "parent": "SY-02",
+      "path": "source-sheets.html",
+      "title": "Original Website Google Sheets — Single Folder",
+      "kind": "source_control",
+      "status": "published",
+      "navigation": "secondary",
+      "sections": [
+        {
+          "id": "SY-04.S01",
+          "domId": "websiteSheetDirectory",
+          "title": "Connected original Sheet folder"
+        },
+        {
+          "id": "SY-04.S02",
+          "domId": "websiteSheetInventory",
+          "title": "Five source roles and states"
+        },
+        {
+          "id": "SY-04.S03",
+          "domId": "websiteSheetAccess",
+          "title": "Identity and access policy"
+        },
+        {
+          "id": "SY-04.S04",
+          "domId": "websiteSheetFreshness",
+          "title": "Actions refresh status"
+        }
+      ],
+      "keyDependencies": [
+        "source-sheet-directory.js",
+        "data/connected-website-sheets.v1.json"
+      ]
     }
   ],
   "dataAssets": [
@@ -1738,6 +1774,15 @@
       ],
       "kind": "public template schema for private notebook source lineage",
       "authority": "JP governed code, no private calculation files"
+    },
+    {
+      "id": "DATA-SY-CONNECTED-SHEETS",
+      "path": "data/connected-website-sheets.v1.json",
+      "usedBy": [
+        "SY-04"
+      ],
+      "kind": "controlled Drive source index; five roles without private IDs/transaction rows",
+      "authority": "Drive provider readback 2026-11-01; historical Actions run status"
     }
   ],
   "operations": {
