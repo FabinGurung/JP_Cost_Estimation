@@ -20,6 +20,7 @@ assert(!pages.some(x=>x.id==='RT-22'),'Historical client-specific RT-22 cannot b
 for(const x of ['rate-sources.html','projects.html','measurements-boq.html','finance.html','reference.html','governance.html'])assert(home.includes('href="'+x+'"'),'Home missing department '+x);
 assert(get('finance.html').includes('<body class="jp-finance-page"'));
 assert(get('finance-dashboard.html').includes('<body class="jp-finance-dashboard-page"'));
-const css=get('department-pages.css');assert(css.includes('.jp-finance-page>.sidebar')&&css.includes('.jp-finance-dashboard-page>.site-header'));
+const css=get('site-theme-v0.8.css');assert(css.includes('.jp-finance-page > .sidebar')&&css.includes('.jp-finance-dashboard-page > .site-header'));
+assert(get('scripts/qa-amrit-source-version.mjs').includes('KEEP_CURRENT_SNAPSHOT'));
 assert(get('scripts/validate-site-page-registry.mjs').includes("pages.length,69"));
 console.log('SITE HOME QA PASS: project-first root, 6 departments, old rate workbench and query redirects, single global navigation for finance.');
