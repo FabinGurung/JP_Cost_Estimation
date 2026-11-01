@@ -1,3 +1,9 @@
+## A9 navigation correction · 2026-11-01
+
+The root `index.html` is a **project-first dashboard** with six departments and source readiness states. The **previous, fully preserved rate-analysis calculator** now lives at `rate-workbench.html` (RT-23). Old `index.html?view=rates|analysis|sources` and calculator hash bookmarks redirect to the preserved calculator, without deleting its code or changing rate data. Amrit remains exclusively under Projects; RT-22 is historical-only.
+
+The duplicate, legacy finance-site header/sidebar is retained in source/history but hidden in active rendering because the shared JP nav and Finance subtabs already provide navigation; no payment calculations or approved records changed.
+
 ## Evidence-first Calculation Workspace / Research v1.2 (2026-10-31)
 
 The public [Calculation Workspace](calculation-workspace.html) distinguishes raw Drive/PDF/CAD/Discord evidence; Quarto (`.qmd`) / Jupyter (`.ipynb`) **restricted, versioned working notes**; approved measurement/BOQ/AOC Sheet registers; and sanitized GitHub Actions/Pages projections. Public repo stores **only generic calculation templates** at `templates/calculation-notes/v1/`, and NEVER raw private site notebooks.

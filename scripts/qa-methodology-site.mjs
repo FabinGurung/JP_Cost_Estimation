@@ -23,7 +23,7 @@ for(const item of references.references){
 }
 assert(study.includes('not a scored systematic literature review'),'Do not misrepresent targeted review as exhaustive');
 assert(study.includes('Nepal'),'Jurisdiction boundary missing');
-assert.equal(registry.pages.length,68);
+assert.equal(registry.pages.length,69);
 assert.equal(registry.version,'1.2.0');
 assert.equal(registry.pages.find(p=>p.id==='RF-02').path,'literature-review.html');
 assert.equal(registry.pages.find(p=>p.id==='BQ-02').path,'calculation-workspace.html');

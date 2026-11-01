@@ -23,6 +23,7 @@ const extras=[
 const url=href=>new URL(href,root).href;
 function department(){
 if(path==='index.html')return 'home';
+if(path==='rate-workbench.html')return 'rates';
 if(path.startsWith('projects/')||path==='projects.html')return 'projects';
 if(path==='measurements-boq.html'||path==='calculation-workspace.html')return 'measurements';
 if(path==='finance.html'||path==='finance-dashboard.html'||path==='field-expense-guide.html')return 'finance';

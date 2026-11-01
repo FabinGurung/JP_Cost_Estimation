@@ -1,158 +1,53 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>JP Cost Estimation · Home | Rates · Projects · BOQ · Finance</title>
-  <meta name="description" content="Transparent Nepal construction rate library and resource-based unit rate analysis. No invented quantity takeoff.">
-  <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="site-shell.css">
-  <link rel="stylesheet" href="rate-intelligence.css">
-  <script src="theme.js" defer></script>
-
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>JP Cost Estimation — Projects · Rates · Measurements · Finance</title>
+<meta name="description" content="Construction cost and quantity estimate hub: rate intelligence, source-backed project measurements, BOQ, abstract of cost, and recorded finance.">
 <link rel="stylesheet" href="site-theme-v0.8.css">
+<link rel="stylesheet" href="department-pages.css">
+<script>
+/* Preserve legacy rate workbench query/fragment bookmarks without changing source facts. */
+(function(){
+  const p=new URLSearchParams(location.search);
+  const v=p.get('view');
+  const legacy=new Set(['rates','analysis','sources']);
+  const hash=decodeURIComponent(location.hash||'');
+  if(legacy.has(v)||/^#(?:rateLibraryPanel|rateAnalysisPanel|rateSourcesPanel|rateWorkspace)$/.test(hash)){
+    const dest=new URL('rate-workbench.html',location.href);
+    dest.search=location.search;dest.hash=location.hash;
+    location.replace(dest.href);
+  }
+})();
+</script>
 <script src="site-navigation-v0.8.js" defer></script>
 </head>
-<body>
-  <aside class="sidebar">
-    <div class="brand">
-      <div class="logo">JP</div>
-      <div><strong>Cost &amp; Rate Intelligence</strong><small>Rate library · analysis · finance</small></div>
-    </div>
-    <nav aria-label="Primary navigation">
-      <a class="nav-item" href="rate-sources.html">Rate Libraries</a>
-      <a class="nav-item" href="rate-library.html">JP Personal Rates</a>
-      <a class="nav-item" href="rate-comparison.html">Compare Workbook Rates</a>
-      <button type="button" class="nav-item active" data-rate-view="rates">Source Rates</button>
-      <button type="button" class="nav-item" data-rate-view="analysis">Rate Analysis</button>
-      <button type="button" class="nav-item" data-rate-view="sources">Sources &amp; Provenance</button>
-      <a class="nav-item" href="known-rates.html">Known Rates Detail ↗</a>
-      <a class="nav-item finance-nav-link" href="finance.html">Finance &amp; Payments ↗</a>
-      <a class="nav-item" href="field-expense-guide.html">Field Expense Tutorial ↗</a>
-      <a class="nav-item" href="system-map.html">System Lifecycle ↗</a>
-    </nav>
-  </aside>
-  <main class="app-shell">
-    <section class="landscape-hero rate-sky-hero" aria-label="Sunlit green valley and open white clouds">
-      <div class="landscape-hero-content">
-        <p class="eyebrow">JP · RATE INTELLIGENCE · NEPAL</p>
-        <h2>Every rate has <em>a story.</em></h2>
-        <p>Open-sky clarity for Nepal construction rates: published district prices, independent user references and transparent, resource-by-resource analysis. No invented building measurements.</p>
-        <div class="hero-actions">
-          <a class="hero-cta primary" href="rate-library.html">Browse work descriptions &amp; rates →</a>
-          <a class="hero-cta secondary" href="finance.html">Rohini payments &amp; finance ↗</a>
-        </div>
-      </div>
-    </section>
-    <header class="topbar">
-      <div>
-        <p class="eyebrow">JP COST &amp; RATE INTELLIGENCE · RESEARCH v0.5.1-alpha</p>
-        <h1 id="viewTitle">Rate Library</h1>
-      </div>
-      <div class="top-actions">
-        <span class="status warn">SOURCE STATUS MUST BE VERIFIED</span>
-        <button id="themeToggle" type="button" class="btn theme-toggle" aria-label="Change appearance">Dark mode</button>
-      </div>
-    </header>
-    <section class="jp-functional-entry" aria-label="Construction cost estimation departments" style="padding:20px 22px;background:#f8f6ee;border:1px solid #d3ddcf;border-radius:16px;margin:18px">
-<h2>Choose a cost-estimation workspace</h2>
-<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,180px),1fr));gap:12px">
-<a href="projects.html" style="display:block;border:1px solid #bdd1c4;padding:15px;border-radius:12px;background:white;color:#1d5e43"><strong>Projects</strong><span style="display:block">Client scope, assumptions, QTO readiness, BOQ and AOC</span></a>
-<a href="rate-sources.html" style="display:block;border:1px solid #bdd1c4;padding:15px;border-radius:12px;background:white;color:#1d5e43"><strong>Rate Intelligence</strong><span style="display:block">Reusable rates and unit-analysis evidence</span></a>
-<a href="measurements-boq.html" style="display:block;border:1px solid #bdd1c4;padding:15px;border-radius:12px;background:white;color:#1d5e43"><strong>Measurements &amp; BOQ</strong><span style="display:block">Verified quantities and project cost formulas</span></a>
-<a href="finance.html" style="display:block;border:1px solid #bdd1c4;padding:15px;border-radius:12px;background:white;color:#1d5e43"><strong>Finance</strong><span style="display:block">Recorded original-Sheet transactions</span></a></div></section>
-<section class="rate-portal" aria-label="System workspaces">
-      <div class="rate-portal-head">
-        <div><p class="eyebrow">RATE SOURCES AND WORKSPACES</p><h2>Four independent rate libraries. One connected system.</h2></div>
-        <span class="rate-snapshot-tag">Source-led · No hidden totals</span>
-      </div>
-      <div class="rate-portal-grid">
-  <a class="rate-portal-card" href="rate-library.html"><span class="portal-icon">🏗️</span><strong>My Personal Working Rates</strong><span>JP Excel-derived work rates — 102 visible and 102 hidden alternatives; unverified.</span><em>Open personal rates →</em></a>
-  <a class="rate-portal-card" href="government-rates.html"><span class="portal-icon">🏛️</span><strong>Government District Rates</strong><span>Kaski district observations, numeric candidates and all 80 PDF-page transcripts.</span><em>Explore source →</em></a>
-  <a class="rate-portal-card" href="vendor-price-lists.html"><span class="portal-icon">🧾</span><strong>Vendor Prices &amp; Quotations</strong><span>Pipes and electrical-wire documents inventoried. Quotations remain separate from standard catalogues.</span><em>Explore source →</em></a>
-  <a class="rate-portal-card" href="rate-analysis-references.html"><span class="portal-icon">🧮</span><strong>Rate Analysis References</strong><span>Contractor, users and separately located DUDBC reference PDFs. Independent numeric-candidate and page-transcript views.</span><em>Explore source →</em></a>
-  <button type="button" class="rate-portal-card" data-jump-view="analysis"><span class="portal-icon">⚙️</span><strong>Rate Analysis Calculator</strong><span>Existing source-led resource breakdown and draft formulas. Not the same as the reference PDF library.</span><em>Open calculator →</em></button>
-  <a class="rate-portal-card" href="finance.html"><span class="portal-icon">💼</span><strong>Finance &amp; Payments</strong><span>Rohini's preserved finance register and source lifecycle.</span><em>View finance →</em></a>
-  <a class="rate-portal-card" href="system-map.html"><span class="portal-icon">🌳</span><strong>System Lifecycle</strong><span>Version history, tags, snapshots and rollback control.</span><em>Trace system →</em></a>
-</div>
-    </section>
-    <div class="rate-boundary" role="note"><strong>Inside the Rate Library's construction journey:</strong> select 🏢 MEP to explore Mechanical, Electrical and Plumbing as its child branches. <a href="rate-library.html?stage=mep">Open the MEP stage →</a>.</div>
-    <div class="rate-boundary" role="note">
-      <strong>System boundary:</strong> CAD → measured quantities and FIDs. This repository → source-linked rates and resource recipes.
-      The <a href="boq-template.json">BOQ template</a> contains no quantities, rates, or totals and remains blocked until verified CAD data is supplied.
-    </div>
-    <div id="rateWorkspace">
-      <section class="rate-workspace" id="rateLibraryPanel" aria-labelledby="libraryHeading">
-        <div class="rate-section-head">
-          <div><h2 id="libraryHeading">Source Rates &amp; Benchmarks</h2><p>Search separately attributed rates by specification, source, location and unit. Government benchmarks are not vendor quotations or approved job prices.</p></div>
-        </div>
-        <p class="rate-message"><a href="rate-sources.html">Browse the four separate rate libraries →</a> The pre-existing public Kaski benchmark observations here are a distinct derived data stream; they are not assumed to be the same rows as the frozen M02 source PDFs without explicit row linkage.</p>
-        <div class="rate-toolbar">
-          <label for="rateSearch">Search by name, specification, source, location, unit, or ID
-            <input id="rateSearch" type="search" placeholder="e.g. stone cladding, aggregate, RO-..." autocomplete="off">
-          </label>
-          <label for="rateClass">Source class
-            <select id="rateClass">
-              <option value="all">All available</option>
-              <option value="canonical">Canonical CR-02</option>
-              <option value="known">User-known references</option>
-            </select>
-          </label>
-        </div>
-        <div class="rate-message" id="rateStatus" role="status" aria-live="polite">Checking source data…</div>
-        <div class="rate-source-key" aria-label="Source types"><span>Government benchmark: public Kaski observation</span><span>User-known: manually supplied reference</span><span>Live API: only when connected</span></div>
-        <div id="rateMetrics" class="rate-summary"></div>
-        <div id="rateResults" class="rate-list" aria-live="polite"></div>
-      </section>
-
-      <section class="rate-workspace" id="rateAnalysisPanel" aria-labelledby="analysisHeading" hidden>
-        <div class="rate-section-head">
-          <div><h2 id="analysisHeading">Transparent Rate Analysis</h2><p>Work out the cost of one finished unit of work from explicit resource consumption and price evidence.</p></div>
-        </div>
-        <div class="rate-message" role="note">
-          <strong>Draft calculator.</strong> No default quantities, material recipes, market prices, productivity, overhead, profit or taxes are injected.
-          Enter each resource and its source yourself; saving to the canonical database is not enabled.
-        </div>
-        <div class="rate-fields">
-          <label for="analysisCode">Work item ID<input id="analysisCode" placeholder="e.g. WRK-PCC-001"></label>
-          <label for="analysisName">Work description<input id="analysisName" placeholder="e.g. PCC M10, specific mix and scope"></label>
-          <label for="outputUnit">Finished output unit<input id="outputUnit" placeholder="e.g. m³" aria-describedby="unitHelp"></label>
-        </div>
-        <p id="unitHelp" class="rate-muted">Resource quantities must be the amounts required for <strong>one</strong> finished output unit; their price basis must match their consumption unit.</p>
-        <div class="table-wrap">
-          <table class="rate-analysis-table">
-            <thead><tr><th>Resource / item</th><th>Type</th><th>Qty per unit</th><th>Resource unit</th><th>Waste %</th><th>Price per resource unit (NPR)</th><th>Source ID / evidence reference</th><th>Derived amount</th><th></th></tr></thead>
-            <tbody id="resourceRows"></tbody>
-          </table>
-        </div>
-        <div class="rate-actions">
-          <button type="button" class="btn primary" id="addResource">+ Add resource</button>
-          <button type="button" class="btn" id="exportAnalysis">Export draft JSON</button>
-        </div>
-        <div id="analysisResult" class="rate-result" role="status" aria-live="polite">Add resource rows to begin. No calculated rate exists yet.</div>
-        <div class="rate-formula">
-          <strong>Calculation disclosed</strong>
-          <code>line_cost = resource_qty_per_output_unit × (1 + waste_pct / 100) × unit_price</code>
-          <code>draft_direct_rate = sum(line_costs) for 1 output unit</code>
-          <p>No automatic markup, escalation, tax, labour productivity or transport allowance is applied. Add a separately priced, sourced resource line when such a cost belongs in the recipe. Output is an unapproved draft until its quantities, specifications and evidence are verified.</p>
-        </div>
-      </section>
-
-      <section class="rate-workspace" id="rateSourcesPanel" aria-labelledby="sourcesHeading" hidden>
-        <div class="rate-section-head"><div><h2 id="sourcesHeading">Sources &amp; Provenance</h2><p>Where data comes from, which authority class it belongs to and what has not been verified.</p></div></div>
-        <div id="sourceList" class="grid source-grid"></div>
-        <section class="panel">
-          <h2>Canonical authority</h2>
-          <p class="sub">The AEC Cost/Rate Master on Google Drive owns normalized source observations. The Neon CR-02 subset is a read-only mirror; user-known rates are separate. Project expenses are not silently converted into rate-book observations.</p>
-          <p><a href="https://docs.google.com/spreadsheets/d/1yJX1Dep0_2ZDvRftu3u-Bb6ZbDqtQWKDChQQlYCWYXY/edit" target="_blank" rel="noopener noreferrer">Open AEC Cost/Rate Master ↗</a></p>
-          <p class="rate-muted">The current public GitHub Pages host may not expose the Vercel /api/cr02-rates endpoint. Unavailable live data must be shown as unavailable, never substituted by demo rates.</p>
-        </section>
-      </section>
-    </div>
-    <footer class="rate-footer"><strong>JP Cost &amp; Rate Intelligence</strong> · Rates and analyses are the active scope · <a href="docs/SCOPE_CAD_FID_HANDOFF_v0.5.0.md">CAD/FID → blank BOQ interface</a> · <a href="boq-template.json">Blank BOQ schema</a> · <a href="finance.html">Finance &amp; Payments</a> · <a href="system-map.html">System Lifecycle</a> · <a href="docs/RATE_PORTAL_RELEASE_v0.5.1.md">Release explanation</a></footer>
-  </main>
-  <script src="data.js"></script>
-  <script src="known-rates-data.js"></script>
-  <script src="app.js"></script>
-</body>
-</html>
+<body class="jp-home-page">
+<main class="jp-domain" id="homeDashboard">
+<nav class="crumb" aria-label="Breadcrumb"><strong>JP Cost Estimation / Overview</strong></nav>
+<header class="hero jp-home-hero">
+<p class="eyebrow">A9 / JP COST ESTIMATION · SOURCE-GOVERNED</p>
+<h1>From evidence to quantities, estimates and payments.</h1>
+<p>One construction cost-estimation portal for reusable rates, client projects, verified measurements, BOQ, abstract of cost and actual financial transactions. Each has a distinct source and approval state.</p>
+<div class="jp-home-actions"><a href="projects.html">Open client projects →</a><a href="rate-workbench.html?view=analysis">Open rate analysis workbench →</a></div>
+</header>
+<section class="panel" id="homeProjects"><h2>Projects and estimates</h2>
+<div class="jp-home-summary"><article><span>Active project directory</span><strong>Amrit Rawat · Ward 14</strong><p>Rohini Engineering and Builders — 32 user-supplied indicative rate entries, NOT approved.</p><a href="projects/rohini/ward-14/amrit-rawat/index.html">Project overview →</a></article>
+<article><span>Measured quantities</span><strong>NOT MEASURED / PENDING</strong><p>26 trade-specific measurement methods available; no source-verified quantities admitted for this project.</p><a href="projects/rohini/ward-14/amrit-rawat/measurements/index.html">Browse measurement workbooks →</a></article>
+<article><span>Cost calculation</span><strong>BOQ &amp; AOC BLOCKED</strong><p>Totals remain unavailable until drawing evidence, measurement checks, selected compatible rates and approvals are verified.</p><a href="projects/rohini/ward-14/amrit-rawat/boq.html">View BOQ readiness →</a></article></div></section>
+<section class="panel" id="homeDepartments"><h2>Explore by responsibility</h2><div class="grid">
+<article class="tile"><p class="eyebrow">01 / REUSABLE PRICING</p><h2>Rate Intelligence</h2><p>Generic government/district references, market observations, resource price analysis and technical specifications. Client rates are not standards.</p><a href="rate-sources.html">Rate libraries →</a> · <a href="rate-workbench.html">Original workbench →</a></article>
+<article class="tile"><p class="eyebrow">02 / CLIENT-CENTRED</p><h2>Projects</h2><p>Project-specific assumptions, source documents, quantities, running bills and cost summaries.</p><a href="projects.html">Project directory →</a></article>
+<article class="tile"><p class="eyebrow">03 / QUANTITIES</p><h2>Measurements &amp; BOQ</h2><p>Source-backed takeoff, detailed trade pages, compact BOQ and approved AOC.</p><a href="measurements-boq.html">Measurement system →</a></article>
+<article class="tile"><p class="eyebrow">04 / RECORDED ACTUALS</p><h2>Finance</h2><p>Original project payment registers, supplier/contractor disbursements and dated source-approved summaries.</p><a href="finance.html">Finance overview →</a> · <a href="finance-dashboard.html">Payment dashboard →</a></article>
+<article class="tile"><p class="eyebrow">05 / KNOWLEDGE</p><h2>References</h2><p>Technical standards, methods and ten-source literature review. References do not certify site measurements.</p><a href="reference.html">References →</a></article>
+<article class="tile"><p class="eyebrow">06 / AUDITABILITY</p><h2>System &amp; Governance</h2><p>Source ownership, GitHub Actions, publication history and restore points.</p><a href="governance.html">System governance →</a></article>
+</div></section>
+<section class="panel" id="homeSourceStatus"><h2>What is verified—and what is not?</h2>
+<div class="jp-status-table"><table><thead><tr><th>Domain</th><th>Current evidence</th><th>Display status</th></tr></thead><tbody>
+<tr><td>Amrit project rates</td><td>32 entries from the original rate Sheet; version V000001</td><td>Source readback complete; price assumptions unverified</td></tr>
+<tr><td>CAD measurements</td><td>Drawing/FID quantities not admitted to this project</td><td>NOT MEASURED / PENDING</td></tr>
+<tr><td>BOQ / Cost Abstract</td><td>No approved quantity and compatible rate selection</td><td>BLOCKED · totals unavailable</td></tr>
+<tr><td>Finance</td><td>Previously verified dated payment snapshot for a different Rohini project</td><td>Historic snapshot; NOT a live Sheets fetch</td></tr>
+</tbody></table></div>
+<p><strong>Actions deployment ≠ authenticated source refresh.</strong> The source-specific Google connection must pass separately. Original Sheets remain editable; public derived data is a read-only projection. <a href="governance.html">Review source authority and refresh status →</a></p></section>
+</main></body></html>

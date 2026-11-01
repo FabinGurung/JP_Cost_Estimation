@@ -40,3 +40,22 @@
 .jp-work-filter output{font-weight:750;color:#2f664e}
 .jp-domain [hidden]{display:none!important}
 @media(max-width:620px){.jp-evidence-grid{grid-template-columns:1fr}.jp-evidence-card{padding:15px}.jp-method-strip{grid-template-columns:1fr}}
+
+/* A9 project-first Overview, while the historical calculator has its own preserved route. */
+.jp-home-page .jp-home-hero{background:linear-gradient(120deg,#e3f0dc,#fff7e8);border-left:5px solid #ae793f}
+.jp-home-page .jp-home-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.jp-home-page .jp-home-actions a{display:inline-block;border:1px solid #285e46;background:#215641;color:#fff;padding:11px 15px;border-radius:11px;text-decoration:none;font-weight:750}
+.jp-home-page .jp-home-actions a+ a{background:#fffcf5;color:#215641}
+.jp-home-page .jp-home-summary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.jp-home-page .jp-home-summary article{min-width:0;background:#fffdf9;border:1px solid #cad9c8;border-radius:15px;padding:20px;display:flex;flex-direction:column;gap:8px}
+.jp-home-page .jp-home-summary article>span{font-size:12px;font-weight:750;text-transform:uppercase;letter-spacing:.06em;color:#556b5e}
+.jp-home-page .jp-home-summary strong{font-size:19px;color:#194333;line-height:1.4}
+.jp-home-page .jp-home-summary p{margin:0 0 5px}
+.jp-home-page .jp-home-summary a{margin-top:auto}
+.jp-home-page .jp-status-table{overflow-x:auto;border:1px solid #d4ded0;border-radius:12px}
+.jp-home-page .jp-status-table table{width:100%;min-width:580px;border-collapse:collapse}
+.jp-home-page .jp-status-table th,.jp-home-page .jp-status-table td{padding:12px;text-align:left;border-bottom:1px solid #d5ded1}
+.jp-home-page .jp-status-table th{background:#e5f0df}
+.jp-finance-page>.sidebar,.jp-finance-dashboard-page>.site-header{display:none!important}
+@media(max-width:860px){.jp-home-page .jp-home-summary{grid-template-columns:1fr}}
+@media(max-width:620px){.jp-home-page .jp-home-actions a{width:100%;text-align:center}.jp-home-page .jp-home-summary article{padding:15px}}
