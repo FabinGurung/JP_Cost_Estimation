@@ -45,9 +45,11 @@ if [[ "$MODE" == "--plan" ]]; then
 fi
 BASE="principalSet://iam.googleapis.com/projects/247425973072/locations/global/workloadIdentityPools/$POOL"
 gcloud iam service-accounts add-iam-policy-binding "$SA" --project="$PROJECT" --role=roles/iam.workloadIdentityUser --member="$BASE/attribute.repository_id/$COST" --quiet >/dev/null
-if ! gcloud iam service-accounts describe "$PUBLIC_SA" --project="$PROJECT" >/dev/null 2>&1; then
-  gcloud iam service-accounts create jp-public-pages-reader --project="$PROJECT" --display-name="JP Public Github Pages Reader" --quiet >/dev/null
+if gcloud iam service-accounts describe "$PUBLIC_SA" --project="$PROJECT" >/dev/null 2>&1; then
+  echo "STOP: public-only service account already exists; inspect its existing resource access before granting owner-wide impersonation." >&2
+  exit 4
 fi
+gcloud iam service-accounts create jp-public-pages-reader --project="$PROJECT" --display-name="JP Public Github Pages Reader" --quiet >/dev/null
 gcloud iam service-accounts add-iam-policy-binding "$PUBLIC_SA" --project="$PROJECT" --role=roles/iam.workloadIdentityUser --member="$BASE/attribute.repository_owner_id/$OWNER" --quiet >/dev/null
 if [[ "$OLD" != "$NEW" ]]; then
   gcloud iam workload-identity-pools providers update-oidc "$PROVIDER" --project="$PROJECT" --location=global --workload-identity-pool="$POOL" --attribute-condition="$NEW" --quiet >/dev/null
