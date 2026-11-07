@@ -4,6 +4,14 @@ name: Project assumptions · Amrit Rawat Sheet to Pages snapshot
 on:
   workflow_call:
   workflow_dispatch:
+  # One-time source proof on changes to THIS workflow in the publishing branch.
+  # The job publishes no commit unless the LIVE sheet's numbered version advances.
+  # This path-only trigger cannot recurse on ordinary derived JSON commits.
+  push:
+    branches:
+      - research/open-estimation-engine-v0.1
+    paths:
+      - .github/workflows/sync-amrit-rawat-rates.yml
 
 permissions:
   contents: write
