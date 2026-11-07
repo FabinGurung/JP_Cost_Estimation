@@ -9,6 +9,9 @@ POOL="jp-pages-github"
 PROVIDER="github"
 SERVICE_ACCOUNT="jp-pages-publisher@just-a-project-5007.iam.gserviceaccount.com"
 REPO="FabinGurung/JP_Cost_Estimation"
+OWNER_ID="143244575"
+REPO_ID="1312661427"
+# GitHub API readback: communication repo=1312147922, Cost Estimation=1312661427.
 CURRENT="$(gcloud iam workload-identity-pools providers describe "$PROVIDER" --workload-identity-pool="$POOL" --location=global --project="$PROJECT" --format='value(attributeCondition)')"
 if [[ -z "$CURRENT" ]]; then
   echo "STOP: existing provider has no condition; investigate current Google policy before editing" >&2
@@ -23,12 +26,14 @@ if "attribute.repository" not in mapping:
     raise SystemExit("STOP: existing provider has no mapped attribute.repository; audit IAM before granting service account access")
 print("Mapped repo attribute confirmed")
 PY
-ADDED="assertion.repository_owner == 'FabinGurung' && assertion.repository == '$REPO' && (assertion.ref == 'refs/heads/research/open-estimation-engine-v0.1' || assertion.ref == 'refs/heads/main' || assertion.ref == 'refs/heads/feature/a9-reuse-shared-google-identity-20261101')"
-if [[ "$CURRENT" == *"$REPO"* ]]; then
-  echo "Existing condition already references Cost Estimation. Inspect/verify before making changes."
+ADDED="assertion.repository_owner_id == '$OWNER_ID' && assertion.repository_id == '$REPO_ID' && (assertion.ref == 'refs/heads/research/open-estimation-engine-v0.1' || assertion.ref == 'refs/heads/main' || assertion.ref == 'refs/heads/feature/a9-reuse-shared-google-identity-20261101')"
+if [[ "$CURRENT" == *"assertion.repository_id == '$REPO_ID'"* ]]; then
+  echo "Existing condition already references numeric Cost Estimation repository ID. Inspect/verify before making changes."
 else
   UPDATED="($CURRENT) || ($ADDED)"
   if (( ${#UPDATED} > 4096 )); then echo "STOP: Google CEL condition would exceed 4096 characters" >&2; exit 3; fi
+  printf '%s\n' "$CURRENT" > /tmp/jp-pages-github-original-condition.txt
+  echo "Pre-change condition saved to /tmp/jp-pages-github-original-condition.txt"
   gcloud iam workload-identity-pools providers update-oidc "$PROVIDER" \
     --workload-identity-pool="$POOL" --location=global --project="$PROJECT" \
     --attribute-condition="$UPDATED"
