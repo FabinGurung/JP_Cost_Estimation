@@ -1,39 +1,39 @@
-# A9 — Reuse existing Communication & Web WIF: verified diagnosis and bounded repair
+# JP Github → Google: public-repository federation, restricted data identities
 
-Date: 2026-11-01 Asia/Kathmandu. No new Google Cloud project, service account, JSON key, token, Colab setup or source workbook should be created.
+## Source verification (2026-11-07)
 
-## Evidence
+- Existing Google Cloud project `just-a-project-5007`, project number `247425973072`, pool `jp-pages-github`, provider `github`.
+- Existing provider condition (admin readback): `assertion.repository_id == '1312147922' && assertion.repository_owner_id == '143244575' && assertion.ref == 'refs/heads/feature/daily-ops-current-work'`.
+- Verified mapped claims: `attribute.repository_id`, `attribute.repository_owner_id`, and `google.subject='repo:'+repository_id`.
+- Existing publisher service-account policy (admin readback): only the principal set for GitHub repo ID `1312147922` has `roles/iam.workloadIdentityUser`. It is **not** owner-wide.
+- Existing identity: `jp-pages-publisher@just-a-project-5007.iam.gserviceaccount.com`, previously granted read access on five Cost Estimation source Sheets.
+- Verified Cost Estimation GitHub repo ID: `1312661427`; GitHub owner ID: `143244575`. Cost test run `41315501661` failed `unauthorized_client` due to provider's attribute condition, before reading Sheets.
 
-- Communication & Web repo: `FabinGurung/JP_Communication-Command-Centre-and-Resource-Hub`, workflow `.github/workflows/daily-ops-branch-preview.yml` on `feature/daily-ops-current-work`.
-- Successful source-authenticated Actions run: https://github.com/FabinGurung/JP_Communication-Command-Centre-and-Resource-Hub/actions/runs/41141619917 (2026-10-30).
-- The communication job log proves `google-github-actions/auth@v3` authenticated with Workload Identity Federation and successfully assembled/read back the publishing Sheet.
-- Verified existing provider: `projects/247425973072/locations/global/workloadIdentityPools/jp-pages-github/providers/github`
-- Verified existing service identity: `jp-pages-publisher@just-a-project-5007.iam.gserviceaccount.com`.
-- Cost Estimation identity probe: https://github.com/FabinGurung/JP_Cost_Estimation/actions/runs/41315501661 (2026-11-01).
-- Cost verification job used **the same provider and service account** but failed before fetching Sheets:
-  `unauthorized_client: The given credential is rejected by the attribute condition.`
-- All five source Sheets in the existing single source folder already grant the same service account the **reader** role (Drive metadata readback verified). No public sharing was added.
+## User-authorized approach
 
-## Root cause / precise fix
+Retain existing provider, preserve the whole current Communication & Web rule, and **append**:
+1. All `public` GitHub repositories owned by numeric owner ID `143244575` on `refs/heads/main` for `push`, `workflow_dispatch`, `schedule`.
+2. Cost Estimation's exact numeric repo ID on `research/open-estimation-engine-v0.1` and temporary `feature/a9-reuse-shared-google-identity-20261101` for the same events.
 
-The existing Google WIF provider has an attribute condition that allows Communication & Web but rejects claims from `FabinGurung/JP_Cost_Estimation`. Cross-repo user authorization does not by itself modify Google IAM.
+Never broaden `jp-pages-publisher` impersonation to the whole owner. Instead:
+- Add only the Cost Estimation numeric repository principal set to its existing `roles/iam.workloadIdentityUser` policy. Keep the Communication & Web binding unchanged; this service account can read restricted finance sources.
+- Create `jp-public-pages-reader@just-a-project-5007.iam.gserviceaccount.com` as a **distinct, new, low-privilege** service identity. Permit the owner-ID principal set to impersonate it; do not grant it project roles or any private Google Sheets.
+- Future public repositories can use the same WIF provider and new public-only service account without editing the provider. New approved source Sheets still need explicit, resource-level read access. Repos with non-`main` branches need an additional narrowly scoped branch exception, unless they change their workflows to publish from `main`.
 
-A bounded repair requires an administrator of the **existing** `just-a-project-5007` cloud project to extend the **existing** provider condition for the Cost Estimation GitHub repository and the appropriate branch refs, and give the existing service account the exact repo's workloadIdentityUser membership.
+## Execution / test
 
-Use `scripts/repair_existing_google_wif_trust.sh` in Google Cloud Shell. The script reads the CURRENT provider condition, **retains it unmodified**, adds only an exact repo + branch condition, checks the mapped repository attribute, and adds a repo-scoped service account binding. It is not run by this public GitHub workflow (the denied identity is intentionally unable to self-grant IAM privileges). Do not replace the original provider condition, make the pool public, or grant IAM permissions to all GitHub repositories.
+The audited script is `scripts/repair_existing_google_wif_trust.sh`. Default is review-first:
 
-Note: the exact current live provider expression was not accessible to the GitHub/Drive connectors; the script reads it at execution time, guarding against overwriting. The Cloud Shell user must have Google IAM provider and service-account binding permissions.
+```bash
+bash scripts/repair_existing_google_wif_trust.sh --plan
+bash scripts/repair_existing_google_wif_trust.sh --apply
+```
 
-## After GCP trust repair
+`--plan` checks the existing condition, mapped IDs and sensitive SA policy and prints the exact existing/proposed conditions without changing Google Cloud. `--apply` grants the restricted Cost repository binding, creates the new public-only SA, grants it owner-ID impersonation, then updates and reads back the existing WIF provider. It refuses to grant owner-wide impersonation to an unexpectedly preexisting public-only SA without an explicit review.
 
-1. Run the feature-branch `Verify existing JP Google keyless identity for Cost Estimation` GitHub Action.
-2. Require all five originals to return a read-only spreadsheet-ID match; no private data or tokens logged.
-3. Only then merge the feature PR, which has the already verified provider/service identity as non-secret fallbacks. Existing repo variables can override them; the Amrit source ID is already source-linked and stable.
-4. Trigger and verify the Amrit source refresh from the default-branch scheduler, and the sole Pages deployment. Check actual authenticated Google read and finance parser success, not just deployment green.
-5. If a live source schema differs from the approved publication subset, fail closed, preserve the last verified JSON, and repair the source adapter without inventing values.
+**No Google IAM change is made from ChatGPT or GitHub alone.** Google Cloud Shell must execute `--apply` as a permitted project administrator. If it fails, preserve logs, avoid creating a new provider or credential, and repair the precise denied permission.
 
-## Files / restoration
+After successful IAM readback: rerun `Verify existing JP Google keyless identity for Cost Estimation` on the diagnostic branch, require five readable original source IDs, then merge only after repository CI passes. Trigger the existing source refresh and publishing workflows and validate **actual authenticated readbacks**, not merely a green static Pages deployment. Historic snapshot remains authoritative until live-source refresh succeeds.
 
-Original source IDs and Google Sheets remain unchanged. Source folder: https://drive.google.com/drive/folders/1v0yTowZ8mbTtT7euPgrPeEndFKPPH0IU .
-Git pre-repair checkpoint: `snapshot/pre-shared-google-wif-reuse-20261101`.
-Production Pages must not be merged with failing repository trust. The feature-only test workflow is intentionally diagnostic.
+Existing read-only source directory: https://drive.google.com/drive/folders/1v0yTowZ8mbTtT7euPgrPeEndFKPPH0IU .
+Git restoration point: `snapshot/pre-shared-google-wif-reuse-20261101`.
