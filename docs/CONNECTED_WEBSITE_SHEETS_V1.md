@@ -33,3 +33,8 @@ Drive readback 2026-11-01: five original spreadsheet MIME types, matching five u
 ## Restoration and governance
 
 Pre-migration source folder identities recorded above; restore original files to their named former folders **using the same IDs**, rather than creating copies. Retain the folder and manifest as a discoverable historical audit if later superseded. Continue PRE/POST version and source evidence policies before any content edits.
+
+
+## 2026-11-01 Reusing existing WIF
+
+See `docs/REUSE_EXISTING_GOOGLE_WIF_20261101.md` for verified source access, exact rejected GitHub claim and bounded Google IAM repair. The same keyless provider/SA as Communication & Web have been verified; do not create new credentials.
