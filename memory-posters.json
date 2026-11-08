@@ -1,9 +1,75 @@
 {
   "schema": "jp.site.memory-posters.v1",
-  "version": "0.8.0",
-  "updated": "2026-10-20",
+  "version": "0.9.0",
+  "updated": "2026-11-08",
   "visibility": "public_reference_only",
   "posters": [
+    {
+      "id": "a9-identity-20261107",
+      "category": "Milestones",
+      "title": "One Google identity provider",
+      "takeaway": "Public main branches are eligible.",
+      "detail": "Shared provider covers FabinGurung public repositories on main; private Sheets still require explicit access and finance-capable accounts stay repo-scoped.",
+      "href": "governance.html",
+      "label": "Inspect source governance",
+      "tone": "mint",
+      "priority": "VERIFIED 07 NOV"
+    },
+    {
+      "id": "a9-five-sheets-20261107",
+      "category": "Milestones",
+      "title": "Five originals. One folder.",
+      "takeaway": "Never fork the source of truth.",
+      "detail": "Original source/template Google Sheets retain their LIVE IDs in the centralized Drive folder; versioned GitHub data is only a public projection.",
+      "href": "source-sheets.html",
+      "label": "Open the source directory",
+      "tone": "sky",
+      "priority": "VERIFIED 07 NOV"
+    },
+    {
+      "id": "a9-live-refresh-20261107",
+      "category": "Milestones",
+      "title": "LIVE source fetch now works.",
+      "takeaway": "Finance and Amrit reads authenticated.",
+      "detail": "The verified publishing path read Finance live, published 27 vendors and 74 payment entries, and independently checked all 32 indicative Amrit rates.",
+      "href": "finance-dashboard.html",
+      "label": "Finance dashboard",
+      "tone": "mint",
+      "priority": "VERIFIED 07 NOV"
+    },
+    {
+      "id": "a9-no-false-boq-20261107",
+      "category": "Next",
+      "title": "Never price empty measurements.",
+      "takeaway": "Amrit project quantities: zero admitted.",
+      "detail": "26 reusable measurement methods exist, but Amrit has no approved quantities, BOQ or AOC. Preserve the HOLD until CAD and field evidence are accepted.",
+      "href": "measurements-boq.html",
+      "label": "Measurement workflow",
+      "tone": "peach",
+      "priority": "HOLD"
+    },
+    {
+      "id": "a9-cad-to-boq-20261107",
+      "category": "Next",
+      "title": "Drawings become verified numbers.",
+      "takeaway": "CAD → Measurement → BOQ → AOC.",
+      "detail": "The next engineering step is to connect source drawing IDs and site evidence to per-element quantities, then group approved items without inventing totals.",
+      "href": "measurements-boq.html",
+      "label": "Where quantities start",
+      "tone": "cream",
+      "priority": "ROADMAP"
+    },
+    {
+      "id": "a9-freshness-20261107",
+      "category": "Next",
+      "title": "An Action success needs source proof.",
+      "takeaway": "Verify unattended jobs and responsive pages.",
+      "detail": "A Pages deploy can be green without a LIVE Sheet read. Verify source-specific logs and inspect the released UI on real desktop and mobile browsers.",
+      "href": "governance.html",
+      "label": "Publication checks",
+      "tone": "sky",
+      "priority": "NEXT"
+    },
     {
       "id": "source-of-truth",
       "category": "Finance",
