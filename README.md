@@ -1,3 +1,13 @@
+## A9 Memory Wall · verified checkpoint recorded 8 November 2026
+
+The public [Memory Wall](memory-posters.html#memory-status) pins the 7 November 2026 source-backed project status in a memorable 60-second summary, with its [machine-readable V000001 checkpoint](data/jp-cost-memory-wall.v1.json). Existing memory/reference posters are preserved and searchable. The governance directory and homepage link to this wall.
+
+**Verified:** 71 registered pages, 5 original Sheets in one Drive folder, 32 user-supplied indicative Amrit rates, 26 reusable measurement methods, 27 finance vendors/74 payment records from a separate KKG/Bishal Paija source, keyless source-auth, Finance LIVE read and Amrit unchanged-source check, and successful CI/Pages publication. **Still on HOLD:** no Amrit admitted measurement, BOQ, contractor bill or approved AOC quantities; actual CAD measurements and project approvals required. A later Actions deployment needs its own evidence and cannot inherit this snapshot's status automatically.
+
+**Restoration:** `snapshot/pre-memory-wall-checkpoint-20261108` preserves the original site and reference board. The following 1 November notes are historic and should not be read as the latest Google authentication status.
+
+---
+
 ## Connected original website Google Sheets · 2026-11-01
 
 Five original Google Sheets that are connected, linked or used as templates for this website now share **one editable-source folder**: [A9 / Cost Estimation / Website Source Sheets — Edit Here](https://drive.google.com/drive/folders/1v0yTowZ8mbTtT7euPgrPeEndFKPPH0IU). The same permanent LIVE IDs remain authoritative; archives stayed in their original custody. The [website source directory](source-sheets.html) and `data/connected-website-sheets.v1.json` distinguish active source dependencies, historical snapshot status and templates. No live Google auth refresh was demonstrated by this folder move.
