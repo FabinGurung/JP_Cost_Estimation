@@ -1,7 +1,7 @@
 {
   "schema": "jp.site.page-registry.v1",
   "version": "1.5.0",
-  "recorded": "2026-11-01",
+  "recorded": "2026-11-08",
   "site": {
     "id": "JP",
     "name": "JP Cost Estimation",
@@ -656,7 +656,7 @@
       "department": "RF",
       "parent": "RF-01",
       "path": "memory-posters.html",
-      "title": "Memory Posters",
+      "title": "Memory Wall · Verified Project Checkpoint & Reference Posters",
       "kind": "application",
       "status": "published",
       "navigation": "more",
@@ -675,12 +675,18 @@
           "id": "MP-01.S03",
           "domId": "poster-search",
           "title": "Poster search"
+        },
+        {
+          "id": "MP-01.S04",
+          "domId": "memory-status",
+          "title": "Dated project checkpoint and next milestones"
         }
       ],
       "keyDependencies": [
         "memory-posters.css",
         "memory-posters.js",
-        "memory-posters.json"
+        "memory-posters.json",
+        "data/jp-cost-memory-wall.v1.json"
       ]
     },
     {

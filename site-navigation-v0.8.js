@@ -17,7 +17,7 @@ const extras=[
 ['reference','References & Docs','reference.html'],
 ['literature','Research & Standards','literature-review.html'],
 ['system','System & Governance','governance.html'],
-['posters','Memory Posters','memory-posters.html'],
+['posters','Memory Wall','memory-posters.html'],
 ['field','Site Expense Guide','field-expense-guide.html']
 ];
 const url=href=>new URL(href,root).href;

@@ -30,4 +30,31 @@ assert(home.includes('href="site-map.html"')&&get('governance.html').includes('h
 assert(get('site-map.html').includes('id="siteDirectoryResults"'));
 assert(get('site-map.mjs').includes('registry.pages'));
 assert(pages.find(x=>x.id==='SY-03')?.path==='site-map.html');
+// Source-backed dated Memory Wall regression: no competing route or invented totals.
+const memoryHtml=get('memory-posters.html');
+const memory=JSON.parse(get('data/jp-cost-memory-wall.v1.json'));
+const facts=Object.fromEntries(memory.metrics.map(m=>[m.id,m.value]));
+assert.equal(memory.schema,'jp.cost-estimation.memory-wall.v1');
+assert.equal(memory.snapshot_id,'A9-JP-EST-MEMORY-V000001');
+assert.equal(memory.lifecycle,'historical_verified_checkpoint_not_live_telemetry');
+assert.equal(memory.evidence_as_of,'2026-11-07');
+assert.equal(facts.site_pages,pages.length);
+assert.equal(facts.original_sheets,JSON.parse(get('data/connected-website-sheets.v1.json')).records.length);
+assert.equal(facts.amrit_rate_entries,JSON.parse(get('projects/rohini/ward-14/amrit-rawat/rates.public.json')).rates.length);
+assert.equal(facts.measurement_methods,JSON.parse(get('templates/project-costing/v1/work-catalog.json')).works.length);
+const financeSnapshot=JSON.parse(get('finance-public-snapshot.json'));
+assert.equal(facts.finance_vendors,financeSnapshot.totals.vendor_count);
+assert.equal(facts.finance_payments,financeSnapshot.totals.payment_count);
+const amritCosting=JSON.parse(get('projects/rohini/ward-14/amrit-rawat/project-costing.json'));
+assert.equal(memory.project_readiness.amrit.accepted_measurements,amritCosting.measurementRows.length);
+assert.equal(memory.project_readiness.amrit.accepted_boq_items,amritCosting.boqRows.length);
+assert.equal(memory.project_readiness.amrit.approved_aoc_total,null);
+for(const id of ['memory-status','poster-filters','poster-search','poster-board'])assert(memoryHtml.includes('id="'+id+'"'),'Missing memory-wall section '+id);
+assert(memoryHtml.includes('not a live feed')&&memoryHtml.includes('not a live tracker'),'Memory Wall must clearly identify dated evidence');
+assert(get('governance.html').includes('href="memory-posters.html#memory-status"'));
+assert(home.includes('href="memory-posters.html#memory-status"'));
+assert(get('source-sheets.html').includes('2026')&&get('source-sheets.html').includes('42366112115'),'Source directory must state later authenticated refresh.');
+assert(pages.find(p=>p.id==='MP-01')?.sections.some(s=>s.domId==='memory-status'),'Memory section missing registered ID');
+console.log('MEMORY WALL QA PASS: dated checkpoint, all source counts and project holds, 12 original reference posters retained.');
+
 console.log('SITE HOME QA PASS: project-first root, 6 departments, old rate workbench and query redirects, single global navigation for finance.');
