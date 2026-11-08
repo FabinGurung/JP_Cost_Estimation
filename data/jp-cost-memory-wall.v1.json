@@ -1,0 +1,158 @@
+{
+  "schema": "jp.cost-estimation.memory-wall.v1",
+  "snapshot_id": "A9-JP-EST-MEMORY-V000001",
+  "recorded_date": "2026-11-08",
+  "evidence_as_of": "2026-11-07",
+  "time_zone": "Asia/Kathmandu",
+  "lifecycle": "historical_verified_checkpoint_not_live_telemetry",
+  "page": "memory-posters.html",
+  "summary": "Infrastructure is working: governed Pages, original Sheets, and authenticated Google Finance and Amrit rate reads. The next milestone is admitting verified CAD measurements before any client-specific BOQ/AOC or bill.",
+  "metrics": [
+    {
+      "id": "site_pages",
+      "label": "Registered website pages",
+      "value": 71,
+      "unit": "pages",
+      "source": "site-page-registry.v0.8.json"
+    },
+    {
+      "id": "original_sheets",
+      "label": "Original Google source/template Sheets",
+      "value": 5,
+      "unit": "files",
+      "source": "data/connected-website-sheets.v1.json"
+    },
+    {
+      "id": "amrit_rate_entries",
+      "label": "Amrit Rawat indicative rates",
+      "value": 32,
+      "unit": "entries",
+      "source": "projects/rohini/ward-14/amrit-rawat/rates.public.json",
+      "breakdown": {
+        "plinth": 14,
+        "trade": 12,
+        "daily_wage": 6
+      },
+      "source_version": "V000001",
+      "approval": "indicative_not_approved"
+    },
+    {
+      "id": "measurement_methods",
+      "label": "Reusable measurement methods",
+      "value": 26,
+      "unit": "methods",
+      "source": "templates/project-costing/v1/work-catalog.json"
+    },
+    {
+      "id": "finance_vendors",
+      "label": "Verified Finance vendor records",
+      "value": 27,
+      "unit": "vendors",
+      "project": "Rohini / Krishna Kumar Gupta / Bishal Paija",
+      "source": "finance-public-snapshot.json"
+    },
+    {
+      "id": "finance_payments",
+      "label": "Verified Finance payment records",
+      "value": 74,
+      "unit": "payments",
+      "project": "Rohini / Krishna Kumar Gupta / Bishal Paija",
+      "source": "finance-public-snapshot.json",
+      "amount_npr": 268798
+    }
+  ],
+  "project_readiness": {
+    "amrit": {
+      "accepted_measurements": 0,
+      "accepted_boq_items": 0,
+      "contractor_running_bills": 0,
+      "vendor_invoices": 0,
+      "payment_allocations": 0,
+      "approved_aoc_total": null,
+      "public_snapshot_scope": "TEMPLATE_ONLY"
+    },
+    "finance_figure_scope": "Published source adapter validation; not an Amrit project cost or contract estimate",
+    "rate_approval": "NOT_APPROVED"
+  },
+  "identity_policy": {
+    "google_project": "just-a-project-5007",
+    "pool": "jp-pages-github",
+    "provider": "github",
+    "owner_id": "143244575",
+    "authorized_general": "public FabinGurung repositories on main, push/workflow_dispatch/schedule",
+    "exceptions": [
+      "Communication & Web existing feature/daily-ops-current-work rule",
+      "JP Cost Estimation research publishing branch and temporary verification branch"
+    ],
+    "public_only_service_account": "jp-public-pages-reader@just-a-project-5007.iam.gserviceaccount.com",
+    "restricted_service_account": "jp-pages-publisher@just-a-project-5007.iam.gserviceaccount.com",
+    "caveat": "Federation eligibility does not grant Google Sheets permissions. Public-only account initially has no source-data roles. Repositories need suitable workflows."
+  },
+  "proof": [
+    {
+      "id": "identity",
+      "label": "Five original Sheets independently readable",
+      "status": "passed",
+      "url": "https://github.com/FabinGurung/JP_Cost_Estimation/actions/runs/42365502474"
+    },
+    {
+      "id": "finance",
+      "label": "Authenticated Finance refresh and Pages publish",
+      "status": "passed",
+      "url": "https://github.com/FabinGurung/JP_Cost_Estimation/actions/runs/42366112176"
+    },
+    {
+      "id": "rates",
+      "label": "Authenticated Amrit rate sync; rates unchanged",
+      "status": "passed",
+      "url": "https://github.com/FabinGurung/JP_Cost_Estimation/actions/runs/42366112115"
+    },
+    {
+      "id": "ci",
+      "label": "Final publishing-branch CI",
+      "status": "passed",
+      "url": "https://github.com/FabinGurung/JP_Cost_Estimation/actions/runs/42366112137"
+    }
+  ],
+  "links": {
+    "website": "https://fabingurung.github.io/JP_Cost_Estimation/",
+    "memory_wall": "https://fabingurung.github.io/JP_Cost_Estimation/memory-posters.html",
+    "google_sheets_folder": "https://drive.google.com/drive/folders/1v0yTowZ8mbTtT7euPgrPeEndFKPPH0IU",
+    "source_directory": "source-sheets.html",
+    "finance_dashboard": "finance-dashboard.html",
+    "client_project": "projects/rohini/ward-14/amrit-rawat/index.html",
+    "governance": "governance.html",
+    "page_registry": "site-page-registry.v0.8.json",
+    "publishing_branch": "research/open-estimation-engine-v0.1",
+    "verified_commit": "4568e9082b8f28be0512a5823fa94ad650cd7a51"
+  },
+  "next": [
+    {
+      "id": "scheduled_refresh",
+      "title": "Prove unattended refresh",
+      "gate": "Confirm subsequent scheduled Finance and Amrit source fetches; keep static deploy distinct from source refresh"
+    },
+    {
+      "id": "cad_measurements",
+      "title": "CAD → verified quantities",
+      "gate": "Admit drawing/FID/measurement evidence and versioned dimensions before deriving project quantities"
+    },
+    {
+      "id": "boq_billing",
+      "title": "Quantity → BOQ → AOC → bills",
+      "gate": "Require approved compatible rate choices, separate contractor certificates, invoices, and payment records"
+    },
+    {
+      "id": "responsive_qa",
+      "title": "Mobile and desktop browser QA",
+      "gate": "Inspect live navigation, tables, filters, cards and links on real browsers"
+    }
+  ],
+  "governance": [
+    "Drive and Google Sheets retain human source authority; GitHub owns versioned derived code and public read-only projections.",
+    "No invented measurements, engineering approvals, bills or costing totals.",
+    "Old source IDs, workbooks, histories and archived checkpoint commits are preserved.",
+    "A successful static Pages deployment alone is not proof of an authenticated source refresh.",
+    "This record is a dated memory checkpoint, not an automatically updating dashboard."
+  ]
+}
