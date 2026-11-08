@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="JP Cost Estimation reference wall: source rules, rate principles and payment practices.">
-  <title>Memory Posters · JP Cost Estimation</title>
+  <meta name="description" content="JP Cost Estimation project Memory Wall: verified status checkpoint, what is done, what is on hold, next tasks and original working principles.">
+  <title>Memory Wall · Status, Roadmap &amp; Reference Posters · JP Cost Estimation</title>
   <link rel="stylesheet" href="site-theme-v0.8.css">
   <link rel="stylesheet" href="memory-posters.css">
   <script src="site-navigation-v0.8.js" defer></script>
@@ -16,16 +16,72 @@
     <div class="poster-hero-copy">
       <p class="poster-kicker">JP / PROJECT REFERENCE ROOM</p>
       <h1>The memory <em>wall.</em></h1>
-      <p>Our essential working principles, pinned in one place. A study board for rates, project payments, source records and how this website grows.</p>
+      <p>A quick place to remember <strong>where we left off</strong>, what is actually verified, and what to tackle next. The original source rules and learning posters remain below.</p>
       <a class="poster-hero-link" href="index.html">← Back to the project overview</a>
     </div>
     <div class="poster-hero-mark" aria-hidden="true"><span>READ</span><span>CONNECT</span><span>REMEMBER</span></div>
   </section>
+
+  <section class="memory-snapshot" id="memory-status" aria-labelledby="memory-status-title">
+    <div class="memory-snapshot-heading">
+      <div>
+        <p class="poster-kicker">CHECKPOINT / 07 NOVEMBER 2026 · PRESERVED 08 NOVEMBER</p>
+        <h2 id="memory-status-title">Where we left off.</h2>
+        <p class="memory-snapshot-lead"><strong>The foundations work.</strong> Google Sheets authenticate, Finance and Amrit rates refresh, and Pages deploys. <strong>The next unlock is verified project measurements</strong> before any real Amrit BOQ, AOC or bills.</p>
+      </div>
+      <div class="memory-stamp" aria-label="Dated verified checkpoint">
+        <span>VERIFIED</span>
+        <strong>07 NOV</strong>
+        <small>2026 · not a live feed</small>
+      </div>
+    </div>
+    <div class="memory-stat-grid" aria-label="Memorable project milestones">
+      <div class="memory-stat"><strong>71</strong><span>Registered web pages</span></div>
+      <div class="memory-stat"><strong>5</strong><span>Original Google Sheets</span></div>
+      <div class="memory-stat"><strong>32</strong><span>Amrit indicative rates</span></div>
+      <div class="memory-stat"><strong>26</strong><span>Measurement methods</span></div>
+    </div>
+    <div class="memory-three-column">
+      <article class="memory-mini memory-done">
+        <span class="memory-mini-tag">01 / WORKING</span>
+        <h3>Google → GitHub → Website</h3>
+        <p>Shared keyless Google identity is configured. All five Sheets passed read-only authentication. Finance refresh, Amrit rate sync, CI and Pages deployment passed.</p>
+        <p class="memory-mini-detail"><strong>Finance:</strong> 27 vendors · 74 payments · NPR 268,798 in the separate Bishal Paija / KKG source—not an Amrit cost estimate.</p>
+        <a href="finance-dashboard.html">Finance view →</a>
+      </article>
+      <article class="memory-mini memory-hold">
+        <span class="memory-mini-tag">02 / STILL ON HOLD</span>
+        <h3>No invented quantities.</h3>
+        <p>Amrit has <strong>0 admitted measurement rows, 0 BOQ rows, 0 running bills</strong> and no approved AOC total. Rates are indicative, not certified.</p>
+        <p class="memory-mini-detail">Templates and work methods are ready; project evidence and approvals are not.</p>
+        <a href="projects/rohini/ward-14/amrit-rawat/index.html">Amrit project →</a>
+      </article>
+      <article class="memory-mini memory-next">
+        <span class="memory-mini-tag">03 / WHAT COMES NEXT</span>
+        <h3>From drawing to cost.</h3>
+        <ol>
+          <li>Verify unattended scheduled source refresh.</li>
+          <li>Admit measured CAD/drawing/FID quantities.</li>
+          <li>Derive BOQ → AOC → bills only after review.</li>
+          <li>QA navigation and layout on mobile + desktop.</li>
+        </ol>
+        <a href="measurements-boq.html">Measurement workflow →</a>
+      </article>
+    </div>
+    <div class="memory-shortcut-bar" aria-label="Return to important resources">
+      <strong>Pick up here:</strong>
+      <a href="source-sheets.html">Five original Sheets</a>
+      <a href="https://github.com/FabinGurung/JP_Cost_Estimation/actions/runs/42366112176" target="_blank" rel="noopener noreferrer">Successful live deployment</a>
+      <a href="https://github.com/FabinGurung/JP_Cost_Estimation/actions/runs/42366112115" target="_blank" rel="noopener noreferrer">Amrit source proof</a>
+      <a href="governance.html">Source governance</a>
+    </div>
+    <p class="memory-checkpoint-note"><strong>Remember:</strong> all FabinGurung public repositories using <code>main</code> are eligible for the new public-only Google identity, but no Google Sheet permissions are automatically granted. This is an <strong>archived evidence checkpoint</strong>, not a live tracker. <a href="data/jp-cost-memory-wall.v1.json">Open machine-readable memory →</a></p>
+  </section>
   <section class="poster-controls" aria-label="Find a poster">
     <div>
       <p class="poster-kicker">THE REFERENCE BOARD</p>
-      <h2>Ideas worth keeping visible.</h2>
-      <p>Choose a category or search for a working rule. Each card opens its related project page.</p>
+      <h2>The reference posters.</h2>
+      <p>The original posters remain here, with new checkpoint reminders added. Filter by category or search for a rule.</p>
     </div>
     <label class="poster-search-label" for="poster-search">Find a poster
       <input type="search" id="poster-search" placeholder="Try: payment, rate, source…" autocomplete="off">
@@ -35,7 +91,7 @@
   <div class="poster-count" id="poster-count" aria-live="polite">Loading posters…</div>
   <section class="poster-board" id="poster-board" aria-label="Pinned reference posters"></section>
   <noscript><p class="poster-fallback">Enable JavaScript to browse the poster collection. <a href="rate-sources.html">Explore rate sources</a> or <a href="finance-dashboard.html">view project payments</a>.</p></noscript>
-  <aside class="poster-disclaimer">These posters are public reference notes, not original payment entries, source documents or rate quotations. Follow the linked pages for their published source context.</aside>
+  <aside class="poster-disclaimer">The dated checkpoint is a public summary, not live source telemetry, an approved engineering estimate, original payment entries or rate quotations. The original Sheets and workflow logs remain the evidence authority. Follow linked pages for current published context.</aside>
 </main>
 </body>
 </html>
