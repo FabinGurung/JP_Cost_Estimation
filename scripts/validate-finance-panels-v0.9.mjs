@@ -20,8 +20,11 @@ for(const name of ['finance.html','finance-dashboard.html','field-expense-guide.
   assert(read(name).includes('finance-panels-v0.9.css'),name+' missing Finance child styling');
 }
 const script=read('finance-source-panels-v0.9.js');
-assert(script.includes('length:21'),'All 21 original worker codes must be generated');
-for(const code of ['FN-S01','FN-S02','FN-S03','W01-V2','FN-C01','FN-C02'])assert(script.includes("'"+code+"'"),'Missing source code '+code);
+assert(!script.includes('length:21')&&!script.includes('W01-V2'),'Worker records must not be generated inside Finance');
+for(const code of ['FN-S01','FN-S03'])assert(script.includes("'"+code+"'"),'Missing Finance source code '+code);
+for(const code of ['FN-S02','FN-C01','FN-C02'])assert(!script.includes("'"+code+"'"),'Field operations must not be finance inputs '+code);
+assert(read('finance.html').includes('JP_Field_and_Desk_Resource_Library'),'Finance missing source owner handoff');
+assert(read('finance.html').includes('JP_Communication-Command-Centre-and-Resource-Hub'),'Finance missing progress owner handoff');
 assert(script.includes('docs.google.com')&&script.includes("url.hostname!=='docs.google.com'"),'Preview must restrict to Google Sheets');
 assert(script.includes('frame.src=')&&script.includes('about:blank'),'Preview must be cleared on request');
 const html=read('finance.html');
@@ -34,4 +37,4 @@ assert(read('finance-register-header-v1.0.js').includes('1S1fkWzo6XGzyD3p92_pTG3
 const publicLinks=(script+'\n'+html).match(/https:\/\/docs\.google\.com\/spreadsheets\/d\/[A-Za-z0-9_-]{20,}/g)||[];
 assert(publicLinks.length>=1,'Expected approved source link');
 for(const link of publicLinks)assert(link.endsWith(approved),'Only the approved payment register may have a stored workbook URL');
-console.log('FINANCE PANELS PASS: Finance child dashboard, 27 Sheet codes, optional protected previews, no restricted source URLs');
+console.log('FINANCE PANELS PASS: payment-ledger-only source options, field/worker custody handoff, protected previews and no restricted source URLs');
