@@ -1,64 +1,64 @@
 {
   "schema": "jp.website.connected-source-sheets.v1",
-  "version": "V000002",
+  "version": "V000003",
   "auditedAtNpt": "2026-11-09",
   "repository": "FabinGurung/JP_Cost_Estimation",
-  "folderName": "01_WEBSITE_SOURCE_SHEETS__EDIT_HERE",
+  "folderName": "Cost Estimation — Working Google Sheets",
   "folderUrl": "https://drive.google.com/drive/folders/1v0yTowZ8mbTtT7euPgrPeEndFKPPH0IU",
-  "owner": "A9 / 03_JP_Cost_Estimation / 02_HUMAN_WORKING_SHEETS",
-  "policy": "Five original Google Sheets MOVED INTO this folder, same permanent LIVE IDs; source-level permissions and archives preserved. No copies and no public credentials.",
+  "owner": "Cost Estimation — original working sheets and source custody",
+  "policy": "Five original working Google Sheets: their permanent file IDs, worksheet keys, contents, Drive access controls and data lineage are preserved. Friendly Drive file titles are presentation labels only. Google Sheets and evidence documents remain authoritative; GitHub publishes validated derived views.",
   "records": [
     {
       "ref": "JP-AEC-RATE-MASTER",
-      "title": "AEC Cost/Rate Master",
+      "title": "Construction Rate and Cost References",
       "authority": "Original generic cost/rate master Sheet",
       "usedFor": "Rate source/reference for the existing analysis workbench",
       "usagePage": "rate-workbench.html",
-      "publicationStatus": "LINKED_REFERENCE_NOT_AUTHENTICATED_ACTIONS_REFRESH",
+      "publicationStatus": "Reusable reference workbook; not an authenticated scheduled rates feed",
       "originalFolder": "04_COST_RATE_REFERENCES / 01_AEC_COST_RATE_MASTER__LIVE_REGISTER",
       "kind": "working_reference",
       "doesNotImply": "Current approved district/standard rates"
     },
     {
       "ref": "RE-AMRIT-RATE-LIVE",
-      "title": "Amrit Rawat — Site Construction Rates (LIVE)",
+      "title": "Amrit Rawat — Site Construction Rates (Indicative)",
       "authority": "One permanent LIVE client-specific 32-row indicative rate Sheet",
       "usedFor": "Project rate assumptions (14 plinth + 12 trade + 6 daily wages)",
       "usagePage": "projects/rohini/ward-14/amrit-rawat/cost-planning.html",
-      "publicationStatus": "ACTIONS_AUTHENTICATED_READ_VERIFIED_2026-11-07; 32_CLIENT_RATES_REMAIN_INDICATIVE",
+      "publicationStatus": "Authenticated source read verified; 32 rates remain indicative and unapproved",
       "originalFolder": "Rohini / Ward 14 / 14_Amrit_Rawat",
       "kind": "client_live_source",
       "doesNotImply": "Measured quantities or approved contract unit rates"
     },
     {
       "ref": "RE-AMRIT-QTO-BOQ-LIVE",
-      "title": "Amrit Rawat — Measurements, BOQ, AOC & Bills (LIVE)",
+      "title": "Amrit Rawat — Measurements, BOQ, Cost Summary and Bills",
       "authority": "One permanent LIVE project measurement and billing workbook",
       "usedFor": "Project entry register, future verified QTO/BOQ/AOC and contractor/vendor invoices",
       "usagePage": "projects/rohini/ward-14/amrit-rawat/measurements/index.html",
-      "publicationStatus": "LIVE_PROJECT_SHEET_INGESTION_VIA_PAGES_BUILD; NO_MEASURED_ROWS_AS_OF_2026-11-09",
+      "publicationStatus": "Authenticated during Pages deployment; no verified measurements or approved rates admitted at the latest recorded check",
       "originalFolder": "Rohini / Ward 14 / 14_Amrit_Rawat",
       "kind": "client_live_source",
       "doesNotImply": "Completed measured work, payable certificate or money paid"
     },
     {
       "ref": "JP-COSTING-MASTER-TEMPLATE",
-      "title": "JP Master — Measurement / BOQ / AOC / Bills Template",
+      "title": "Construction Costing — Reusable Workbook Template",
       "authority": "Reusable blank template, NOT a project LIVE input",
       "usedFor": "New project workbook schema and training (no live project facts)",
       "usagePage": "measurements-boq.html",
-      "publicationStatus": "REFERENCE_TEMPLATE_NOT_AUTOMATICALLY_REFRESHED",
+      "publicationStatus": "Blank reusable template; not an active project feed",
       "originalFolder": "03_JP_Cost_Estimation / 02_HUMAN_WORKING_SHEETS",
       "kind": "template_only",
       "doesNotImply": "A sixth project source or a payable BOQ"
     },
     {
       "ref": "RE-KKG-FINANCE-LIVE",
-      "title": "Krishna Kumar Gupta — Project Payments (LIVE)",
+      "title": "Krishna Kumar Gupta — Project Payment Register",
       "authority": "Original Rohini actual payment register",
       "usedFor": "Previously verified finance snapshot and payment dashboard",
       "usagePage": "finance-dashboard.html",
-      "publicationStatus": "ACTIONS_AUTHENTICATED_FINANCE_FETCH_VERIFIED_2026-11-07",
+      "publicationStatus": "Authenticated live Finance fetch verified in GitHub Actions",
       "originalFolder": "03_PROJECT_PAYMENT_REGISTERS / 01_KRISHNA_KUMAR_GUPTA__LIVE_REGISTER",
       "kind": "finance_live_source",
       "doesNotImply": "Amrit payment mapping, a project estimate, or any cross-project financial allocation"
@@ -73,9 +73,10 @@
     "Communication & Web repository's source Sheets"
   ],
   "notes": [
-    "Google Sheets file IDs, original names and contents retained; only Drive parent folder changed.",
-    "Amrit's former inherited reader role was restored explicitly to the two original LIVE workbooks and verified.",
-    "The website does not enumerate private individual Sheet IDs in this public machine index; open controlled Drive folder with approved access.",
-    "Live source status is proven per-workflow and per-original-sheet; template and linked rate master are NOT live Actions feeds."
+    "The original five Google Sheet IDs did not change. File and folder names were made human-readable on 9 November 2026 without copying or moving any workbook.",
+    "Tab names, column keys, and existing formulas remain unchanged so authenticated Actions integrations keep working.",
+    "Only the Amrit rate register, Amrit measurement workbook, and Krishna Kumar Gupta payment register are currently live authenticated inputs; the two other workbooks are reference/template material.",
+    "Fishtail labour attendance, worker money and goods, site visits, and field resource records remain external. Cost Estimation may consume independently approved labour cost projections but is not their operational owner.",
+    "Individual private source Sheet IDs and payment rows are excluded from the public machine inventory; use the access-controlled Drive folder."
   ]
 }
