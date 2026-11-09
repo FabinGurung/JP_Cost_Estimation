@@ -39,6 +39,15 @@ return a;
 }
 function install(){
 if(document.getElementById('jp-site-masthead'))return;
+/* CSS is appended at runtime after the legacy per-page styles, preserving
+   all 71 historical routes without editing each page's <head>. */
+if(!document.getElementById('jp-cardinal-theme')){
+ const style=document.createElement('link');
+ style.rel='stylesheet';style.id='jp-cardinal-theme';style.href=url('site-cardinal-v1.css');
+ document.head.append(style);
+}
+document.body.classList.add('jp-cardinal-enabled');
+
 const dep=department();
 const main=document.querySelector('main');
 if(main&&!main.id)main.id='jp-main-content';
@@ -68,9 +77,105 @@ if(dep==='finance'||(dep==='projects'&&path.startsWith('projects/'))){
  for(const [label,href]of rows){const a=document.createElement('a');a.href=url(href);a.textContent=label;if(path===href)a.setAttribute('aria-current','page');subnav.append(a)}
  document.body.insertBefore(subnav,header.nextSibling);
 }
-const footer=document.createElement('footer');footer.id='jp-site-footer';const left=document.createElement('strong');left.textContent='JP COST ESTIMATION';
-const right=document.createElement('span');right.textContent='Rates ≠ project assumptions ≠ measured quantities ≠ actual payments · ';
-const link=document.createElement('a');link.href=url('governance.html');link.textContent='Source governance';right.append(link);footer.append(left,right);document.body.append(footer);
+/* Four-point navigation: N global strip, W departments, E page context, S source ribbon. */
+const axis=(text,label)=>{const span=document.createElement('span');span.className='jp-'+label;span.textContent=text;return span;};
+const north=document.createElement('div');
+north.id='jp-north-ribbon';north.setAttribute('role','group');
+north.setAttribute('aria-label','North navigation ribbon: current page and source directory');
+north.append(axis('N / PAGE','direction'));
+const pageTitle=document.querySelector('main h1')?.textContent?.trim()||document.title||'JP Cost Estimation';
+const current=document.createElement('span');current.className='jp-ribbon-title';current.textContent=pageTitle;
+north.append(current);
+const sourceShortcut=document.createElement('a');sourceShortcut.className='jp-north-source';
+sourceShortcut.href=url('source-sheets.html');sourceShortcut.textContent='Source directory';
+north.append(sourceShortcut);
+const northAnchor=document.querySelector('.jp-functional-tabs')||header;
+northAnchor.insertAdjacentElement('afterend',north);
+const west=document.createElement('aside');west.id='jp-west-rail';
+west.className='jp-west-rail';west.setAttribute('aria-label','West: department navigation');
+west.append(axis('W / SECTIONS','rail-heading'));
+const westNav=document.createElement('nav');westNav.className='jp-rail-links';
+westNav.setAttribute('aria-label','Department shortcuts');
+const departments=[
+ ['home','00','Overview','index.html'],
+ ['rates','01','Rates','rate-sources.html'],
+ ['projects','02','Projects','projects.html'],
+ ['measurements','03','QTO / BOQ','measurements-boq.html'],
+ ['finance','04','Finance','finance.html'],
+ ['reference','05','References','reference.html'],
+ ['system','06','Governance','governance.html']
+];
+for(const [id,num,label,href] of departments){
+ const a=document.createElement('a');a.href=url(href);
+ const n=axis(num,'rail-num');a.append(n,document.createTextNode(label));
+ if(dep===id)a.setAttribute('aria-current',path===href?'page':'location');
+ westNav.append(a);
+}
+west.append(westNav,axis('Routes are organized by responsibility, not by file history.','rail-micro'));
+north.insertAdjacentElement('afterend',west);
+const east=document.createElement('aside');east.id='jp-east-rail';
+east.className='jp-east-rail';east.setAttribute('aria-label','East: on-page quick navigation and sources');
+east.append(axis('E / ON THIS PAGE','rail-heading'));
+const jumpNav=document.createElement('nav');jumpNav.className='jp-rail-links';
+jumpNav.setAttribute('aria-label','Jump to page sections');
+let jumps=0;
+if(main){
+ const seen=new Set();
+ for(const section of main.querySelectorAll('section[id],article[id]')){
+  if(jumps>=6)break;
+  const id=section.id;
+  if(!id||seen.has(id))continue;
+  const heading=section.querySelector('h2,h3');
+  if(!heading)continue;
+  seen.add(id);
+  const a=document.createElement('a');
+  a.className='jp-onpage';a.href='#'+encodeURIComponent(id);
+  const label=heading.textContent.trim().replace(/\s+/g,' ');
+  a.textContent=label.length>38?label.slice(0,36)+'…':label;
+  jumpNav.append(a);jumps++;
+ }
+}
+if(jumps===0){
+ const local=dep==='projects'?[
+ ['Project overview','projects/rohini/ward-14/amrit-rawat/index.html'],
+ ['Measurements','projects/rohini/ward-14/amrit-rawat/measurements/index.html'],
+ ['BOQ','projects/rohini/ward-14/amrit-rawat/boq.html']]:
+ dep==='finance'?[['Finance overview','finance.html'],['Payments','finance-dashboard.html']]:
+ [['All pages','site-map.html'],['Projects','projects.html']];
+ for(const [label,href] of local){
+  const a=document.createElement('a');a.className='jp-onpage';a.href=url(href);
+  a.textContent=label;jumpNav.append(a);
+ }
+}
+east.append(jumpNav);
+const sourceNav=document.createElement('nav');sourceNav.className='jp-rail-links';
+sourceNav.setAttribute('aria-label','Source and page index');
+for(const [label,href] of [['Original Sheets','source-sheets.html'],['All 71 pages','site-map.html']]){
+ const a=document.createElement('a');a.className='jp-onpage';a.href=url(href);a.textContent=label;sourceNav.append(a);
+}
+east.append(sourceNav,axis('Original Google Sheets and CAD files own evidence. Pages is read-only.','rail-micro'));
+west.insertAdjacentElement('afterend',east);
+const footer=document.createElement('footer');footer.id='jp-site-footer';
+footer.setAttribute('aria-label','South: source provenance navigation ribbon');
+const footerIdentity=document.createElement('div');footerIdentity.className='jp-south-identity';
+footerIdentity.append(axis('S / SOURCES','jp-south-axis'.replace(/^jp-/,'')));
+const footerText=document.createElement('span');
+const footerStrong=document.createElement('strong');footerStrong.textContent='JP Cost Estimation';
+const footerSmall=document.createElement('small');footerSmall.textContent='Google Sheets → Actions → Pages · source-backed, read-only';
+footerText.append(footerStrong,footerSmall);footerIdentity.append(footerText);
+const footerNav=document.createElement('nav');footerNav.className='jp-south-links';
+footerNav.setAttribute('aria-label','Source custody, governance and page navigation');
+for(const [label,href] of [
+ ['Original Sheets','source-sheets.html'],
+ ['Governance','governance.html'],
+ ['Page map','site-map.html'],
+ ['Back to north','#jp-site-masthead']
+]){
+ const a=document.createElement('a');
+ a.href=href.startsWith('#')?href:url(href);
+ a.textContent=label;footerNav.append(a);
+}
+footer.append(footerIdentity,footerNav);document.body.append(footer);
 }
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',install,{once:true});else install();
 })();
