@@ -1,15 +1,11 @@
 /* Public-safe Finance source selector. Private workbook links are entered locally, never stored here. */
 (() => {
   'use strict';
-  const pad = n => String(n).padStart(2,'0');
+  // Finance only: source-backed payment and spending registers. The previous
+  // worker/attendance/capture catalogue remains in Git history, not this UI.
   const catalog = [
-    {id:'FN-S01',label:'Rohini · Krishna Kumar Gupta payment register',public:true},
-    {id:'FN-S02',label:'Rohini · Site Operations v1.4',public:false},
-    {id:'FN-S03',label:'Fishtail · Daily and Monthly Spending Ledger',public:false},
-    ...Array.from({length:21},(_,i)=>({id:'W'+pad(i+1),label:'Worker money and goods · original '+pad(i+1),public:false})),
-    {id:'W01-V2',label:'Worker W01 · separate v2 prototype',public:false},
-    {id:'FN-C01',label:'Site Engineer Capture Hub v0.1',public:false},
-    {id:'FN-C02',label:'Historical handwritten site log intake',public:false}
+    {id:'FN-S01',label:'Rohini · Krishna Kumar Gupta Project Payment Register',public:true},
+    {id:'FN-S03',label:'Fishtail · Daily and Monthly Spending Ledger (private reference)',public:false}
   ];
   function safePreview(input) {
     try {
@@ -33,28 +29,12 @@
     const frame = document.getElementById('financeSheetIframe');
     const open = document.getElementById('financeSheetOpen');
     const clear = document.getElementById('financeSheetClear');
-    const workers = document.getElementById('workerSourceList');
-    if(!form || !selector || !entry || !status || !frameWrap || !frame || !workers) return;
+    if(!form || !selector || !entry || !status || !frameWrap || !frame) return;
     for(const source of catalog) {
       const option = document.createElement('option');
       option.value=source.id;
       option.textContent=source.id+' · '+source.label;
       selector.appendChild(option);
-    }
-    for(let i=1;i<=21;i++) {
-      const code='W'+pad(i);
-      const card=document.createElement('div');
-      card.className='jp-finance-worker';
-      const name=document.createElement('strong');
-      name.textContent=code;
-      const note=document.createElement('small');
-      note.textContent='Original workbook · access restricted';
-      const button=document.createElement('button');
-      button.type='button';
-      button.textContent='Select '+code;
-      button.addEventListener('click',()=>selectSource(code));
-      card.append(name,note,button);
-      workers.appendChild(card);
     }
     function selectSource(code, focus = true) {
       if(!catalog.some(s=>s.id===code)) return;
