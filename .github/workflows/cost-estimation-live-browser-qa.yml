@@ -1,0 +1,57 @@
+name: Cost Estimation — Live published-site browser QA
+# Automatically validates real public GitHub Pages after successful deployment.
+# Chromium screenshots are a browser viewport test, not a physical device test.
+on:
+  workflow_run:
+    workflows:
+      - Deploy research website to GitHub Pages
+    types:
+      - completed
+    branches:
+      - research/open-estimation-engine-v0.1
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/cost-estimation-live-browser-qa.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: jp-estimate-live-browser-${{ github.event.workflow_run.id || github.run_id }}
+  cancel-in-progress: false
+
+jobs:
+  live-public-browser:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 28
+    steps:
+      - name: Checkout publishing source and its browser-QA implementation
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.workflow_run.head_sha || 'research/open-estimation-engine-v0.1' }}
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install Chromium for real public-site browser checks
+        run: |
+          npm install --no-save --no-package-lock --ignore-scripts playwright@1.58.2
+          npx playwright install --with-deps chromium
+      - name: Render actual GitHub Pages on desktop, mobile and tablet
+        env:
+          JP_QA_BASE_URL: https://fabingurung.github.io/JP_Cost_Estimation/
+          JP_QA_MODE: published-live
+          JP_QA_OUT: qa-cardinal-live-evidence
+        run: node scripts/qa-cardinal-browser.mjs
+      - name: Retain published-site browser proof and screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cost-estimation-live-browser-${{ github.run_id }}
+          path: qa-cardinal-live-evidence/
+          retention-days: 30
+          if-no-files-found: warn
