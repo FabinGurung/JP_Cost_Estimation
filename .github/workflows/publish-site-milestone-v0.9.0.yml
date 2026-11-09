@@ -1,0 +1,114 @@
+name: Publish JP source-governed milestone v0.9.0
+
+# One-time trigger when this release workflow is merged to the publishing branch.
+# A later ordinary site change never triggers another release.
+on:
+  push:
+    branches:
+      - research/open-estimation-engine-v0.1
+    paths:
+      - ".github/workflows/publish-site-milestone-v0.9.0.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: jp-site-milestone-v0.9.0
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      SOURCE_SHA: 5a20ba6db016bdae005d3048c2ea116a0dd942f6
+      MILESTONE_TAG: v0.9.0
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - name: Checkout audited release workflow and full source history
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+
+      - name: Verify frozen commit and exact successful CI/Pages evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          git cat-file -e "$SOURCE_SHA^{commit}"
+          git merge-base --is-ancestor "$SOURCE_SHA" "$GITHUB_SHA"
+          node - <<'NODE'
+          const fs = require('node:fs');
+          const m = JSON.parse(fs.readFileSync('releases/SITE_MILESTONE_v0.9.0.json','utf8'));
+          if(m.schema!=='jp.site.milestone.v1' || m.tag!=='v0.9.0' ||
+             m.sourceCommit!==process.env.SOURCE_SHA ||
+             m.verifiedChecks.ci.run_id!==42539475582 ||
+             m.verifiedChecks.pages.run_id!==42539475453 ||
+             m.latestEvidence.admittedAmritMeasurements!==0 ||
+             m.latestEvidence.approvedAmritRates!==0) {
+             throw new Error('Milestone source, checks or engineering-HOLD claims changed');
+          }
+          NODE
+          for run_id in 42539475582 42539475453; do
+            run="$(gh api "repos/$GITHUB_REPOSITORY/actions/runs/$run_id")"
+            echo "$run" | jq -e --arg sha "$SOURCE_SHA" \
+              '.conclusion == "success" and .head_sha == $sha' >/dev/null ||
+              { echo "STOP: source CI or Pages evidence failed commit match for run $run_id"; exit 2; }
+          done
+          mkdir -p "$RUNNER_TEMP/jp-milestone-source"
+          git archive "$SOURCE_SHA" | tar -x -C "$RUNNER_TEMP/jp-milestone-source"
+          (
+            cd "$RUNNER_TEMP/jp-milestone-source"
+            node scripts/validate-site-page-registry.mjs
+            node scripts/qa-all-site-routes.mjs
+            node scripts/qa-home-navigation.mjs
+            node scripts/qa-amrit-source-version.mjs
+            python3 scripts/build_amrit_project_from_google_sheets.py --self-test
+            python3 scripts/build_finance_from_google_sheets.py --self-test
+          )
+          echo "PASS: frozen source, source-specific holds and exact CI/Pages evidence verified."
+
+      - name: Create immutable annotated milestone tag or verify existing tag
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git ls-remote --exit-code --tags origin "refs/tags/$MILESTONE_TAG" >/dev/null 2>&1; then
+            git fetch --force origin "refs/tags/$MILESTONE_TAG:refs/tags/$MILESTONE_TAG"
+            test "$(git rev-parse "$MILESTONE_TAG^{commit}")" = "$SOURCE_SHA"
+            test "$(git cat-file -t "$MILESTONE_TAG")" = "tag"
+            echo "Existing annotated tag verified: $MILESTONE_TAG -> $SOURCE_SHA"
+          else
+            git tag -a "$MILESTONE_TAG" "$SOURCE_SHA" \
+              -m "A9 JP Cost Estimation: governed LIVE Sheets and Amrit intake milestone v0.9.0" \
+              -m "Verified CI 42539475582 and Pages 42539475453; Amrit quantities/rates remain unadmitted."
+            git push origin "refs/tags/$MILESTONE_TAG"
+            echo "Created annotated tag: $MILESTONE_TAG -> $SOURCE_SHA"
+          fi
+
+      - name: Publish or verify GitHub prerelease and milestone records
+        shell: bash
+        run: |
+          set -euo pipefail
+          if gh release view "$MILESTONE_TAG" >/dev/null 2>&1; then
+            gh release view "$MILESTONE_TAG" --json tagName,isPrerelease,url
+          else
+            gh release create "$MILESTONE_TAG" \
+              releases/SITE_MILESTONE_v0.9.0.md \
+              releases/SITE_MILESTONE_v0.9.0.json \
+              --verify-tag --target "$SOURCE_SHA" --prerelease \
+              --title "A9 JP Cost Estimation v0.9.0 — LIVE Sheets, Memory Wall and Amrit intake" \
+              --notes-file releases/SITE_MILESTONE_v0.9.0.md
+          fi
+          gh release view "$MILESTONE_TAG" --json tagName,isPrerelease,url \
+            --jq '.tagName + " | prerelease=" + (.isPrerelease|tostring) + " | " + .url'
+          {
+            echo "### A9 milestone $MILESTONE_TAG"
+            echo "- Frozen verified source: $SOURCE_SHA"
+            echo "- CI: https://github.com/$GITHUB_REPOSITORY/actions/runs/42539475582"
+            echo "- Pages: https://github.com/$GITHUB_REPOSITORY/actions/runs/42539475453"
+            echo "- Release: https://github.com/$GITHUB_REPOSITORY/releases/tag/$MILESTONE_TAG"
+            echo "- Engineering state: Amrit 0 admitted measurements, 0 approved rate selections, no BOQ/AOC approval."
+          } >> "$GITHUB_STEP_SUMMARY"

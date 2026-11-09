@@ -1,0 +1,58 @@
+{
+  "schema": "jp.site.milestone.v1",
+  "version": "0.9.0",
+  "tag": "v0.9.0",
+  "kind": "testing-prerelease",
+  "milestone": "A9 / Source-governed LIVE Sheets, Memory Wall and Amrit measurement intake",
+  "recordDate": "2026-11-09",
+  "sourceBranch": "research/open-estimation-engine-v0.1",
+  "sourceCommit": "5a20ba6db016bdae005d3048c2ea116a0dd942f6",
+  "verifiedChecks": {
+    "ci": {
+      "run_id": 42539475582,
+      "conclusion": "success"
+    },
+    "pages": {
+      "run_id": 42539475453,
+      "conclusion": "success"
+    },
+    "fiveSheets": {
+      "run_id": 42365502474,
+      "conclusion": "success"
+    },
+    "rates": {
+      "run_id": 42366112115,
+      "conclusion": "success"
+    }
+  },
+  "preservedHistory": {
+    "previousTag": "v0.8.0",
+    "snapshotBranch": "snapshot/pre-milestone-v0.9.0-20261109"
+  },
+  "latestEvidence": {
+    "authenticatedFinance": true,
+    "authenticatedAmritMeasurementSheet": true,
+    "admittedAmritMeasurements": 0,
+    "approvedAmritRates": 0,
+    "amritApprovedBOQ": false,
+    "amritApprovedAOC": false,
+    "sourceSheets": 5,
+    "websitePages": 71,
+    "indicativeRates": 32,
+    "measurementMethods": 26
+  },
+  "milestoneDocuments": [
+    "docs/AMRIT_COSTING_SOURCE_INTAKE.md",
+    "data/jp-cost-memory-wall.v1.json",
+    "data/connected-website-sheets.v1.json"
+  ],
+  "notesFile": "releases/SITE_MILESTONE_v0.9.0.md",
+  "publicSite": "https://fabingurung.github.io/JP_Cost_Estimation/",
+  "policy": "Historical immutable source snapshot, not engineering approval nor evidence of subsequent scheduled refreshes. Release note attachments were authored for this checkpoint, after the frozen source commit.",
+  "remaining": [
+    "Independent Amrit drawing/element-specific CAD quantity evidence",
+    "Populate existing LIVE measurement and rate approval sheet with independently verified entries",
+    "Generate draft BOQ with source lineage and separately approve AOC/bills",
+    "Mobile/desktop browser QA and unattended sync proof"
+  ]
+}
