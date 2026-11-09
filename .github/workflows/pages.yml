@@ -11,5 +11,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
-          echo "JP_Cost_Estimation production Pages owner is main."
-          echo "This research branch copy of pages.yml is intentionally non-deploying."
+          echo "JP_Cost_Estimation GitHub Pages publication is owned by research/open-estimation-engine-v0.1."
+          echo "The default main branch owns daily dispatch and historical recovery only; this guard is intentionally non-deploying."
