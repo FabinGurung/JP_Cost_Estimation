@@ -28,7 +28,7 @@ assert(read('finance.html').includes('JP_Communication-Command-Centre-and-Resour
 assert(script.includes('docs.google.com')&&script.includes("url.hostname!=='docs.google.com'"),'Preview must restrict to Google Sheets');
 assert(script.includes('frame.src=')&&script.includes('about:blank'),'Preview must be cleared on request');
 const html=read('finance.html');
-assert(html.includes('FN-C03'),'Capture form must remain separate from Sheets');
+assert(!html.includes('FN-C03'),'Field capture codes must not appear as Finance source selectors');
 assert(html.includes('Only the previously approved Krishna Kumar Gupta source link'),'Privacy boundary missing');
 assert(html.includes('id="financeSheetIframe"'),'Missing optional Sheet preview');
 const approved='1S1fkWzo6XGzyD3p92_pTG32zZ9fF3YICAv3HPTomZsE';
