@@ -49,5 +49,12 @@ if(main){
     set(status,r.status);set(notes,'Matched paid amount: '+(r.paidNpr===null?'NOT AVAILABLE':('NPR '+r.paidNpr.toLocaleString()))+' · Original Finance Sheets own transactions.');
     writeTable(['paymentId','billOrInvoiceId','amountNpr','status','sourceTransactionId'],p.paymentAllocations);
   }
+  if(notes && p.publicSnapshot){
+    const ps=p.publicSnapshot;
+    const statusText=ps.authenticatedSourceFetch
+      ? 'Source: authenticated LIVE project Sheet checked '+(ps.generatedAtUtc||'')+'.'
+      : 'Source: historical template; LIVE project Sheet has not been fetched.';
+    notes.textContent += ' · '+statusText;
+  }
  }catch(e){set(status,'SOURCE UNAVAILABLE — NO DATA PUBLISHED');set(notes,'The project source could not be validated. No quantities or financial totals are inferred.');writeTable(['record'],[]);}
 }

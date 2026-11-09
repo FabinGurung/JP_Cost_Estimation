@@ -54,6 +54,7 @@ jobs:
           node --check finance-source-panels-v0.9.js
           node scripts/validate-finance-panels-v0.9.mjs
           python3 scripts/build_finance_from_google_sheets.py --self-test
+          python3 scripts/build_amrit_project_from_google_sheets.py --self-test
           node --check finance-register-header-v1.0.js
           node scripts/validate-finance-register-header-v1.0.mjs
 
@@ -118,6 +119,23 @@ jobs:
             --exclude='private-source' --exclude='draft-notes' \
             --exclude='__pycache__' --exclude='node_modules' \
             --exclude='scripts' ./ _site/
+      - name: Read authenticated Amrit project measurements and rate selections
+        if: steps.google_connection.outputs.configured == 'true'
+        run: |
+          set -euo pipefail
+          python3 scripts/build_amrit_project_from_google_sheets.py --output _site/projects/rohini/ward-14/amrit-rawat/project-costing.json
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          p=json.loads(Path('_site/projects/rohini/ward-14/amrit-rawat/project-costing.json').read_text())
+          assert p['publicSnapshot']['authenticatedSourceFetch'] is True
+          assert p['publicSnapshot']['admittedMeasurementRows']==len(p['measurementRows'])
+          assert p['publicSnapshot']['admittedRateSelections']==len(p['rateSelections'])
+          assert p['boqRows']==[] and p['aoc']['grandTotalNpr'] is None
+          print("PASS staged Amrit public projection: source-backed rows only; unapproved BOQ/actual bills excluded")
+          PY
+          echo 'Amrit source: AUTHENTICATED LIVE SHEET READ; only verified QTO and approved rate inputs admitted; BOQ remains draft pending approval.' >> "$GITHUB_STEP_SUMMARY"
+
       - name: Validate staged Pages against notebook privacy and public route boundaries
         run: node scripts/qa-methodology-site.mjs --staged _site
       - name: Configure GitHub Pages
