@@ -84,6 +84,11 @@ jobs:
           node --check finance-register-header-v1.0.js
           node scripts/validate-finance-register-header-v1.0.mjs
 
+      - name: Four-cardinal-direction responsive site shell QA
+        run: |
+          node --check site-navigation-v0.8.js
+          node scripts/qa-cardinal-layout.mjs
+
       - name: Site page registry integrity
         run: |
           node --check scripts/validate-site-page-registry.mjs
