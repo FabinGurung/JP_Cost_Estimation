@@ -9,6 +9,17 @@ assert.equal(new Set(catalog.records.map(r=>r.ref)).size,5);
 assert(catalog.folderUrl.startsWith('https://drive.google.com/drive/folders/'));
 const expected=['JP-AEC-RATE-MASTER','RE-AMRIT-RATE-LIVE','RE-AMRIT-QTO-BOQ-LIVE','JP-COSTING-MASTER-TEMPLATE','RE-KKG-FINANCE-LIVE'];
 assert.deepEqual(catalog.records.map(r=>r.ref),expected);
+assert.equal(catalog.folderName,'Cost Estimation — Working Google Sheets');
+const readable=[
+ 'Construction Rate and Cost References',
+ 'Amrit Rawat — Site Construction Rates (Indicative)',
+ 'Amrit Rawat — Measurements, BOQ, Cost Summary and Bills',
+ 'Construction Costing — Reusable Workbook Template',
+ 'Krishna Kumar Gupta — Project Payment Register'
+];
+assert.deepEqual(catalog.records.map(r=>r.title),readable,'Human-readable Google Drive titles need to stay aligned with source custody');
+assert(read('source-sheets.html').includes('id="websiteSheetEntryGuide"'),'Missing human workbook-entry instructions');
+assert(read('docs/REPOSITORY_BOUNDARIES_AND_SHEET_FILLING.md').includes('The three repository ownership boundaries'));
 assert.equal(catalog.records.filter(r=>r.kind==='template_only').length,1);
 assert.equal(catalog.records.filter(r=>r.kind==='finance_live_source').length,1);
 for(const r of catalog.records){

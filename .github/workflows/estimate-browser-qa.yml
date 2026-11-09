@@ -1,0 +1,67 @@
+name: Cost Estimation browser and responsive QA
+# Render actual HTML/CSS/JS with headless Chromium, not only static code checks.
+# Only this repository; no Google Sheets writes or private data.
+on:
+  push:
+    branches:
+      - research/open-estimation-engine-v0.1
+      - feature/a9-estimation-ownership-qa-sheet-names-20261109
+    paths:
+      - .github/workflows/estimate-browser-qa.yml
+      - scripts/qa-cardinal-browser.mjs
+      - site-navigation-v0.8.js
+      - site-cardinal-v1.css
+      - finance.html
+      - finance-source-panels-v0.9.js
+      - source-sheets.html
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: jp-estimate-browser-qa-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  chromium-responsive:
+    name: Render 9 routes in desktop, tablet and mobile Chrome
+    runs-on: ubuntu-24.04
+    timeout-minutes: 28
+    steps:
+      - name: Checkout the exact source revision
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install isolated browser runner
+        run: |
+          npm install --no-save --no-package-lock --ignore-scripts playwright@1.58.2
+          npx playwright install --with-deps chromium
+      - name: Serve current source in a real local website
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m http.server 8765 --bind 127.0.0.1 > /tmp/jp-estimate-browser.log 2>&1 &
+          echo $! > /tmp/jp-estimate-browser.pid
+          for attempt in {1..25}; do
+            curl -fsS http://127.0.0.1:8765/index.html -o /dev/null && exit 0
+            sleep 1
+          done
+          cat /tmp/jp-estimate-browser.log
+          exit 1
+      - name: Verify navigation, layout and capture browser screenshots
+        run: node scripts/qa-cardinal-browser.mjs
+        env:
+          JP_QA_MODE: source-rendered
+          JP_QA_BASE_URL: http://127.0.0.1:8765/
+          JP_QA_OUT: qa-cardinal-browser-evidence
+      - name: Preserve rendered screenshots and machine QA report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cost-estimation-visual-qa-${{ github.run_id }}
+          path: qa-cardinal-browser-evidence/
+          retention-days: 30
+          if-no-files-found: warn
