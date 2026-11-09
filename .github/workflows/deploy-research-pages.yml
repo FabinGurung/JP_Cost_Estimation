@@ -50,6 +50,7 @@ jobs:
           node scripts/qa-home-navigation.mjs
           node scripts/qa-connected-sheets.mjs
           node scripts/qa-all-site-routes.mjs
+          node scripts/qa-cardinal-layout.mjs
           node scripts/qa-amrit-source-version.mjs
           node --check finance-source-panels-v0.9.js
           node scripts/validate-finance-panels-v0.9.mjs
