@@ -95,5 +95,30 @@
     "Vendor invoice is not payment",
     "Every derived row must preserve source IDs, method, revision and approval state",
     "Public Pages contains only approved sanitized projections, never credentials or private attachments"
-  ]
+  ],
+  "cadAxisHandoff": {
+    "schema": "jp-cost://cad-axis-handoff/1",
+    "authority": "data/cad-axis-handoff.v1.json",
+    "sourceContract": "jp-cad://control-tower/view-lineage/1.0",
+    "nullableUntilSourceAdmitted": true,
+    "requiredForCadOrigin": [
+      "cadRepository",
+      "cadRevision",
+      "cadElementId",
+      "axisRef",
+      "floorId",
+      "sourceFileSha256",
+      "sourceCoordinateFrame",
+      "axisStatus",
+      "coordinateRegistrationVerified",
+      "memberGeometryVerified",
+      "quantitySourceVerified",
+      "verifierId"
+    ],
+    "eligibleAxisStatus": "SOURCE_MODEL_REGISTERED_VERIFIED",
+    "draftOnlyAfterValidSourceAndRate": true,
+    "unverifiedMemberQuantities": null,
+    "sourceMarkIsNotQuantity": true,
+    "originalsStayInCAD": true
+  }
 }
