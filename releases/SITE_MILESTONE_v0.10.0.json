@@ -1,0 +1,89 @@
+{
+  "schema": "jp.site.milestone.v1",
+  "version": "0.10.0",
+  "tag": "v0.10.0",
+  "kind": "testing-prerelease",
+  "milestone": "Human-readable original Google Sheets, clean cost-vs-field ownership, scheduled source refresh and real browser QA",
+  "recordDate": "2026-11-09",
+  "sourceBranch": "research/open-estimation-engine-v0.1",
+  "sourceCommit": "478a00fb513ebf29a02cd0687673db15d6e4161a",
+  "verifiedChecks": {
+    "ci": {
+      "run_id": 42607859733,
+      "conclusion": "success",
+      "head_sha": "478a00fb513ebf29a02cd0687673db15d6e4161a"
+    },
+    "pages": {
+      "run_id": 42607859713,
+      "conclusion": "success",
+      "head_sha": "478a00fb513ebf29a02cd0687673db15d6e4161a"
+    },
+    "browserSource": {
+      "run_id": 42607859756,
+      "conclusion": "success",
+      "head_sha": "478a00fb513ebf29a02cd0687673db15d6e4161a",
+      "views": 27
+    },
+    "dailySchedulerFirstDispatch": {
+      "run_id": 42607882654,
+      "conclusion": "success",
+      "head_sha": "d960921f7e6cc696f759097210c79f93fad12c9a"
+    },
+    "dailySchedulerTargetPages": {
+      "run_id": 42607894761,
+      "conclusion": "success",
+      "head_sha": "478a00fb513ebf29a02cd0687673db15d6e4161a"
+    },
+    "browserLiveSite": {
+      "run_id": 42608296229,
+      "conclusion": "success",
+      "head_sha": "c2a0de2d19c5532c2f795dc96fb9784b58748e9d",
+      "views": 27
+    }
+  },
+  "scope": {
+    "repository": "FabinGurung/JP_Cost_Estimation",
+    "otherRepositoriesModified": false,
+    "pagesPublisherBranch": "research/open-estimation-engine-v0.1",
+    "defaultMainOwnsScheduler": true,
+    "dailyScheduleNpt": "06:32",
+    "sourceSheets": 5,
+    "stableGoogleFileIdsPreserved": true,
+    "originalGoogleSheetTabsPreserved": true,
+    "workingFolderTitle": "Cost Estimation — Working Google Sheets",
+    "humanTitles": [
+      "Construction Rate and Cost References",
+      "Amrit Rawat — Site Construction Rates (Indicative)",
+      "Amrit Rawat — Measurements, BOQ, Cost Summary and Bills",
+      "Construction Costing — Reusable Workbook Template",
+      "Krishna Kumar Gupta — Project Payment Register"
+    ],
+    "websiteRoutes": 71,
+    "measurementMethods": 26,
+    "clientIndicativeRates": 32,
+    "latestAdmittedMeasurements": 0,
+    "latestApprovedRateSelections": 0,
+    "financeVendorsLastVerified": 27,
+    "financePaymentsLastVerified": 74,
+    "financeAmountNprLastVerified": 268798
+  },
+  "repositoriesForHandoverOnly": [
+    "FabinGurung/JP_Field_and_Desk_Resource_Library",
+    "FabinGurung/JP_Communication-Command-Centre-and-Resource-Hub"
+  ],
+  "evidence": {
+    "sourceOwnershipGuide": "docs/REPOSITORY_BOUNDARIES_AND_SHEET_FILLING.md",
+    "sourceCatalog": "data/connected-website-sheets.v1.json",
+    "screenshots": "https://github.com/FabinGurung/JP_Cost_Estimation/actions/runs/42608296229/artifacts/13668124257",
+    "precedingTag": "v0.9.0"
+  },
+  "publicSite": "https://fabingurung.github.io/JP_Cost_Estimation/",
+  "notesFile": "releases/SITE_MILESTONE_v0.10.0.md",
+  "remaining": [
+    "Independently verified Amrit drawing quantities and approved matching rate selections",
+    "Certified BOQ, AOC, bills and Finance mapping only after project evidence/approval",
+    "First actual cron-triggered 06:32 NPT scheduled refresh still needs future-run evidence",
+    "Physical device/manual human exploratory QA beyond 9 tested routes remains distinct from automated Chromium"
+  ],
+  "policy": "Milestone records a frozen, source-backed operational checkpoint and does not approve missing engineering quantities. Renamed file titles preserve original Google Sheet IDs and data. Scheduled Pages dispatch uses GitHub's scoped Actions token, authenticated Sheets use WIF; no new PAT required."
+}
