@@ -1,0 +1,49 @@
+name: Cost Estimation — Daily Google Sheets to GitHub Pages
+# Scheduled workflows run on default main, but the sole website publisher is
+# research/open-estimation-engine-v0.1. We dispatch that exact workflow rather
+# than duplicating its authentication, validation, or Pages publication logic.
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '47 0 * * *' # 06:32 Asia/Kathmandu, after daily Amrit rate sync
+  push:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/cost-estimation-daily-pages-refresh.yml'
+
+permissions:
+  actions: write
+  contents: read
+
+concurrency:
+  group: jp-estimate-daily-pages-dispatch
+  cancel-in-progress: false
+
+jobs:
+  dispatch-source-validated-pages:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - name: Dispatch authenticated source refresh on the publishing branch
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          if [[ "$GITHUB_REPOSITORY" != "FabinGurung/JP_Cost_Estimation" ]]; then
+            echo "Refusing cross-repository Pages dispatch." >&2
+            exit 2
+          fi
+          gh workflow run deploy-research-pages.yml \
+            --repo "$GITHUB_REPOSITORY" \
+            --ref research/open-estimation-engine-v0.1 \
+            -f require_live_sheets=true
+          {
+            echo "### Scheduled JP Cost Estimation source refresh"
+            echo "- Site publisher: research/open-estimation-engine-v0.1"
+            echo "- Existing keyless Google WIF is reused in the target workflow."
+            echo "- The target build fails if LIVE Finance or Amrit Sheets cannot authenticate."
+            echo "- No competing Pages build code or PAT is introduced on main."
+            echo "- Review actual result at https://github.com/$GITHUB_REPOSITORY/actions/workflows/deploy-research-pages.yml"
+          } >> "$GITHUB_STEP_SUMMARY"

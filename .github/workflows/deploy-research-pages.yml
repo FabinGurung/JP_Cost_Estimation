@@ -1,0 +1,22 @@
+name: Cost Estimation — Research Pages dispatcher registration
+# This is a NON-DEPLOYING default-branch registration of the publishing workflow.
+# The real workflow at this same path on the research branch performs validated
+# keyless Google Sheets reads and GitHub Pages publication.
+on:
+  workflow_dispatch:
+    inputs:
+      require_live_sheets:
+        description: Require authenticated Google Sheets source fetch
+        required: false
+        type: boolean
+        default: true
+permissions:
+  contents: read
+jobs:
+  default-branch-guard:
+    runs-on: ubuntu-latest
+    steps:
+      - name: No default-main website deployment
+        run: |
+          echo "The live JP Cost Estimation Pages workflow lives on research/open-estimation-engine-v0.1."
+          echo "This main-branch stub is intentionally non-deploying. Select the research branch when dispatching."
