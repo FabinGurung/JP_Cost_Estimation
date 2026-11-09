@@ -1,0 +1,128 @@
+name: Publish JP Cost Estimation governed milestone v0.10.0
+# One-time release action. Freeze the exact QA-tested research source, not this
+# release-workflow commit. Re-runs verify the same annotated tag and prerelease.
+on:
+  push:
+    branches:
+      - research/open-estimation-engine-v0.1
+    paths:
+      - '.github/workflows/publish-site-milestone-v0.10.0.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: read
+
+concurrency:
+  group: jp-estimate-milestone-v0.10.0
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      SOURCE_SHA: 478a00fb513ebf29a02cd0687673db15d6e4161a
+      MILESTONE_TAG: v0.10.0
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - name: Checkout full source and release history
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+
+      - name: Verify exact source, Sheets boundaries and independently successful QA
+        shell: bash
+        run: |
+          set -euo pipefail
+          git cat-file -e "$SOURCE_SHA^{commit}"
+          git merge-base --is-ancestor "$SOURCE_SHA" "$GITHUB_SHA"
+          node - <<'NODE'
+          const fs=require('node:fs');
+          const m=JSON.parse(fs.readFileSync('releases/SITE_MILESTONE_v0.10.0.json','utf8'));
+          if(m.schema!=='jp.site.milestone.v1' || m.tag!=='v0.10.0' ||
+             m.sourceCommit!==process.env.SOURCE_SHA ||
+             m.scope.websiteRoutes!==71 ||
+             m.scope.sourceSheets!==5 ||
+             m.scope.originalGoogleSheetTabsPreserved!==true ||
+             m.scope.otherRepositoriesModified!==false ||
+             m.scope.latestAdmittedMeasurements!==0 ||
+             m.scope.latestApprovedRateSelections!==0 ||
+             m.verifiedChecks.browserSource.views!==27 ||
+             m.verifiedChecks.browserLiveSite.views!==27 ||
+             Object.keys(m.verifiedChecks).length!==6){
+               throw Error('Milestone assertions or verified source boundaries drifted');
+          }
+          NODE
+          node scripts/qa-connected-sheets.mjs
+          node scripts/validate-finance-panels-v0.9.mjs
+          node scripts/qa-cardinal-layout.mjs
+          node scripts/validate-site-page-registry.mjs
+          node scripts/qa-all-site-routes.mjs
+          python3 scripts/build_amrit_project_from_google_sheets.py --self-test
+          node - <<'NODE'
+          const fs=require('node:fs');
+          const m=JSON.parse(fs.readFileSync('releases/SITE_MILESTONE_v0.10.0.json','utf8'));
+          for(const [key,run] of Object.entries(m.verifiedChecks)){
+            if(!Number.isInteger(run.run_id)||run.conclusion!=='success'||!/^([a-f0-9]{40})$/.test(run.head_sha)){
+              throw Error('Malformed evidence '+key);
+            }
+          }
+          NODE
+          while IFS='|' read -r key id expected; do
+            test -n "$key" || continue
+            gh api "repos/$GITHUB_REPOSITORY/actions/runs/$id" \
+              --jq '{conclusion,head_sha}' |
+              jq -e --arg sha "$expected" '.conclusion=="success" and .head_sha==$sha' >/dev/null ||
+              { echo "STOP: verified run $key $id does not match successful SHA $expected" >&2; exit 2; }
+            echo "PASS verified independent run $key: $id"
+          done < <(node - <<'NODE'
+          const m=require('./releases/SITE_MILESTONE_v0.10.0.json');
+          for(const [k,r] of Object.entries(m.verifiedChecks))console.log(k+'|'+r.run_id+'|'+r.head_sha);
+          NODE
+          )
+          echo 'PASS: source, six independent Actions gates and original Sheet/cross-project boundaries verified.'
+
+      - name: Create immutable annotated v0.10.0 tag or confirm existing tag
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git ls-remote --exit-code --tags origin "refs/tags/$MILESTONE_TAG" >/dev/null 2>&1; then
+            git fetch --force origin "refs/tags/$MILESTONE_TAG:refs/tags/$MILESTONE_TAG"
+            test "$(git rev-parse "$MILESTONE_TAG^{commit}")" = "$SOURCE_SHA"
+            test "$(git cat-file -t "$MILESTONE_TAG")" = "tag"
+            echo "Existing immutable annotated tag verified."
+          else
+            git tag -a "$MILESTONE_TAG" "$SOURCE_SHA" \
+              -m "A9 Cost Estimation: human-readable original Sheets, ownership boundaries and 27/27 live-browser QA" \
+              -m "Source CI and Pages, scheduled first dispatch and live Google Sheets refresh independently verified."
+            git push origin "refs/tags/$MILESTONE_TAG"
+          fi
+
+      - name: Publish or verify GitHub prerelease
+        shell: bash
+        run: |
+          set -euo pipefail
+          if gh release view "$MILESTONE_TAG" >/dev/null 2>&1; then
+            gh release view "$MILESTONE_TAG" --json tagName,isPrerelease,url
+          else
+            gh release create "$MILESTONE_TAG" \
+              releases/SITE_MILESTONE_v0.10.0.json \
+              releases/SITE_MILESTONE_v0.10.0.md \
+              --verify-tag --target "$SOURCE_SHA" --prerelease \
+              --title "A9 Cost Estimation v0.10.0 — Human Sources, Ownership and Browser QA" \
+              --notes-file releases/SITE_MILESTONE_v0.10.0.md
+          fi
+          gh release view "$MILESTONE_TAG" --json tagName,isPrerelease,url \
+            --jq '.tagName + " | prerelease=" + (.isPrerelease|tostring) + " | " + .url'
+          {
+            echo "### A9 milestone $MILESTONE_TAG"
+            echo "- Frozen source: $SOURCE_SHA"
+            echo "- Published Pages: https://fabingurung.github.io/JP_Cost_Estimation/"
+            echo "- Live browser: https://github.com/$GITHUB_REPOSITORY/actions/runs/42608296229"
+            echo "- Release: https://github.com/$GITHUB_REPOSITORY/releases/tag/$MILESTONE_TAG"
+            echo "- No approved Amrit BOQ/AOC totals; original Google Sheet IDs preserved."
+          } >> "$GITHUB_STEP_SUMMARY"
