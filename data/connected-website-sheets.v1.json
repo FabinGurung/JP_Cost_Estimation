@@ -1,7 +1,7 @@
 {
   "schema": "jp.website.connected-source-sheets.v1",
-  "version": "V000001",
-  "auditedAtNpt": "2026-11-01",
+  "version": "V000002",
+  "auditedAtNpt": "2026-11-09",
   "repository": "FabinGurung/JP_Cost_Estimation",
   "folderName": "01_WEBSITE_SOURCE_SHEETS__EDIT_HERE",
   "folderUrl": "https://drive.google.com/drive/folders/1v0yTowZ8mbTtT7euPgrPeEndFKPPH0IU",
@@ -25,10 +25,10 @@
       "authority": "One permanent LIVE client-specific 32-row indicative rate Sheet",
       "usedFor": "Project rate assumptions (14 plinth + 12 trade + 6 daily wages)",
       "usagePage": "projects/rohini/ward-14/amrit-rawat/cost-planning.html",
-      "publicationStatus": "PUBLIC_SNAPSHOT_V000001_SOURCE_READBACK_VERIFIED_BUT_UNVERIFIED_RATES; ACTIONS_AUTH_NOT_CONFIGURED",
+      "publicationStatus": "ACTIONS_AUTHENTICATED_READ_VERIFIED_2026-11-07; 32_CLIENT_RATES_REMAIN_INDICATIVE",
       "originalFolder": "Rohini / Ward 14 / 14_Amrit_Rawat",
       "kind": "client_live_source",
-      "doesNotImply": "Measured quantities, approved contract rates or a successful current Actions refresh"
+      "doesNotImply": "Measured quantities or approved contract unit rates"
     },
     {
       "ref": "RE-AMRIT-QTO-BOQ-LIVE",
@@ -36,7 +36,7 @@
       "authority": "One permanent LIVE project measurement and billing workbook",
       "usedFor": "Project entry register, future verified QTO/BOQ/AOC and contractor/vendor invoices",
       "usagePage": "projects/rohini/ward-14/amrit-rawat/measurements/index.html",
-      "publicationStatus": "SOURCE_WORKBOOK_EXISTS; MEASUREMENTS_NOT_ADMITTED; NO_ACTIONS_REFRESH_CONFIGURED",
+      "publicationStatus": "LIVE_PROJECT_SHEET_INGESTION_VIA_PAGES_BUILD; NO_MEASURED_ROWS_AS_OF_2026-11-09",
       "originalFolder": "Rohini / Ward 14 / 14_Amrit_Rawat",
       "kind": "client_live_source",
       "doesNotImply": "Completed measured work, payable certificate or money paid"
@@ -58,10 +58,10 @@
       "authority": "Original Rohini actual payment register",
       "usedFor": "Previously verified finance snapshot and payment dashboard",
       "usagePage": "finance-dashboard.html",
-      "publicationStatus": "HISTORICAL_VERIFIED_SNAPSHOT_2026-10-31; CURRENT_ACTIONS_AUTH_SKIPPED",
+      "publicationStatus": "ACTIONS_AUTHENTICATED_FINANCE_FETCH_VERIFIED_2026-11-07",
       "originalFolder": "03_PROJECT_PAYMENT_REGISTERS / 01_KRISHNA_KUMAR_GUPTA__LIVE_REGISTER",
       "kind": "finance_live_source",
-      "doesNotImply": "Current live Google refresh, Amrit payment mapping or project estimate"
+      "doesNotImply": "Amrit payment mapping, a project estimate, or any cross-project financial allocation"
     }
   ],
   "exclusions": [
@@ -76,6 +76,6 @@
     "Google Sheets file IDs, original names and contents retained; only Drive parent folder changed.",
     "Amrit's former inherited reader role was restored explicitly to the two original LIVE workbooks and verified.",
     "The website does not enumerate private individual Sheet IDs in this public machine index; open controlled Drive folder with approved access.",
-    "The five-source inventory is a point-in-time verified Drive listing, not proof of authenticated source-fetching."
+    "Live source status is proven per-workflow and per-original-sheet; template and linked rate master are NOT live Actions feeds."
   ]
 }
