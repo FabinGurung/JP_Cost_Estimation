@@ -1,3 +1,4 @@
+import {validateCadQuantityLineage} from './cad-axis-lineage.mjs';
 // Pure source-gated calculations. No network, no guessing, no synthetic totals.
 const money=x=>Math.round((x+Number.EPSILON)*100)/100;
 const okNum=x=>typeof x==='number'&&Number.isFinite(x)&&x>=0;
@@ -5,6 +6,7 @@ export function validateMeasurement(m){
  const fields=['measurementId','projectId','organizationId','workId','workItemId','locationOrGrid','unit','measurementMethod','sourceEvidenceId','sourceRevision'];
  if(!m||m.verificationStatus!=='VERIFIED'||fields.some(k=>!String(m[k]??'').trim()))return {ok:false,reason:'SOURCE_OR_VERIFICATION_PENDING'};
  if(!okNum(m.quantity)||m.quantity<=0)return {ok:false,reason:'INVALID_POSITIVE_QUANTITY'};
+ if(m.cadLineage||m.sourceSystem==='CAD')return validateCadQuantityLineage(m);
  return {ok:true};
 }
 export function deriveBOQ(measurements,rateSelections){
@@ -21,8 +23,8 @@ export function deriveBOQ(measurements,rateSelections){
   const rate=selections.get(m.workItemId+'|'+m.unit);
   if(!rate)return {status:'BLOCKED_RATE_NOT_SELECTED_OR_UNIT_MISMATCH',lines:[],totalNpr:null};
   const key=[m.workItemId,m.unit,rate.rateId].join('|');
-  if(!groups.has(key))groups.set(key,{projectId:m.projectId,workItemId:m.workItemId,workId:m.workId,unit:m.unit,quantity:0,unitRateNpr:rate.unitRateNpr,rateId:rate.rateId,rateSourceId:rate.sourceId,rateVersion:rate.rateVersion,scopeFamily:rate.scopeFamily,pricingOption:rate.pricingOption,groupCode:rate.groupCode||m.workId,measurementIds:[],sourceRevisions:[]});
-  const g=groups.get(key);g.quantity+=m.quantity;g.measurementIds.push(m.measurementId);g.sourceRevisions.push(m.sourceRevision);
+  if(!groups.has(key))groups.set(key,{projectId:m.projectId,workItemId:m.workItemId,workId:m.workId,unit:m.unit,quantity:0,unitRateNpr:rate.unitRateNpr,rateId:rate.rateId,rateSourceId:rate.sourceId,rateVersion:rate.rateVersion,scopeFamily:rate.scopeFamily,pricingOption:rate.pricingOption,groupCode:rate.groupCode||m.workId,measurementIds:[],sourceRevisions:[],cadMemberAxisRefs:[]});
+  const g=groups.get(key);g.quantity+=m.quantity;g.measurementIds.push(m.measurementId);g.sourceRevisions.push(m.sourceRevision);if(m.cadLineage)g.cadMemberAxisRefs.push({cadElementId:m.cadLineage.cadElementId,axisRef:m.cadLineage.axisRef,floorId:m.cadLineage.floorId,cadRevision:m.cadLineage.cadRevision,sourceFileSha256:m.cadLineage.sourceFileSha256});
  }
  const lines=[...groups.values()].map(g=>({...g,quantity:money(g.quantity),amountNpr:money(g.quantity*g.unitRateNpr),status:'CALCULATED_DRAFT'}));
  const c=checkPackageAlternatives(lines);if(!c.ok)return {status:c.reason,lines:[],totalNpr:null};

@@ -37,9 +37,29 @@ for(const w of cat.works){
 }
 const m=(measurementId,quantity)=>({measurementId,projectId:'SYNTHETIC_TEST_NOT_PROJECT',organizationId:'TEST_ONLY',workId:'WORK_RCC_FOOTING',workItemId:'W-1',locationOrGrid:'G1',quantity,unit:'m³',measurementMethod:'source drawing dims',sourceEvidenceId:'TEST-SRC-1',sourceRevision:'TEST-REV-1',verificationStatus:'VERIFIED'});
 assert.equal(validateMeasurement(m('A',2)).ok,true);
+
+const r={workItemId:'W-1',unit:'m³',rateId:'U-1',sourceId:'S-1',rateVersion:'V000001',unitRateNpr:6000,status:'APPROVED',scopeFamily:'WORK-1',pricingOption:'CIVIL_TRADE',groupCode:'STRUCTURE'};
+const handoff=json('data/cad-axis-handoff.v1.json');
+assert.equal(handoff.admittedCadMeasurements,0);
+assert.equal(handoff.admittedCadBoqLines,0);
+assert.equal(master.cadAxisHandoff.eligibleAxisStatus,'SOURCE_MODEL_REGISTERED_VERIFIED');
+const cadBase={...m('CAD-R1',2),sourceSystem:'CAD',sourceRevision:'AAD-REV-TEST',locationOrGrid:'A1'};
+const cadProof={contract:'jp-cad://control-tower/view-lineage/1.0',cadRepository:'FabinGurung/JP_Computer-Aided-Drawings',cadRevision:'AAD-REV-TEST',cadElementId:'SRC-TEST-EL-A1',axisRef:'A1',floorId:'gf',sourceFileSha256:'a'.repeat(64),sourceCoordinateFrame:'source-grid',axisStatus:'SOURCE_MODEL_REGISTERED_VERIFIED',coordinateRegistrationVerified:true,memberGeometryVerified:true,quantitySourceVerified:true,verifierId:'SYNTHETIC_QA_VERIFIER'};
+assert.equal(validateMeasurement({...cadBase,cadLineage:{...cadProof,axisStatus:'SOURCE_MARKS_REGISTERED_REVIEW_ONLY'}}).ok,false,'Source names are not measured quantities');
+assert.equal(validateMeasurement({...cadBase,cadLineage:{...cadProof,axisStatus:'DISPLAY_REVIEW_ONLY'}}).ok,false);
+assert.equal(validateMeasurement({...cadBase,cadLineage:{...cadProof,coordinateRegistrationVerified:false}}).ok,false);
+assert.equal(validateMeasurement({...cadBase,cadLineage:{...cadProof,sourceFileSha256:'BAD'}}).ok,false);
+assert.equal(validateMeasurement({...cadBase,cadLineage:cadProof,locationOrGrid:'B1'}).ok,false);
+assert.equal(validateMeasurement({...cadBase,cadLineage:cadProof}).ok,true);
+const cadDraft=deriveBOQ([{...cadBase,cadLineage:cadProof}],[r]);
+assert.equal(cadDraft.lines.length,1);
+assert.equal(cadDraft.lines[0].cadMemberAxisRefs[0].cadElementId,'SRC-TEST-EL-A1');
+assert.equal(cadDraft.lines[0].cadMemberAxisRefs[0].axisRef,'A1');
+assert.equal(cadDraft.lines[0].status,'CALCULATED_DRAFT');
+assert.equal(deriveBOQ([{...cadBase,cadLineage:{...cadProof,axisStatus:'SOURCE_MARKS_REGISTERED_REVIEW_ONLY'}}],[r]).totalNpr,null);
+
 assert.equal(validateMeasurement({...m('X',2),verificationStatus:'DRAFT'}).ok,false);
 assert.equal(validateMeasurement({...m('X',0)}).ok,false);
-const r={workItemId:'W-1',unit:'m³',rateId:'U-1',sourceId:'S-1',rateVersion:'V000001',unitRateNpr:6000,status:'APPROVED',scopeFamily:'WORK-1',pricingOption:'CIVIL_TRADE',groupCode:'STRUCTURE'};
 assert.equal(deriveBOQ([],[]).totalNpr,null);
 assert.equal(deriveBOQ([m('A',2)],[{...r,unit:'m²'}]).totalNpr,null);
 assert.equal(deriveBOQ([{...m('A',2),verificationStatus:'DRAFT'}],[r]).lines.length,0);

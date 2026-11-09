@@ -1,5 +1,5 @@
 // One read-only shared renderer for each project's measurement/BOQ/AOC/billing pages.
-import {deriveBOQ,deriveAOC,certifyRunningBill,matchVendorInvoice,reconcilePayments} from './costing-pipeline.mjs';
+import {validateMeasurement,deriveBOQ,deriveAOC,certifyRunningBill,matchVendorInvoice,reconcilePayments} from './costing-pipeline.mjs';
 const main=document.querySelector('main[data-costing-view]');
 const status=main?.querySelector('[data-status]'),notes=main?.querySelector('[data-summary]'),body=main?.querySelector('[data-rows]');
 const set=(el,val)=>{if(el)el.textContent=val};
@@ -23,7 +23,7 @@ if(main){
     const work=catalog.find(c=>c.slug===slug);if(!work)throw Error('Unknown work taxonomy');
     set(main.querySelector('[data-work-method]'),work.measurementMethodGuide);
     set(main.querySelector('[data-unit]'),work.suggestedUnit+' suggested; contract/scope unit prevails');
-    const rows=p.measurementRows.filter(x=>x.workId===work.workId&&x.verificationStatus==='VERIFIED');
+    const rows=p.measurementRows.filter(x=>x.workId===work.workId&&validateMeasurement(x).ok);
     set(status,rows.length?'VERIFIED ROWS AVAILABLE; DETAILED SOURCE REVIEW REQUIRED':'NOT MEASURED / PENDING');
     set(notes,rows.length+' verified row(s). Raw Discord archive classification does not establish this project’s quantities.');
     writeTable(['measurementId','locationOrGrid','quantity','unit','sourceRevision','sourceEvidenceId','verificationStatus'],rows);

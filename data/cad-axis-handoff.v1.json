@@ -1,0 +1,44 @@
+{
+  "schema": "jp-cost://cad-axis-handoff/1",
+  "revision": "V000001",
+  "effectiveDate": "2026-11-09",
+  "status": "SOURCE_INTEGRATION_GUARD_ACTIVE__NO_NEW_PROJECT_MEASUREMENTS_ADMITTED",
+  "authority": {
+    "cadRepository": "FabinGurung/JP_Computer-Aided-Drawings",
+    "cadContract": "https://github.com/FabinGurung/JP_Computer-Aided-Drawings/blob/main/public/data/cad/view-control-tower.v1.json",
+    "cadGuide": "https://fabingurung.github.io/JP_Computer-Aided-Drawings/templates/project-workspace/control-tower/",
+    "cadMemory": "https://fabingurung.github.io/JP_Computer-Aided-Drawings/memory-wall/",
+    "ownership": "CAD owns original drawing / geometry and QTO, Cost owns compatible approved rate choice, BOQ/AOC commercial aggregation"
+  },
+  "requiredForCadRows": [
+    "cadRepository",
+    "cadRevision",
+    "cadElementId",
+    "axisRef",
+    "floorId",
+    "sourceFileSha256",
+    "sourceCoordinateFrame",
+    "axisStatus",
+    "coordinateRegistrationVerified",
+    "memberGeometryVerified",
+    "quantitySourceVerified",
+    "verifierId"
+  ],
+  "acceptedAxisStatusForDraftBOQ": "SOURCE_MODEL_REGISTERED_VERIFIED",
+  "neverAcceptAsCalculated": [
+    "DISPLAY_REVIEW_ONLY",
+    "SOURCE_MARKS_REGISTERED_REVIEW_ONLY",
+    "AXES_NOT_ADMITTED"
+  ],
+  "projectSourceStatus": {
+    "narayani-parajuli": "SOURCE_MARKS_REGISTERED_REVIEW_ONLY__BOQ_HOLD",
+    "harisharan-adhikari": "SOURCE_MARKS_REGISTERED_REVIEW_ONLY__BOQ_HOLD",
+    "ashok-adhikari": "DISPLAY_REVIEW_ONLY__BOQ_HOLD",
+    "ramachandra-devkota": "AXES_NOT_ADMITTED__BOQ_HOLD"
+  },
+  "admittedCadMeasurements": 0,
+  "admittedCadBoqLines": 0,
+  "unknownIsNull": true,
+  "sourceRateApprovalRequiredSeparately": true,
+  "accountingBoundary": "No payment or vendor invoice is inferred from CAD source."
+}
