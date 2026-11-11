@@ -13,6 +13,7 @@
 
 <link rel="stylesheet" href="site-theme-v0.8.css">
 <link rel="stylesheet" href="finance-panels-v0.9.css">
+<link rel="stylesheet" href="finance-local-toc-v1.css">
 <link rel="stylesheet" href="finance-register-header-v1.0.css">
 <script src="finance-register-header-v1.0.js" defer></script>
 <link rel="stylesheet" href="finance-fabin-v1.css">
@@ -40,7 +41,7 @@
   </aside>
 
   <main class="app-shell">
-<section class="landscape-hero compact" aria-label="Green hills, trees and open landscape">
+<section id="finance-hero" class="landscape-hero compact" aria-label="Green hills, trees and open landscape">
   <div class="landscape-hero-content">
     <p class="eyebrow">JP · GREEN LAND / OPEN ENGINEERING</p>
     <h2>Real project payments. <em>Clear source records.</em></h2>
@@ -111,14 +112,33 @@
     </header>
 
     <section class="finance-main">
+      <nav class="finance-local-toc" id="financeLocalToc" aria-label="Finance page table of contents">
+        <details open>
+          <summary><span class="finance-toc-heading">On this page <small>Finance · section directory</small></span><span class="finance-toc-toggle">Show / hide sections</span></summary>
+          <div class="finance-toc-links">
+            <a href="#finance-hero">01 · Introduction</a>
+            <a href="#fnS01Native">02 · Krishna Kumar Gupta register</a>
+            <a href="#finance-intro">03 · Finance overview</a>
+            <a href="#finance-organization-selector">04 · Choose organization</a>
+            <a href="#financeContent">05 · Company and project summary</a>
+            <a href="#finance-dashboard-entry">06 · Detailed payment dashboard</a>
+            <a href="#finance-sources">07 · Source workbooks</a>
+            <a href="#fabin-finance-review">08 · Fabin Gurung payments</a>
+            <a href="#worker-records">09 · Labour and worker boundaries</a>
+            <a href="#site-capture">10 · Site operations and progress</a>
+            <a href="#sheet-viewer">11 · Authorized Sheet preview</a>
+            <a href="#finance-data-policy">12 · Data ownership policy</a>
+          </div>
+        </details>
+      </nav>
       <p class="finance-source-strip">Verified source: <a href="https://docs.google.com/spreadsheets/d/1S1fkWzo6XGzyD3p92_pTG32zZ9fF3YICAv3HPTomZsE/edit" target="_blank" rel="noopener noreferrer">Krishna Kumar Gupta Payment to Project — Google Sheet ↗</a> <span>· <span id="financeSnapshotDate">Source snapshot loading…</span></span></p>
-      <section class="finance-intro">
+      <section class="finance-intro" id="finance-intro">
         <p class="eyebrow">ORGANIZATION FIRST • PROJECT SECOND • REGISTER THIRD</p>
         <h2>Keep each company's records in its own authority lane.</h2>
         <p>This company-first portal displays the owner-approved Krishna Kumar Gupta payment summary, verified against the editable Google Sheet. Rohini and Fishtail remain independent organizations; the Sheet remains the current source of truth.</p>
       </section>
 
-      <section class="panel">
+      <section class="panel" id="finance-organization-selector">
         <div class="section-head">
           <div><h2>Choose organization</h2><p class="sub">Different legal entities must never share a payment ledger by default.</p></div>
           <span class="badge ready">COMPANY-SCOPED</span>
@@ -237,7 +257,7 @@
         </div>
       </section>
 
-      <section class="panel">
+      <section class="panel" id="finance-data-policy">
         <h2>Data ownership and access policy</h2>
         <div class="finance-policy-grid">
           <article><strong>Company</strong><p>Owns the financial register and controls access. No cross-company consolidation without an approved mapping.</p></article>
