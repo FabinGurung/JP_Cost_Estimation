@@ -1,0 +1,20 @@
+/* Source-reported finance projection: lightweight, accessible and privacy-first */
+.fabin-public{margin:15px 0 9px}
+.fabin-status-success,.fabin-status-pending{padding:10px 12px;border:1px solid #d0d9ce;border-radius:7px;font:650 12px/1.6 Inter,system-ui,sans-serif;background:#f4f8f1;color:#234734}
+.fabin-status-pending{background:#fff7e8;border-color:#e5d7c0;color:#695333}
+.fabin-metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,205px),1fr));gap:10px;margin:13px 0}
+.fabin-metric{background:#fffefa;border:1px solid #dce5d9;border-radius:9px;padding:14px 13px;display:grid;gap:6px;box-shadow:none}
+.fabin-metric-label{color:#5a7865;font-weight:700;font-size:11px;letter-spacing:.025em}
+.fabin-metric-value{color:#203d32;font-size:clamp(17px,2vw,22px);line-height:1.14;overflow-wrap:anywhere}
+.fabin-metric-description{font-size:10px;color:#61786b;line-height:1.5}
+.fabin-table-scroll{overflow-x:auto;width:100%;border:1px solid #dde4d9;border-radius:8px}
+.fabin-amount-table{min-width:760px;width:100%;border-collapse:collapse;background:#fffefa;font-size:11px;line-height:1.5}
+.fabin-amount-table caption{text-align:left;padding:9px 12px;font-size:12px;font-weight:700;color:#355b45}
+.fabin-amount-table th{font-size:10px;text-align:left;white-space:nowrap;color:#f8f7ed;background:#244536;padding:9px 11px}
+.fabin-amount-table td{padding:8px 11px;border-top:1px solid #e7ebe3;color:#354f43}
+.fabin-amount-table tr:nth-child(even) td{background:#f7f9f5}
+.fabin-amount-table .fabin-number{font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap}
+.fabin-amount-table .fabin-project{font-weight:750}
+.fabin-amount-table .fabin-alert{color:#8d451e;font-weight:750}
+.fabin-source-note{margin-top:10px;font-size:11px;line-height:1.6;color:#526d59}
+@media(max-width:650px){.fabin-metrics{grid-template-columns:repeat(2,minmax(0,1fr))}.fabin-metric{padding:11px}.fabin-metric-value{font-size:16px}}
