@@ -147,7 +147,18 @@ jobs:
           set -euo pipefail
           python3 scripts/build_fabin_finance_from_google_sheets.py --output _site/fabin-payments-public.json
           node scripts/qa-fabin-finance.mjs --staged _site
-          echo 'Fabin source: AUTHENTICATED READ of normalized V000001 Sheet; source-reported five-project aggregates only, NO certified payments; Basketball excluded and Hari reconciliation debt visible.' >> "$GITHUB_STEP_SUMMARY"
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          p=json.loads(Path('_site/fabin-payments-public.json').read_text())
+          print('FABIN SOURCE VERSION:', p['sourceVersion'], 'normalized event revision:', p['normalizedEventVersion'])
+          with open(__import__('os').environ['GITHUB_STEP_SUMMARY'], 'a', encoding='utf-8') as out:
+              out.write('Fabin source: AUTHENTICATED READ; control revision '
+                        + p['sourceVersion'] + ', unchanged event revision '
+                        + p['normalizedEventVersion']
+                        + '; five source-reported aggregates only, NOT certified payments; '
+                        + 'Basketball excluded and Hari reconciliation debt visible.\\n')
+          PY
 
       - name: Validate staged Pages against notebook privacy and public route boundaries
         run: node scripts/qa-methodology-site.mjs --staged _site
