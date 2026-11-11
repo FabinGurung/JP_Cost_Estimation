@@ -19,6 +19,7 @@ assert(sources.includes('finance.html#fabin-finance-review'));
 assert(script.includes("fetch('fabin-payments-public.json'")&&script.includes('NOT_VERIFIED'));
 assert(script.includes('textContent')&&!script.includes('innerHTML'),'Finance must use safe DOM text rendering');
 assert(importer.includes('spreadsheets.readonly')&&importer.includes('SOURCE_ONLY_NOT_APPROVED'));
+assert(importer.includes('"V000001", "V000002"')&&importer.includes('Normalized_Event_Version'),'Control history must advance independently from retained normalized event rows');
 assert(importer.includes('NORMALIZED_EVENT_COVERAGE_INCOMPLETE')&&importer.includes('expected_source_rows'),'New original payment entries must not bypass normalization');
 assert(importer.includes('EVENT_PARTY_OR_PROJECT_MISMATCH'),'Party and project lineage must match');
 const rawId='1_MYCZ98tsfmWgTn_-jQBU9OcdrygwC9nlE9BF1gWK2k';

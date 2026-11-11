@@ -114,8 +114,11 @@ def derive(data, now=None):
     manifest = {val(row, 0): val(row, 1)
                 for row in complete(data["00_MANIFEST"], HEADERS["00_MANIFEST"], "00_MANIFEST")}
     version = manifest.get("Current_Register_Version", "")
-    if version != "V000001" or manifest.get("Native_Google_Sheet_ID") != SOURCE_ID:
+    if version not in ("V000001", "V000002") or manifest.get("Native_Google_Sheet_ID") != SOURCE_ID:
         raise SourceError("UNEXPECTED_SOURCE_ID_OR_VERSION")
+    event_version = manifest.get("Normalized_Event_Version", "V000001")
+    if event_version != "V000001":
+        raise SourceError("UNSUPPORTED_NORMALIZED_EVENT_REVISION")
     if manifest.get("Business_Approval") != "NOT_APPROVED":
         raise SourceError("REVIEW_ADMISSION_NOT_IMPLEMENTED")
     histories = complete(data["90_VERSION_HISTORY"], HEADERS["90_VERSION_HISTORY"], "90_VERSION_HISTORY")
@@ -183,7 +186,7 @@ def derive(data, now=None):
             raise SourceError("ORIGINAL_PAYMENT_AMOUNT_CHANGED")
         if val(row, 11) != "UNCLASSIFIED" or val(row, 12) != "SOURCE_ONLY_NOT_APPROVED":
             raise SourceError("UNAPPROVED_TRANSACTION_CLASSIFICATION")
-        if val(row, 15) != version or val(row, 14) != "'{}'!A{}:E{}".format(
+        if val(row, 15) != event_version or val(row, 14) != "'{}'!A{}:E{}".format(
                 tab, original_row, original_row):
             raise SourceError("SOURCE_ROW_LINEAGE_BROKEN")
         sums[tab] += amt
@@ -272,6 +275,7 @@ def derive(data, now=None):
     return {
         "schema": "jp.fabin-payments.source-aggregate.v1",
         "sourceVersion": version,
+        "normalizedEventVersion": event_version,
         "generatedAtUtc": timestamp.isoformat(timespec="seconds").replace("+00:00", "Z"),
         "authenticatedSourceFetch": True,
         "publicationStatus": "SOURCE_REPORTED_NOT_VERIFIED",
