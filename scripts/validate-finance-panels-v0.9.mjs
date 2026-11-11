@@ -28,6 +28,15 @@ assert(read('finance.html').includes('JP_Communication-Command-Centre-and-Resour
 assert(script.includes('docs.google.com')&&script.includes("url.hostname!=='docs.google.com'"),'Preview must restrict to Google Sheets');
 assert(script.includes('frame.src=')&&script.includes('about:blank'),'Preview must be cleared on request');
 const html=read('finance.html');
+const toc=html.match(/<nav class="finance-local-toc"[\s\S]*?<\/nav>/)?.[0];
+assert(toc && html.includes('finance-local-toc-v1.css'), 'Missing level-one Finance TOC or stylesheet');
+const tocLinks=[...toc.matchAll(/href="#([^"]+)"/g)].map(m=>m[1]);
+assert.equal(tocLinks.length,12,'Finance TOC must navigate all twelve visible sections');
+assert.equal(new Set(tocLinks).size,tocLinks.length,'Finance TOC anchor duplication');
+for(const id of tocLinks)assert(html.includes('id="'+id+'"'),'Broken TOC link to '+id);
+const css=read('finance-local-toc-v1.css');
+assert(css.includes('grid-template-columns')&&css.includes('@media(max-width:820px)')&&css.includes('focus-visible'),'Finance TOC lacks responsive/accessibility styling');
+
 assert(!html.includes('FN-C03'),'Field capture codes must not appear as Finance source selectors');
 assert(html.includes('Only the previously approved Krishna Kumar Gupta source link'),'Privacy boundary missing');
 assert(html.includes('id="financeSheetIframe"'),'Missing optional Sheet preview');
