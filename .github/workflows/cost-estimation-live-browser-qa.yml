@@ -43,7 +43,7 @@ jobs:
           npx playwright install --with-deps chromium
       - name: Render actual GitHub Pages on desktop, mobile and tablet
         env:
-          JP_QA_BASE_URL: https://fabingurung.github.io/JP_Cost_Estimation/
+          JP_QA_BASE_URL: https://fabingurung.github.io/jp-estimating-and-boq/
           JP_QA_MODE: published-live
           JP_QA_OUT: qa-cardinal-live-evidence
         run: node scripts/qa-cardinal-browser.mjs
