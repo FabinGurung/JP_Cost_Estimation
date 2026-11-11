@@ -1,0 +1,16 @@
+/* FN-01 · compact, accessible human table of contents — no duplicate Finance subpages */
+.finance-local-toc{position:relative;margin:0 0 16px;border:1px solid #c8d8cd;border-radius:12px;background:#f8fbf7;overflow:hidden;box-shadow:0 2px 8px rgba(22,48,33,.04)}
+.finance-local-toc details{margin:0}
+.finance-local-toc summary{list-style:none;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 15px;cursor:pointer;color:#214937;font:700 13px/1.35 Inter,ui-sans-serif,system-ui,sans-serif}
+.finance-local-toc summary::-webkit-details-marker{display:none}
+.finance-local-toc summary:focus-visible{outline:2px solid #b08236;outline-offset:-3px}
+.finance-toc-heading{display:flex;align-items:center;gap:8px}
+.finance-toc-heading small{font-size:11px;font-weight:500;color:#587464}
+.finance-toc-toggle{font-size:11px;color:#64766a;white-space:nowrap}
+.finance-toc-links{border-top:1px solid #e1e8df;padding:10px 12px 12px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,205px),1fr));gap:5px}
+.finance-toc-links a{display:block;min-width:0;border-radius:7px;padding:7px 9px;text-decoration:none;color:#315b44;font:650 11.5px/1.45 Inter,ui-sans-serif,system-ui,sans-serif;overflow-wrap:anywhere}
+.finance-toc-links a:hover,.finance-toc-links a:focus-visible{background:#e6f0e7;color:#123f2a;outline:2px solid #98baa1;outline-offset:0}
+#finance-hero,#fnS01Native,#finance-intro,#finance-organization-selector,#financeContent,#finance-dashboard-entry,#finance-sources,#fabin-finance-review,#worker-records,#site-capture,#sheet-viewer,#finance-data-policy{scroll-margin-top:96px}
+@media(max-width:820px){.finance-local-toc{margin:0 0 12px}.finance-local-toc summary{padding:11px 12px}.finance-toc-links{grid-template-columns:repeat(2,minmax(0,1fr));gap:4px}.finance-toc-heading{display:block}.finance-toc-heading small{display:block;margin-top:1px}}
+@media(max-width:480px){.finance-toc-links{grid-template-columns:1fr 1fr}.finance-toc-links a{font-size:10.7px}.finance-toc-toggle{font-size:10px}}
+@media(prefers-reduced-motion:reduce){.finance-local-toc *{scroll-behavior:auto}}
