@@ -93,3 +93,15 @@ The publisher must fail closed on raw-versus-normalized drift rather than report
 **This importer is separate from KKG's already verified Finance source.** Source-reported Fabin aggregates must not become KKG payments or Amrit project approved bills. No individual payment can be certified by the dashboard.
 
 Source and browser CI run evidence must be recorded after release.
+
+## 12 November 2026 — A7 memory-wall version-controlled human view restructure
+
+The **original live Google Sheet IDs are preserved**. Both records received a numbered PRE copy **before** adding linked navigation views, and a numbered POST copy after formula and source-event readback. Each subject's copies now live in its own dedicated folder under `01_JP / 99 Archive Gallery / 02 Sheets Previous Versions`. Earlier Fabin PRE/POST V000001 copies were moved from the Finance instruction directory to the dedicated per-Sheet history without changing their IDs.
+
+**Fabin Gurung:** control revision `V000002`, while the existing original source transactions and 439 normalized events intentionally remain data revision `V000001`. Added `00_PAYMENT_SUMMARY` and `07_PARTY_DETAIL_VIEW` (six-source-project selector and optional party name filter); no underlying transaction was changed. The original five-source-project total remains NPR 6,412,454.782, normalized event sum NPR 6,412,954.782; the NPR 500 Hari Baral discrepancy and possible Basketball/Prithivi overlap remain **NOT APPROVED**. Existing authenticated importer accepts both V000001 and V000002 control revisions but checks the original V000001 payment-event lineage and fails on drift.
+
+**Krishna Kumar Gupta:** control revision `V000003`. Added `00_PAYMENT_SUMMARY`, `01_VENDOR_REGISTER`, `02_PAYMENT_EVENTS` and `03_VENDOR_DETAIL_VIEW`. The view filters by any of 27 original vendor sections and links to 74 source entry IDs; source amount NPR 268,798 and amount reconciliation zero. Original `14_bishal_paija` and `KKG_VENDOR_SUMMARY_AUTO` were not overwritten, so existing authenticated Actions ingest stays compatible. The manifest's outdated communication-repository consumer label was corrected to `FabinGurung/jp-estimating-and-boq`; older historical publishing-master reference remains for provenance.
+
+**Why we did not create one tab per vendor:** 27 vendor tabs for KKG and 177 party sections for Fabin would create duplicated maintenance and hinder human navigation. The normalized ledger is one verified source-linked table; a single vendor/party-filtered detail worksheet provides the same drill-down without proliferating tabs. For day-to-day entry, keep editing the original human source tabs until a separately reviewed cutover of the Actions importer and user editing workflow is adopted. A linked view is not a new independent editable financial database.
+
+**Source freshness:** Google Sheet modified timestamps and Actions live source read must be independently verified. A successful release of frontend layout alone is not evidence that a daily scheduler succeeded. The finance entry page now includes twelve-section in-page navigation; the original 71 registered website routes remain intact.
