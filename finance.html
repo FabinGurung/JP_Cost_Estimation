@@ -15,6 +15,8 @@
 <link rel="stylesheet" href="finance-panels-v0.9.css">
 <link rel="stylesheet" href="finance-register-header-v1.0.css">
 <script src="finance-register-header-v1.0.js" defer></script>
+<link rel="stylesheet" href="finance-fabin-v1.css">
+<script src="finance-fabin-v1.js" defer></script>
 <script src="site-navigation-v0.8.js" defer></script>
 </head>
 <body class="jp-finance-page">
@@ -186,8 +188,22 @@
         <span class="jp-finance-code">SOURCE REVIEW · NOT AN APPROVED PAYMENT TOTAL</span>
         <h2 id="fabinFinanceReviewTitle">Fabin Gurung — project payments</h2>
         <p>The newer v0.7 working Excel edition is now preserved as a native private Google Sheet in the central JP website-registers Finance folder. It contains a five-project summary and a separately listed Basketball worksheet.</p>
-        <p><strong>Status: pending source reconciliation.</strong> This candidate is not included in the live Krishna Kumar Gupta financial snapshot. It has no authenticated Actions importer or approved public disclosure of transaction-level data yet. The project IDs, original invoices, QR/discount semantics and cross-organization allocation require review before publication.</p>
-        <p><a href="source-sheets.html#fabinPaymentCandidate">Read the source admission and custody note</a>.</p>
+        <p><strong>Publication boundary:</strong> Authenticated read-only GitHub Actions now publishes <em>source-reported project aggregates only</em>. This is separate from the validated Krishna Kumar Gupta payment dashboard. Source amounts are not certified as money paid. Individual parties, transaction dates, payment references and the private Google Sheet ID are not published.</p>
+        <div class="fabin-public" id="fabinPublicDashboard" aria-labelledby="fabinFinanceReviewTitle" aria-live="polite">
+          <p id="fabinReadStatus" role="status">Loading authenticated Fabin payment-source summary…</p>
+          <div id="fabinLiveContent" hidden>
+            <div class="fabin-metrics" id="fabinMetrics"></div>
+            <div class="fabin-table-scroll">
+              <table class="fabin-amount-table">
+                <caption>Original workbook figures — provisional, unverified</caption>
+                <thead><tr><th>Project as recorded</th><th>Company as recorded</th><th>Workbook total (NPR)</th><th>Normalized entries (NPR)</th><th>Difference (NPR)</th><th>Reconciliation</th></tr></thead>
+                <tbody id="fabinProjectRows"></tbody>
+              </table>
+            </div>
+            <p id="fabinSourceNote" class="fabin-source-note"></p>
+          </div>
+        </div>
+        <p><a href="source-sheets.html#fabinPaymentCandidate">Read the normalization, original-source and review rules</a>.</p>
       </section>
 
       <section class="panel jp-finance-sources" id="worker-records" aria-labelledby="workerSourcesTitle">
