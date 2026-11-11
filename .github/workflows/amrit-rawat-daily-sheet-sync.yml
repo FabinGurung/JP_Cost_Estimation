@@ -5,6 +5,11 @@ on:
   workflow_dispatch:
   schedule:
     - cron: '17 0 * * *' # 06:02 Nepal local time
+  push:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/amrit-rawat-daily-sheet-sync.yml'
 
 permissions:
   contents: write
@@ -16,7 +21,7 @@ concurrency:
 
 jobs:
   refresh-project-rate-assumptions:
-    uses: FabinGurung/JP_Cost_Estimation/.github/workflows/sync-amrit-rawat-rates.yml@research/open-estimation-engine-v0.1
+    uses: FabinGurung/jp-estimating-and-boq/.github/workflows/sync-amrit-rawat-rates.yml@research/open-estimation-engine-v0.1
     permissions:
       contents: write
       id-token: write
