@@ -56,6 +56,9 @@ jobs:
           node scripts/validate-finance-panels-v0.9.mjs
           python3 scripts/build_finance_from_google_sheets.py --self-test
           python3 scripts/build_amrit_project_from_google_sheets.py --self-test
+          python3 scripts/build_fabin_finance_from_google_sheets.py --self-test
+          node --check finance-fabin-v1.js
+          node scripts/qa-fabin-finance.mjs
           node --check finance-register-header-v1.0.js
           node scripts/validate-finance-register-header-v1.0.mjs
 
