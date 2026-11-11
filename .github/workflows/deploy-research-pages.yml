@@ -140,6 +140,15 @@ jobs:
           PY
           echo 'Amrit source: AUTHENTICATED LIVE SHEET READ; only verified QTO and approved rate inputs admitted; BOQ remains draft pending approval.' >> "$GITHUB_STEP_SUMMARY"
 
+      - name: Read Fabin v0.7 normalized Google Sheet into public-safe provisional project totals
+        if: steps.google_connection.outputs.configured == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 scripts/build_fabin_finance_from_google_sheets.py --output _site/fabin-payments-public.json
+          node scripts/qa-fabin-finance.mjs --staged _site
+          echo 'Fabin source: AUTHENTICATED READ of normalized V000001 Sheet; source-reported five-project aggregates only, NO certified payments; Basketball excluded and Hari reconciliation debt visible.' >> "$GITHUB_STEP_SUMMARY"
+
       - name: Validate staged Pages against notebook privacy and public route boundaries
         run: node scripts/qa-methodology-site.mjs --staged _site
       - name: Configure GitHub Pages
