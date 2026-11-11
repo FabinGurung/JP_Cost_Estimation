@@ -144,11 +144,13 @@ def derive(data, now=None):
         projects[tab] = row
 
     party_ids = set()
+    party_sources = {}
     for row in party_rows:
         pid, tab = val(row, 0), val(row, 1)
         if not pid or pid in party_ids or tab not in projects:
             raise SourceError("PARTY_ID_DUPLICATE_OR_CROSS_PROJECT")
         party_ids.add(pid)
+        party_sources[pid] = (tab, val(row, 3))
     if not party_ids:
         raise SourceError("EMPTY_PARTY_REGISTER")
 
@@ -161,6 +163,8 @@ def derive(data, now=None):
         if not event_id or event_id in seen_event_ids or tab not in projects or party_id not in party_ids:
             raise SourceError("DUPLICATE_OR_INVALID_EVENT_ID")
         seen_event_ids.add(event_id)
+        if party_sources[party_id] != (tab, val(row, 4)):
+            raise SourceError("EVENT_PARTY_OR_PROJECT_MISMATCH")
         try:
             original_row = int(val(row, 5))
         except ValueError:
@@ -187,6 +191,26 @@ def derive(data, now=None):
 
     if len(event_rows) != len(seen_event_ids) or not event_rows:
         raise SourceError("EMPTY_OR_DUPLICATE_EVENT_LEDGER")
+
+    # Converse integrity check: do not silently ignore a newly inserted payment
+    # on an original tab just because the normalized copy was not regenerated.
+    # Every nonblank amount under each original party's Date/Amount section must
+    # have an exact normalized Event_ID linked to the same physical source row.
+    expected_source_rows = set()
+    for tab in SOURCE_TABS:
+        rows = data[tab]
+        for i, row in enumerate(rows):
+            if val(row, 1).lower() != "date" or val(row, 2).lower() != "amount":
+                continue
+            cursor = i + 1
+            while cursor < len(rows) and val(rows[cursor], 0).lower() != "total":
+                if val(rows[cursor], 2):
+                    expected_source_rows.add((tab, cursor + 1))
+                cursor += 1
+            if cursor == len(rows):
+                raise SourceError("SOURCE_PAYMENT_SECTION_TOTAL_MISSING")
+    if expected_source_rows != raw_event_refs:
+        raise SourceError("NORMALIZED_EVENT_COVERAGE_INCOMPLETE")
 
     from_summary = {val(row, 0): row for row in project_summaries}
     from_reconcile = {val(row, 0): row for row in reconcile_rows}
