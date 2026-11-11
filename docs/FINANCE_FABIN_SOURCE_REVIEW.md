@@ -36,3 +36,60 @@ Before wiring a read-only Workload Identity fetch, maintain a private versioned 
 The historic 34-Sheet publishing directory and present five-input Operations publisher are separate from this Cost Estimation source. Do not point the Operations dashboard to this private payments workbook as if it were a sixth public map input.
 
 **No fabricated amounts and no automatic paid-status inference.**
+
+## 11 November 2026 · Native workbook normalized and authenticated reader added
+
+The original native working file ID is unchanged. The seven imported historical tabs remain untouched. A numbered PRE snapshot was taken before normalization and POST snapshot after it, both stored under the Finance folder's `90 Instructions and Changes` archive.
+
+Nine additional source-control tabs are present:
+
+| Human purpose | Working native tab |
+| --- | --- |
+| Instructions and admission rules | `00_START_HERE` |
+| Source authority, file lineage, version and status | `00_MANIFEST` |
+| Six source tab/project identities and provisional owner organization | `01_PROJECTS` |
+| 177 party source sections and header references | `02_PARTY_REGISTER` |
+| 439 event rows with immutable source-tab and source-row trace | `03_PAYMENT_EVENTS` |
+| Source reported vs normalized event sums (dynamic formulas) | `04_RECONCILIATION` |
+| Five reportable source project totals + excluded Basketball scope | `05_PROJECT_SUMMARY` |
+| Ten source-custody and discrepancy issues | `06_REVIEW_QUEUE` |
+| Numbered PRE/POST archive and revision ledger | `90_VERSION_HISTORY` |
+
+### Non-negotiable source exceptions
+- `13_hari_baral`: the additional **Pabitra Ganesh suppliers** section has NPR 500 in the original payment detail, but no corresponding source top-summary party. The original project's five-project summary excludes the NPR 500. **Do not silently add it, subtract it or call the project reconciled.**
+- `04_Basketball`: a provisional separate sheet overlapping transactions in `09_prithivi Mandi`; not present in the five-project `Total` worksheet. Do not double count it.
+- `31_sharada_adhikari` and `14_bishal_paija` have negative entries requiring refund/reversal classification. A source entry with an unrecorded date is also in Sharada.
+- All official organization and project IDs, supporting invoices, payer/payment classification, QR values, discounts and business approvals remain pending.
+
+### Authenticated, read-only Actions data flow
+
+```text
+PRIVATE GOOGLE SHEET — SAME ORIGINAL NATIVE ID
+  ├── 00_MANIFEST → exact version and source identity
+  ├── 01_PROJECTS → provisional identity and inclusion
+  ├── 02_PARTY_REGISTER → party cross-check (private only)
+  ├── 03_PAYMENT_EVENTS → validate every original source row (private only)
+  ├── 04_RECONCILIATION → numeric cross-check
+  ├── 05_PROJECT_SUMMARY → source amount vs event amount
+  ├── 06_REVIEW_QUEUE → intentional unresolved issues
+  ├── 90_VERSION_HISTORY → append-only history
+  └── 6 SOURCE TABS + Total → independent original cross-check
+       │ existing Google WIF (Sheets read-only)
+       ▼
+  scripts/build_fabin_finance_from_google_sheets.py
+       │ validates identity, 439 source row references,
+       │ five project total and review/approval status
+       ▼
+  _site/fabin-payments-public.json
+       │ FIVE SOURCE-REPORTED AGGREGATES ONLY
+       │ no vendor, employee, raw payment or private Sheet ID
+       ▼
+  finance.html#fabin-finance-review
+       · "SOURCE REPORTED — NOT VERIFIED", never certified paid
+```
+
+The publisher must fail closed on raw-versus-normalized drift rather than report stale or inferred payments. Workbook updates need a new controlled normalization revision and run. Google Sheets read permission has been granted to the existing `jp-pages-publisher` service account at **reader** level for this file only; no token, PAT or key was generated.
+
+**This importer is separate from KKG's already verified Finance source.** Source-reported Fabin aggregates must not become KKG payments or Amrit project approved bills. No individual payment can be certified by the dashboard.
+
+Source and browser CI run evidence must be recorded after release.
