@@ -39,7 +39,11 @@ assert.equal(memory.snapshot_id,'A9-JP-EST-MEMORY-V000001');
 assert.equal(memory.lifecycle,'historical_verified_checkpoint_not_live_telemetry');
 assert.equal(memory.evidence_as_of,'2026-11-07');
 assert.equal(facts.site_pages,pages.length);
-assert.equal(facts.original_sheets,JSON.parse(get('data/connected-website-sheets.v1.json')).records.length);
+// This Memory Wall is frozen as a 7 Nov historical checkpoint; its five source roles
+// must not be silently rewritten when a later sixth Fabin working source is registered.
+assert.equal(facts.original_sheets,5);
+assert(JSON.parse(get('data/connected-website-sheets.v1.json')).records.length >= facts.original_sheets,
+ 'Current live source catalog cannot shrink below the historical source count');
 assert.equal(facts.amrit_rate_entries,JSON.parse(get('projects/rohini/ward-14/amrit-rawat/rates.public.json')).rates.length);
 assert.equal(facts.measurement_methods,JSON.parse(get('templates/project-costing/v1/work-catalog.json')).works.length);
 const financeSnapshot=JSON.parse(get('finance-public-snapshot.json'));

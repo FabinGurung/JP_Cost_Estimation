@@ -1,12 +1,12 @@
 {
   "schema": "jp.website.connected-source-sheets.v1",
-  "version": "V000003",
-  "auditedAtNpt": "2026-11-09",
-  "repository": "FabinGurung/JP_Cost_Estimation",
+  "version": "V000004",
+  "auditedAtNpt": "2026-11-12",
+  "repository": "FabinGurung/jp-estimating-and-boq",
   "folderName": "Cost Estimation — Working Google Sheets",
   "folderUrl": "https://drive.google.com/drive/folders/1v0yTowZ8mbTtT7euPgrPeEndFKPPH0IU",
   "owner": "Cost Estimation — original working sheets and source custody",
-  "policy": "Five original working Google Sheets: their permanent file IDs, worksheet keys, contents, Drive access controls and data lineage are preserved. Friendly Drive file titles are presentation labels only. Google Sheets and evidence documents remain authoritative; GitHub publishes validated derived views.",
+  "policy": "Six original/working Google Sheets now physically share the one Cost Estimation folder. Four authenticated live Actions feeds: Amrit rates, Amrit measurements, Krishna Kumar Gupta Finance, and Fabin Gurung source-reported Finance. The two others are reference/template material. Original IDs, permissions, source tabs, evidence and A7 PRE/POST archives remain authoritative. This catalog contains no private Google Sheet IDs.",
   "records": [
     {
       "ref": "JP-AEC-RATE-MASTER",
@@ -62,6 +62,17 @@
       "originalFolder": "03_PROJECT_PAYMENT_REGISTERS / 01_KRISHNA_KUMAR_GUPTA__LIVE_REGISTER",
       "kind": "finance_live_source",
       "doesNotImply": "Amrit payment mapping, a project estimate, or any cross-project financial allocation"
+    },
+    {
+      "ref": "JP-FABIN-PAYMENTS-LIVE",
+      "title": "Fabin Gurung — Payments to Projects — Working v0.7",
+      "authority": "Existing native LIVE Fabin payment source; versioned control V000002, 439 normalized entry records V000001",
+      "usedFor": "Authenticated per-project source-reported Finance aggregates; does not certify paid expenditure or disclose private transaction-level data",
+      "usagePage": "finance.html",
+      "publicationStatus": "Authenticated GitHub Actions read and five-project public-safe aggregate; source reported, NOT approved",
+      "originalFolder": "Historical finance and purchasing evidence under 03_JP_Cost_Estimation / 03_PROJECT_PAYMENT_REGISTERS; LIVE source now in 02_HUMAN_WORKING_SHEETS",
+      "kind": "finance_live_source",
+      "doesNotImply": "Proof of payments, validated project IDs, reconciliation of NPR 500 Hari Baral difference, or independent Basketball additions"
     }
   ],
   "exclusions": [
@@ -73,10 +84,12 @@
     "Communication & Web repository's source Sheets"
   ],
   "notes": [
-    "The original five Google Sheet IDs did not change. File and folder names were made human-readable on 9 November 2026 without copying or moving any workbook.",
-    "Tab names, column keys, and existing formulas remain unchanged so authenticated Actions integrations keep working.",
-    "Only the Amrit rate register, Amrit measurement workbook, and Krishna Kumar Gupta payment register are currently live authenticated inputs; the two other workbooks are reference/template material.",
-    "Fishtail labour attendance, worker money and goods, site visits, and field resource records remain external. Cost Estimation may consume independently approved labour cost projections but is not their operational owner.",
-    "Individual private source Sheet IDs and payment rows are excluded from the public machine inventory; use the access-controlled Drive folder."
+    "The original five Google Sheet IDs did not change; the sixth Fabin working native Sheet was added without changing its ID. All six now share the same Cost Estimation Google Sheets source folder.",
+    "Fabin Finance and Purchasing evidence folder moved into 03_JP_Cost_Estimation / 03_PROJECT_PAYMENT_REGISTERS with its original folder ID. Restricted worker Money & Goods folder was moved separately to Fishtail Builders / Manpower, not to Cost Estimation.",
+    "Tab names, source rows and existing formulas in both finance source workbooks remain authoritative. A7 PRE/POST archives remain in dedicated per-subject version folders.",
+    "Amrit rates and measurements plus KKG and Fabin Finance are four authenticated live inputs; generic rate references and costing template are not live project data.",
+    "Fabin figures are SOURCE_REPORTED_NOT_VERIFIED, not certified expenditure: 19/19 Prithivi Mandi events are duplicated in Basketball, and the source Hari Baral detail exceeds the original total by NPR 500.",
+    "The legacy 34-Sheet Operations/Website Source Directory is a historical cross-topic source index, not the current Cost Estimation publisher roster. Its data should be consumed through dedicated owning repositories with explicit source/readback status.",
+    "Individual private Sheet IDs and payment rows are omitted from the public machine inventory; GitHub uses the existing read-only WIF service-account identity."
   ]
 }
