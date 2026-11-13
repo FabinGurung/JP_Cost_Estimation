@@ -1,0 +1,86 @@
+name: One-time Estimation M01 milestone release
+
+# A one-time release receipt triggered ONLY by the explicitly authored M01
+# milestone note. This is not a Google Sheets refresh or scheduled workflow.
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'docs/milestones/EST-M01_MANUAL_SOURCES_20261113.md'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release-m01:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Verify exactly the governed Estimation source and manual controls
+        shell: bash
+        run: |
+          set -euo pipefail
+          PUBLISH_SHA='45a6fea641008b1792abf140fea8c193110edf86'
+          git fetch origin research/open-estimation-engine-v0.1
+          test "$(git rev-parse FETCH_HEAD)" = "$PUBLISH_SHA"
+          git merge-base --is-ancestor '0bbd6d90c1260ce07166f4f1a9141a34c653259d' HEAD
+          for file in .github/workflows/cost-estimation-daily-pages-refresh.yml .github/workflows/amrit-rawat-daily-sheet-sync.yml; do
+            grep -Eq '^  workflow_dispatch:' "$file"
+            ! grep -Eq '^[[:space:]]*(schedule:|cron:)' "$file"
+          done
+          git show "$PUBLISH_SHA:data/connected-website-sheets.v1.json" >/tmp/est-m01-sheets.json
+          python3 - <<'PY'
+          import json
+          p=json.load(open('/tmp/est-m01-sheets.json'))
+          assert p['version']=='V000005'
+          assert p['operatorPolicy']['mode']=='MANUAL_FIRST_NO_CRON'
+          assert p['operatorPolicy']['automatedIntervalMinutes'] is None
+          assert len(p['records'])==6
+          assert len([r for r in p['records'] if r['fetchContract']['mode'].startswith('AUTHENTICATED')])==4
+          assert len([r for r in p['records'] if not r['fetchContract']['mode'].startswith('AUTHENTICATED')])==2
+          print('PASS: M01 frozen publishing source and manual-only source ownership')
+          PY
+          test -s docs/milestones/EST-M01_MANUAL_SOURCES_20261113.md
+
+      - name: Create and verify governed M01 GitHub tag and release
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: est-m01-manual-sheet-governance-20261113
+          TARGET_SHA: 45a6fea641008b1792abf140fea8c193110edf86
+        run: |
+          set -euo pipefail
+          if gh release view "$TAG" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            echo "Existing M01 release found; verifying its immutable target."
+          else
+            gh release create "$TAG" --repo "$GITHUB_REPOSITORY" --target "$TARGET_SHA" \
+              --title "Estimation M01 — Manual Google Sheets and Source Governance" \
+              --notes-file docs/milestones/EST-M01_MANUAL_SOURCES_20261113.md
+          fi
+          git fetch origin "refs/tags/$TAG"
+          test "$(git rev-parse FETCH_HEAD)" = "$TARGET_SHA"
+          export RELEASE_URL="$(gh release view "$TAG" --repo "$GITHUB_REPOSITORY" --json url --jq '.url')"
+          test -n "$RELEASE_URL"
+          mkdir -p docs/milestones
+          python3 - <<'PY'
+          import json,os
+          x={'milestone':'EST-M01','tag':os.environ['TAG'],'tag_target_sha':os.environ['TARGET_SHA'],
+             'release_url':os.environ['RELEASE_URL'],'publishing_branch':'research/open-estimation-engine-v0.1',
+             'source_register':'V000005','source_feed_count':4,'source_reference_count':2,
+             'manual_only':True,'google_sheets_mutated':False,
+             'scope':'SOURCE_CONTROL_MILESTONE_NOT_CERTIFIED_FINANCIAL_APPROVAL',
+             'github_pages_live_readback':'NOT_INDEPENDENTLY_CONFIRMED'}
+          with open('docs/milestones/EST-M01_RELEASE_RECEIPT.json','w') as f:
+              json.dump(x,f,indent=2);f.write('\n')
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add docs/milestones/EST-M01_RELEASE_RECEIPT.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'docs(milestone): record verified M01 release URL, tag and frozen SHA'
+            git push origin HEAD:main
+          fi
+          printf '### M01 GitHub release verified\n- %s\n- Source SHA: %s\n- No cron refreshes. Finance source approvals remain pending.\n' "$RELEASE_URL" "$TARGET_SHA" >> "$GITHUB_STEP_SUMMARY"
