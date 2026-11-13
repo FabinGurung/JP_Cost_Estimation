@@ -10,6 +10,7 @@
   <script src="site-navigation-v0.8.js" defer></script>
   <script src="memory-posters.js" defer></script>
   <script src="memory-source-register.js" defer></script>
+  <script src="vendor-bills-status.js" defer></script>
 </head>
 <body>
 <main class="poster-page" id="main">
@@ -52,31 +53,30 @@
   <section class="memory-snapshot" id="vendor-bills-intake" aria-labelledby="vendor-bills-intake-title">
     <div class="memory-snapshot-heading">
       <div>
-        <p class="poster-kicker">NEXT MODULE / 13 NOVEMBER 2026 · SOURCE DISCOVERED</p>
+        <p class="poster-kicker">COST ESTIMATION / FINANCE</p>
         <h2 id="vendor-bills-intake-title">Vendor Bills &amp; Supplier Invoices</h2>
-        <p class="memory-snapshot-lead">An original Excel workbook and a legacy native Google Sheet were identified inside Cost Estimation's existing Finance evidence custody. The original has 35 worksheets; the native copy has 37 including control tabs. <strong>Source ownership and invoice-to-payment mapping are not yet approved.</strong></p>
+        <p class="memory-snapshot-lead">The working register indexes the original source rows and gives reviewers dedicated views for bills, item and delivery details, and reconciliation.</p>
       </div>
-      <div class="memory-stamp"><span>INTAKE</span><strong>HOLD</strong><small>Manual review only</small></div>
+    </div>
+    <div id="vendor-bills-status">
+      <p data-vendor-status aria-live="polite">Loading Vendor Bills status…</p>
+      <dl class="memory-stat-grid" aria-label="Vendor Bills record counts"></dl>
     </div>
     <div class="memory-three-column">
       <article class="memory-mini memory-done">
-        <span class="memory-mini-tag">01 / FOUND</span>
-        <h3>Original and historic copies</h3>
-        <p>Preserved original Excel, controlled native import and other candidate/prototype workbooks. No new editable source and no duplicate authority created.</p>
+        <h3>Source history</h3>
+        <p>The original working Google Sheet retains its permanent ID. Numbered whole-workbook PRE and POST copies preserve its revision history in Drive.</p>
       </article>
       <article class="memory-mini memory-hold">
-        <span class="memory-mini-tag">02 / HOLD</span>
-        <h3>Evidence and ownership</h3>
-        <p>Some invoice numbers are incomplete, dates use mixed formats, and project-versus-supplier totals require reconciliation. Bills are not proof of payment.</p>
+        <h3>Evidence review</h3>
+        <p>Review flags cover invoice identifiers, dates, project allocations and conflicting summaries. Bill amounts and payment evidence require independent approval.</p>
       </article>
       <article class="memory-mini memory-next">
-        <span class="memory-mini-tag">03 / NEXT MANUAL STEP</span>
-        <h3>One invoice at a time</h3>
-        <p>Verify supplier, project, original bill, line amounts, purchase order, material receipt and payment linkage before designing a canonical normalized entry template.</p>
-        <a href="https://github.com/FabinGurung/jp-estimating-and-boq/blob/research/open-estimation-engine-v0.1/docs/source-intake/VENDOR_BILLS_READ_FIRST_20261113.md" target="_blank" rel="noopener noreferrer">Open governed intake notes →</a>
+        <h3>Manual refresh</h3>
+        <p>Updates are initiated by an operator. The public view contains record counts and revision status.</p>
+        <a href="https://github.com/FabinGurung/jp-estimating-and-boq/blob/research/open-estimation-engine-v0.1/docs/source-intake/VENDOR_BILLS_NORMALIZATION_V000002.md">Read the Vendor Bills operating notes →</a>
       </article>
     </div>
-    <p class="memory-checkpoint-note">Vendor Bills is a <strong>discovered, not-connected source</strong>, outside the four current authenticated Estimation fetches. No source values or private Drive URLs are published here. Manual changes only.</p>
   </section>
 
   <section class="memory-snapshot" id="memory-status" aria-labelledby="memory-status-title">
@@ -152,3 +152,4 @@
 </main>
 </body>
 </html>
+

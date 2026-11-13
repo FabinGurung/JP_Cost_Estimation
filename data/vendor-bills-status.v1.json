@@ -1,0 +1,11 @@
+{
+  "schema": "jp.vendor-bills-status.v1",
+  "sourceMode": "VERIFIED_SNAPSHOT",
+  "revision": "V000002",
+  "sourceTabs": 35,
+  "sourceRows": 1895,
+  "billRows": 259,
+  "detailRows": 930,
+  "comparisonRows": 46,
+  "reviewFlags": 509
+}
