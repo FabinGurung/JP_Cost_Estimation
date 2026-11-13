@@ -1,0 +1,14 @@
+{
+  "milestone": "EST-M01",
+  "tag": "est-m01-manual-sheet-governance-20261113",
+  "tag_target_sha": "45a6fea641008b1792abf140fea8c193110edf86",
+  "release_url": "https://github.com/FabinGurung/jp-estimating-and-boq/releases/tag/est-m01-manual-sheet-governance-20261113",
+  "publishing_branch": "research/open-estimation-engine-v0.1",
+  "source_register": "V000005",
+  "source_feed_count": 4,
+  "source_reference_count": 2,
+  "manual_only": true,
+  "google_sheets_mutated": false,
+  "scope": "SOURCE_CONTROL_MILESTONE_NOT_CERTIFIED_FINANCIAL_APPROVAL",
+  "github_pages_live_readback": "NOT_INDEPENDENTLY_CONFIRMED"
+}
