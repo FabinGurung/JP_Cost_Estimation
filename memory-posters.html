@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="memory-posters.css">
   <script src="site-navigation-v0.8.js" defer></script>
   <script src="memory-posters.js" defer></script>
+  <script src="memory-source-register.js" defer></script>
 </head>
 <body>
 <main class="poster-page" id="main">
@@ -16,10 +17,36 @@
     <div class="poster-hero-copy">
       <p class="poster-kicker">JP / PROJECT REFERENCE ROOM</p>
       <h1>The memory <em>wall.</em></h1>
-      <p>A quick place to remember <strong>where we left off</strong>, what is actually verified, and what to tackle next. The original source rules and learning posters remain below.</p>
+      <p>The project-owned source register: which Google Sheets our engine reads, what remains reference-only, and how to refresh everything manually. Older verified checkpoints and original learning posters remain preserved below.</p>
       <a class="poster-hero-link" href="index.html">← Back to the project overview</a>
     </div>
     <div class="poster-hero-mark" aria-hidden="true"><span>READ</span><span>CONNECT</span><span>REMEMBER</span></div>
+  </section>
+
+  <section class="jp-source-board" id="google-sheets-fetched" aria-labelledby="source-fetch-title">
+    <div class="jp-source-board-heading">
+      <div>
+        <p class="poster-kicker">CURRENT SOURCE REGISTER / 13 NOVEMBER 2026</p>
+        <h2 id="source-fetch-title">Which Google Sheets feed Estimation?</h2>
+        <p>Four existing Google Sheets have authenticated import paths; two more are kept as reference or template workbooks. The source register below names the owner, exact tabs the code reads, import script, output and approval limitations. This is a <strong>configuration audit</strong>, not a claim that a new live fetch has already run today.</p>
+      </div>
+      <div class="jp-source-count" aria-label="Current source role counts"><strong>4 <small>FETCH PATHS</small></strong><strong>2 <small>REFERENCES</small></strong></div>
+    </div>
+    <p class="jp-source-mode"><strong>MANUAL-FIRST MODE:</strong> Edit original Google Sheets by hand, or explicitly prompt an operator to prepare a controlled revision. Refresh using GitHub Actions <em>Run workflow</em> or a user-authorized website commit. <strong>No cron / unattended interval.</strong> No automated data-entry template or step-test system has been approved yet.</p>
+    <p class="jp-source-data-status" id="estimationSourceCount" role="status">Loading the six-source inventory…</p>
+    <div class="jp-source-grid" id="estimationSourceCards" aria-live="polite"><p>Reading source roles and configured import paths…</p></div>
+    <noscript><p>Source names: Amrit Rawat indicative rates; Amrit Rawat measurements/BOQ; Krishna Kumar Gupta project payments; Fabin Gurung payments; Construction Rate and Cost References (reference); Construction Costing Reusable Workbook Template (template). See the <a href="source-sheets.html">existing source directory</a> for roles.</p></noscript>
+    <div class="jp-source-howto">
+      <h3>Manual update procedure — what to ask next time</h3>
+      <ol>
+        <li>Edit the existing owner-designated LIVE Sheet; never create a second editable authority or overwrite source evidence.</li>
+        <li>Preserve a numbered A7 PRE → edit → inspect/reconcile → POST history; maintain stable file ID and explicit approval status.</li>
+        <li>Request an authenticated, one-off refresh via <a href="https://github.com/FabinGurung/jp-estimating-and-boq/actions/workflows/cost-estimation-daily-pages-refresh.yml" target="_blank" rel="noopener noreferrer">Cost Estimation manual Pages refresh</a>. For Amrit rate assumptions only, use the <a href="https://github.com/FabinGurung/jp-estimating-and-boq/actions/workflows/amrit-rawat-daily-sheet-sync.yml" target="_blank" rel="noopener noreferrer">manual Amrit source sync</a>.</li>
+        <li>Check the exact Actions run log, public-safe output, publication commit and live Pages rendering. A successful old run is not evidence of today's refresh.</li>
+      </ol>
+      <p><a href="source-sheets.html">Open six-Sheet owner directory</a> · <a href="data/connected-website-sheets.v1.json">View source/consumer machine register</a> · <a href="https://github.com/FabinGurung/jp-site-operations/issues/36" target="_blank" rel="noopener noreferrer">Deferred 34-Sheet cross-repository audit</a></p>
+      <p class="jp-source-privacy">No private source Sheet IDs, raw payment transactions, credentials or permission details are embedded in this Memory Wall. Google Drive is the human source of truth; GitHub tracks transformation and derived publication. A7 only routes to this Estimation-owned record.</p>
+    </div>
   </section>
 
   <section class="memory-snapshot" id="memory-status" aria-labelledby="memory-status-title">
@@ -27,7 +54,7 @@
       <div>
         <p class="poster-kicker">CHECKPOINT / 07 NOVEMBER 2026 · PRESERVED 08 NOVEMBER</p>
         <h2 id="memory-status-title">Where we left off.</h2>
-        <p class="memory-snapshot-lead"><strong>The foundations work.</strong> Google Sheets authenticate, Finance and Amrit rates refresh, and Pages deploys. <strong>The next unlock is verified project measurements</strong> before any real Amrit BOQ, AOC or bills.</p>
+        <p class="memory-snapshot-lead"><strong>Historical 7 November checkpoint (preserved, not current).</strong> <strong>The foundations work.</strong> Google Sheets authenticate, Finance and Amrit rates refresh, and Pages deploys. <strong>The next unlock is verified project measurements</strong> before any real Amrit BOQ, AOC or bills.</p>
       </div>
       <div class="memory-stamp" aria-label="Dated verified checkpoint">
         <span>VERIFIED</span>
@@ -60,7 +87,7 @@
         <span class="memory-mini-tag">03 / WHAT COMES NEXT</span>
         <h3>From drawing to cost.</h3>
         <ol>
-          <li>Verify unattended scheduled source refresh.</li>
+          <li><s>Verify unattended scheduled source refresh.</s> Superseded 13 November: manual updates only.</li>
           <li>Admit measured CAD/drawing/FID quantities.</li>
           <li>Derive BOQ → AOC → bills only after review.</li>
           <li>QA navigation and layout on mobile + desktop.</li>
@@ -75,7 +102,7 @@
       <a href="https://github.com/FabinGurung/JP_Cost_Estimation/actions/runs/42366112115" target="_blank" rel="noopener noreferrer">Amrit source proof</a>
       <a href="governance.html">Source governance</a>
     </div>
-    <p class="memory-checkpoint-note"><strong>Remember:</strong> all FabinGurung public repositories using <code>main</code> are eligible for the new public-only Google identity, but no Google Sheet permissions are automatically granted. This is an <strong>archived evidence checkpoint</strong>, not a live tracker. <a href="data/jp-cost-memory-wall.v1.json">Open machine-readable memory →</a></p>
+    <p class="memory-checkpoint-note"><strong>Historical note, superseded by the manual-first source register above:</strong> all FabinGurung public repositories using <code>main</code> are eligible for the new public-only Google identity, but no Google Sheet permissions are automatically granted. This is an <strong>archived evidence checkpoint</strong>, not a live tracker. <a href="data/jp-cost-memory-wall.v1.json">Open machine-readable memory →</a></p>
   </section>
   <section class="poster-controls" aria-label="Find a poster">
     <div>
