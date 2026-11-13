@@ -1,12 +1,12 @@
 {
   "schema": "jp.website.connected-source-sheets.v1",
-  "version": "V000004",
-  "auditedAtNpt": "2026-11-12",
+  "version": "V000005",
+  "auditedAtNpt": "2026-11-13",
   "repository": "FabinGurung/jp-estimating-and-boq",
   "folderName": "Cost Estimation — Working Google Sheets",
   "folderUrl": "https://drive.google.com/drive/folders/1v0yTowZ8mbTtT7euPgrPeEndFKPPH0IU",
   "owner": "Cost Estimation — original working sheets and source custody",
-  "policy": "Six original/working Google Sheets now physically share the one Cost Estimation folder. Four authenticated live Actions feeds: Amrit rates, Amrit measurements, Krishna Kumar Gupta Finance, and Fabin Gurung source-reported Finance. The two others are reference/template material. Original IDs, permissions, source tabs, evidence and A7 PRE/POST archives remain authoritative. This catalog contains no private Google Sheet IDs.",
+  "policy": "Six existing source/reference Sheets remain under Cost Estimation custody. Exactly four are configured as authenticated Google Sheets reads (Amrit rates, Amrit measured-work/BOQ inputs, KKG Finance and Fabin Finance). The other two are reference/template only. Manual operator prompt or explicitly committed changes initiate reads; no interval/scheduled workflow is authorized. A site build or older successful run must not be represented as a fresh authenticated fetch. Stable IDs, private data, permissions and PRE/POST history remain with the source provider.",
   "records": [
     {
       "ref": "JP-AEC-RATE-MASTER",
@@ -17,7 +17,14 @@
       "publicationStatus": "Reusable reference workbook; not an authenticated scheduled rates feed",
       "originalFolder": "04_COST_RATE_REFERENCES / 01_AEC_COST_RATE_MASTER__LIVE_REGISTER",
       "kind": "working_reference",
-      "doesNotImply": "Current approved district/standard rates"
+      "doesNotImply": "Current approved district/standard rates",
+      "fetchContract": {
+        "mode": "REFERENCE_ONLY",
+        "importer": null,
+        "readTabs": [],
+        "output": "rate-workbench.html",
+        "approval": "Not an authenticated current-rate feed"
+      }
     },
     {
       "ref": "RE-AMRIT-RATE-LIVE",
@@ -28,7 +35,20 @@
       "publicationStatus": "Authenticated source read verified; 32 rates remain indicative and unapproved",
       "originalFolder": "Rohini / Ward 14 / 14_Amrit_Rawat",
       "kind": "client_live_source",
-      "doesNotImply": "Measured quantities or approved contract unit rates"
+      "doesNotImply": "Measured quantities or approved contract unit rates",
+      "fetchContract": {
+        "mode": "AUTHENTICATED_ON_MANUAL_INVOKED_WORKFLOW",
+        "importer": "scripts/sync-amrit-rawat-rates.mjs",
+        "readTabs": [
+          "01_PLINTH_RATES",
+          "02_TRADE_RATES",
+          "03_DAILY_WAGES",
+          "90_VERSION_HISTORY"
+        ],
+        "output": "projects/rohini/ward-14/amrit-rawat/rates.public.json",
+        "approval": "USER_SUPPLIED_INDICATIVE_NOT_APPROVED",
+        "trigger": "Manual main Amrit rate-sync workflow; versioned source change and research-branch deploy"
+      }
     },
     {
       "ref": "RE-AMRIT-QTO-BOQ-LIVE",
@@ -39,7 +59,24 @@
       "publicationStatus": "Authenticated during Pages deployment; no verified measurements or approved rates admitted at the latest recorded check",
       "originalFolder": "Rohini / Ward 14 / 14_Amrit_Rawat",
       "kind": "client_live_source",
-      "doesNotImply": "Completed measured work, payable certificate or money paid"
+      "doesNotImply": "Completed measured work, payable certificate or money paid",
+      "fetchContract": {
+        "mode": "AUTHENTICATED_ON_MANUAL_INVOKED_PAGES_DEPLOY",
+        "importer": "scripts/build_amrit_project_from_google_sheets.py",
+        "readTabs": [
+          "01_MEASUREMENTS",
+          "02_RATE_SELECTIONS",
+          "03_BOQ",
+          "04_AOC",
+          "05_CONTRACTOR_RA",
+          "06_VENDOR_INVOICES",
+          "07_PAYMENT_ALLOCATIONS",
+          "90_VERSION_HISTORY"
+        ],
+        "output": "projects/rohini/ward-14/amrit-rawat/project-costing.json",
+        "approval": "Only independently verified measurements and approved rate selections admitted; never infer approved BOQ or payable bills",
+        "trigger": "Manual Cost Estimation Pages refresh or user-authorized publishing commit"
+      }
     },
     {
       "ref": "JP-COSTING-MASTER-TEMPLATE",
@@ -50,7 +87,14 @@
       "publicationStatus": "Blank reusable template; not an active project feed",
       "originalFolder": "03_JP_Cost_Estimation / 02_HUMAN_WORKING_SHEETS",
       "kind": "template_only",
-      "doesNotImply": "A sixth project source or a payable BOQ"
+      "doesNotImply": "A sixth project source or a payable BOQ",
+      "fetchContract": {
+        "mode": "TEMPLATE_ONLY_NO_FETCH",
+        "importer": null,
+        "readTabs": [],
+        "output": "measurements-boq.html",
+        "approval": "No client data authority"
+      }
     },
     {
       "ref": "RE-KKG-FINANCE-LIVE",
@@ -61,18 +105,53 @@
       "publicationStatus": "Authenticated live Finance fetch verified in GitHub Actions",
       "originalFolder": "03_PROJECT_PAYMENT_REGISTERS / 01_KRISHNA_KUMAR_GUPTA__LIVE_REGISTER",
       "kind": "finance_live_source",
-      "doesNotImply": "Amrit payment mapping, a project estimate, or any cross-project financial allocation"
+      "doesNotImply": "Amrit payment mapping, a project estimate, or any cross-project financial allocation",
+      "fetchContract": {
+        "mode": "AUTHENTICATED_ON_MANUAL_INVOKED_PAGES_DEPLOY",
+        "importer": "scripts/build_finance_from_google_sheets.py",
+        "readTabs": [
+          "14_bishal_paija",
+          "KKG_VENDOR_SUMMARY_AUTO"
+        ],
+        "output": "finance-public-snapshot.json",
+        "approval": "Independent Rohini payment source; no cross-company mapping by default",
+        "trigger": "Manual Cost Estimation Pages refresh or user-authorized publishing commit"
+      }
     },
     {
       "ref": "JP-FABIN-PAYMENTS-LIVE",
       "title": "Fabin Gurung — Payments to Projects — Working v0.7",
-      "authority": "Existing native LIVE Fabin payment source; versioned control V000002, 439 normalized entry records V000001",
+      "authority": "Existing native LIVE Fabin payment source; control version V000004, 439 normalized source events remain V000001",
       "usedFor": "Authenticated per-project source-reported Finance aggregates; does not certify paid expenditure or disclose private transaction-level data",
       "usagePage": "finance.html",
-      "publicationStatus": "Authenticated GitHub Actions read and five-project public-safe aggregate; source reported, NOT approved",
+      "publicationStatus": "Configured as authenticated public-safe aggregate; source V000004 follows Hari Baral top-summary repair. New deployment/re-read requires manual run; figures NOT approved.",
       "originalFolder": "Historical finance and purchasing evidence under 03_JP_Cost_Estimation / 03_PROJECT_PAYMENT_REGISTERS; LIVE source now in 02_HUMAN_WORKING_SHEETS",
       "kind": "finance_live_source",
-      "doesNotImply": "Proof of payments, validated project IDs, reconciliation of NPR 500 Hari Baral difference, or independent Basketball additions"
+      "doesNotImply": "Proof of payments, verified project IDs, evidence approval, or approval of duplicated Basketball/Prithivi entries.",
+      "fetchContract": {
+        "mode": "AUTHENTICATED_ON_MANUAL_INVOKED_PAGES_DEPLOY",
+        "importer": "scripts/build_fabin_finance_from_google_sheets.py",
+        "readTabs": [
+          "00_MANIFEST",
+          "01_PROJECTS",
+          "02_PARTY_REGISTER",
+          "03_PAYMENT_EVENTS",
+          "04_RECONCILIATION",
+          "05_PROJECT_SUMMARY",
+          "06_REVIEW_QUEUE",
+          "90_VERSION_HISTORY",
+          "Total",
+          "04_Basketball",
+          "09_prithivi Mandi",
+          "14_kharika_poudel",
+          "13_hari_baral",
+          "31_sharada_adhikari",
+          "14_bishal_paija"
+        ],
+        "output": "fabin-payments-public.json",
+        "approval": "SOURCE_REPORTED_NOT_APPROVED; 19/19 Basketball/Prithivi overlaps deferred; Hari Baral NPR 500 top summary linked in V000004, source arithmetic now matches but payment not certified",
+        "trigger": "Manual Cost Estimation Pages refresh or user-authorized publishing commit"
+      }
     }
   ],
   "exclusions": [
@@ -88,8 +167,27 @@
     "Fabin Finance and Purchasing evidence folder moved into 03_JP_Cost_Estimation / 03_PROJECT_PAYMENT_REGISTERS with its original folder ID. Restricted worker Money & Goods folder was moved separately to Fishtail Builders / Manpower, not to Cost Estimation.",
     "Tab names, source rows and existing formulas in both finance source workbooks remain authoritative. A7 PRE/POST archives remain in dedicated per-subject version folders.",
     "Amrit rates and measurements plus KKG and Fabin Finance are four authenticated live inputs; generic rate references and costing template are not live project data.",
-    "Fabin figures are SOURCE_REPORTED_NOT_VERIFIED, not certified expenditure: 19/19 Prithivi Mandi events are duplicated in Basketball, and the source Hari Baral detail exceeds the original total by NPR 500.",
+    "Fabin V000004: Hari Baral party was linked into the original top summary, removing the NPR 500 arithmetic discrepancy; the historical correction remains in PRE/POST. The 19/19 Prithivi duplicate source events remain pending owner review. No payments were certified.",
     "The legacy 34-Sheet Operations/Website Source Directory is a historical cross-topic source index, not the current Cost Estimation publisher roster. Its data should be consumed through dedicated owning repositories with explicit source/readback status.",
-    "Individual private Sheet IDs and payment rows are omitted from the public machine inventory; GitHub uses the existing read-only WIF service-account identity."
-  ]
+    "Individual private Sheet IDs and payment rows are omitted from the public machine inventory; GitHub uses the existing read-only WIF service-account identity.",
+    "No cron or unattended source-refresh interval is approved; the default-branch daily-named workflow filenames are retained only to preserve existing GitHub workflow links and are now manual workflow_dispatch routes."
+  ],
+  "operatorPolicy": {
+    "mode": "MANUAL_FIRST_NO_CRON",
+    "userInitiatedTriggers": [
+      "Manual workflow_dispatch from GitHub Actions",
+      "User-authorized repository edit/push that invokes the existing Pages build"
+    ],
+    "automatedIntervalMinutes": null,
+    "templateTestHarness": "NOT_BUILT",
+    "liveSourceAuthority": "Existing Google Sheets in their owning Drive area",
+    "sourceMutationsByPages": false,
+    "privacy": "PUBLIC_SITE_HAS_SOURCE_NAMES_ROLES_AND_TABS_ONLY; NEVER_PRIVATE_SHEET_IDS_OR_RAW_PAYMENT_ROWS",
+    "publishingBranch": "research/open-estimation-engine-v0.1",
+    "manualPagesWorkflow": ".github/workflows/cost-estimation-daily-pages-refresh.yml",
+    "researchPagesWorkflow": ".github/workflows/deploy-research-pages.yml",
+    "amritRatesManualWorkflow": ".github/workflows/amrit-rawat-daily-sheet-sync.yml",
+    "updatedOn": "2026-11-13",
+    "claim": "Configuration and read paths verified from source code; a new 2026-11-13 authenticated Pages deployment is not asserted by this inventory."
+  }
 }
