@@ -19,7 +19,7 @@ assert(sources.includes('finance.html#fabin-finance-review'));
 assert(script.includes("fetch('fabin-payments-public.json'")&&script.includes('NOT_VERIFIED'));
 assert(script.includes('textContent')&&!script.includes('innerHTML'),'Finance must use safe DOM text rendering');
 assert(importer.includes('spreadsheets.readonly')&&importer.includes('SOURCE_ONLY_NOT_APPROVED'));
-assert(importer.includes('"V000001", "V000002"')&&importer.includes('Normalized_Event_Version'),'Control history must advance independently from retained normalized event rows');
+assert(importer.includes('"V000003", "V000004"')&&importer.includes('Normalized_Event_Version'),'Importer must accept controlled Fabin V000004 while retaining V000001 source events');
 assert(importer.includes('NORMALIZED_EVENT_COVERAGE_INCOMPLETE')&&importer.includes('expected_source_rows'),'New original payment entries must not bypass normalization');
 assert(importer.includes('EVENT_PARTY_OR_PROJECT_MISMATCH'),'Party and project lineage must match');
 const rawId='1_MYCZ98tsfmWgTn_-jQBU9OcdrygwC9nlE9BF1gWK2k';
@@ -55,7 +55,12 @@ if(i>=0){
     'vendor' in p||'sourceSheetId' in p||'sourceUrl' in p));
   assert(Math.abs(a.projects.reduce((v,p)=>v+p.sourceAmountNpr,0)-a.sourceDeclaredGrandTotalNpr)<.01);
   assert(Math.abs(a.normalizedEventsGrandTotalNpr-a.sourceDeclaredGrandTotalNpr-a.reconciliationDifferenceNpr)<.01);
-  assert(a.projects.some(p=>p.reconciliation==='SOURCE_TOTAL_CONFLICT'));
+  if(a.sourceVersion==='V000004'){
+    assert.equal(a.reconciliationDifferenceNpr,0,'The controlled Pabitra top-summary link must reconcile the original Hari discrepancy');
+    assert(a.projects.every(p=>p.reconciliation==='ARITHMETIC_MATCH_ONLY'),'All five displayed source summaries should be arithmetically aligned');
+  }else{
+    assert(a.projects.some(p=>p.reconciliation==='SOURCE_TOTAL_CONFLICT'),'Preserve historic source exception tests');
+  }
   assert(a.exclusions.some(e=>e.includes('Basketball')));
   console.log('FABIN LIVE STAGED QA PASS: authenticated normalized source; 5 unverified project aggregates; no raw rows/party names/private source IDs');
 }else{

@@ -7,7 +7,7 @@
   const metrics=document.getElementById('fabinMetrics');
   const rows=document.getElementById('fabinProjectRows');
   const note=document.getElementById('fabinSourceNote');
-  const num=new Intl.NumberFormat('en-NP',{minimumFractionDigits:0,maximumFractionDigits:3});
+  const num=new Intl.NumberFormat('en-IN',{minimumFractionDigits:0,maximumFractionDigits:3});
   const currency=n=>'NPR '+num.format(n);
   const el=(tag,name,value)=>{
     const node=document.createElement(tag);
@@ -48,7 +48,7 @@
       for(const [title,value,sub] of [
         ['Source workbook total',currency(data.sourceDeclaredGrandTotalNpr),'Five listed projects; excludes Basketball'],
         ['Normalized event sum',currency(data.normalizedEventsGrandTotalNpr),'Source entries, not approved payments'],
-        ['Unresolved difference',currency(data.reconciliationDifferenceNpr),'Review Hari Baral before approval'],
+        ['Source arithmetic difference',currency(data.reconciliationDifferenceNpr),data.reconciliationDifferenceNpr===0?'Reconciled in summary; receipts remain unapproved':'Reconcile source discrepancies before approval'],
         ['Source rows',num.format(data.sourceEventCount),'No payee or personal transaction detail published']
       ]){
         const card=el('article','fabin-metric');
@@ -74,7 +74,7 @@
       const stamp=new Date(data.generatedAtUtc);
       note.textContent='Last authenticated source projection: '+
         (Number.isNaN(stamp.valueOf())?'date unavailable':stamp.toLocaleString('en-NP',{dateStyle:'medium',timeStyle:'short'}))+
-        '. '+data.reviewQueueIssueCount+' source review issues remain. Basketball is excluded due to overlap. Source amounts are unverified and must not be treated as certified expenditure, an approved BOQ, or money paid.';
+        '. '+data.reviewQueueIssueCount+' historical/source review issues remain. Basketball is excluded due to overlap. Source totals are arithmetically '+(data.reconciliationDifferenceNpr===0?'aligned':'unresolved')+' but remain unverified; they are not certified expenditure, an approved BOQ, or proof of money paid.';
       content.hidden=false;
     }catch(_){
       status.className='fabin-status-pending';

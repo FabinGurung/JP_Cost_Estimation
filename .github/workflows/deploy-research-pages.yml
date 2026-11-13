@@ -49,6 +49,8 @@ jobs:
           node scripts/qa-unified-costing.mjs
           node scripts/qa-home-navigation.mjs
           node scripts/qa-connected-sheets.mjs
+          node --check memory-source-register.js
+          node scripts/qa-estimation-memory-source-map.mjs
           node scripts/qa-all-site-routes.mjs
           node scripts/qa-cardinal-layout.mjs
           node scripts/qa-amrit-source-version.mjs
