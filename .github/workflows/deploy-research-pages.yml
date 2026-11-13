@@ -169,12 +169,17 @@ jobs:
         if: github.event_name == 'workflow_dispatch' && steps.google_connection.outputs.configured == 'true'
         env:
           JP_VENDOR_BILLS_SHEET_ID: ${{ secrets.JP_VENDOR_BILLS_SHEET_ID }}
+          REQUIRE_LIVE: ${{ inputs.require_live_sheets || false }}
         run: |
           if [[ -n "$JP_VENDOR_BILLS_SHEET_ID" ]]; then
             python3 scripts/build_vendor_bills_public.py --output _site/data/vendor-bills-status.v1.json
             echo 'Vendor Bills: authenticated aggregate refresh.' >> "$GITHUB_STEP_SUMMARY"
           else
             echo 'Vendor Bills: verified snapshot used. The optional source secret is unset.' >> "$GITHUB_STEP_SUMMARY"
+            if [[ "$REQUIRE_LIVE" == 'true' ]]; then
+              echo '::error::Missing JP_VENDOR_BILLS_SHEET_ID: authenticated Vendor Bills refresh was required.'
+              exit 1
+            fi
           fi
 
       - name: Validate staged Pages against notebook privacy and public route boundaries

@@ -1,7 +1,7 @@
 {
   "schema": "jp.vendor-bills-status.v1",
   "sourceMode": "VERIFIED_SNAPSHOT",
-  "revision": "V000002",
+  "revision": "V000003",
   "sourceTabs": 35,
   "sourceRows": 1895,
   "billRows": 259,
