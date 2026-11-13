@@ -1,15 +1,8 @@
-name: Rohini / Amrit Rawat · Project cost assumptions sync
-# GitHub scheduled workflows live on default main; the reusable research
-# workflow owns the source-to-public-data derivation. No separate Pages deploy.
+name: Amrit Rawat — Manual Google Sheet rate sync
+# Explicit Run workflow only. No scheduled or push-triggered source updates.
+# Reusable research workflow owns read-only source derivation; no second Pages deployment.
 on:
   workflow_dispatch:
-  schedule:
-    - cron: '17 0 * * *' # 06:02 Nepal local time
-  push:
-    branches:
-      - main
-    paths:
-      - '.github/workflows/amrit-rawat-daily-sheet-sync.yml'
 
 permissions:
   contents: write
