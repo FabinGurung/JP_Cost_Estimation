@@ -1,16 +1,9 @@
-name: Cost Estimation — Daily Google Sheets to GitHub Pages
-# Scheduled workflows run on default main, but the sole website publisher is
+name: Cost Estimation — Manual Google Sheets to GitHub Pages
+# Manual workflows live on default main, but the sole website publisher is
 # research/open-estimation-engine-v0.1. We dispatch that exact workflow rather
 # than duplicating its authentication, validation, or Pages publication logic.
 on:
   workflow_dispatch:
-  schedule:
-    - cron: '47 0 * * *' # 06:32 Asia/Kathmandu, after daily Amrit rate sync
-  push:
-    branches:
-      - main
-    paths:
-      - '.github/workflows/cost-estimation-daily-pages-refresh.yml'
 
 permissions:
   actions: write
@@ -40,7 +33,7 @@ jobs:
             --ref research/open-estimation-engine-v0.1 \
             -f require_live_sheets=true
           {
-            echo "### Scheduled JP Cost Estimation source refresh"
+            echo "### Manual JP Cost Estimation source refresh"
             echo "- Site publisher: research/open-estimation-engine-v0.1"
             echo "- Existing keyless Google WIF is reused in the target workflow."
             echo "- The target build fails if LIVE Finance or Amrit Sheets cannot authenticate."
