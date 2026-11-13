@@ -51,6 +51,9 @@ jobs:
           node scripts/qa-connected-sheets.mjs
           node --check memory-source-register.js
           node scripts/qa-estimation-memory-source-map.mjs
+          node --check vendor-bills-status.js
+          node scripts/qa-vendor-bills-status.mjs
+          python3 scripts/build_vendor_bills_public.py --check
           node scripts/qa-all-site-routes.mjs
           node scripts/qa-cardinal-layout.mjs
           node scripts/qa-amrit-source-version.mjs
@@ -162,6 +165,18 @@ jobs:
                         + 'Basketball excluded and Hari reconciliation debt visible.\\n')
           PY
 
+      - name: Refresh Vendor Bills counts on a manual run
+        if: github.event_name == 'workflow_dispatch' && steps.google_connection.outputs.configured == 'true'
+        env:
+          JP_VENDOR_BILLS_SHEET_ID: ${{ secrets.JP_VENDOR_BILLS_SHEET_ID }}
+        run: |
+          if [[ -n "$JP_VENDOR_BILLS_SHEET_ID" ]]; then
+            python3 scripts/build_vendor_bills_public.py --output _site/data/vendor-bills-status.v1.json
+            echo 'Vendor Bills: authenticated aggregate refresh.' >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo 'Vendor Bills: verified snapshot used. The optional source secret is unset.' >> "$GITHUB_STEP_SUMMARY"
+          fi
+
       - name: Validate staged Pages against notebook privacy and public route boundaries
         run: node scripts/qa-methodology-site.mjs --staged _site
       - name: Configure GitHub Pages
@@ -173,3 +188,4 @@ jobs:
       - name: Deploy static website
         id: deployment
         uses: actions/deploy-pages@v4
+
