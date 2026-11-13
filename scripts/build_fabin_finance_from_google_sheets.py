@@ -114,7 +114,7 @@ def derive(data, now=None):
     manifest = {val(row, 0): val(row, 1)
                 for row in complete(data["00_MANIFEST"], HEADERS["00_MANIFEST"], "00_MANIFEST")}
     version = manifest.get("Current_Register_Version", "")
-    if version not in ("V000001", "V000002") or manifest.get("Native_Google_Sheet_ID") != SOURCE_ID:
+    if version not in ("V000001", "V000002", "V000003", "V000004") or manifest.get("Native_Google_Sheet_ID") != SOURCE_ID:
         raise SourceError("UNEXPECTED_SOURCE_ID_OR_VERSION")
     event_version = manifest.get("Normalized_Event_Version", "V000001")
     if event_version != "V000001":
@@ -293,7 +293,10 @@ def derive(data, now=None):
         "cautions": [
             "All amounts are self-reported source-book values, not certified payments.",
             "Project IDs, vendors, dates, refunds and source invoices require review.",
-            "Hari Baral detailed rows exceed its stated project source total by NPR 500.",
+            ("Hari Baral top summary and normalized events are arithmetically aligned after the "
+             "Pabitra Ganesh suppliers V000004 linkage; payment evidence remains unapproved."
+             if version == "V000004" else
+             "The historical Hari Baral NPR 500 summary/detail difference requires review."),
             "The Basketball tab is excluded to avoid potential double counting."
         ],
         "privacy": {
