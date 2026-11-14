@@ -16,18 +16,21 @@
     .then(response=>{if(!response.ok)throw new Error('Source map unavailable');return response.json()})
     .then(data=>{
       if(data.schema!=='jp.website.connected-source-sheets.v1'||
-         !Array.isArray(data.records)||data.records.length!==6||
+         !Array.isArray(data.records)||data.records.length!==7||
          data.operatorPolicy?.mode!=='MANUAL_FIRST_NO_CRON')throw new Error('Source map contract mismatch');
       const feeds=data.records.filter(r=>r.fetchContract?.mode?.startsWith('AUTHENTICATED'));
-      if(feeds.length!==4)throw new Error('Unexpected number of source feeds');
-      count.textContent='4 manually invoked feed paths · 2 reference/template sources · no scheduled interval · catalogue '+data.version;
+      const optional=data.records.filter(r=>r.fetchContract?.mode?.startsWith('OPTIONAL_'));
+      const references=data.records.filter(r=>r.fetchContract?.mode==='REFERENCE_ONLY'||r.fetchContract?.mode==='TEMPLATE_ONLY_NO_FETCH');
+      if(feeds.length!==4||optional.length!==1||references.length!==2)throw new Error('Unexpected source role counts');
+      count.textContent='4 previously authenticated paths · 1 optional/manual Vendor Bills path (not yet live-verified) · 2 reference/template Sheets · no scheduled interval · catalogue '+data.version;
       root.replaceChildren();
       for(const r of data.records){
         const fc=r.fetchContract;
-        const active=fc.mode.startsWith('AUTHENTICATED');
-        const card=make('article','jp-source-item '+(active?'is-active':'is-reference'));
+        const optionalFeed=fc.mode.startsWith('OPTIONAL_');
+        const active=fc.mode.startsWith('AUTHENTICATED')||optionalFeed;
+        const card=make('article','jp-source-item '+(optionalFeed?'is-optional':active?'is-active':'is-reference'));
         const top=make('div','jp-source-item-head');
-        const tag=make('span','jp-source-item-tag',active?'FETCH CONFIGURED':'NOT A LIVE FETCH');
+        const tag=make('span','jp-source-item-tag',optionalFeed?'OPTIONAL MANUAL READ — NOT VERIFIED':active?'FETCH CONFIGURED':'REFERENCE / TEMPLATE');
         const ref=make('code','jp-source-item-ref',r.ref);
         top.append(tag,ref);
         const title=make('h3','',r.title);
@@ -37,7 +40,7 @@
         card.append(top,title,role,output,source);
         if(active){
           const detail=make('details','jp-source-item-detail');
-          const summary=make('summary','',fc.readTabs.length+' exact tabs read · '+fc.importer);
+          const summary=make('summary','',fc.readTabs.length+(optionalFeed?' configured read tabs · manual-auth not yet verified · ':' exact tabs read · ')+fc.importer);
           const ul=make('ul','jp-source-tabs');
           for(const name of fc.readTabs)ul.append(make('li','',name));
           detail.append(summary,ul);
