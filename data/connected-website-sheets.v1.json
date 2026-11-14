@@ -1,12 +1,12 @@
 {
   "schema": "jp.website.connected-source-sheets.v1",
-  "version": "V000005",
-  "auditedAtNpt": "2026-11-13",
+  "version": "V000006",
+  "auditedAtNpt": "2026-11-14",
   "repository": "FabinGurung/jp-estimating-and-boq",
   "folderName": "Cost Estimation — Working Google Sheets",
   "folderUrl": "https://drive.google.com/drive/folders/1v0yTowZ8mbTtT7euPgrPeEndFKPPH0IU",
   "owner": "Cost Estimation — original working sheets and source custody",
-  "policy": "Six existing source/reference Sheets remain under Cost Estimation custody. Exactly four are configured as authenticated Google Sheets reads (Amrit rates, Amrit measured-work/BOQ inputs, KKG Finance and Fabin Finance). The other two are reference/template only. Manual operator prompt or explicitly committed changes initiate reads; no interval/scheduled workflow is authorized. A site build or older successful run must not be represented as a fresh authenticated fetch. Stable IDs, private data, permissions and PRE/POST history remain with the source provider.",
+  "policy": "Seven owned Cost Estimation working/reference Google Sheets are registered. Four have established authenticated source-import paths; Vendor Bills is a fifth optional path on explicit manual workflow dispatch, NOT yet proven authenticated; two are reference/template-only. One live owner per record; no duplicate authority. Never treat a pushed verified snapshot as a fresh authenticated read. Finance and invoice facts stay private in Google Drive; public Pages shows safe aggregate counts only. No cron, no periodic sync.",
   "records": [
     {
       "ref": "JP-AEC-RATE-MASTER",
@@ -152,6 +152,38 @@
         "approval": "SOURCE_REPORTED_NOT_APPROVED; 19/19 Basketball/Prithivi overlaps deferred; Hari Baral NPR 500 top summary linked in V000004, source arithmetic now matches but payment not certified",
         "trigger": "Manual Cost Estimation Pages refresh or user-authorized publishing commit"
       }
+    },
+    {
+      "ref": "JP-VENDOR-BILLS-LIVE",
+      "title": "Vendor Bills — Working Register — LIVE",
+      "authority": "Permanent native working register within Cost Estimation; 35 original source tabs and 11 derived/guide/control tabs, human-first arrangement V000004; original Excel retained",
+      "usedFor": "Supplier bills, invoices and detail/delivery evidence; project/vendor source summaries, review queue and manual normalization QA",
+      "usagePage": "memory-posters.html#vendor-bills-intake",
+      "publicationStatus": "VERIFIED_SNAPSHOT V000004 (35 original source tabs, 1,895 indexed rows, 259 bills, 930 details, 509 OPEN flags); NOT A CONFIRMED LIVE AUTHENTICATED READ",
+      "originalFolder": "03_JP_Cost_Estimation / 02_HUMAN_WORKING_SHEETS / Cost Estimation — Working Google Sheets",
+      "kind": "vendor_bills_manual_source",
+      "doesNotImply": "An approved bill, verified supplier/legal identity, certified project expenditure, or proof of money paid; source evidence remains in private Drive",
+      "controlVersion": "V000004",
+      "normalizedDataVersion": "V000001",
+      "liveTabCount": 46,
+      "originalSourceTabs": 35,
+      "fetchContract": {
+        "mode": "OPTIONAL_AUTHENTICATED_ON_MANUAL_DISPATCH",
+        "importer": "scripts/build_vendor_bills_public.py",
+        "readTabs": [
+          "00_MANIFEST",
+          "VB_SOURCE_INDEX",
+          "VB_BILL_RECORDS",
+          "VB_DETAIL_ROWS",
+          "VB_RECONCILIATION",
+          "VB_REVIEW_QUEUE"
+        ],
+        "output": "data/vendor-bills-status.v1.json",
+        "approval": "0 APPROVED; 509 OPEN; candidate project and supplier mappings not verified; 2 Hari Baral differences unresolved",
+        "trigger": "Manual research Pages workflow_dispatch with JP_VENDOR_BILLS_SHEET_ID secret and authenticated private Sheet permission; sourceMode MANUAL_AUTHENTICATED_READ only after successful read",
+        "historicalPublication": "GitHub Pages push deploys VERIFIED_SNAPSHOT, independent of Google Sheets direct access",
+        "privacy": "No source file ID, direct private spreadsheet link, row-level supplier amount, invoice or payment data in public registry"
+      }
     }
   ],
   "exclusions": [
@@ -170,7 +202,9 @@
     "Fabin V000004: Hari Baral party was linked into the original top summary, removing the NPR 500 arithmetic discrepancy; the historical correction remains in PRE/POST. The 19/19 Prithivi duplicate source events remain pending owner review. No payments were certified.",
     "The legacy 34-Sheet Operations/Website Source Directory is a historical cross-topic source index, not the current Cost Estimation publisher roster. Its data should be consumed through dedicated owning repositories with explicit source/readback status.",
     "Individual private Sheet IDs and payment rows are omitted from the public machine inventory; GitHub uses the existing read-only WIF service-account identity.",
-    "No cron or unattended source-refresh interval is approved; the default-branch daily-named workflow filenames are retained only to preserve existing GitHub workflow links and are now manual workflow_dispatch routes."
+    "No cron or unattended source-refresh interval is approved; the default-branch daily-named workflow filenames are retained only to preserve existing GitHub workflow links and are now manual workflow_dispatch routes.",
+    "Vendor Bills LIVE is the seventh working/reference Sheet; A7 V000004 rearranged tabs human-first without changing 35 original source worksheet names or any invoice values. Full private QA and PRE/POST log stay in the existing audit Google Doc in the same restricted working folder.",
+    "Vendor Bills is an OPTIONAL manual authenticated fetch, unlike the four pre-existing authenticated paths. Its currently verified V000004 publication remains a snapshot. The associated read-only Google identity and repository secret must be confirmed via a distinct manually dispatched workflow."
   ],
   "operatorPolicy": {
     "mode": "MANUAL_FIRST_NO_CRON",
@@ -187,7 +221,7 @@
     "manualPagesWorkflow": ".github/workflows/cost-estimation-daily-pages-refresh.yml",
     "researchPagesWorkflow": ".github/workflows/deploy-research-pages.yml",
     "amritRatesManualWorkflow": ".github/workflows/amrit-rawat-daily-sheet-sync.yml",
-    "updatedOn": "2026-11-13",
-    "claim": "Configuration and read paths verified from source code; a new 2026-11-13 authenticated Pages deployment is not asserted by this inventory."
+    "updatedOn": "2026-11-14",
+    "claim": "Catalogue and source code verified on 14 November 2026. Four existing authenticated paths, one optional Vendor Bills manual path and two reference/template books. No new Vendor Bills authenticated read is claimed; public status is VERIFIED_SNAPSHOT V000004."
   }
 }
