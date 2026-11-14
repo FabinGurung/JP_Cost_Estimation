@@ -27,22 +27,23 @@
   <section class="jp-source-board" id="google-sheets-fetched" aria-labelledby="source-fetch-title">
     <div class="jp-source-board-heading">
       <div>
-        <p class="poster-kicker">CURRENT SOURCE REGISTER / 13 NOVEMBER 2026</p>
+        <p class="poster-kicker">CURRENT SOURCE REGISTER / 14 NOVEMBER 2026</p>
         <h2 id="source-fetch-title">Which Google Sheets feed Estimation?</h2>
-        <p>Four existing Google Sheets have authenticated import paths; two more are kept as reference or template workbooks. The source register below names the owner, exact tabs the code reads, import script, output and approval limitations. This is a <strong>configuration audit</strong>, not a claim that a new live fetch has already run today.</p>
+        <p>Seven working/reference Sheets are registered: four established authenticated import paths, one optional manual Vendor Bills read path that is <strong>not yet live-authenticated</strong>, and two reference/template books. The source register names each owner, read tab, importer and output. A verified published snapshot is not proof of a fresh authenticated Google Sheets fetch.</p>
       </div>
-      <div class="jp-source-count" aria-label="Current source role counts"><strong>4 <small>FETCH PATHS</small></strong><strong>2 <small>REFERENCES</small></strong></div>
+      <div class="jp-source-count" aria-label="Current source role counts"><strong>4 <small>VERIFIED PATHS</small></strong><strong>1 <small>OPTIONAL MANUAL</small></strong><strong>2 <small>REFERENCES</small></strong></div>
     </div>
     <p class="jp-source-mode"><strong>MANUAL-FIRST MODE:</strong> Edit original Google Sheets by hand, or explicitly prompt an operator to prepare a controlled revision. Refresh using GitHub Actions <em>Run workflow</em> or a user-authorized website commit. <strong>No cron / unattended interval.</strong> No automated data-entry template or step-test system has been approved yet.</p>
-    <p class="jp-source-data-status" id="estimationSourceCount" role="status">Loading the six-source inventory…</p>
+    <p class="jp-source-data-status" id="estimationSourceCount" role="status">Loading the seven-Sheet source inventory…</p>
     <div class="jp-source-grid" id="estimationSourceCards" aria-live="polite"><p>Reading source roles and configured import paths…</p></div>
-    <noscript><p>Source names: Amrit Rawat indicative rates; Amrit Rawat measurements/BOQ; Krishna Kumar Gupta project payments; Fabin Gurung payments; Construction Rate and Cost References (reference); Construction Costing Reusable Workbook Template (template). See the <a href="source-sheets.html">existing source directory</a> for roles.</p></noscript>
+    <noscript><p>Source names: Amrit Rawat indicative rates; Amrit Rawat measurements/BOQ; Krishna Kumar Gupta project payments; Fabin Gurung payments; Vendor Bills — Working Register — LIVE (verified snapshot, optional manual read); Construction Rate and Cost References (reference); Construction Costing Reusable Workbook Template (template). See the <a href="source-sheets.html">existing source directory</a> for roles.</p></noscript>
     <div class="jp-source-howto">
       <h3>Manual update procedure — what to ask next time</h3>
       <ol>
         <li>Edit the existing owner-designated LIVE Sheet; never create a second editable authority or overwrite source evidence.</li>
         <li>Preserve a numbered A7 PRE → edit → inspect/reconcile → POST history; maintain stable file ID and explicit approval status.</li>
         <li>Request an authenticated, one-off refresh via <a href="https://github.com/FabinGurung/jp-estimating-and-boq/actions/workflows/cost-estimation-daily-pages-refresh.yml" target="_blank" rel="noopener noreferrer">Cost Estimation manual Pages refresh</a>. For Amrit rate assumptions only, use the <a href="https://github.com/FabinGurung/jp-estimating-and-boq/actions/workflows/amrit-rawat-daily-sheet-sync.yml" target="_blank" rel="noopener noreferrer">manual Amrit source sync</a>.</li>
+        <li>For Vendor Bills, the repository's <code>JP_VENDOR_BILLS_SHEET_ID</code> source setting and the publishing identity's read access must be verified before a separately requested <a href="https://github.com/FabinGurung/jp-estimating-and-boq/actions/workflows/deploy-research-pages.yml">manual research Pages refresh</a>. Push deployment is only a verified snapshot.</li>
         <li>Check the exact Actions run log, public-safe output, publication commit and live Pages rendering. A successful old run is not evidence of today's refresh.</li>
       </ol>
       <p><a href="source-sheets.html">Open six-Sheet owner directory</a> · <a href="data/connected-website-sheets.v1.json">View source/consumer machine register</a> · <a href="https://github.com/FabinGurung/jp-site-operations/issues/36" target="_blank" rel="noopener noreferrer">Deferred 34-Sheet cross-repository audit</a></p>
@@ -55,7 +56,7 @@
       <div>
         <p class="poster-kicker">COST ESTIMATION / FINANCE</p>
         <h2 id="vendor-bills-intake-title">Vendor Bills &amp; Supplier Invoices</h2>
-        <p class="memory-snapshot-lead"><strong>V000003 review checkpoint — 13 November 2026.</strong> The existing working register retains 35 source tabs and 46 total tabs. A controlled PRE/POST review added evidence notes to two unresolved supplier/project-summary comparisons; 509 review flags remain open. <strong>No bills approved or linked to payments.</strong> The displayed aggregate is a verified snapshot, not a live authenticated Vendor Bills fetch.</p>
+        <p class="memory-snapshot-lead"><strong>V000004 human-first QA — 14 November 2026.</strong> The permanent LIVE working register is in the Cost Estimation working Sheets folder. Its 46 tabs now start with the guide and three original projects, followed by 30 original supplier tabs; two ambiguous source tabs are retained, and eight normalized/review tables plus controls are at the back. All 35 original source tabs and 1,895 indexed rows are traceable. <strong>509 flags remain OPEN; no bills approved.</strong> The displayed aggregate is a verified snapshot, not a live authenticated Vendor Bills fetch.</p>
       </div>
     </div>
     <div id="vendor-bills-status">
@@ -65,16 +66,16 @@
     <div class="memory-three-column">
       <article class="memory-mini memory-done">
         <h3>Source history</h3>
-        <p>The original working Google Sheet retains its permanent ID. Numbered whole-workbook PRE and POST copies preserve its revision history in Drive.</p>
+        <p>The original working Google Sheet retains its permanent ID. A7 V000004 whole-workbook PRE and POST archives have been verified. The complete human-readable QA and change-history Google Doc is now stored beside the LIVE working Sheet in the same restricted Drive folder.</p>
       </article>
       <article class="memory-mini memory-hold">
         <h3>Evidence review</h3>
-        <p>Two existing source-view discrepancies were investigated and retained as OPEN, with a source-formula identity issue identified. No source amounts, formulas, transactions or approval statuses were changed. Private evidence and audit records remain in Drive.</p>
+        <p>The original source-index row and normalized bill/detail IDs have been checked. There are no orphan bill-to-line pointers. Supplier/project source comparisons still include two unresolved differences, and evidence issues such as missing invoice numbers and unverified dates remain. Original invoice values, source formulas and statuses were not rewritten.</p>
       </article>
       <article class="memory-mini memory-next">
         <h3>Manual refresh</h3>
-        <p>Refreshes are manual only. V000003 currently means a checked aggregate snapshot; <strong>Manual source read</strong> must be shown only after an authenticated GitHub Actions run succeeds.</p>
-        <a href="https://github.com/FabinGurung/jp-estimating-and-boq/blob/research/open-estimation-engine-v0.1/docs/source-intake/VENDOR_BILLS_REVIEW_V000003.md">Read the V000003 evidence-review checkpoint →</a>
+        <p>Refreshes are manual only. V000004 currently means a <strong>verified aggregate snapshot</strong>, not an authenticated import. <strong>Manual source read</strong> will only appear after the separate read-only authenticated GitHub Actions step succeeds with authorized private Google Sheet access.</p>
+        <a href="https://github.com/FabinGurung/jp-estimating-and-boq/blob/research/open-estimation-engine-v0.1/docs/source-intake/VENDOR_BILLS_REVIEW_V000004.md">Read the V000004 human-first QA and source-contract checkpoint →</a>
       </article>
     </div>
   </section>
